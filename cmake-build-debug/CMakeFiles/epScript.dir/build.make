@@ -57,33 +57,9 @@ include CMakeFiles/epScript.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/epScript.dir/flags.make
 
-CMakeFiles/epScript.dir/main.cpp.o: CMakeFiles/epScript.dir/flags.make
-CMakeFiles/epScript.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/epScript.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/main.cpp.o -c /Users/whyask37/ClionProjects/epScript/main.cpp
-
-CMakeFiles/epScript.dir/main.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/main.cpp > CMakeFiles/epScript.dir/main.cpp.i
-
-CMakeFiles/epScript.dir/main.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/main.cpp -o CMakeFiles/epScript.dir/main.cpp.s
-
-CMakeFiles/epScript.dir/main.cpp.o.requires:
-
-.PHONY : CMakeFiles/epScript.dir/main.cpp.o.requires
-
-CMakeFiles/epScript.dir/main.cpp.o.provides: CMakeFiles/epScript.dir/main.cpp.o.requires
-	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/main.cpp.o.provides.build
-.PHONY : CMakeFiles/epScript.dir/main.cpp.o.provides
-
-CMakeFiles/epScript.dir/main.cpp.o.provides.build: CMakeFiles/epScript.dir/main.cpp.o
-
-
 CMakeFiles/epScript.dir/factorial.cpp.o: CMakeFiles/epScript.dir/flags.make
 CMakeFiles/epScript.dir/factorial.cpp.o: ../factorial.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/epScript.dir/factorial.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/epScript.dir/factorial.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/factorial.cpp.o -c /Users/whyask37/ClionProjects/epScript/factorial.cpp
 
 CMakeFiles/epScript.dir/factorial.cpp.i: cmake_force
@@ -105,16 +81,40 @@ CMakeFiles/epScript.dir/factorial.cpp.o.provides: CMakeFiles/epScript.dir/factor
 CMakeFiles/epScript.dir/factorial.cpp.o.provides.build: CMakeFiles/epScript.dir/factorial.cpp.o
 
 
+CMakeFiles/epScript.dir/main.cpp.o: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/main.cpp.o: ../main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/epScript.dir/main.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/main.cpp.o -c /Users/whyask37/ClionProjects/epScript/main.cpp
+
+CMakeFiles/epScript.dir/main.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/main.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/main.cpp > CMakeFiles/epScript.dir/main.cpp.i
+
+CMakeFiles/epScript.dir/main.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/main.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/main.cpp -o CMakeFiles/epScript.dir/main.cpp.s
+
+CMakeFiles/epScript.dir/main.cpp.o.requires:
+
+.PHONY : CMakeFiles/epScript.dir/main.cpp.o.requires
+
+CMakeFiles/epScript.dir/main.cpp.o.provides: CMakeFiles/epScript.dir/main.cpp.o.requires
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/main.cpp.o.provides.build
+.PHONY : CMakeFiles/epScript.dir/main.cpp.o.provides
+
+CMakeFiles/epScript.dir/main.cpp.o.provides.build: CMakeFiles/epScript.dir/main.cpp.o
+
+
 # Object files for target epScript
 epScript_OBJECTS = \
-"CMakeFiles/epScript.dir/main.cpp.o" \
-"CMakeFiles/epScript.dir/factorial.cpp.o"
+"CMakeFiles/epScript.dir/factorial.cpp.o" \
+"CMakeFiles/epScript.dir/main.cpp.o"
 
 # External object files for target epScript
 epScript_EXTERNAL_OBJECTS =
 
-epScript: CMakeFiles/epScript.dir/main.cpp.o
 epScript: CMakeFiles/epScript.dir/factorial.cpp.o
+epScript: CMakeFiles/epScript.dir/main.cpp.o
 epScript: CMakeFiles/epScript.dir/build.make
 epScript: CMakeFiles/epScript.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable epScript"
@@ -125,8 +125,8 @@ CMakeFiles/epScript.dir/build: epScript
 
 .PHONY : CMakeFiles/epScript.dir/build
 
-CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/main.cpp.o.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/factorial.cpp.o.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/main.cpp.o.requires
 
 .PHONY : CMakeFiles/epScript.dir/requires
 

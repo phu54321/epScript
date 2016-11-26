@@ -57,33 +57,9 @@ include CMakeFiles/epScriptTest.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/epScriptTest.dir/flags.make
 
-CMakeFiles/epScriptTest.dir/testmain.cpp.o: CMakeFiles/epScriptTest.dir/flags.make
-CMakeFiles/epScriptTest.dir/testmain.cpp.o: ../testmain.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/epScriptTest.dir/testmain.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScriptTest.dir/testmain.cpp.o -c /Users/whyask37/ClionProjects/epScript/testmain.cpp
-
-CMakeFiles/epScriptTest.dir/testmain.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScriptTest.dir/testmain.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/testmain.cpp > CMakeFiles/epScriptTest.dir/testmain.cpp.i
-
-CMakeFiles/epScriptTest.dir/testmain.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScriptTest.dir/testmain.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/testmain.cpp -o CMakeFiles/epScriptTest.dir/testmain.cpp.s
-
-CMakeFiles/epScriptTest.dir/testmain.cpp.o.requires:
-
-.PHONY : CMakeFiles/epScriptTest.dir/testmain.cpp.o.requires
-
-CMakeFiles/epScriptTest.dir/testmain.cpp.o.provides: CMakeFiles/epScriptTest.dir/testmain.cpp.o.requires
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/testmain.cpp.o.provides.build
-.PHONY : CMakeFiles/epScriptTest.dir/testmain.cpp.o.provides
-
-CMakeFiles/epScriptTest.dir/testmain.cpp.o.provides.build: CMakeFiles/epScriptTest.dir/testmain.cpp.o
-
-
 CMakeFiles/epScriptTest.dir/factorial.cpp.o: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/factorial.cpp.o: ../factorial.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/epScriptTest.dir/factorial.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/epScriptTest.dir/factorial.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScriptTest.dir/factorial.cpp.o -c /Users/whyask37/ClionProjects/epScript/factorial.cpp
 
 CMakeFiles/epScriptTest.dir/factorial.cpp.i: cmake_force
@@ -105,16 +81,40 @@ CMakeFiles/epScriptTest.dir/factorial.cpp.o.provides: CMakeFiles/epScriptTest.di
 CMakeFiles/epScriptTest.dir/factorial.cpp.o.provides.build: CMakeFiles/epScriptTest.dir/factorial.cpp.o
 
 
+CMakeFiles/epScriptTest.dir/testmain.cpp.o: CMakeFiles/epScriptTest.dir/flags.make
+CMakeFiles/epScriptTest.dir/testmain.cpp.o: ../testmain.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/epScriptTest.dir/testmain.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScriptTest.dir/testmain.cpp.o -c /Users/whyask37/ClionProjects/epScript/testmain.cpp
+
+CMakeFiles/epScriptTest.dir/testmain.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScriptTest.dir/testmain.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/testmain.cpp > CMakeFiles/epScriptTest.dir/testmain.cpp.i
+
+CMakeFiles/epScriptTest.dir/testmain.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScriptTest.dir/testmain.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/testmain.cpp -o CMakeFiles/epScriptTest.dir/testmain.cpp.s
+
+CMakeFiles/epScriptTest.dir/testmain.cpp.o.requires:
+
+.PHONY : CMakeFiles/epScriptTest.dir/testmain.cpp.o.requires
+
+CMakeFiles/epScriptTest.dir/testmain.cpp.o.provides: CMakeFiles/epScriptTest.dir/testmain.cpp.o.requires
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/testmain.cpp.o.provides.build
+.PHONY : CMakeFiles/epScriptTest.dir/testmain.cpp.o.provides
+
+CMakeFiles/epScriptTest.dir/testmain.cpp.o.provides.build: CMakeFiles/epScriptTest.dir/testmain.cpp.o
+
+
 # Object files for target epScriptTest
 epScriptTest_OBJECTS = \
-"CMakeFiles/epScriptTest.dir/testmain.cpp.o" \
-"CMakeFiles/epScriptTest.dir/factorial.cpp.o"
+"CMakeFiles/epScriptTest.dir/factorial.cpp.o" \
+"CMakeFiles/epScriptTest.dir/testmain.cpp.o"
 
 # External object files for target epScriptTest
 epScriptTest_EXTERNAL_OBJECTS =
 
-epScriptTest: CMakeFiles/epScriptTest.dir/testmain.cpp.o
 epScriptTest: CMakeFiles/epScriptTest.dir/factorial.cpp.o
+epScriptTest: CMakeFiles/epScriptTest.dir/testmain.cpp.o
 epScriptTest: CMakeFiles/epScriptTest.dir/build.make
 epScriptTest: CMakeFiles/epScriptTest.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable epScriptTest"
@@ -125,8 +125,8 @@ CMakeFiles/epScriptTest.dir/build: epScriptTest
 
 .PHONY : CMakeFiles/epScriptTest.dir/build
 
-CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/testmain.cpp.o.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/factorial.cpp.o.requires
+CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/testmain.cpp.o.requires
 
 .PHONY : CMakeFiles/epScriptTest.dir/requires
 

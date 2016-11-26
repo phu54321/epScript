@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/epScript.dir/main.cpp.o"
   "CMakeFiles/epScript.dir/factorial.cpp.o"
+  "CMakeFiles/epScript.dir/main.cpp.o"
   "epScript.pdb"
   "epScript"
 )
