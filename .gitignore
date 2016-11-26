@@ -43,7 +43,7 @@ fabric.properties
 
 # CMake
 CMakeCache.txt
-CMakeFiles
+CMakeFiles/
 CMakeScripts
 Makefile
 cmake_install.cmake

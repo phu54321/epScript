@@ -136,36 +136,6 @@ epScript/fast:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/build
 .PHONY : epScript/fast
 
-factorial.o: factorial.cpp.o
-
-.PHONY : factorial.o
-
-# target to build an object file
-factorial.cpp.o:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/factorial.cpp.o
-	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/factorial.cpp.o
-.PHONY : factorial.cpp.o
-
-factorial.i: factorial.cpp.i
-
-.PHONY : factorial.i
-
-# target to preprocess a source file
-factorial.cpp.i:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/factorial.cpp.i
-	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/factorial.cpp.i
-.PHONY : factorial.cpp.i
-
-factorial.s: factorial.cpp.s
-
-.PHONY : factorial.s
-
-# target to generate assembly for a file
-factorial.cpp.s:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/factorial.cpp.s
-	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/factorial.cpp.s
-.PHONY : factorial.cpp.s
-
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -193,32 +163,89 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-testmain.o: testmain.cpp.o
+parser/epparser.o: parser/epparser.cpp.o
 
-.PHONY : testmain.o
+.PHONY : parser/epparser.o
 
 # target to build an object file
-testmain.cpp.o:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/testmain.cpp.o
-.PHONY : testmain.cpp.o
+parser/epparser.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/epparser.cpp.o
+.PHONY : parser/epparser.cpp.o
 
-testmain.i: testmain.cpp.i
+parser/epparser.i: parser/epparser.cpp.i
 
-.PHONY : testmain.i
+.PHONY : parser/epparser.i
 
 # target to preprocess a source file
-testmain.cpp.i:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/testmain.cpp.i
-.PHONY : testmain.cpp.i
+parser/epparser.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/epparser.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/epparser.cpp.i
+.PHONY : parser/epparser.cpp.i
 
-testmain.s: testmain.cpp.s
+parser/epparser.s: parser/epparser.cpp.s
 
-.PHONY : testmain.s
+.PHONY : parser/epparser.s
 
 # target to generate assembly for a file
-testmain.cpp.s:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/testmain.cpp.s
-.PHONY : testmain.cpp.s
+parser/epparser.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/epparser.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/epparser.cpp.s
+.PHONY : parser/epparser.cpp.s
+
+test/test_lexer.o: test/test_lexer.cpp.o
+
+.PHONY : test/test_lexer.o
+
+# target to build an object file
+test/test_lexer.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_lexer.cpp.o
+.PHONY : test/test_lexer.cpp.o
+
+test/test_lexer.i: test/test_lexer.cpp.i
+
+.PHONY : test/test_lexer.i
+
+# target to preprocess a source file
+test/test_lexer.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_lexer.cpp.i
+.PHONY : test/test_lexer.cpp.i
+
+test/test_lexer.s: test/test_lexer.cpp.s
+
+.PHONY : test/test_lexer.s
+
+# target to generate assembly for a file
+test/test_lexer.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_lexer.cpp.s
+.PHONY : test/test_lexer.cpp.s
+
+test/testmain.o: test/testmain.cpp.o
+
+.PHONY : test/testmain.o
+
+# target to build an object file
+test/testmain.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/testmain.cpp.o
+.PHONY : test/testmain.cpp.o
+
+test/testmain.i: test/testmain.cpp.i
+
+.PHONY : test/testmain.i
+
+# target to preprocess a source file
+test/testmain.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/testmain.cpp.i
+.PHONY : test/testmain.cpp.i
+
+test/testmain.s: test/testmain.cpp.s
+
+.PHONY : test/testmain.s
+
+# target to generate assembly for a file
+test/testmain.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/testmain.cpp.s
+.PHONY : test/testmain.cpp.s
 
 # Help Target
 help:
@@ -230,15 +257,18 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... epScriptTest"
 	@echo "... epScript"
-	@echo "... factorial.o"
-	@echo "... factorial.i"
-	@echo "... factorial.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... testmain.o"
-	@echo "... testmain.i"
-	@echo "... testmain.s"
+	@echo "... parser/epparser.o"
+	@echo "... parser/epparser.i"
+	@echo "... parser/epparser.s"
+	@echo "... test/test_lexer.o"
+	@echo "... test/test_lexer.i"
+	@echo "... test/test_lexer.s"
+	@echo "... test/testmain.o"
+	@echo "... test/testmain.i"
+	@echo "... test/testmain.s"
 .PHONY : help
 
 

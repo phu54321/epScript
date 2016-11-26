@@ -1,5 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/epScript.dir/factorial.cpp.o"
+  "../parser/epparser.cpp"
+  "../parser/epparser.h"
+  "CMakeFiles/epScript.dir/parser/epparser.cpp.o"
   "CMakeFiles/epScript.dir/main.cpp.o"
   "epScript.pdb"
   "epScript"

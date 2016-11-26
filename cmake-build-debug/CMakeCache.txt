@@ -198,6 +198,9 @@ FLEX_INCLUDE_DIR:PATH=FLEX_INCLUDE_DIR-NOTFOUND
 //Path to the fl library
 FL_LIBRARY:FILEPATH=FL_LIBRARY-NOTFOUND
 
+//The directory containing a CMake configuration file for LEMON.
+LEMON_DIR:PATH=LEMON_DIR-NOTFOUND
+
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 

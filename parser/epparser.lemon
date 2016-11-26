@@ -1,0 +1,77 @@
+%token_type {int}
+
+%left PLUS MINUS.
+%left DIVIDE TIMES.
+
+%include {
+#include <stdio.h>
+#include <assert.h>
+#include "epparser.h"
+#include "../test/doctest.hpp"
+
+static int temp = 0;
+}
+
+%syntax_error {
+    printf("Syntax error!\n");
+}
+
+program ::= expr(A).   { temp = A; }
+
+expr(A) ::= expr(B) MINUS  expr(C).   { A = B - C; }
+expr(A) ::= expr(B) PLUS  expr(C).   { A = B + C; }
+expr(A) ::= expr(B) TIMES  expr(C).   { A = B * C; }
+expr(A) ::= expr(B) DIVIDE expr(C).  {
+    if (C != 0) {
+        A = B / C;
+    } else {
+        printf("divide by zero\n");
+    }
+}  /* end of DIVIDE */
+
+
+expr(A) ::= INTEGER(B). { A = B; }
+
+
+%code {
+TEST_CASE("Simple parser")
+{
+    void* pParser = ParseAlloc (malloc);
+
+    /* First input:
+        15 / 5
+                                  */
+    Parse (pParser, INTEGER, 15);
+    Parse (pParser, DIVIDE, 0);
+    Parse (pParser, INTEGER, 5);
+    Parse (pParser, 0, 0);
+    REQUIRE(temp == 3);
+
+    /*  Second input:
+          50 + 125
+                                 */
+
+    Parse (pParser, INTEGER, 50);
+    Parse (pParser, PLUS, 0);
+    Parse (pParser, INTEGER, 125);
+    Parse (pParser, 0, 0);
+    REQUIRE(temp == 175);
+
+    /*  Third input:
+          50 * 125 + 125
+                                 */
+
+
+
+    Parse (pParser, INTEGER, 50);
+    Parse (pParser, TIMES, 0);
+    Parse (pParser, INTEGER, 125);
+    Parse (pParser, PLUS, 0);
+    Parse (pParser, INTEGER, 125);
+    Parse (pParser, 0, 0);
+    REQUIRE(temp == 6375);
+
+    ParseFree(pParser, free );
+
+}
+}

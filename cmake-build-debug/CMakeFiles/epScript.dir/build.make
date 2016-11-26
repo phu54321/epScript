@@ -57,33 +57,41 @@ include CMakeFiles/epScript.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/epScript.dir/flags.make
 
-CMakeFiles/epScript.dir/factorial.cpp.o: CMakeFiles/epScript.dir/flags.make
-CMakeFiles/epScript.dir/factorial.cpp.o: ../factorial.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/epScript.dir/factorial.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/factorial.cpp.o -c /Users/whyask37/ClionProjects/epScript/factorial.cpp
+../parser/epparser.cpp: ../parser/epparser.lemon
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating ../parser/epparser.cpp, ../parser/epparser.h"
+	cd /Users/whyask37/ClionProjects/epScript && lemon parser/epparser.lemon
+	cd /Users/whyask37/ClionProjects/epScript && rm -f parser/epparser.cpp && mv parser/epparser.c parser/epparser.cpp
 
-CMakeFiles/epScript.dir/factorial.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/factorial.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/factorial.cpp > CMakeFiles/epScript.dir/factorial.cpp.i
+../parser/epparser.h: ../parser/epparser.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate ../parser/epparser.h
 
-CMakeFiles/epScript.dir/factorial.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/factorial.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/factorial.cpp -o CMakeFiles/epScript.dir/factorial.cpp.s
+CMakeFiles/epScript.dir/parser/epparser.cpp.o: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/epparser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/epScript.dir/parser/epparser.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/parser/epparser.cpp.o -c /Users/whyask37/ClionProjects/epScript/parser/epparser.cpp
 
-CMakeFiles/epScript.dir/factorial.cpp.o.requires:
+CMakeFiles/epScript.dir/parser/epparser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/epparser.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/parser/epparser.cpp > CMakeFiles/epScript.dir/parser/epparser.cpp.i
 
-.PHONY : CMakeFiles/epScript.dir/factorial.cpp.o.requires
+CMakeFiles/epScript.dir/parser/epparser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/epparser.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/parser/epparser.cpp -o CMakeFiles/epScript.dir/parser/epparser.cpp.s
 
-CMakeFiles/epScript.dir/factorial.cpp.o.provides: CMakeFiles/epScript.dir/factorial.cpp.o.requires
-	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/factorial.cpp.o.provides.build
-.PHONY : CMakeFiles/epScript.dir/factorial.cpp.o.provides
+CMakeFiles/epScript.dir/parser/epparser.cpp.o.requires:
 
-CMakeFiles/epScript.dir/factorial.cpp.o.provides.build: CMakeFiles/epScript.dir/factorial.cpp.o
+.PHONY : CMakeFiles/epScript.dir/parser/epparser.cpp.o.requires
+
+CMakeFiles/epScript.dir/parser/epparser.cpp.o.provides: CMakeFiles/epScript.dir/parser/epparser.cpp.o.requires
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/epparser.cpp.o.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/epparser.cpp.o.provides
+
+CMakeFiles/epScript.dir/parser/epparser.cpp.o.provides.build: CMakeFiles/epScript.dir/parser/epparser.cpp.o
 
 
 CMakeFiles/epScript.dir/main.cpp.o: CMakeFiles/epScript.dir/flags.make
 CMakeFiles/epScript.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/epScript.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/epScript.dir/main.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/main.cpp.o -c /Users/whyask37/ClionProjects/epScript/main.cpp
 
 CMakeFiles/epScript.dir/main.cpp.i: cmake_force
@@ -107,17 +115,17 @@ CMakeFiles/epScript.dir/main.cpp.o.provides.build: CMakeFiles/epScript.dir/main.
 
 # Object files for target epScript
 epScript_OBJECTS = \
-"CMakeFiles/epScript.dir/factorial.cpp.o" \
+"CMakeFiles/epScript.dir/parser/epparser.cpp.o" \
 "CMakeFiles/epScript.dir/main.cpp.o"
 
 # External object files for target epScript
 epScript_EXTERNAL_OBJECTS =
 
-epScript: CMakeFiles/epScript.dir/factorial.cpp.o
+epScript: CMakeFiles/epScript.dir/parser/epparser.cpp.o
 epScript: CMakeFiles/epScript.dir/main.cpp.o
 epScript: CMakeFiles/epScript.dir/build.make
 epScript: CMakeFiles/epScript.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable epScript"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable epScript"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/epScript.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -125,7 +133,7 @@ CMakeFiles/epScript.dir/build: epScript
 
 .PHONY : CMakeFiles/epScript.dir/build
 
-CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/factorial.cpp.o.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/epparser.cpp.o.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/main.cpp.o.requires
 
 .PHONY : CMakeFiles/epScript.dir/requires
@@ -134,7 +142,8 @@ CMakeFiles/epScript.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/epScript.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/epScript.dir/clean
 
-CMakeFiles/epScript.dir/depend:
+CMakeFiles/epScript.dir/depend: ../parser/epparser.cpp
+CMakeFiles/epScript.dir/depend: ../parser/epparser.h
 	cd /Users/whyask37/ClionProjects/epScript/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/whyask37/ClionProjects/epScript /Users/whyask37/ClionProjects/epScript /Users/whyask37/ClionProjects/epScript/cmake-build-debug /Users/whyask37/ClionProjects/epScript/cmake-build-debug /Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/epScript.dir/depend
 

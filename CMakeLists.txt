@@ -1,12 +1,21 @@
 cmake_minimum_required(VERSION 3.6)
 project(epScript)
 
-find_package(BISON)
-find_package(FLEX)
+set_source_files_properties(parser/epparser.c PROPERTIES GENERATED TRUE)
+
+add_custom_command(
+        OUTPUT ../parser/epparser.cpp ../parser/epparser.h
+        DEPENDS parser/epparser.lemon
+        COMMAND lemon parser/epparser.lemon
+        COMMAND rm -f parser/epparser.cpp && mv parser/epparser.c parser/epparser.cpp
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        VERBATIM
+)
 
 set(CMAKE_CXX_STANDARD 11)
-set(SOURCE_FILES doctest.hpp factorial.cpp)
+set(SOURCE_FILES ../parser/epparser.cpp)
+set(TEST_SOURCE_FILES test/test_lexer.cpp)
 
 add_executable(epScript ${SOURCE_FILES} main.cpp)
-add_executable(epScriptTest ${SOURCE_FILES} testmain.cpp)
+add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
 set_target_properties(epScript PROPERTIES COMPILE_FLAGS "-DDOCTEST_CONFIG_DISABLE")
