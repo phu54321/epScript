@@ -9,6 +9,11 @@ CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../test/doctest.hpp
 CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o: ../parser/pygen.cpp
 CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o: ../parser/pygen.h
 
+CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o: ../parser/epparser.h
+CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o: ../parser/tokenConverter.cpp
+CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o: ../parser/tokenConverter.h
+CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o: ../parser/tokenizer/tokenizer.h
+
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.cpp
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.h
 

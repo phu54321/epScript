@@ -9,6 +9,11 @@ CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o
 CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/pygen.cpp
  /Users/whyask37/ClionProjects/epScript/parser/pygen.h
+CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o
+ /Users/whyask37/ClionProjects/epScript/parser/epparser.h
+ /Users/whyask37/ClionProjects/epScript/parser/tokenConverter.cpp
+ /Users/whyask37/ClionProjects/epScript/parser/tokenConverter.h
+ /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.cpp
  /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.h

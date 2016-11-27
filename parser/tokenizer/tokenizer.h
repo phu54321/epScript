@@ -61,14 +61,11 @@ enum TokenType {
 
 struct Token {
     Token(TokenType type, int line)
-            : type(type), dataNumber(0), line(line) {}
+            : type(type), line(line) {}
     Token(TokenType type, const std::string& data, int line)
-            : type(type), dataString(data), dataNumber(0), line(line) {}
-    Token(TokenType type, const std::string& rawstr, int data, int line)
-            : type(type), dataString(rawstr), dataNumber(data), line(line) {}
+            : type(type), data(data), line(line) {}
     TokenType type;
-    std::string dataString;
-    int dataNumber;
+    std::string data;
     int line;
 };
 
