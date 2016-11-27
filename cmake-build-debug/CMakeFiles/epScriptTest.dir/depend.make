@@ -5,25 +5,25 @@ CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/epparser.cpp
 CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/epparser.h
 CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../test/doctest.hpp
 
-CMakeFiles/epScriptTest.dir/parser/tokChars.cpp.o: ../parser/tokChars.cpp
-CMakeFiles/epScriptTest.dir/parser/tokChars.cpp.o: ../parser/tokChars.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.cpp
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.h
 
-CMakeFiles/epScriptTest.dir/parser/tokIndent.cpp.o: ../parser/tokIndent.cpp
-CMakeFiles/epScriptTest.dir/parser/tokIndent.cpp.o: ../parser/tokIndent.h
-CMakeFiles/epScriptTest.dir/parser/tokIndent.cpp.o: ../test/doctest.hpp
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.o: ../parser/tokenizer/tokIndent.cpp
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.o: ../parser/tokenizer/tokIndent.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.o: ../test/doctest.hpp
 
-CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.o: ../parser/tokIndent.h
-CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.o: ../parser/tokenizer.cpp
-CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.o: ../parser/tokenizer.h
-CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.o: ../parser/tokenizerImpl.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizer.cpp.o: ../parser/tokenizer/tokIndent.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizer.cpp.o: ../parser/tokenizer/tokenizer.cpp
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizer.cpp.o: ../parser/tokenizer/tokenizer.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizer.cpp.o: ../parser/tokenizer/tokenizerImpl.h
 
-CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.o: ../parser/tokChars.h
-CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.o: ../parser/tokIndent.h
-CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.o: ../parser/tokenizer.h
-CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.o: ../parser/tokenizerImpl.cpp
-CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.o: ../parser/tokenizerImpl.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokChars.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokIndent.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokenizer.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokenizerImpl.cpp
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokenizerImpl.h
 
-CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o: ../parser/tokenizer.h
+CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o: ../parser/tokenizer/tokenizer.h
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o: ../test/doctest.hpp
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o: ../test/test_tokenizer.cpp
 

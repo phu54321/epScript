@@ -6,10 +6,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/whyask37/ClionProjects/epScript/main.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/main.cpp.o"
   "/Users/whyask37/ClionProjects/epScript/parser/epparser.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/epparser.cpp.o"
-  "/Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokChars.cpp.o"
-  "/Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokIndent.cpp.o"
-  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer.cpp.o"
-  "/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokIndent.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokenizer.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

@@ -13,7 +13,7 @@ add_custom_command(
 )
 
 set(CMAKE_CXX_STANDARD 11)
-set(SOURCE_FILES ../parser/epparser.cpp parser/tokenizer.cpp parser/tokenizer.h parser/tokChars.cpp parser/tokChars.h parser/tokenizerImpl.cpp parser/tokenizerImpl.h parser/tokIndent.cpp parser/tokIndent.h)
+set(SOURCE_FILES ../parser/epparser.cpp parser/tokenizer/tokenizer.cpp parser/tokenizer/tokenizer.h parser/tokenizer/tokChars.cpp parser/tokenizer/tokChars.h parser/tokenizer/tokenizerImpl.cpp parser/tokenizer/tokenizerImpl.h parser/tokenizer/tokIndent.cpp parser/tokenizer/tokIndent.h)
 set(TEST_SOURCE_FILES test/test_tokenizer.cpp)
 
 add_executable(epScript ${SOURCE_FILES} main.cpp)

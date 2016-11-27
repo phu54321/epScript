@@ -3,7 +3,7 @@
 //
 
 #include "tokIndent.h"
-#include "../test/doctest.hpp"
+#include "../../test/doctest.hpp"
 
 TokIndent::TokIndent() : currentIndent(0) {
     indentStacks.push_back(0);

@@ -129,35 +129,35 @@
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/main.cpp">
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp">
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.cpp">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokChars.h">
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.h">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp">
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokIndent.cpp">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokIndent.h">
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokIndent.h">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer.cpp">
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.cpp">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer.h">
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp">
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.cpp">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.h">
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.h">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
