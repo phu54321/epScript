@@ -16,6 +16,7 @@ public:
 
 private:
     TokenPtr TK(TokenType type);
+    TokenPtr TK(TokenType type, int data);
     TokenPtr TK(TokenType type, const std::string& data);
 
 private:

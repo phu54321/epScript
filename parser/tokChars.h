@@ -9,5 +9,6 @@ bool isNameLeadChar(char ch);
 bool isNameBodyChar(char ch);
 bool isSpaceOrNewline(char ch);
 int getCharIndentLevel(char ch);
+int getXDigitInt(char ch);
 
 #endif //EPSCRIPT_TOKCHARS_H

@@ -26,6 +26,10 @@ TokenPtr TokenizerImpl::TK(TokenType type, const std::string& str) {
     return std::make_shared<Token>(type, str, line);
 }
 
+TokenPtr TokenizerImpl::TK(TokenType type, int data) {
+    return std::make_shared<Token>(type, data, line);
+}
+
 #define MATCHSTR(s, tokenType) \
     if(strncmp(s, cursor, sizeof(s) - 1) == 0) { \
         cursor += sizeof(s) - 1; \
@@ -107,6 +111,31 @@ TokenPtr TokenizerImpl::getToken() {
         if(identifier == "continue") return TK(TOKEN_CONTINUE);
         if(identifier == "pass") return TK(TOKEN_PASS);
         return TK(TOKEN_NAME, identifier);
+    }
+
+    // Numbers
+    if('0' <= *cursor && *cursor <= '9') {
+        // Hexadecimal number
+        if((
+                (cursor[1] == 'x' || cursor[1] == 'X') &&
+                isxdigit(cursor[2]))) {
+            cursor += 2;
+            int num = 0, chnum = 0;
+            while((chnum = getXDigitInt(*cursor)) != -1) {
+                num = (num << 4) | chnum;
+                cursor++;
+            }
+            return TK(TOKEN_NUMBER, num);
+        }
+        // Decimal number
+        else {
+            int num = 0;
+            while('0' <= *cursor && *cursor <= '9') {
+                num = num * 10 + (*cursor - '0');
+                cursor++;
+            }
+            return TK(TOKEN_NUMBER, num);
+        }
     }
 
     // Brackets

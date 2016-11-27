@@ -30,7 +30,7 @@ static int temp = 0;
 #endif
 /* The next thing included is series of defines which control
 ** various aspects of the generated parser.
-**    YYCODETYPE         is the data type used for storing terminal
+**    YYCODETYPE         is the dataString type used for storing terminal
 **                       and nonterminal numbers.  "unsigned char" is
 **                       used if there are fewer than 250 terminals
 **                       and nonterminals.  "int" is used otherwise.
@@ -41,13 +41,13 @@ static int temp = 0;
 **    YYFALLBACK         If defined, this indicates that one or more tokens
 **                       have fall-back values which should be used if the
 **                       original value of the token will not parse.
-**    YYACTIONTYPE       is the data type used for storing terminal
+**    YYACTIONTYPE       is the dataString type used for storing terminal
 **                       and nonterminal numbers.  "unsigned char" is
 **                       used if there are fewer than 250 rules and
 **                       states combined.  "int" is used otherwise.
-**    ParseTOKENTYPE     is the data type used for minor tokens given 
+**    ParseTOKENTYPE     is the dataString type used for minor tokens given
 **                       directly to the parser from the tokenizer.
-**    YYMINORTYPE        is the data type used for all minor tokens.
+**    YYMINORTYPE        is the dataString type used for all minor tokens.
 **                       This is typically a union of many types, one of
 **                       which is ParseTOKENTYPE.  The entry in the union
 **                       for base tokens is called "yy0".
