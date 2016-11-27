@@ -36,15 +36,33 @@ TEST_CASE("Simple expression parsing") {
                         "EUDJumpIfNot(_t7, _t1)\n"
                         "_t1 << NextTrigger()\n");
 
+    }
+    SUBCASE("If blocks") {
                 REQUIRE(ParseString("if(1 == 2) 3 + 4; else 5 + 6;") ==
                         "_t1 = Forward()\n"
-                            "_t2 = (1 == 2)\n"
-                            "EUDJumpIfNot(_t2, _t1)\n"
-                            "_t3 = 3 + 4\n"
-                            "_t4 = Forward()\n"
-                            "EUDJump(_t4)\n"
-                            "_t1 << NextTrigger()\n"
-                            "_t5 = 5 + 6\n"
-                            "_t4 << NextTrigger()\n");
+                        "_t2 = (1 == 2)\n"
+                        "EUDJumpIfNot(_t2, _t1)\n"
+                        "_t3 = 3 + 4\n"
+                        "_t4 = Forward()\n"
+                        "EUDJump(_t4)\n"
+                        "_t1 << NextTrigger()\n"
+                        "_t5 = 5 + 6\n"
+                        "_t4 << NextTrigger()\n");
+
+                REQUIRE(ParseString("if(1 == 2) 3; else if(4 == 5) 6; else 7;") ==
+                        "_t1 = Forward()\n"
+                        "_t2 = (1 == 2)\n"
+                        "EUDJumpIfNot(_t2, _t1)\n"
+                        "_t3 = Forward()\n"
+                        "EUDJump(_t3)\n"
+                        "_t1 << NextTrigger()\n"
+                        "_t4 = Forward()\n"
+                        "_t5 = (4 == 5)\n"
+                        "EUDJumpIfNot(_t5, _t4)\n"
+                        "_t6 = Forward()\n"
+                        "EUDJump(_t6)\n"
+                        "_t4 << NextTrigger()\n"
+                        "_t6 << NextTrigger()\n"
+                        "_t3 << NextTrigger()\n");
     }
 }

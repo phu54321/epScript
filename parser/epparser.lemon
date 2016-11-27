@@ -125,6 +125,8 @@ stmtList ::= stmtList stmt.
 block ::= LBRACKET stmtList RBRACKET.
 block ::= LBRACKET error RBRACKET.
 
+
+// If~Else block
 if_start(A) ::= IF. {
     A = genTemp();
     (*pGen) << *A << " = Forward()" << std::endl;

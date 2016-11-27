@@ -970,7 +970,7 @@ static void yy_reduce(
 #line 971 "parser/epparser.c"
         break;
       case 36: /* if_start ::= IF */
-#line 128 "parser/epparser.lemon"
+#line 130 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp();
     (*pGen) << *yygotominor.yy0 << " = Forward()" << std::endl;
@@ -978,7 +978,7 @@ static void yy_reduce(
 #line 979 "parser/epparser.c"
         break;
       case 37: /* if_header ::= if_start LPAREN lexpr RPAREN */
-#line 132 "parser/epparser.lemon"
+#line 134 "parser/epparser.lemon"
 {
     (*pGen) << "EUDJumpIfNot(" << *yymsp[-1].minor.yy0 << ", " << *yymsp[-3].minor.yy0 << ")" << std::endl;
     yygotominor.yy0 = yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
@@ -987,7 +987,7 @@ static void yy_reduce(
         break;
       case 38: /* if_stmt ::= if_header stmt */
       case 40: /* if_stmt ::= else_header stmt */ yytestcase(yyruleno==40);
-#line 137 "parser/epparser.lemon"
+#line 139 "parser/epparser.lemon"
 {
     (*pGen) << *yymsp[-1].minor.yy0 << " << NextTrigger()" << std::endl;
     delete yymsp[-1].minor.yy0;
@@ -995,7 +995,7 @@ static void yy_reduce(
 #line 996 "parser/epparser.c"
         break;
       case 39: /* else_header ::= if_header stmt ELSE */
-#line 142 "parser/epparser.lemon"
+#line 144 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp();
     (*pGen) << *yygotominor.yy0 << " = Forward()" << std::endl;
@@ -1270,7 +1270,7 @@ void Parse(
   }while( yymajor!=YYNOCODE && yypParser->yyidx>=0 );
   return;
 }
-#line 163 "parser/epparser.lemon"
+#line 165 "parser/epparser.lemon"
 
 std::string ParseString(const std::string& code)
 {
