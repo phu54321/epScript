@@ -76,12 +76,21 @@ TEST_CASE("Control block parsing") {
     SUBCASE("While blocks") {
                 REQUIRE(ParseString("while(1 == 2) 3 + 4;") ==
                         "_t1 = NextTrigger()\n"
-                        "_t2 = (1 == 2)\n"
-                        "_t3 = Forward()\n"
-                        "EUDJumpIfNot(_t2, _t3)\n"
+                        "_t2 = Forward()\n"
+                        "_t3 = (1 == 2)\n"
+                        "EUDJumpIfNot(_t3, _t2)\n"
                         "_t4 = 3 + 4\n"
                         "EUDJump(_t1)\n"
-                        "_t3 << NextTrigger()\n");
+                        "_t2 << NextTrigger()\n");
+
+                REQUIRE(ParseString("while(1 == 2) continue;") ==
+                        "_t1 = NextTrigger()\n"
+                        "_t2 = Forward()\n"
+                        "_t3 = (1 == 2)\n"
+                        "EUDJumpIfNot(_t3, _t2)\n"
+                        "EUDJump(_t1)\n"
+                        "EUDJump(_t1)\n"
+                        "_t2 << NextTrigger()\n");
     }
 
 }

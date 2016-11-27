@@ -1,4 +1,5 @@
 %include {
+
 #include <stdio.h>
 #include <assert.h>
 #include <string>
@@ -19,6 +20,25 @@ Token* genTemp(Token* lineSrc) {
 
 void throw_error(int line, int code, const std::string& message) {
     std::cout << "[Error " << code << "] Line " << line << " : " << message << std::endl;
+    errorOccured = true;
+}
+
+}
+
+%include {
+
+// Loop block related
+struct LBlock {
+    std::string lbegin;
+    std::string lcont;
+    std::string lend;
+};
+
+std::vector<LBlock> lblocks;
+
+LBlock* getLastBlock() {
+    if(lblocks.empty()) return nullptr;
+    return &lblocks[lblocks.size() - 1];
 }
 
 }
@@ -159,22 +179,62 @@ if_stmt ::= else_header(A) stmt. {
 
 // While block
 while_start(A) ::= WHILE(B). {
-    A = genTemp(B);
-    (*pGen) << A->data << " = NextTrigger()" << std::endl;
+    auto lbegin = genTemp(B);
+    auto lend = genTemp(B);
+    lblocks.push_back({lbegin->data, lbegin->data, lend->data});
+
+    (*pGen) << lbegin->data << " = NextTrigger()" << std::endl;
+    (*pGen) << lend->data << " = Forward()" << std::endl;
+    A = lbegin;
+    delete B;
 }
 
-while_cond(A) ::= LPAREN lexpr(C) RPAREN(T). {
-    A = genTemp(T);
-    (*pGen) << A->data << " = Forward()" << std::endl;
-    (*pGen) << "EUDJumpIfNot(" << C->data << ", " << A->data << ")" << std::endl;
+while_cond ::= LPAREN lexpr(C) RPAREN(T). {
+    auto lblock = getLastBlock();
+    if(!lblock) {
+        throw_error(T->line, 4217, "While scope is missing");
+    }
+    else {
+        (*pGen) << "EUDJumpIfNot(" << C->data << ", " << lblock->lend << ")" << std::endl;
+    }
     delete C; delete T;
 }
 
-while_stmt ::= while_start(A) while_cond(B) stmt. {
-    (*pGen) << "EUDJump(" << A->data << ")" << std::endl;
-    (*pGen) << B->data << " << NextTrigger()" << std::endl;
-    delete A;
+while_stmt ::= while_start(T) while_cond stmt. {
+    auto lblock = getLastBlock();
+    if(!lblock) {
+        throw_error(T->line, 4217, "While scope is missing");
+    }
+    else {
+        (*pGen) << "EUDJump(" << lblock->lbegin << ")" << std::endl;
+        (*pGen) << lblock->lend << " << NextTrigger()" << std::endl;
+    }
+    delete T;
 }
+
+// Loop exits
+continue_stmt ::= CONTINUE SEMICOLON(T). {
+    auto lblock = getLastBlock();
+    if(!lblock) {
+        throw_error(T->line, 1554, "Continue inside non-loop");
+    }
+    else {
+        (*pGen) << "EUDJump(" << lblock->lcont << ")" << std::endl;
+    }
+    delete T;
+}
+
+break_stmt ::= BREAK SEMICOLON(T). {
+    auto lblock = getLastBlock();
+    if(!lblock) {
+        throw_error(T->line, 5594, "Break inside non-loop");
+    }
+    else {
+        (*pGen) << "EUDJump(" << lblock->lend << ")" << std::endl;
+    }
+    delete T;
+}
+
 
 // General statements
 stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "General syntax error"); }
@@ -183,6 +243,8 @@ stmt ::= stmt_assignMulti.
 stmt ::= stmt_assignSingle.
 stmt ::= if_stmt.
 stmt ::= while_stmt.
+stmt ::= continue_stmt.
+stmt ::= break_stmt.
 stmt ::= block.
 
 

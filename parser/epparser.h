@@ -34,3 +34,5 @@
 #define LPAREN                         34
 #define RPAREN                         35
 #define WHILE                          36
+#define CONTINUE                       37
+#define BREAK                          38

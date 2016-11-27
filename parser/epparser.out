@@ -28,36 +28,44 @@ State 0:
           if_stmt ::= * else_header stmt
           while_start ::= * WHILE
           while_stmt ::= * while_start while_cond stmt
+          continue_stmt ::= * CONTINUE SEMICOLON
+          break_stmt ::= * BREAK SEMICOLON
           stmt ::= * error SEMICOLON
           stmt ::= * expr SEMICOLON
           stmt ::= * stmt_assignMulti
           stmt ::= * stmt_assignSingle
           stmt ::= * if_stmt
           stmt ::= * while_stmt
+          stmt ::= * continue_stmt
+          stmt ::= * break_stmt
           stmt ::= * block
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  56
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  55
+                        NUMBER shift  88
+                        BITNOT shift  29
                       LBRACKET shift  1
-                            IF shift  83
-                         WHILE shift  90
-                         error shift  62
+                            IF shift  100
+                         WHILE shift  83
+                      CONTINUE shift  65
+                         BREAK shift  66
+                         error shift  67
                        program accept
-                          stmt shift  60
-                      nameList shift  57
-                          expr shift  36
-             stmt_assignSingle shift  95
-              stmt_assignMulti shift  94
-                         block shift  98
-                      if_start shift  63
+                          stmt shift  59
+                      nameList shift  56
+                          expr shift  37
+             stmt_assignSingle shift  97
+              stmt_assignMulti shift  96
+                         block shift  90
+                      if_start shift  62
                      if_header shift  5
-                       if_stmt shift  96
+                       if_stmt shift  98
                    else_header shift  4
                    while_start shift  34
-                    while_stmt shift  97
+                    while_stmt shift  99
+                 continue_stmt shift  72
+                    break_stmt shift  79
 
 State 1:
           nameList ::= * NAME COMMA NAME
@@ -92,36 +100,44 @@ State 1:
           if_stmt ::= * else_header stmt
           while_start ::= * WHILE
           while_stmt ::= * while_start while_cond stmt
+          continue_stmt ::= * CONTINUE SEMICOLON
+          break_stmt ::= * BREAK SEMICOLON
           stmt ::= * error SEMICOLON
           stmt ::= * expr SEMICOLON
           stmt ::= * stmt_assignMulti
           stmt ::= * stmt_assignSingle
           stmt ::= * if_stmt
           stmt ::= * while_stmt
+          stmt ::= * continue_stmt
+          stmt ::= * break_stmt
           stmt ::= * block
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  56
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  55
+                        NUMBER shift  88
+                        BITNOT shift  29
                       LBRACKET shift  1
-                            IF shift  83
-                         WHILE shift  90
-                         error shift  58
-                          stmt shift  80
-                      nameList shift  57
-                          expr shift  36
-             stmt_assignSingle shift  95
-              stmt_assignMulti shift  94
+                            IF shift  100
+                         WHILE shift  83
+                      CONTINUE shift  65
+                         BREAK shift  66
+                         error shift  57
+                          stmt shift  103
+                      nameList shift  56
+                          expr shift  37
+             stmt_assignSingle shift  97
+              stmt_assignMulti shift  96
                       stmtList shift  2
-                         block shift  98
-                      if_start shift  63
+                         block shift  90
+                      if_start shift  62
                      if_header shift  5
-                       if_stmt shift  96
+                       if_stmt shift  98
                    else_header shift  4
                    while_start shift  34
-                    while_stmt shift  97
+                    while_stmt shift  99
+                 continue_stmt shift  72
+                    break_stmt shift  79
 
 State 2:
           nameList ::= * NAME COMMA NAME
@@ -154,36 +170,44 @@ State 2:
           if_stmt ::= * else_header stmt
           while_start ::= * WHILE
           while_stmt ::= * while_start while_cond stmt
+          continue_stmt ::= * CONTINUE SEMICOLON
+          break_stmt ::= * BREAK SEMICOLON
           stmt ::= * error SEMICOLON
           stmt ::= * expr SEMICOLON
           stmt ::= * stmt_assignMulti
           stmt ::= * stmt_assignSingle
           stmt ::= * if_stmt
           stmt ::= * while_stmt
+          stmt ::= * continue_stmt
+          stmt ::= * break_stmt
           stmt ::= * block
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  56
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  55
+                        NUMBER shift  88
+                        BITNOT shift  29
                       LBRACKET shift  1
-                      RBRACKET shift  82
-                            IF shift  83
-                         WHILE shift  90
-                         error shift  62
-                          stmt shift  81
-                      nameList shift  57
-                          expr shift  36
-             stmt_assignSingle shift  95
-              stmt_assignMulti shift  94
-                         block shift  98
-                      if_start shift  63
+                      RBRACKET shift  101
+                            IF shift  100
+                         WHILE shift  83
+                      CONTINUE shift  65
+                         BREAK shift  66
+                         error shift  67
+                          stmt shift  102
+                      nameList shift  56
+                          expr shift  37
+             stmt_assignSingle shift  97
+              stmt_assignMulti shift  96
+                         block shift  90
+                      if_start shift  62
                      if_header shift  5
-                       if_stmt shift  96
+                       if_stmt shift  98
                    else_header shift  4
                    while_start shift  34
-                    while_stmt shift  97
+                    while_stmt shift  99
+                 continue_stmt shift  72
+                    break_stmt shift  79
 
 State 3:
           nameList ::= * NAME COMMA NAME
@@ -215,35 +239,43 @@ State 3:
           while_start ::= * WHILE
           while_stmt ::= * while_start while_cond stmt
           while_stmt ::= while_start while_cond * stmt
+          continue_stmt ::= * CONTINUE SEMICOLON
+          break_stmt ::= * BREAK SEMICOLON
           stmt ::= * error SEMICOLON
           stmt ::= * expr SEMICOLON
           stmt ::= * stmt_assignMulti
           stmt ::= * stmt_assignSingle
           stmt ::= * if_stmt
           stmt ::= * while_stmt
+          stmt ::= * continue_stmt
+          stmt ::= * break_stmt
           stmt ::= * block
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  56
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  55
+                        NUMBER shift  88
+                        BITNOT shift  29
                       LBRACKET shift  1
-                            IF shift  83
-                         WHILE shift  90
-                         error shift  62
-                          stmt shift  92
-                      nameList shift  57
-                          expr shift  36
-             stmt_assignSingle shift  95
-              stmt_assignMulti shift  94
-                         block shift  98
-                      if_start shift  63
+                            IF shift  100
+                         WHILE shift  83
+                      CONTINUE shift  65
+                         BREAK shift  66
+                         error shift  67
+                          stmt shift  89
+                      nameList shift  56
+                          expr shift  37
+             stmt_assignSingle shift  97
+              stmt_assignMulti shift  96
+                         block shift  90
+                      if_start shift  62
                      if_header shift  5
-                       if_stmt shift  96
+                       if_stmt shift  98
                    else_header shift  4
                    while_start shift  34
-                    while_stmt shift  97
+                    while_stmt shift  99
+                 continue_stmt shift  72
+                    break_stmt shift  79
 
 State 4:
           nameList ::= * NAME COMMA NAME
@@ -275,35 +307,43 @@ State 4:
           if_stmt ::= else_header * stmt
           while_start ::= * WHILE
           while_stmt ::= * while_start while_cond stmt
+          continue_stmt ::= * CONTINUE SEMICOLON
+          break_stmt ::= * BREAK SEMICOLON
           stmt ::= * error SEMICOLON
           stmt ::= * expr SEMICOLON
           stmt ::= * stmt_assignMulti
           stmt ::= * stmt_assignSingle
           stmt ::= * if_stmt
           stmt ::= * while_stmt
+          stmt ::= * continue_stmt
+          stmt ::= * break_stmt
           stmt ::= * block
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  56
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  55
+                        NUMBER shift  88
+                        BITNOT shift  29
                       LBRACKET shift  1
-                            IF shift  83
-                         WHILE shift  90
-                         error shift  62
-                          stmt shift  89
-                      nameList shift  57
-                          expr shift  36
-             stmt_assignSingle shift  95
-              stmt_assignMulti shift  94
-                         block shift  98
-                      if_start shift  63
+                            IF shift  100
+                         WHILE shift  83
+                      CONTINUE shift  65
+                         BREAK shift  66
+                         error shift  67
+                          stmt shift  82
+                      nameList shift  56
+                          expr shift  37
+             stmt_assignSingle shift  97
+              stmt_assignMulti shift  96
+                         block shift  90
+                      if_start shift  62
                      if_header shift  5
-                       if_stmt shift  96
+                       if_stmt shift  98
                    else_header shift  4
                    while_start shift  34
-                    while_stmt shift  97
+                    while_stmt shift  99
+                 continue_stmt shift  72
+                    break_stmt shift  79
 
 State 5:
           nameList ::= * NAME COMMA NAME
@@ -336,35 +376,43 @@ State 5:
           if_stmt ::= * else_header stmt
           while_start ::= * WHILE
           while_stmt ::= * while_start while_cond stmt
+          continue_stmt ::= * CONTINUE SEMICOLON
+          break_stmt ::= * BREAK SEMICOLON
           stmt ::= * error SEMICOLON
           stmt ::= * expr SEMICOLON
           stmt ::= * stmt_assignMulti
           stmt ::= * stmt_assignSingle
           stmt ::= * if_stmt
           stmt ::= * while_stmt
+          stmt ::= * continue_stmt
+          stmt ::= * break_stmt
           stmt ::= * block
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  56
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  55
+                        NUMBER shift  88
+                        BITNOT shift  29
                       LBRACKET shift  1
-                            IF shift  83
-                         WHILE shift  90
-                         error shift  62
-                          stmt shift  61
-                      nameList shift  57
-                          expr shift  36
-             stmt_assignSingle shift  95
-              stmt_assignMulti shift  94
-                         block shift  98
-                      if_start shift  63
+                            IF shift  100
+                         WHILE shift  83
+                      CONTINUE shift  65
+                         BREAK shift  66
+                         error shift  67
+                          stmt shift  64
+                      nameList shift  56
+                          expr shift  37
+             stmt_assignSingle shift  97
+              stmt_assignMulti shift  96
+                         block shift  90
+                      if_start shift  62
                      if_header shift  5
-                       if_stmt shift  96
+                       if_stmt shift  98
                    else_header shift  4
                    while_start shift  34
-                    while_stmt shift  97
+                    while_stmt shift  99
+                 continue_stmt shift  72
+                    break_stmt shift  79
 
 State 6:
           expr ::= * NUMBER
@@ -389,95 +437,21 @@ State 6:
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
           lexpr ::= * lexpr LAND lexpr
+          lexpr ::= lexpr LAND * lexpr
           lexpr ::= * lexpr LOR lexpr
-          lexpr ::= lexpr LOR * lexpr
           lexpr ::= * LNOT lexpr
           lexpr ::= * LNOT LNOT lexpr
 
-                          LNOT shift  9
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          LNOT shift  7
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
                           expr shift  35
-                         lexpr shift  64
+                         lexpr shift  70
 
 State 7:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-          lexpr ::= * expr EQ expr
-          lexpr ::= * expr NE expr
-          lexpr ::= * expr LE expr
-          lexpr ::= * expr LT expr
-          lexpr ::= * expr GE expr
-          lexpr ::= * expr GT expr
-          lexpr ::= * lexpr LAND lexpr
-          lexpr ::= * lexpr LOR lexpr
-          lexpr ::= * LNOT lexpr
-          lexpr ::= * LNOT LNOT lexpr
-          if_header ::= if_start LPAREN * lexpr RPAREN
-
-                          LNOT shift  9
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  35
-                         lexpr shift  54
-
-State 8:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-          lexpr ::= * expr EQ expr
-          lexpr ::= * expr NE expr
-          lexpr ::= * expr LE expr
-          lexpr ::= * expr LT expr
-          lexpr ::= * expr GE expr
-          lexpr ::= * expr GT expr
-          lexpr ::= * lexpr LAND lexpr
-          lexpr ::= * lexpr LOR lexpr
-          lexpr ::= * LNOT lexpr
-          lexpr ::= * LNOT LNOT lexpr
-          while_cond ::= LPAREN * lexpr RPAREN
-
-                          LNOT shift  9
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  35
-                         lexpr shift  53
-
-State 9:
           expr ::= * NUMBER
           expr ::= * NAME
           expr ::= * expr PLUS expr
@@ -506,16 +480,127 @@ State 9:
           lexpr ::= * LNOT LNOT lexpr
           lexpr ::= LNOT * LNOT lexpr
 
-                          LNOT shift  10
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          LNOT shift  11
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
                           expr shift  35
-                         lexpr shift  85
+                         lexpr shift  74
+
+State 8:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+          lexpr ::= * expr EQ expr
+          lexpr ::= * expr NE expr
+          lexpr ::= * expr LE expr
+          lexpr ::= * expr LT expr
+          lexpr ::= * expr GE expr
+          lexpr ::= * expr GT expr
+          lexpr ::= * lexpr LAND lexpr
+          lexpr ::= * lexpr LOR lexpr
+          lexpr ::= lexpr LOR * lexpr
+          lexpr ::= * LNOT lexpr
+          lexpr ::= * LNOT LNOT lexpr
+
+                          LNOT shift  7
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  35
+                         lexpr shift  63
+
+State 9:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+          lexpr ::= * expr EQ expr
+          lexpr ::= * expr NE expr
+          lexpr ::= * expr LE expr
+          lexpr ::= * expr LT expr
+          lexpr ::= * expr GE expr
+          lexpr ::= * expr GT expr
+          lexpr ::= * lexpr LAND lexpr
+          lexpr ::= * lexpr LOR lexpr
+          lexpr ::= * LNOT lexpr
+          lexpr ::= * LNOT LNOT lexpr
+          if_header ::= if_start LPAREN * lexpr RPAREN
+
+                          LNOT shift  7
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  35
+                         lexpr shift  54
 
 State 10:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+          lexpr ::= * expr EQ expr
+          lexpr ::= * expr NE expr
+          lexpr ::= * expr LE expr
+          lexpr ::= * expr LT expr
+          lexpr ::= * expr GE expr
+          lexpr ::= * expr GT expr
+          lexpr ::= * lexpr LAND lexpr
+          lexpr ::= * lexpr LOR lexpr
+          lexpr ::= * LNOT lexpr
+          lexpr ::= * LNOT LNOT lexpr
+          while_cond ::= LPAREN * lexpr RPAREN
+
+                          LNOT shift  7
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  35
+                         lexpr shift  52
+
+State 11:
           expr ::= * NUMBER
           expr ::= * NAME
           expr ::= * expr PLUS expr
@@ -545,51 +630,14 @@ State 10:
           lexpr ::= LNOT * LNOT lexpr
           lexpr ::= LNOT LNOT * lexpr
 
-                          LNOT shift  10
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          LNOT shift  11
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
                           expr shift  35
-                         lexpr shift  86
-
-State 11:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-          lexpr ::= * expr EQ expr
-          lexpr ::= * expr NE expr
-          lexpr ::= * expr LE expr
-          lexpr ::= * expr LT expr
-          lexpr ::= * expr GE expr
-          lexpr ::= * expr GT expr
-          lexpr ::= * lexpr LAND lexpr
-          lexpr ::= lexpr LAND * lexpr
-          lexpr ::= * lexpr LOR lexpr
-          lexpr ::= * LNOT lexpr
-          lexpr ::= * LNOT LNOT lexpr
-
-                          LNOT shift  9
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  35
-                         lexpr shift  84
+                         lexpr shift  76
 
 State 12:
           exprList ::= * expr
@@ -611,190 +659,15 @@ State 12:
           expr ::= * BITNOT expr
           stmt_assignMulti ::= nameList ASSIGN * exprList SEMICOLON
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                      exprList shift  55
-                          expr shift  42
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                      exprList shift  58
+                          expr shift  39
 
 State 13:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= MINUS * expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  74
-
-State 14:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= expr LSHIFT * expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  49
-
-State 15:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-          lexpr ::= expr GE * expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  43
-
-State 16:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= expr RSHIFT * expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  50
-
-State 17:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-          lexpr ::= expr LT * expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  45
-
-State 18:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= expr BITAND * expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  48
-
-State 19:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-          lexpr ::= expr GT * expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  44
-
-State 20:
           expr ::= * NUMBER
           expr ::= * NAME
           expr ::= * expr PLUS expr
@@ -812,164 +685,14 @@ State 20:
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
                           expr shift  46
 
-State 21:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-          lexpr ::= expr LE * expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  41
-
-State 22:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= expr BITXOR * expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  47
-
-State 23:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= PLUS * expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  73
-
-State 24:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= expr DIVIDE * expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  71
-
-State 25:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= expr PLUS * expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  52
-
-State 26:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-          expr ::= BITNOT * expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  75
-
-State 27:
+State 14:
           expr ::= * NUMBER
           expr ::= * NAME
           expr ::= * expr PLUS expr
@@ -987,14 +710,14 @@ State 27:
           expr ::= * BITNOT expr
           lexpr ::= expr NE * expr
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  40
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  42
 
-State 28:
+State 15:
           expr ::= * NUMBER
           expr ::= * NAME
           expr ::= * expr PLUS expr
@@ -1010,67 +733,16 @@ State 28:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
-          lexpr ::= expr EQ * expr
+          lexpr ::= expr LE * expr
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
                           expr shift  38
 
-State 29:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= expr MINUS * expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  51
-
-State 30:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= expr MOD * expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  72
-
-State 31:
-          exprList ::= exprList COMMA * expr
+State 16:
           expr ::= * NUMBER
           expr ::= * NAME
           expr ::= * expr PLUS expr
@@ -1086,40 +758,16 @@ State 31:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= expr LT * expr
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  39
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  45
 
-State 32:
-          expr ::= * NUMBER
-          expr ::= * NAME
-          expr ::= * expr PLUS expr
-          expr ::= * expr MINUS expr
-          expr ::= * expr MULTIPLY expr
-          expr ::= expr MULTIPLY * expr
-          expr ::= * expr DIVIDE expr
-          expr ::= * expr MOD expr
-          expr ::= * expr LSHIFT expr
-          expr ::= * expr RSHIFT expr
-          expr ::= * expr BITAND expr
-          expr ::= * expr BITOR expr
-          expr ::= * expr BITXOR expr
-          expr ::= * PLUS expr
-          expr ::= * MINUS expr
-          expr ::= * BITNOT expr
-
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  70
-
-State 33:
+State 17:
           expr ::= * NUMBER
           expr ::= * NAME
           expr ::= * expr PLUS expr
@@ -1137,18 +785,418 @@ State 33:
           expr ::= * BITNOT expr
           stmt_assignSingle ::= NAME ASSIGN * expr SEMICOLON
 
-                          PLUS shift  23
-                         MINUS shift  13
-                          NAME shift  69
-                        NUMBER shift  68
-                        BITNOT shift  26
-                          expr shift  37
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  36
+
+State 18:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= expr PLUS * expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  51
+
+State 19:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= expr MINUS * expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  53
+
+State 20:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= expr MULTIPLY * expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  85
+
+State 21:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= expr DIVIDE * expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  84
+
+State 22:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= expr MOD * expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  81
+
+State 23:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= expr LSHIFT * expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  49
+
+State 24:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= expr RSHIFT * expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  50
+
+State 25:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= expr BITAND * expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  48
+
+State 26:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= expr BITXOR * expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  47
+
+State 27:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= PLUS * expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  78
+
+State 28:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= MINUS * expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  75
+
+State 29:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+          expr ::= BITNOT * expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  73
+
+State 30:
+          exprList ::= exprList COMMA * expr
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  40
+
+State 31:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+          lexpr ::= expr GT * expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  41
+
+State 32:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+          lexpr ::= expr GE * expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  43
+
+State 33:
+          expr ::= * NUMBER
+          expr ::= * NAME
+          expr ::= * expr PLUS expr
+          expr ::= * expr MINUS expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= * expr DIVIDE expr
+          expr ::= * expr MOD expr
+          expr ::= * expr LSHIFT expr
+          expr ::= * expr RSHIFT expr
+          expr ::= * expr BITAND expr
+          expr ::= * expr BITOR expr
+          expr ::= * expr BITXOR expr
+          expr ::= * PLUS expr
+          expr ::= * MINUS expr
+          expr ::= * BITNOT expr
+          lexpr ::= expr EQ * expr
+
+                          PLUS shift  27
+                         MINUS shift  28
+                          NAME shift  86
+                        NUMBER shift  88
+                        BITNOT shift  29
+                          expr shift  44
 
 State 34:
           while_cond ::= * LPAREN lexpr RPAREN
           while_stmt ::= while_start * while_cond stmt
 
-                        LPAREN shift  8
+                        LPAREN shift  10
                     while_cond shift  3
 
 State 35:
@@ -1169,22 +1217,22 @@ State 35:
           lexpr ::= expr * GE expr
           lexpr ::= expr * GT expr
 
-                            EQ shift  28
-                            LE shift  21
-                            LT shift  17
-                            GE shift  15
-                            GT shift  19
-                            NE shift  27
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                            EQ shift  33
+                            LE shift  15
+                            LT shift  16
+                            GE shift  32
+                            GT shift  31
+                            NE shift  14
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
 
 State 36:
           expr ::= expr * PLUS expr
@@ -1197,19 +1245,19 @@ State 36:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-          stmt ::= expr * SEMICOLON
+          stmt_assignSingle ::= NAME ASSIGN expr * SEMICOLON
 
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
-                     SEMICOLON shift  79
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
+                     SEMICOLON shift  71
 
 State 37:
           expr ::= expr * PLUS expr
@@ -1222,19 +1270,19 @@ State 37:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-          stmt_assignSingle ::= NAME ASSIGN expr * SEMICOLON
+          stmt ::= expr * SEMICOLON
 
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
-                     SEMICOLON shift  76
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
+                     SEMICOLON shift  68
 
 State 38:
           expr ::= expr * PLUS expr
@@ -1247,96 +1295,21 @@ State 38:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-     (20) lexpr ::= expr EQ expr *
-
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
-                     {default} reduce 20
-
-State 39:
-      (4) exprList ::= exprList COMMA expr *
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
-
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
-                     {default} reduce 4
-
-State 40:
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
-     (21) lexpr ::= expr NE expr *
-
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
-                     {default} reduce 21
-
-State 41:
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
      (22) lexpr ::= expr LE expr *
 
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 22
 
-State 42:
+State 39:
       (3) exprList ::= expr *
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
@@ -1349,17 +1322,92 @@ State 42:
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
 
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 3
+
+State 40:
+      (4) exprList ::= exprList COMMA expr *
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
+                     {default} reduce 4
+
+State 41:
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+     (25) lexpr ::= expr GT expr *
+
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
+                     {default} reduce 25
+
+State 42:
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+     (21) lexpr ::= expr NE expr *
+
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
+                     {default} reduce 21
 
 State 43:
           expr ::= expr * PLUS expr
@@ -1374,16 +1422,16 @@ State 43:
           expr ::= expr * BITXOR expr
      (24) lexpr ::= expr GE expr *
 
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 24
 
 State 44:
@@ -1397,19 +1445,19 @@ State 44:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-     (25) lexpr ::= expr GT expr *
+     (20) lexpr ::= expr EQ expr *
 
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
-                     {default} reduce 25
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
+                     {default} reduce 20
 
 State 45:
           expr ::= expr * PLUS expr
@@ -1424,16 +1472,16 @@ State 45:
           expr ::= expr * BITXOR expr
      (23) lexpr ::= expr LT expr *
 
-                         BITOR shift  20
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                         BITOR shift  13
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 23
 
 State 46:
@@ -1449,15 +1497,15 @@ State 46:
      (15) expr ::= expr BITOR expr *
           expr ::= expr * BITXOR expr
 
-                        BITXOR shift  22
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                        BITXOR shift  26
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 15
 
 State 47:
@@ -1473,14 +1521,14 @@ State 47:
           expr ::= expr * BITXOR expr
      (16) expr ::= expr BITXOR expr *
 
-                        BITAND shift  18
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                        BITAND shift  25
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 16
 
 State 48:
@@ -1496,13 +1544,13 @@ State 48:
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
 
-                        LSHIFT shift  14
-                        RSHIFT shift  16
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                        LSHIFT shift  23
+                        RSHIFT shift  24
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 14
 
 State 49:
@@ -1518,11 +1566,11 @@ State 49:
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
 
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 12
 
 State 50:
@@ -1538,32 +1586,14 @@ State 50:
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
 
-                          PLUS shift  25
-                         MINUS shift  29
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                          PLUS shift  18
+                         MINUS shift  19
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 13
 
 State 51:
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-      (8) expr ::= expr MINUS expr *
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
-
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
-                     {default} reduce 8
-
-State 52:
           expr ::= expr * PLUS expr
       (7) expr ::= expr PLUS expr *
           expr ::= expr * MINUS expr
@@ -1576,195 +1606,155 @@ State 52:
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
 
-                        DIVIDE shift  24
-                      MULTIPLY shift  32
-                           MOD shift  30
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
                      {default} reduce 7
 
-State 53:
+State 52:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
           while_cond ::= LPAREN lexpr * RPAREN
 
-                           LOR shift  6
-                          LAND shift  11
-                        RPAREN shift  91
+                           LOR shift  8
+                          LAND shift  6
+                        RPAREN shift  87
+
+State 53:
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+      (8) expr ::= expr MINUS expr *
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+
+                        DIVIDE shift  21
+                      MULTIPLY shift  20
+                           MOD shift  22
+                     {default} reduce 8
 
 State 54:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
           if_header ::= if_start LPAREN lexpr * RPAREN
 
-                           LOR shift  6
-                          LAND shift  11
-                        RPAREN shift  87
+                           LOR shift  8
+                          LAND shift  6
+                        RPAREN shift  77
 
 State 55:
-          exprList ::= exprList * COMMA expr
-          stmt_assignMulti ::= nameList ASSIGN exprList * SEMICOLON
-
-                         COMMA shift  31
-                     SEMICOLON shift  78
-
-State 56:
           nameList ::= NAME * COMMA NAME
       (6) expr ::= NAME *
           stmt_assignSingle ::= NAME * ASSIGN expr SEMICOLON
 
-                         COMMA shift  65
-                        ASSIGN shift  33
+                         COMMA shift  60
+                        ASSIGN shift  17
                      {default} reduce 6
 
-State 57:
+State 56:
           nameList ::= nameList * COMMA NAME
           stmt_assignMulti ::= nameList * ASSIGN exprList SEMICOLON
 
-                         COMMA shift  59
+                         COMMA shift  61
                         ASSIGN shift  12
 
-State 58:
+State 57:
           block ::= LBRACKET error * RBRACKET
           stmt ::= error * SEMICOLON
 
-                     SEMICOLON shift  93
-                      RBRACKET shift  66
+                     SEMICOLON shift  95
+                      RBRACKET shift  94
+
+State 58:
+          exprList ::= exprList * COMMA expr
+          stmt_assignMulti ::= nameList ASSIGN exprList * SEMICOLON
+
+                         COMMA shift  30
+                     SEMICOLON shift  104
 
 State 59:
-          nameList ::= nameList COMMA * NAME
-
-                          NAME shift  77
-
-State 60:
       (0) program ::= stmt *
 
                              $ reduce 0
 
-State 61:
-     (38) if_stmt ::= if_header stmt *
-          else_header ::= if_header stmt * ELSE
+State 60:
+          nameList ::= NAME COMMA * NAME
 
-                          ELSE shift  88
-                     {default} reduce 38
+                          NAME shift  92
+
+State 61:
+          nameList ::= nameList COMMA * NAME
+
+                          NAME shift  69
 
 State 62:
-          stmt ::= error * SEMICOLON
-
-                     SEMICOLON shift  93
-
-State 63:
           if_header ::= if_start * LPAREN lexpr RPAREN
 
-                        LPAREN shift  7
+                        LPAREN shift  9
 
-State 64:
+State 63:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
      (27) lexpr ::= lexpr LOR lexpr *
 
-                          LAND shift  11
+                          LAND shift  6
                      {default} reduce 27
 
-State 65:
-          nameList ::= NAME COMMA * NAME
+State 64:
+     (38) if_stmt ::= if_header stmt *
+          else_header ::= if_header stmt * ELSE
 
-                          NAME shift  67
+                          ELSE shift  80
+                     {default} reduce 38
+
+State 65:
+          continue_stmt ::= CONTINUE * SEMICOLON
+
+                     SEMICOLON shift  91
 
 State 66:
-     (35) block ::= LBRACKET error RBRACKET *
+          break_stmt ::= BREAK * SEMICOLON
 
-                     {default} reduce 35
+                     SEMICOLON shift  93
 
 State 67:
-      (1) nameList ::= NAME COMMA NAME *
+          stmt ::= error * SEMICOLON
 
-                     {default} reduce 1
+                     SEMICOLON shift  95
 
 State 68:
-      (5) expr ::= NUMBER *
+     (47) stmt ::= expr SEMICOLON *
 
-                     {default} reduce 5
+                     {default} reduce 47
 
 State 69:
-      (6) expr ::= NAME *
+      (2) nameList ::= nameList COMMA NAME *
 
-                     {default} reduce 6
+                     {default} reduce 2
 
 State 70:
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-      (9) expr ::= expr MULTIPLY expr *
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
+          lexpr ::= lexpr * LAND lexpr
+     (26) lexpr ::= lexpr LAND lexpr *
+          lexpr ::= lexpr * LOR lexpr
 
-                     {default} reduce 9
+                     {default} reduce 26
 
 State 71:
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-     (10) expr ::= expr DIVIDE expr *
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
+     (30) stmt_assignSingle ::= NAME ASSIGN expr SEMICOLON *
 
-                     {default} reduce 10
+                     {default} reduce 30
 
 State 72:
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-     (11) expr ::= expr MOD expr *
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
+     (52) stmt ::= continue_stmt *
 
-                     {default} reduce 11
+                     {default} reduce 52
 
 State 73:
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
-     (17) expr ::= PLUS expr *
-
-                     {default} reduce 17
-
-State 74:
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
-     (18) expr ::= MINUS expr *
-
-                     {default} reduce 18
-
-State 75:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -1779,61 +1769,29 @@ State 75:
 
                      {default} reduce 19
 
-State 76:
-     (30) stmt_assignSingle ::= NAME ASSIGN expr SEMICOLON *
-
-                     {default} reduce 30
-
-State 77:
-      (2) nameList ::= nameList COMMA NAME *
-
-                     {default} reduce 2
-
-State 78:
-     (31) stmt_assignMulti ::= nameList ASSIGN exprList SEMICOLON *
-
-                     {default} reduce 31
-
-State 79:
-     (45) stmt ::= expr SEMICOLON *
-
-                     {default} reduce 45
-
-State 80:
-     (32) stmtList ::= stmt *
-
-                     {default} reduce 32
-
-State 81:
-     (33) stmtList ::= stmtList stmt *
-
-                     {default} reduce 33
-
-State 82:
-     (34) block ::= LBRACKET stmtList RBRACKET *
-
-                     {default} reduce 34
-
-State 83:
-     (36) if_start ::= IF *
-
-                     {default} reduce 36
-
-State 84:
-          lexpr ::= lexpr * LAND lexpr
-     (26) lexpr ::= lexpr LAND lexpr *
-          lexpr ::= lexpr * LOR lexpr
-
-                     {default} reduce 26
-
-State 85:
+State 74:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
      (28) lexpr ::= LNOT lexpr *
 
                      {default} reduce 28
 
-State 86:
+State 75:
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+     (18) expr ::= MINUS expr *
+
+                     {default} reduce 18
+
+State 76:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
      (28) lexpr ::= LNOT lexpr *
@@ -1841,65 +1799,185 @@ State 86:
 
                      {default} reduce 29
 
-State 87:
+State 77:
      (37) if_header ::= if_start LPAREN lexpr RPAREN *
 
                      {default} reduce 37
 
-State 88:
+State 78:
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+     (17) expr ::= PLUS expr *
+
+                     {default} reduce 17
+
+State 79:
+     (53) stmt ::= break_stmt *
+
+                     {default} reduce 53
+
+State 80:
      (39) else_header ::= if_header stmt ELSE *
 
                      {default} reduce 39
 
-State 89:
+State 81:
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+     (11) expr ::= expr MOD expr *
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+
+                     {default} reduce 11
+
+State 82:
      (40) if_stmt ::= else_header stmt *
 
                      {default} reduce 40
 
-State 90:
+State 83:
      (41) while_start ::= WHILE *
 
                      {default} reduce 41
 
-State 91:
+State 84:
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+     (10) expr ::= expr DIVIDE expr *
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+
+                     {default} reduce 10
+
+State 85:
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+      (9) expr ::= expr MULTIPLY expr *
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+
+                     {default} reduce 9
+
+State 86:
+      (6) expr ::= NAME *
+
+                     {default} reduce 6
+
+State 87:
      (42) while_cond ::= LPAREN lexpr RPAREN *
 
                      {default} reduce 42
 
-State 92:
+State 88:
+      (5) expr ::= NUMBER *
+
+                     {default} reduce 5
+
+State 89:
      (43) while_stmt ::= while_start while_cond stmt *
 
                      {default} reduce 43
 
-State 93:
-     (44) stmt ::= error SEMICOLON *
+State 90:
+     (54) stmt ::= block *
+
+                     {default} reduce 54
+
+State 91:
+     (44) continue_stmt ::= CONTINUE SEMICOLON *
 
                      {default} reduce 44
 
+State 92:
+      (1) nameList ::= NAME COMMA NAME *
+
+                     {default} reduce 1
+
+State 93:
+     (45) break_stmt ::= BREAK SEMICOLON *
+
+                     {default} reduce 45
+
 State 94:
-     (46) stmt ::= stmt_assignMulti *
+     (35) block ::= LBRACKET error RBRACKET *
+
+                     {default} reduce 35
+
+State 95:
+     (46) stmt ::= error SEMICOLON *
 
                      {default} reduce 46
 
-State 95:
-     (47) stmt ::= stmt_assignSingle *
-
-                     {default} reduce 47
-
 State 96:
-     (48) stmt ::= if_stmt *
+     (48) stmt ::= stmt_assignMulti *
 
                      {default} reduce 48
 
 State 97:
-     (49) stmt ::= while_stmt *
+     (49) stmt ::= stmt_assignSingle *
 
                      {default} reduce 49
 
 State 98:
-     (50) stmt ::= block *
+     (50) stmt ::= if_stmt *
 
                      {default} reduce 50
+
+State 99:
+     (51) stmt ::= while_stmt *
+
+                     {default} reduce 51
+
+State 100:
+     (36) if_start ::= IF *
+
+                     {default} reduce 36
+
+State 101:
+     (34) block ::= LBRACKET stmtList RBRACKET *
+
+                     {default} reduce 34
+
+State 102:
+     (33) stmtList ::= stmtList stmt *
+
+                     {default} reduce 33
+
+State 103:
+     (32) stmtList ::= stmt *
+
+                     {default} reduce 32
+
+State 104:
+     (31) stmt_assignMulti ::= nameList ASSIGN exprList SEMICOLON *
+
+                     {default} reduce 31
 
 ----------------------------------------------------
 Symbols:
@@ -1940,22 +2018,26 @@ Symbols:
    34: LPAREN
    35: RPAREN
    36: WHILE
-   37: error:
-   38: nt:
-   39: program: PLUS MINUS NAME NUMBER BITNOT LBRACKET IF WHILE
-   40: stmt: PLUS MINUS NAME NUMBER BITNOT LBRACKET IF WHILE
-   41: nameList: NAME
-   42: exprList: PLUS MINUS NAME NUMBER BITNOT
-   43: expr: PLUS MINUS NAME NUMBER BITNOT
-   44: lexpr: LNOT PLUS MINUS NAME NUMBER BITNOT
-   45: stmt_assignSingle: NAME
-   46: stmt_assignMulti: NAME
-   47: stmtList: PLUS MINUS NAME NUMBER BITNOT LBRACKET IF WHILE
-   48: block: LBRACKET
-   49: if_start: IF
-   50: if_header: IF
-   51: if_stmt: IF
-   52: else_header: IF
-   53: while_start: WHILE
-   54: while_cond: LPAREN
-   55: while_stmt: WHILE
+   37: CONTINUE
+   38: BREAK
+   39: error:
+   40: nt:
+   41: program: PLUS MINUS NAME NUMBER BITNOT LBRACKET IF WHILE CONTINUE BREAK
+   42: stmt: PLUS MINUS NAME NUMBER BITNOT LBRACKET IF WHILE CONTINUE BREAK
+   43: nameList: NAME
+   44: exprList: PLUS MINUS NAME NUMBER BITNOT
+   45: expr: PLUS MINUS NAME NUMBER BITNOT
+   46: lexpr: LNOT PLUS MINUS NAME NUMBER BITNOT
+   47: stmt_assignSingle: NAME
+   48: stmt_assignMulti: NAME
+   49: stmtList: PLUS MINUS NAME NUMBER BITNOT LBRACKET IF WHILE CONTINUE BREAK
+   50: block: LBRACKET
+   51: if_start: IF
+   52: if_header: IF
+   53: if_stmt: IF
+   54: else_header: IF
+   55: while_start: WHILE
+   56: while_cond: LPAREN
+   57: while_stmt: WHILE
+   58: continue_stmt: CONTINUE
+   59: break_stmt: BREAK

@@ -38,6 +38,8 @@ int getConvertedType(int type) {
         case TOKEN_LPAREN: return LPAREN;
         case TOKEN_RPAREN: return RPAREN;
         case TOKEN_WHILE: return WHILE;
+        case TOKEN_CONTINUE: return CONTINUE;
+        case TOKEN_BREAK: return BREAK;
         default: return -1;
     }
 }
