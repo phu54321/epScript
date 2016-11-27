@@ -100,75 +100,34 @@ TEST_CASE("Tokenizing numbers") {
             REQUIRE(tok.getToken() == nullptr);
 }
 
-TEST_CASE("Indentation") {
-    SUBCASE("Checking basic indentations") {
-        std::stringstream test_input(
-                "a\n"
-                "   b\n"
-                "       c\n"
-                "   d\n"
-                "   e\n"
-                "       f\n"
-                "g\n"
-        );
-        Tokenizer tok(test_input);
-                REQUIRE(tok.getToken()->dataString == "a");
-                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
-                REQUIRE(tok.getToken()->dataString == "b");
-                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
-                REQUIRE(tok.getToken()->dataString == "c");
-                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
-                REQUIRE(tok.getToken()->dataString == "d");
-                REQUIRE(tok.getToken()->dataString == "e");
-                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
-                REQUIRE(tok.getToken()->dataString == "f");
-                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
-                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
-                REQUIRE(tok.getToken()->dataString == "g");
-                REQUIRE(tok.getToken() == nullptr);
-    }
-
-    SUBCASE("Checking indentation after newline") {
-        std::stringstream test_input(
-                "a\n"
-                "\n"
-                "   b\n"
-                "\n"
-                "       c\n"
-                "\n"
-                "d\n"
-        );
-        Tokenizer tok(test_input);
-                REQUIRE(tok.getToken()->dataString == "a");
-                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
-                REQUIRE(tok.getToken()->dataString == "b");
-                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
-                REQUIRE(tok.getToken()->dataString == "c");
-                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
-                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
-                REQUIRE(tok.getToken()->dataString == "d");
-                REQUIRE(tok.getToken() == nullptr);
-    }
-
-    SUBCASE("Checking invalid indentation") {
-        std::stringstream test_input(
-                "a\n"
-                "\n"
-                "   b\n"
-                "\n"
-                "       c\n"
-                "\n"
-                " d\n"
-        );
-        Tokenizer tok(test_input);
-                REQUIRE(tok.getToken()->dataString == "a");
-                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
-                REQUIRE(tok.getToken()->dataString == "b");
-                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
-                REQUIRE(tok.getToken()->dataString == "c");
-                REQUIRE(tok.getToken()->type == TOKEN_INVALIDINDENT);
-                REQUIRE(tok.getToken() == nullptr);  // d line ignored
-    }
+TEST_CASE("Brackets") {
+    std::stringstream test_input(
+            "a { \n"
+                    "   b {\n"
+                    "       c\n"
+                    "   }\n"
+                    "   d\n"
+                    "   e {\n"
+                    "       f\n"
+                    "   }\n"
+                    "}\n"
+                    "g\n"
+    );
+    Tokenizer tok(test_input);
+            REQUIRE(tok.getToken()->dataString == "a");
+            REQUIRE(tok.getToken()->type == TOKEN_LBRACKET);
+            REQUIRE(tok.getToken()->dataString == "b");
+            REQUIRE(tok.getToken()->type == TOKEN_LBRACKET);
+            REQUIRE(tok.getToken()->dataString == "c");
+            REQUIRE(tok.getToken()->type == TOKEN_RBRACKET);
+            REQUIRE(tok.getToken()->dataString == "d");
+            REQUIRE(tok.getToken()->dataString == "e");
+            REQUIRE(tok.getToken()->type == TOKEN_LBRACKET);
+            REQUIRE(tok.getToken()->dataString == "f");
+            REQUIRE(tok.getToken()->type == TOKEN_RBRACKET);
+            REQUIRE(tok.getToken()->type == TOKEN_RBRACKET);
+            REQUIRE(tok.getToken()->dataString == "g");
+            REQUIRE(tok.getToken() == nullptr);
 }
 
 TEST_SUITE_END();

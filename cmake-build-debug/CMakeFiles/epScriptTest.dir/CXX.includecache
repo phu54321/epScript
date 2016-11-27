@@ -89,8 +89,6 @@ tokChars.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.h
 tokenizer.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
-tokIndent.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokIndent.h
 
 /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
 ciso646

@@ -6,7 +6,6 @@
 #define EPSCRIPT_TOKENIZERIMPL_H
 
 #include "tokenizer.h"
-#include "tokIndent.h"
 
 class TokenizerImpl {
 public:
@@ -20,7 +19,6 @@ private:
     TokenPtr TK(TokenType type, const std::string& data);
 
 private:
-    TokIndent indenter;
     std::vector<char> data;
     char* cursor;
     int line;

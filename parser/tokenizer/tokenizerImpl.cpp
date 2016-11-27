@@ -39,52 +39,12 @@ TokenPtr TokenizerImpl::TK(TokenType type, const std::string& rawstr, int data) 
 static_assert(sizeof("string") == 7, "sizeof string should be strlen(str) + 1");
 
 TokenPtr TokenizerImpl::getToken() {
-    reread:;
-
-    // Unindentation may require several steps. Here we care that first.
-    if(indenter.remainingIndentTokens() < 0) {
-        indenter.unindent();
-        return TK(TOKEN_UNINDENT);
-    }
-
     // Skip spaces, including newline
     while(isSpaceOrNewline(*cursor)) {
         // Skipped through newline.
         if(*cursor == '\n') {
             line++;
             cursor++;
-
-            // Get indent level after '\n'
-            int chIndentLevel, totalIndentLevel = 0;
-            while((chIndentLevel = getCharIndentLevel(*cursor)) != 0) {
-                totalIndentLevel += chIndentLevel;
-                cursor++;
-            }
-
-            // If line contains no content (blank or line comment only)
-            // Skip that line and start reading again from that line.
-            if (*cursor == '#' || *cursor == '\n' || *cursor == EOF) {
-                // Skip until newline
-                while(*cursor != EOF && *cursor != '\n') cursor++;
-                goto reread;
-            }
-
-            // This line contains something, so we apply new indentation level here.
-            if(!indenter.setCurrentLineIndent(totalIndentLevel)) {
-                // Error occured. meaning we have to ignore this line completely.
-                while(*cursor != EOF && *cursor != '\n') cursor++;
-                return TK(TOKEN_INVALIDINDENT);
-            }
-
-            // Indent if nessecary
-            if (indenter.remainingIndentTokens() > 0) {
-                indenter.indent();
-                return TK(TOKEN_INDENT);
-            }
-            else if(indenter.remainingIndentTokens() < 0) {
-                indenter.unindent();
-                return TK(TOKEN_UNINDENT);
-            }
         }
         else cursor++;
     }
@@ -144,6 +104,8 @@ TokenPtr TokenizerImpl::getToken() {
     MATCHSTR(")", TOKEN_RPAREN);
     MATCHSTR("[", TOKEN_LSQBRACKET);
     MATCHSTR("]", TOKEN_RSQBRACKET);
+    MATCHSTR("{", TOKEN_LBRACKET);
+    MATCHSTR("}", TOKEN_RBRACKET);
 
     // Operators
     MATCHSTR("&&", TOKEN_LAND);
