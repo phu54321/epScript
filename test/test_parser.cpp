@@ -25,11 +25,13 @@ TEST_CASE("Simple expression parsing") {
 
 
     SUBCASE("Logical operator") {
-                REQUIRE(ParseString("1 == 2 || 2 + 3 == 5") ==
+                REQUIRE(ParseString("1 == 2 || 2 + 3 == 5 && 7 == 8") ==
                         "_t1 = (1 == 2)\n"
                         "_t2 = 2 + 3\n"
                         "_t3 = (_t2 == 5)\n"
-                        "_t4 = EUDOr([_t1, _t3])\n"
+                        "_t4 = (7 == 8)\n"
+                        "_t5 = [_t3, _t4]\n"
+                        "_t6 = EUDOr([_t1, _t5])\n"
         );
     }
 }
