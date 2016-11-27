@@ -100,17 +100,17 @@ TokenPtr TokenizerImpl::getToken() {
         while(isNameBodyChar(*(++cursor)));
         std::string identifier(idfStart, cursor - idfStart);
 
-        if(identifier == "var") return TK(TOKEN_VAR);
-        if(identifier == "function") return TK(TOKEN_FUNCTION);
-        if(identifier == "if") return TK(TOKEN_IF);
-        if(identifier == "elif") return TK(TOKEN_ELIF);
-        if(identifier == "else") return TK(TOKEN_ELSE);
-        if(identifier == "for") return TK(TOKEN_FOR);
-        if(identifier == "while") return TK(TOKEN_WHILE);
-        if(identifier == "break") return TK(TOKEN_BREAK);
-        if(identifier == "continue") return TK(TOKEN_CONTINUE);
-        if(identifier == "pass") return TK(TOKEN_PASS);
-        return TK(TOKEN_NAME, identifier);
+        if(identifier == "var") return TK(VAR);
+        if(identifier == "function") return TK(FUNCTION);
+        if(identifier == "if") return TK(IF);
+        if(identifier == "elif") return TK(ELIF);
+        if(identifier == "else") return TK(ELSE);
+        if(identifier == "for") return TK(FOR);
+        if(identifier == "while") return TK(WHILE);
+        if(identifier == "break") return TK(BREAK);
+        if(identifier == "continue") return TK(CONTINUE);
+        if(identifier == "pass") return TK(PASS);
+        return TK(NAME, identifier);
     }
 
     // Numbers
@@ -125,7 +125,7 @@ TokenPtr TokenizerImpl::getToken() {
                 num = (num << 4) | chnum;
                 cursor++;
             }
-            return TK(TOKEN_NUMBER, num);
+            return TK(NUMBER, num);
         }
         // Decimal number
         else {
@@ -134,7 +134,7 @@ TokenPtr TokenizerImpl::getToken() {
                 num = num * 10 + (*cursor - '0');
                 cursor++;
             }
-            return TK(TOKEN_NUMBER, num);
+            return TK(NUMBER, num);
         }
     }
 
@@ -145,31 +145,31 @@ TokenPtr TokenizerImpl::getToken() {
     MATCHSTR("]", TOKEN_RSQBRACKET);
 
     // Operators
-    MATCHSTR("&&", TOKEN_LAND);
-    MATCHSTR("||", TOKEN_LOR);
+    MATCHSTR("&&", LAND);
+    MATCHSTR("||", LOR);
 
-    MATCHSTR("<<", TOKEN_BITLSHIFT);
-    MATCHSTR(">>", TOKEN_BITRSHIFT);
-    MATCHSTR("~", TOKEN_BITNOT);
-    MATCHSTR("&", TOKEN_BITAND);  // After TOKEN_LAND
-    MATCHSTR("|", TOKEN_BITOR);  // After TOKEN_LOR
-    MATCHSTR("^", TOKEN_BITXOR);
+    MATCHSTR("<<", LSHIFT);
+    MATCHSTR(">>", RSHIFT);
+    MATCHSTR("~", BITNOT);
+    MATCHSTR("&", BITAND);  // After LAND
+    MATCHSTR("|", BITOR);  // After LOR
+    MATCHSTR("^", BITXOR);
 
-    MATCHSTR("==", TOKEN_EQ);
-    MATCHSTR("<=", TOKEN_LE);
-    MATCHSTR(">=", TOKEN_GE);
-    MATCHSTR("<", TOKEN_LT);  // After TOKEN_BITLSHIFT
-    MATCHSTR(">", TOKEN_GT);  // After TOKEN_BITRSHIFT
-    MATCHSTR("!=", TOKEN_NE);  // After TOKEN_LNOT
+    MATCHSTR("==", EQ);
+    MATCHSTR("<=", LE);
+    MATCHSTR(">=", GE);
+    MATCHSTR("<", LT);  // After LSHIFT
+    MATCHSTR(">", GT);  // After RSHIFT
+    MATCHSTR("!=", NE);  // After LNOT
 
-    MATCHSTR("!", TOKEN_LNOT);
+    MATCHSTR("!", LNOT);
 
-    MATCHSTR("+", TOKEN_PLUS);
-    MATCHSTR("-", TOKEN_MINUS);
-    MATCHSTR("*", TOKEN_MULTIPLY);
-    MATCHSTR("/", TOKEN_DIVIDE);
+    MATCHSTR("+", PLUS);
+    MATCHSTR("-", MINUS);
+    MATCHSTR("*", MULTIPLY);
+    MATCHSTR("/", DIVIDE);
 
-    MATCHSTR("=", TOKEN_ASSIGN);  // After Comparators
+    MATCHSTR("=", ASSIGN);  // After Comparators
 
-    return TK(TOKEN_INVALID);
+    return TK(INVALID);
 }
