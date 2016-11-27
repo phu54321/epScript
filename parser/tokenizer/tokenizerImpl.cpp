@@ -26,8 +26,8 @@ TokenPtr TokenizerImpl::TK(TokenType type, const std::string& str) {
     return std::make_shared<Token>(type, str, line);
 }
 
-TokenPtr TokenizerImpl::TK(TokenType type, int data) {
-    return std::make_shared<Token>(type, data, line);
+TokenPtr TokenizerImpl::TK(TokenType type, const std::string& rawstr, int data) {
+    return std::make_shared<Token>(type, rawstr, data, line);
 }
 
 #define MATCHSTR(s, tokenType) \
@@ -115,6 +115,7 @@ TokenPtr TokenizerImpl::getToken() {
 
     // Numbers
     if('0' <= *cursor && *cursor <= '9') {
+        const char* numberStart = cursor;
         // Hexadecimal number
         if((
                 (cursor[1] == 'x' || cursor[1] == 'X') &&
@@ -125,7 +126,7 @@ TokenPtr TokenizerImpl::getToken() {
                 num = (num << 4) | chnum;
                 cursor++;
             }
-            return TK(TOKEN_NUMBER, num);
+            return TK(TOKEN_NUMBER, std::string(numberStart, cursor - numberStart), num);
         }
         // Decimal number
         else {
@@ -134,7 +135,7 @@ TokenPtr TokenizerImpl::getToken() {
                 num = num * 10 + (*cursor - '0');
                 cursor++;
             }
-            return TK(TOKEN_NUMBER, num);
+            return TK(TOKEN_NUMBER, std::string(numberStart, cursor - numberStart), num);
         }
     }
 

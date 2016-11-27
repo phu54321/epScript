@@ -96,7 +96,7 @@ TEST_CASE("Tokenizing numbers") {
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->dataNumber == 0x123);
             REQUIRE(tok.getToken()->type == TOKEN_PLUS);
-            REQUIRE(tok.getToken()->dataNumber == 456);
+            REQUIRE(tok.getToken()->dataString == "456");
             REQUIRE(tok.getToken() == nullptr);
 }
 
