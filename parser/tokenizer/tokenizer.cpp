@@ -7,4 +7,4 @@
 
 Tokenizer::Tokenizer(std::istream& is) : _impl(new TokenizerImpl(is)) {}
 Tokenizer::~Tokenizer() { delete _impl; }
-TokenPtr Tokenizer::getToken() { return _impl->getToken(); }
+Token* Tokenizer::getToken() { return _impl->getToken(); }

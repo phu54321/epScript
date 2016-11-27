@@ -33,3 +33,4 @@
 #define IF                             33
 #define LPAREN                         34
 #define RPAREN                         35
+#define WHILE                          36

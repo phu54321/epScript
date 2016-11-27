@@ -11,11 +11,11 @@ class TokenizerImpl {
 public:
     TokenizerImpl(std::istream& is);
     ~TokenizerImpl();
-    TokenPtr getToken();
+    Token* getToken();
 
 private:
-    TokenPtr TK(TokenType type);
-    TokenPtr TK(TokenType type, const std::string& data);
+    Token* TK(TokenType type);
+    Token* TK(TokenType type, const std::string& data);
 
 private:
     std::vector<char> data;

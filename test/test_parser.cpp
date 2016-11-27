@@ -11,6 +11,7 @@ TEST_CASE("Simple expression parsing") {
                 REQUIRE(ParseString("15 / 3;") == "_t1 = 15 // 3\n");
                 REQUIRE(ParseString("15 % 3;") == "_t1 = 15 % 3\n");
     }
+
     SUBCASE("Operator precedence") {
                 REQUIRE(ParseString("5 + 3 * 7;") ==
                         "_t1 = 3 * 7\n"
@@ -23,7 +24,12 @@ TEST_CASE("Simple expression parsing") {
                         "_t2 = 3 + 4\n");
     }
 
+    SUBCASE("Error handling") {
+                REQUIRE_THROWS_AS(ParseString("{\n5 + 3 * 7\n}"), std::runtime_error);
+    }
+}
 
+TEST_CASE("Control block parsing") {
     SUBCASE("Logical operator") {
                 REQUIRE(ParseString("if(1 == 2 || 2 + 3 == 5 && 7 == 8) 3;") ==
                         "_t1 = Forward()\n"
@@ -37,6 +43,7 @@ TEST_CASE("Simple expression parsing") {
                         "_t1 << NextTrigger()\n");
 
     }
+
     SUBCASE("If blocks") {
                 REQUIRE(ParseString("if(1 == 2) 3 + 4; else 5 + 6;") ==
                         "_t1 = Forward()\n"
@@ -65,4 +72,18 @@ TEST_CASE("Simple expression parsing") {
                         "_t6 << NextTrigger()\n"
                         "_t3 << NextTrigger()\n");
     }
+
+    SUBCASE("While blocks") {
+                REQUIRE(ParseString("while(1 == 2) 3 + 4;") ==
+                        "_t1 = NextTrigger()\n"
+                        "_t2 = (1 == 2)\n"
+                        "_t3 = Forward()\n"
+                        "EUDJumpIfNot(_t2, _t3)\n"
+                        "_t4 = 3 + 4\n"
+                        "EUDJump(_t1)\n"
+                        "_t3 << NextTrigger()\n");
+    }
+
 }
+
+TEST_SUITE_END();

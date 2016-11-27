@@ -4,7 +4,7 @@
 #include "tokenizer/tokenizer.h"
 #include "epparser.h"
 
-int tokenTypeConv(TokenType type);
+bool tokenTypeConv(Token* token);
 std::string ParseString(const std::string& code);
 
 #endif //EPSCRIPT_TOKENADAPTER_H

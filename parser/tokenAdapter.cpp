@@ -4,7 +4,7 @@
 
 #include "tokenAdapter.h"
 
-int tokenTypeConv(TokenType type) {
+int getConvertedType(int type) {
     switch(type) {
         case TOKEN_COMMA: return COMMA;
         case TOKEN_ASSIGN: return ASSIGN;
@@ -37,6 +37,16 @@ int tokenTypeConv(TokenType type) {
         case TOKEN_IF: return IF;
         case TOKEN_LPAREN: return LPAREN;
         case TOKEN_RPAREN: return RPAREN;
+        case TOKEN_WHILE: return WHILE;
         default: return -1;
+    }
+}
+
+bool tokenTypeConv(Token* token) {
+    int newtype = getConvertedType(token->type);
+    if(newtype == -1) return false;
+    else {
+        token->type = newtype;
+        return true;
     }
 }

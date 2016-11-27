@@ -11,6 +11,7 @@
 
 enum TokenType {
     TOKEN_INVALID,
+    TOKEN_TEMP,
 
     // Variables
     TOKEN_VAR,
@@ -64,16 +65,17 @@ enum TokenType {
 };
 
 struct Token {
+    Token(const std::string& data, Token* lineSrc)
+            : type(TOKEN_TEMP), data(data), line(lineSrc->line) {}
     Token(TokenType type, int line)
             : type(type), line(line) {}
     Token(TokenType type, const std::string& data, int line)
             : type(type), data(data), line(line) {}
-    TokenType type;
+    int type;
     std::string data;
     int line;
 };
 
-using TokenPtr = std::shared_ptr<Token>;
 
 class TokenizerImpl;
 class Tokenizer {
@@ -81,7 +83,7 @@ public:
     Tokenizer(std::istream& is);
     ~Tokenizer();
 
-    TokenPtr getToken();
+    Token* getToken();
 
 private:
     TokenizerImpl* _impl;

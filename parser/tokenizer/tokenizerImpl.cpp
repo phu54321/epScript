@@ -18,12 +18,12 @@ TokenizerImpl::~TokenizerImpl() {}
 
 ////
 
-TokenPtr TokenizerImpl::TK(TokenType type) {
-    return std::make_shared<Token>(type, line);
+Token* TokenizerImpl::TK(TokenType type) {
+    return new Token(type, line);
 }
 
-TokenPtr TokenizerImpl::TK(TokenType type, const std::string& str) {
-    return std::make_shared<Token>(type, str, line);
+Token* TokenizerImpl::TK(TokenType type, const std::string& str) {
+    return new Token(type, str, line);
 }
 
 #define MATCHSTR(s, tokenType) \
@@ -34,7 +34,7 @@ TokenPtr TokenizerImpl::TK(TokenType type, const std::string& str) {
 
 static_assert(sizeof("string") == 7, "sizeof string should be strlen(str) + 1");
 
-TokenPtr TokenizerImpl::getToken() {
+Token* TokenizerImpl::getToken() {
     // Skip spaces, including newline
     while(isSpaceOrNewline(*cursor)) {
         // Skipped through newline.
