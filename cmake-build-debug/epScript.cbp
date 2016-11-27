@@ -129,6 +129,10 @@
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/main.cpp">
 			<Option target="epScript"/>
 		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/pygen.cpp">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/pygen.h">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>

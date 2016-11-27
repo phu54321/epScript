@@ -193,6 +193,36 @@ parser/epparser.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/epparser.cpp.s
 .PHONY : parser/epparser.cpp.s
 
+parser/pygen.o: parser/pygen.cpp.o
+
+.PHONY : parser/pygen.o
+
+# target to build an object file
+parser/pygen.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/pygen.cpp.o
+.PHONY : parser/pygen.cpp.o
+
+parser/pygen.i: parser/pygen.cpp.i
+
+.PHONY : parser/pygen.i
+
+# target to preprocess a source file
+parser/pygen.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/pygen.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/pygen.cpp.i
+.PHONY : parser/pygen.cpp.i
+
+parser/pygen.s: parser/pygen.cpp.s
+
+.PHONY : parser/pygen.s
+
+# target to generate assembly for a file
+parser/pygen.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/pygen.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/pygen.cpp.s
+.PHONY : parser/pygen.cpp.s
+
 parser/tokenizer/tokChars.o: parser/tokenizer/tokChars.cpp.o
 
 .PHONY : parser/tokenizer/tokChars.o
@@ -410,6 +440,9 @@ help:
 	@echo "... parser/epparser.o"
 	@echo "... parser/epparser.i"
 	@echo "... parser/epparser.s"
+	@echo "... parser/pygen.o"
+	@echo "... parser/pygen.i"
+	@echo "... parser/pygen.s"
 	@echo "... parser/tokenizer/tokChars.o"
 	@echo "... parser/tokenizer/tokChars.i"
 	@echo "... parser/tokenizer/tokChars.s"

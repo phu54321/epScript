@@ -5,6 +5,9 @@ CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/epparser.cpp
 CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/epparser.h
 CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../test/doctest.hpp
 
+CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o: ../parser/pygen.cpp
+CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o: ../parser/pygen.h
+
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.cpp
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.h
 

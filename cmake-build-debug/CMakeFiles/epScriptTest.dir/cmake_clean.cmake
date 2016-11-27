@@ -5,6 +5,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o"
   "CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o"
   "CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.o"
+  "CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o"
   "CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o"
   "CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o"
   "CMakeFiles/epScriptTest.dir/test/testmain.cpp.o"
