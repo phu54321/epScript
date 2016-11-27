@@ -6,10 +6,10 @@ TEST_SUITE("Basic tokenization");
 TEST_CASE("Tokenizing arithmetic operators") {
     std::stringstream test_input("+-*/");
     Tokenizer tok(test_input);
-            REQUIRE(tok.getToken()->type == PLUS);
-            REQUIRE(tok.getToken()->type == MINUS);
-            REQUIRE(tok.getToken()->type == MULTIPLY);
-            REQUIRE(tok.getToken()->type == DIVIDE);
+            REQUIRE(tok.getToken()->type == TOKEN_PLUS);
+            REQUIRE(tok.getToken()->type == TOKEN_MINUS);
+            REQUIRE(tok.getToken()->type == TOKEN_MULTIPLY);
+            REQUIRE(tok.getToken()->type == TOKEN_DIVIDE);
             REQUIRE(tok.getToken() == nullptr);
 }
 
@@ -17,12 +17,12 @@ TEST_CASE("Tokenizing arithmetic operators") {
 TEST_CASE("Tokenizing comparison operators") {
     std::stringstream test_input("==!=<=>=<>");
     Tokenizer tok(test_input);
-            REQUIRE(tok.getToken()->type == EQ);
-            REQUIRE(tok.getToken()->type == NE);
-            REQUIRE(tok.getToken()->type == LE);
-            REQUIRE(tok.getToken()->type == GE);
-            REQUIRE(tok.getToken()->type == LT);
-            REQUIRE(tok.getToken()->type == GT);
+            REQUIRE(tok.getToken()->type == TOKEN_EQ);
+            REQUIRE(tok.getToken()->type == TOKEN_NE);
+            REQUIRE(tok.getToken()->type == TOKEN_LE);
+            REQUIRE(tok.getToken()->type == TOKEN_GE);
+            REQUIRE(tok.getToken()->type == TOKEN_LT);
+            REQUIRE(tok.getToken()->type == TOKEN_GT);
             REQUIRE(tok.getToken() == nullptr);
 }
 
@@ -42,27 +42,27 @@ TEST_CASE("Tokenizing names") {
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->dataString == "forvar");  // forvar
             REQUIRE(tok.getToken()->dataString == "test");  // test
-            REQUIRE(tok.getToken()->type == VAR);  // var
-            REQUIRE(tok.getToken()->type == FOR);  // for
-            REQUIRE(tok.getToken()->type == FUNCTION);  // function
-            REQUIRE(tok.getToken()->type == IF);  // if
-            REQUIRE(tok.getToken()->type == ELIF);  // elif
-            REQUIRE(tok.getToken()->type == ELSE);  // else
-            REQUIRE(tok.getToken()->type == WHILE);  // while
-            REQUIRE(tok.getToken()->type == BREAK);  // break
-            REQUIRE(tok.getToken()->type == CONTINUE);  // continue
-            REQUIRE(tok.getToken()->type == NAME);  // v1
+            REQUIRE(tok.getToken()->type == TOKEN_VAR);  // var
+            REQUIRE(tok.getToken()->type == TOKEN_FOR);  // for
+            REQUIRE(tok.getToken()->type == TOKEN_FUNCTION);  // function
+            REQUIRE(tok.getToken()->type == TOKEN_IF);  // if
+            REQUIRE(tok.getToken()->type == TOKEN_ELIF);  // elif
+            REQUIRE(tok.getToken()->type == TOKEN_ELSE);  // else
+            REQUIRE(tok.getToken()->type == TOKEN_WHILE);  // while
+            REQUIRE(tok.getToken()->type == TOKEN_BREAK);  // break
+            REQUIRE(tok.getToken()->type == TOKEN_CONTINUE);  // continue
+            REQUIRE(tok.getToken()->type == TOKEN_NAME);  // v1
             REQUIRE(tok.getToken() == nullptr);  // v1
 }
 
 TEST_CASE("Tokenizing mixed names/operators") {
     std::stringstream test_input("var v1 = a + b");
     Tokenizer tok(test_input);
-            REQUIRE(tok.getToken()->type == VAR);
+            REQUIRE(tok.getToken()->type == TOKEN_VAR);
             REQUIRE(tok.getToken()->dataString == "v1");
-            REQUIRE(tok.getToken()->type == ASSIGN);
+            REQUIRE(tok.getToken()->type == TOKEN_ASSIGN);
             REQUIRE(tok.getToken()->dataString == "a");
-            REQUIRE(tok.getToken()->type == PLUS);
+            REQUIRE(tok.getToken()->type == TOKEN_PLUS);
             REQUIRE(tok.getToken()->dataString == "b");
             REQUIRE(tok.getToken() == nullptr);
 }
@@ -95,7 +95,7 @@ TEST_CASE("Tokenizing numbers") {
     std::stringstream test_input("0x123 + 456");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->dataNumber == 0x123);
-            REQUIRE(tok.getToken()->type == PLUS);
+            REQUIRE(tok.getToken()->type == TOKEN_PLUS);
             REQUIRE(tok.getToken()->dataNumber == 456);
             REQUIRE(tok.getToken() == nullptr);
 }
