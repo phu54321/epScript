@@ -23,9 +23,7 @@ std::string* genTemp() {
     return new std::string(output);
 }
 
-std::string temp;
-
-#line 29 "parser/epparser.c"
+#line 27 "parser/epparser.c"
 /* Next is all token values, in a form suitable for use by makeheaders.
 ** This section will be null unless lemon is run with the -m switch.
 */
@@ -370,9 +368,9 @@ static void yy_destructor(
     */
     case 7: /* nt */
 {
-#line 30 "parser/epparser.lemon"
+#line 29 "parser/epparser.lemon"
  delete (yypminor->yy0); 
-#line 376 "parser/epparser.c"
+#line 374 "parser/epparser.c"
 }
       break;
     default:  break;   /* If no destructor action specified: do nothing */
@@ -662,55 +660,54 @@ static void yy_reduce(
   **     break;
   */
       case 0: /* program ::= expr */
-#line 35 "parser/epparser.lemon"
+#line 34 "parser/epparser.lemon"
 {
-    temp = *yymsp[0].minor.yy0;
     delete yymsp[0].minor.yy0;
 }
-#line 671 "parser/epparser.c"
+#line 668 "parser/epparser.c"
         break;
       case 1: /* expr ::= expr MINUS expr */
-#line 40 "parser/epparser.lemon"
+#line 38 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp();
     (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " - " << *yymsp[0].minor.yy0 << std::endl;
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 680 "parser/epparser.c"
+#line 677 "parser/epparser.c"
         break;
       case 2: /* expr ::= expr PLUS expr */
-#line 46 "parser/epparser.lemon"
+#line 44 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp();
     (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " + " << *yymsp[0].minor.yy0 << std::endl;
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 689 "parser/epparser.c"
+#line 686 "parser/epparser.c"
         break;
       case 3: /* expr ::= expr MULTIPLY expr */
-#line 52 "parser/epparser.lemon"
+#line 50 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp();
     (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " * " << *yymsp[0].minor.yy0 << std::endl;
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 698 "parser/epparser.c"
+#line 695 "parser/epparser.c"
         break;
       case 4: /* expr ::= expr DIVIDE expr */
-#line 58 "parser/epparser.lemon"
+#line 56 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp();
     (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " / " << *yymsp[0].minor.yy0 << std::endl;
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 707 "parser/epparser.c"
+#line 704 "parser/epparser.c"
         break;
       case 5: /* expr ::= NUMBER */
-#line 64 "parser/epparser.lemon"
+#line 62 "parser/epparser.lemon"
 {
     yygotominor.yy0 = yymsp[0].minor.yy0;
 }
-#line 714 "parser/epparser.c"
+#line 711 "parser/epparser.c"
         break;
       default:
         break;
@@ -772,10 +769,10 @@ static void yy_syntax_error(
 ){
   ParseARG_FETCH;
 #define TOKEN (yyminor.yy0)
-#line 25 "parser/epparser.lemon"
+#line 21 "parser/epparser.lemon"
 
     printf("Syntax error!\n");
-#line 779 "parser/epparser.c"
+#line 776 "parser/epparser.c"
   ParseARG_STORE; /* Suppress warning about unused %extra_argument variable */
 }
 
@@ -966,16 +963,14 @@ void Parse(
   }while( yymajor!=YYNOCODE && yypParser->yyidx>=0 );
   return;
 }
-#line 69 "parser/epparser.lemon"
+#line 67 "parser/epparser.lemon"
 
 TEST_CASE("Simple parser")
 {
     void* pParser = ParseAlloc (malloc);
     PyGenerator* pgen = new PyGenerator;
 
-    /* First input:
-        15 / 5
-                                  */
+    // 15 / 5
     Parse (pParser, NUMBER, new std::string("15"), pgen);
     Parse (pParser, DIVIDE, new std::string(), pgen);
     Parse (pParser, NUMBER, new std::string("5"), pgen);
@@ -986,4 +981,4 @@ TEST_CASE("Simple parser")
     delete pgen;
 
 }
-#line 990 "parser/epparser.c"
+#line 985 "parser/epparser.c"

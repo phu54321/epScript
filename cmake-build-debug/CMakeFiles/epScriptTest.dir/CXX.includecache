@@ -15,8 +15,14 @@ assert.h
 -
 string
 -
+stdlib.h
+-
+iostream
+-
 epparser.h
 /Users/whyask37/ClionProjects/epScript/parser/epparser.h
+pygen.h
+/Users/whyask37/ClionProjects/epScript/parser/pygen.h
 ../test/doctest.hpp
 /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
 stdio.h

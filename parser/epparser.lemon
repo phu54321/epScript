@@ -16,16 +16,15 @@ std::string* genTemp() {
     return new std::string(output);
 }
 
-std::string temp;
-
 }
-
-%extra_argument { PyGenerator* pGen }
 
 %syntax_error {
     printf("Syntax error!\n");
 }
 
+////////
+
+%extra_argument { PyGenerator* pGen }
 %token_type {std::string*}
 %destructor nt { delete $$; }
 
@@ -33,29 +32,28 @@ std::string temp;
 %left DIVIDE MULTIPLY.
 
 program ::= expr(A).   {
-    temp = *A;
     delete A;
 }
 
-expr(A) ::= expr(B) MINUS  expr(C).     {
+expr(A) ::= expr(B) MINUS  expr(C). {
     A = genTemp();
     (*pGen) << *A << " = " << *B << " - " << *C << std::endl;
     delete B; delete C;
 }
 
-expr(A) ::= expr(B) PLUS  expr(C).      {
+expr(A) ::= expr(B) PLUS  expr(C). {
     A = genTemp();
     (*pGen) << *A << " = " << *B << " + " << *C << std::endl;
     delete B; delete C;
 }
 
-expr(A) ::= expr(B) MULTIPLY  expr(C).  {
+expr(A) ::= expr(B) MULTIPLY  expr(C). {
     A = genTemp();
     (*pGen) << *A << " = " << *B << " * " << *C << std::endl;
     delete B; delete C;
 }
 
-expr(A) ::= expr(B) DIVIDE expr(C).     {
+expr(A) ::= expr(B) DIVIDE expr(C). {
     A = genTemp();
     (*pGen) << *A << " = " << *B << " / " << *C << std::endl;
     delete B; delete C;
@@ -72,9 +70,7 @@ TEST_CASE("Simple parser")
     void* pParser = ParseAlloc (malloc);
     PyGenerator* pgen = new PyGenerator;
 
-    /* First input:
-        15 / 5
-                                  */
+    // 15 / 5
     Parse (pParser, NUMBER, new std::string("15"), pgen);
     Parse (pParser, DIVIDE, new std::string(), pgen);
     Parse (pParser, NUMBER, new std::string("5"), pgen);
