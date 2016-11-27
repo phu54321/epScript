@@ -223,6 +223,36 @@ parser/pygen.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/pygen.cpp.s
 .PHONY : parser/pygen.cpp.s
 
+parser/tokenAdapter.o: parser/tokenAdapter.cpp.o
+
+.PHONY : parser/tokenAdapter.o
+
+# target to build an object file
+parser/tokenAdapter.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.o
+.PHONY : parser/tokenAdapter.cpp.o
+
+parser/tokenAdapter.i: parser/tokenAdapter.cpp.i
+
+.PHONY : parser/tokenAdapter.i
+
+# target to preprocess a source file
+parser/tokenAdapter.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.i
+.PHONY : parser/tokenAdapter.cpp.i
+
+parser/tokenAdapter.s: parser/tokenAdapter.cpp.s
+
+.PHONY : parser/tokenAdapter.s
+
+# target to generate assembly for a file
+parser/tokenAdapter.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.s
+.PHONY : parser/tokenAdapter.cpp.s
+
 parser/tokenizer/tokChars.o: parser/tokenizer/tokChars.cpp.o
 
 .PHONY : parser/tokenizer/tokChars.o
@@ -343,6 +373,33 @@ parser/tokenizer/tokenizerImpl.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.s
 .PHONY : parser/tokenizer/tokenizerImpl.cpp.s
 
+test/test_parser.o: test/test_parser.cpp.o
+
+.PHONY : test/test_parser.o
+
+# target to build an object file
+test/test_parser.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o
+.PHONY : test/test_parser.cpp.o
+
+test/test_parser.i: test/test_parser.cpp.i
+
+.PHONY : test/test_parser.i
+
+# target to preprocess a source file
+test/test_parser.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_parser.cpp.i
+.PHONY : test/test_parser.cpp.i
+
+test/test_parser.s: test/test_parser.cpp.s
+
+.PHONY : test/test_parser.s
+
+# target to generate assembly for a file
+test/test_parser.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_parser.cpp.s
+.PHONY : test/test_parser.cpp.s
+
 test/test_pygen.o: test/test_pygen.cpp.o
 
 .PHONY : test/test_pygen.o
@@ -443,6 +500,9 @@ help:
 	@echo "... parser/pygen.o"
 	@echo "... parser/pygen.i"
 	@echo "... parser/pygen.s"
+	@echo "... parser/tokenAdapter.o"
+	@echo "... parser/tokenAdapter.i"
+	@echo "... parser/tokenAdapter.s"
 	@echo "... parser/tokenizer/tokChars.o"
 	@echo "... parser/tokenizer/tokChars.i"
 	@echo "... parser/tokenizer/tokChars.s"
@@ -455,6 +515,9 @@ help:
 	@echo "... parser/tokenizer/tokenizerImpl.o"
 	@echo "... parser/tokenizer/tokenizerImpl.i"
 	@echo "... parser/tokenizer/tokenizerImpl.s"
+	@echo "... test/test_parser.o"
+	@echo "... test/test_parser.i"
+	@echo "... test/test_parser.s"
 	@echo "... test/test_pygen.o"
 	@echo "... test/test_pygen.i"
 	@echo "... test/test_pygen.s"

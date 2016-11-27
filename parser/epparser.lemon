@@ -2,17 +2,18 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string>
-#include <stdlib.h>
 #include <iostream>
+#include <sstream>
 #include "epparser.h"
 #include "pygen.h"
-#include "../test/doctest.hpp"
+#include "tokenAdapter.h"
+#include "tokenizer/tokenizer.h"
+
+static int tmpIndex = 0;
 
 std::string* genTemp() {
-    static int i = 0;
     static char output[20] = "_t";
-    i++;
-    sprintf(output, "_t%d", i);
+    sprintf(output, "_t%d", tmpIndex++);
     return new std::string(output);
 }
 
@@ -86,7 +87,7 @@ exprList(A) ::= expr(B). {
     A = B;
 }
 
-exprList(A) ::= exprList(B) COMMA EXPR(C). {
+exprList(A) ::= exprList(B) COMMA expr(C). {
     A = new std::string((*B) + ", " + (*C));
     delete B; delete C;
 }
@@ -102,22 +103,21 @@ stmt ::= stmt_assignSingle.
 
 
 %code {
-TEST_CASE("Simple parser")
+std::string ParseString(const std::string& code)
 {
+    std::istringstream is(code);
+    Tokenizer tok(is);
     void* pParser = ParseAlloc (malloc);
-    PyGenerator* pgen = new PyGenerator;
+    PyGenerator pGen;
+    TokenPtr token;
 
-    pgen->namedef("test");
-
-    // 15 / 5
-    Parse (pParser, NAME, new std::string("test"), pgen);
-    Parse (pParser, DIVIDE, new std::string(), pgen);
-    Parse (pParser, NUMBER, new std::string("5"), pgen);
-    Parse (pParser, 0, new std::string(), pgen);
-    REQUIRE(pgen->str() == "_t1 = test // 5\n");
-
+    tmpIndex = 1;
+    while((token = tok.getToken()) != nullptr) {
+        int tokenType = tokenTypeConv(token->type);
+        Parse (pParser, tokenType, new std::string(token->data), &pGen);
+    }
+    Parse (pParser, 0, nullptr, &pGen);
     ParseFree(pParser, free );
-    delete pgen;
-
+    return pGen.str();
 }
 }

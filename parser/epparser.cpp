@@ -9,17 +9,18 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string>
-#include <stdlib.h>
 #include <iostream>
+#include <sstream>
 #include "epparser.h"
 #include "pygen.h"
-#include "../test/doctest.hpp"
+#include "tokenAdapter.h"
+#include "tokenizer/tokenizer.h"
+
+static int tmpIndex = 0;
 
 std::string* genTemp() {
-    static int i = 0;
     static char output[20] = "_t";
-    i++;
-    sprintf(output, "_t%d", i);
+    sprintf(output, "_t%d", tmpIndex++);
     return new std::string(output);
 }
 
@@ -27,7 +28,7 @@ void throw_error(int code, const std::string& message) {
     std::cout << "[Error " << code << "] " << message << std::endl;
 }
 
-#line 31 "parser/epparser.c"
+#line 32 "parser/epparser.c"
 /* Next is all token values, in a form suitable for use by makeheaders.
 ** This section will be null unless lemon is run with the -m switch.
 */
@@ -78,7 +79,7 @@ void throw_error(int code, const std::string& message) {
 **                       defined, then do no error processing.
 */
 #define YYCODETYPE unsigned char
-#define YYNOCODE 26
+#define YYNOCODE 25
 #define YYACTIONTYPE unsigned char
 #define ParseTOKENTYPE std::string*
 typedef union {
@@ -163,43 +164,44 @@ static const YYMINORTYPE yyzerominor = { 0 };
 **  yy_default[]       Default action for each state.
 */
 static const YYACTIONTYPE yy_action[] = {
- /*     0 */    12,    2,   11,    9,   10,    4,    5,    7,    6,    8,
- /*    10 */     2,   11,    9,   10,    4,    5,    7,    6,    8,   11,
- /*    20 */     9,   10,    4,    5,    7,    6,    8,    9,   10,    4,
- /*    30 */     5,    7,    6,    8,   18,   63,   25,   14,   37,   24,
- /*    40 */    30,   35,    4,    5,    7,    6,    8,    7,    6,    8,
- /*    50 */    38,   34,   23,   34,   33,   13,   32,   15,    3,   26,
- /*    60 */    28,    1,   27,   19,   29,   40,   17,   31,   64,   39,
- /*    70 */    64,   36,   64,   22,   20,   21,   16,
+ /*     0 */     8,    6,   10,    4,    3,    7,    9,   13,   11,    2,
+ /*    10 */     6,   10,    4,    3,    7,    9,   13,   11,    2,   10,
+ /*    20 */     4,    3,    7,    9,   13,   11,    2,    4,    3,    7,
+ /*    30 */     9,   13,   11,    2,   63,   27,   15,   35,   26,   16,
+ /*    40 */    39,    7,    9,   13,   11,    2,   13,   11,    2,   17,
+ /*    50 */    37,   36,   30,   37,   25,   20,   12,   28,    1,   29,
+ /*    60 */    14,   40,   38,   18,   32,   21,   34,   22,    5,   64,
+ /*    70 */    24,   64,   31,   64,   23,   33,   19,
 };
 static const YYCODETYPE yy_lookahead[] = {
  /*     0 */     1,    2,    3,    4,    5,    6,    7,    8,    9,   10,
  /*    10 */     2,    3,    4,    5,    6,    7,    8,    9,   10,    3,
  /*    20 */     4,    5,    6,    7,    8,    9,   10,    4,    5,    6,
- /*    30 */     7,    8,    9,   10,   20,   18,   19,   20,   21,   22,
- /*    40 */    20,   24,    6,    7,    8,    9,   10,    8,    9,   10,
- /*    50 */    12,   11,   12,   11,   12,   20,   12,   20,   13,   14,
- /*    60 */    23,   13,   14,   20,   14,    0,   20,   15,   25,   20,
- /*    70 */    25,   20,   25,   20,   20,   20,   20,
+ /*    30 */     7,    8,    9,   10,   17,   18,   19,   20,   21,   19,
+ /*    40 */    23,    6,    7,    8,    9,   10,    8,    9,   10,   19,
+ /*    50 */    11,   12,   22,   11,   12,   19,   13,   14,   13,   14,
+ /*    60 */    19,    0,   12,   19,   12,   19,   19,   19,   14,   24,
+ /*    70 */    19,   24,   19,   24,   19,   19,   19,
 };
 #define YY_SHIFT_USE_DFLT (-2)
-#define YY_SHIFT_MAX 29
+#define YY_SHIFT_MAX 30
 static const signed char yy_shift_ofst[] = {
- /*     0 */    40,   42,   42,   42,   42,   42,   42,   42,   42,   42,
- /*    10 */    42,   42,   42,   -1,   -1,   -1,    8,   16,   23,   36,
- /*    20 */    36,   39,   39,   45,   48,   65,   38,   44,   50,   52,
+ /*     0 */    42,   39,   39,   39,   39,   39,   39,   39,   39,   39,
+ /*    10 */    39,   39,   39,   39,   -1,   -1,   -1,   -1,    8,   16,
+ /*    20 */    23,   35,   35,   38,   38,   43,   45,   61,   50,   52,
+ /*    30 */    54,
 };
 #define YY_REDUCE_USE_DFLT (-1)
-#define YY_REDUCE_MAX 12
+#define YY_REDUCE_MAX 13
 static const signed char yy_reduce_ofst[] = {
- /*     0 */    17,   37,   46,   35,   55,   53,   49,   20,   51,   54,
- /*    10 */    43,   14,   56,
+ /*     0 */    17,   30,   53,   48,   46,   41,   57,   51,   44,   55,
+ /*    10 */    36,   47,   20,   56,
 };
 static const YYACTIONTYPE yy_default[] = {
  /*     0 */    62,   62,   62,   62,   62,   62,   62,   62,   62,   62,
- /*    10 */    62,   62,   62,   53,   59,   56,   51,   52,   50,   49,
- /*    20 */    48,   43,   44,   42,   62,   62,   62,   62,   58,   62,
- /*    30 */    46,   57,   55,   42,   41,   60,   47,   61,   54,   45,
+ /*    10 */    62,   62,   62,   62,   57,   59,   53,   56,   51,   52,
+ /*    20 */    50,   48,   49,   44,   43,   42,   62,   62,   62,   62,
+ /*    30 */    58,   47,   55,   46,   45,   61,   42,   41,   54,   60,
 };
 #define YY_SZ_ACTTAB (int)(sizeof(yy_action)/sizeof(yy_action[0]))
 
@@ -296,10 +298,9 @@ static const char *const yyTokenName[] = {
   "$",             "BITOR",         "BITXOR",        "BITAND",      
   "LSHIFT",        "RSHIFT",        "PLUS",          "MINUS",       
   "DIVIDE",        "MULTIPLY",      "MOD",           "NUMBER",      
-  "NAME",          "ASSIGN",        "COMMA",         "EXPR",        
-  "error",         "nt",            "program",       "stmt",        
-  "expr",          "stmt_assignSingle",  "nameList",      "exprList",    
-  "stmt_assignMulti",
+  "NAME",          "ASSIGN",        "COMMA",         "error",       
+  "nt",            "program",       "stmt",          "expr",        
+  "stmt_assignSingle",  "nameList",      "exprList",      "stmt_assignMulti",
 };
 #endif /* NDEBUG */
 
@@ -324,7 +325,7 @@ static const char *const yyRuleName[] = {
  /*  14 */ "nameList ::= NAME COMMA NAME",
  /*  15 */ "nameList ::= nameList COMMA NAME",
  /*  16 */ "exprList ::= expr",
- /*  17 */ "exprList ::= exprList COMMA EXPR",
+ /*  17 */ "exprList ::= exprList COMMA expr",
  /*  18 */ "stmt_assignMulti ::= nameList ASSIGN exprList",
  /*  19 */ "stmt ::= expr",
  /*  20 */ "stmt ::= stmt_assignMulti",
@@ -407,11 +408,11 @@ static void yy_destructor(
     ** which appear on the RHS of the rule, but which are not used
     ** inside the C code.
     */
-    case 17: /* nt */
+    case 16: /* nt */
 {
-#line 33 "parser/epparser.lemon"
+#line 34 "parser/epparser.lemon"
  delete (yypminor->yy0); 
-#line 415 "parser/epparser.c"
+#line 416 "parser/epparser.c"
 }
       break;
     default:  break;   /* If no destructor action specified: do nothing */
@@ -640,28 +641,28 @@ static const struct {
   YYCODETYPE lhs;         /* Symbol on the left-hand side of the rule */
   unsigned char nrhs;     /* Number of right-hand side symbols in the rule */
 } yyRuleInfo[] = {
-  { 18, 1 },
-  { 20, 1 },
-  { 20, 1 },
-  { 20, 3 },
-  { 20, 3 },
-  { 20, 3 },
-  { 20, 3 },
-  { 20, 3 },
-  { 20, 3 },
-  { 20, 3 },
-  { 20, 3 },
-  { 20, 3 },
+  { 17, 1 },
+  { 19, 1 },
+  { 19, 1 },
+  { 19, 3 },
+  { 19, 3 },
+  { 19, 3 },
+  { 19, 3 },
+  { 19, 3 },
+  { 19, 3 },
+  { 19, 3 },
+  { 19, 3 },
+  { 19, 3 },
+  { 19, 3 },
   { 20, 3 },
   { 21, 3 },
+  { 21, 3 },
+  { 22, 1 },
   { 22, 3 },
-  { 22, 3 },
-  { 23, 1 },
   { 23, 3 },
-  { 24, 3 },
-  { 19, 1 },
-  { 19, 1 },
-  { 19, 1 },
+  { 18, 1 },
+  { 18, 1 },
+  { 18, 1 },
 };
 
 static void yy_accept(yyParser*);  /* Forward Declaration */
@@ -718,14 +719,14 @@ static void yy_reduce(
   */
       case 1: /* expr ::= NUMBER */
       case 16: /* exprList ::= expr */ yytestcase(yyruleno==16);
-#line 45 "parser/epparser.lemon"
+#line 46 "parser/epparser.lemon"
 {
     yygotominor.yy0 = yymsp[0].minor.yy0;
 }
-#line 726 "parser/epparser.c"
+#line 727 "parser/epparser.c"
         break;
       case 2: /* expr ::= NAME */
-#line 49 "parser/epparser.lemon"
+#line 50 "parser/epparser.lemon"
 {
     if(pGen->undefined(*yymsp[0].minor.yy0)) {
         throw_error(103, ("Undefined name \'" + (*yymsp[0].minor.yy0) + "\'"));
@@ -733,88 +734,88 @@ static void yy_reduce(
     }
     yygotominor.yy0 = yymsp[0].minor.yy0;
 }
-#line 737 "parser/epparser.c"
+#line 738 "parser/epparser.c"
         break;
       case 3: /* expr ::= expr PLUS expr */
-#line 58 "parser/epparser.lemon"
+#line 59 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " + "  << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 742 "parser/epparser.c"
+#line 743 "parser/epparser.c"
         break;
       case 4: /* expr ::= expr MINUS expr */
-#line 59 "parser/epparser.lemon"
+#line 60 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " - "  << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 747 "parser/epparser.c"
+#line 748 "parser/epparser.c"
         break;
       case 5: /* expr ::= expr MULTIPLY expr */
-#line 60 "parser/epparser.lemon"
+#line 61 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " * "  << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 752 "parser/epparser.c"
+#line 753 "parser/epparser.c"
         break;
       case 6: /* expr ::= expr DIVIDE expr */
-#line 61 "parser/epparser.lemon"
+#line 62 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " // " << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 757 "parser/epparser.c"
+#line 758 "parser/epparser.c"
         break;
       case 7: /* expr ::= expr MOD expr */
-#line 62 "parser/epparser.lemon"
+#line 63 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " % "  << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 762 "parser/epparser.c"
+#line 763 "parser/epparser.c"
         break;
       case 8: /* expr ::= expr LSHIFT expr */
-#line 63 "parser/epparser.lemon"
+#line 64 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " << " << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 767 "parser/epparser.c"
+#line 768 "parser/epparser.c"
         break;
       case 9: /* expr ::= expr RSHIFT expr */
-#line 64 "parser/epparser.lemon"
+#line 65 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " >> " << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 772 "parser/epparser.c"
+#line 773 "parser/epparser.c"
         break;
       case 10: /* expr ::= expr BITAND expr */
-#line 65 "parser/epparser.lemon"
+#line 66 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " & "  << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 777 "parser/epparser.c"
+#line 778 "parser/epparser.c"
         break;
       case 11: /* expr ::= expr BITOR expr */
-#line 66 "parser/epparser.lemon"
+#line 67 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " | "  << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 782 "parser/epparser.c"
+#line 783 "parser/epparser.c"
         break;
       case 12: /* expr ::= expr BITXOR expr */
-#line 67 "parser/epparser.lemon"
+#line 68 "parser/epparser.lemon"
 { yygotominor.yy0 = genTemp(); (*pGen) << *yygotominor.yy0 << " = " << *yymsp[-2].minor.yy0 << " ^ "  << *yymsp[0].minor.yy0 << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 787 "parser/epparser.c"
+#line 788 "parser/epparser.c"
         break;
       case 13: /* stmt_assignSingle ::= NAME ASSIGN expr */
-#line 70 "parser/epparser.lemon"
+#line 71 "parser/epparser.lemon"
 {
     (*pGen) << *yymsp[-2].minor.yy0 << " << " << *yymsp[0].minor.yy0 << std::endl;
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 795 "parser/epparser.c"
+#line 796 "parser/epparser.c"
         break;
       case 14: /* nameList ::= NAME COMMA NAME */
       case 15: /* nameList ::= nameList COMMA NAME */ yytestcase(yyruleno==15);
-      case 17: /* exprList ::= exprList COMMA EXPR */ yytestcase(yyruleno==17);
-#line 75 "parser/epparser.lemon"
+      case 17: /* exprList ::= exprList COMMA expr */ yytestcase(yyruleno==17);
+#line 76 "parser/epparser.lemon"
 {
     yygotominor.yy0 = new std::string((*yymsp[-2].minor.yy0) + ", " + (*yymsp[0].minor.yy0));
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 805 "parser/epparser.c"
+#line 806 "parser/epparser.c"
         break;
       case 18: /* stmt_assignMulti ::= nameList ASSIGN exprList */
-#line 94 "parser/epparser.lemon"
+#line 95 "parser/epparser.lemon"
 {
     (*pGen) << "SetVariables([" << *yymsp[-2].minor.yy0 << "], [" << *yymsp[0].minor.yy0 << "])" << std::endl;
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 813 "parser/epparser.c"
+#line 814 "parser/epparser.c"
         break;
       case 19: /* stmt ::= expr */
-#line 99 "parser/epparser.lemon"
+#line 100 "parser/epparser.lemon"
 { delete yymsp[0].minor.yy0; }
-#line 818 "parser/epparser.c"
+#line 819 "parser/epparser.c"
         break;
       default:
       /* (0) program ::= stmt */ yytestcase(yyruleno==0);
@@ -879,10 +880,10 @@ static void yy_syntax_error(
 ){
   ParseARG_FETCH;
 #define TOKEN (yyminor.yy0)
-#line 25 "parser/epparser.lemon"
+#line 26 "parser/epparser.lemon"
 
     printf("Syntax error!\n");
-#line 886 "parser/epparser.c"
+#line 887 "parser/epparser.c"
   ParseARG_STORE; /* Suppress warning about unused %extra_argument variable */
 }
 
@@ -1073,24 +1074,23 @@ void Parse(
   }while( yymajor!=YYNOCODE && yypParser->yyidx>=0 );
   return;
 }
-#line 104 "parser/epparser.lemon"
+#line 105 "parser/epparser.lemon"
 
-TEST_CASE("Simple parser")
+std::string ParseString(const std::string& code)
 {
+    std::istringstream is(code);
+    Tokenizer tok(is);
     void* pParser = ParseAlloc (malloc);
-    PyGenerator* pgen = new PyGenerator;
+    PyGenerator pGen;
+    TokenPtr token;
 
-    pgen->namedef("test");
-
-    // 15 / 5
-    Parse (pParser, NAME, new std::string("test"), pgen);
-    Parse (pParser, DIVIDE, new std::string(), pgen);
-    Parse (pParser, NUMBER, new std::string("5"), pgen);
-    Parse (pParser, 0, new std::string(), pgen);
-    REQUIRE(pgen->str() == "_t1 = test // 5\n");
-
+    tmpIndex = 1;
+    while((token = tok.getToken()) != nullptr) {
+        int tokenType = tokenTypeConv(token->type);
+        Parse (pParser, tokenType, new std::string(token->data), &pGen);
+    }
+    Parse (pParser, 0, nullptr, &pGen);
     ParseFree(pParser, free );
-    delete pgen;
-
+    return pGen.str();
 }
 #line 1097 "parser/epparser.c"

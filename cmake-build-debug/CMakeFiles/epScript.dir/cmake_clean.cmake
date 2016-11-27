@@ -6,6 +6,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.o"
   "CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.o"
   "CMakeFiles/epScript.dir/parser/pygen.cpp.o"
+  "CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.o"
   "CMakeFiles/epScript.dir/main.cpp.o"
   "epScript.pdb"
   "epScript"

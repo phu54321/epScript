@@ -95,14 +95,6 @@ TokenPtr TokenizerImpl::getToken() {
         }
     }
 
-    // Brackets
-    MATCHSTR("(", TOKEN_LPAREN);
-    MATCHSTR(")", TOKEN_RPAREN);
-    MATCHSTR("[", TOKEN_LSQBRACKET);
-    MATCHSTR("]", TOKEN_RSQBRACKET);
-    MATCHSTR("{", TOKEN_LBRACKET);
-    MATCHSTR("}", TOKEN_RBRACKET);
-
     // Operators
     MATCHSTR("&&", TOKEN_LAND);
     MATCHSTR("||", TOKEN_LOR);
@@ -127,8 +119,19 @@ TokenPtr TokenizerImpl::getToken() {
     MATCHSTR("-", TOKEN_MINUS);
     MATCHSTR("*", TOKEN_MULTIPLY);
     MATCHSTR("/", TOKEN_DIVIDE);
+    MATCHSTR("%", TOKEN_MOD);
 
     MATCHSTR("=", TOKEN_ASSIGN);  // After Comparators
+
+    // Special chars
+    MATCHSTR("(", TOKEN_LPAREN);
+    MATCHSTR(")", TOKEN_RPAREN);
+    MATCHSTR("[", TOKEN_LSQBRACKET);
+    MATCHSTR("]", TOKEN_RSQBRACKET);
+    MATCHSTR("{", TOKEN_LBRACKET);
+    MATCHSTR("}", TOKEN_RBRACKET);
+    MATCHSTR(",", TOKEN_COMMA);
+    MATCHSTR(":", TOKEN_COLON);
 
     return TK(TOKEN_INVALID);
 }

@@ -4,15 +4,16 @@
 CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/epparser.cpp
 CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/epparser.h
 CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/pygen.h
-CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../test/doctest.hpp
+CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/tokenAdapter.h
+CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o: ../parser/tokenizer/tokenizer.h
 
 CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o: ../parser/pygen.cpp
 CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o: ../parser/pygen.h
 
-CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o: ../parser/epparser.h
-CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o: ../parser/tokenConverter.cpp
-CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o: ../parser/tokenConverter.h
-CMakeFiles/epScriptTest.dir/parser/tokenConverter.cpp.o: ../parser/tokenizer/tokenizer.h
+CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.o: ../parser/epparser.h
+CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.o: ../parser/tokenAdapter.cpp
+CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.o: ../parser/tokenAdapter.h
+CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.o: ../parser/tokenizer/tokenizer.h
 
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.cpp
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.h
@@ -29,6 +30,12 @@ CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/toke
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokenizer.h
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokenizerImpl.cpp
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokenizerImpl.h
+
+CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../parser/epparser.h
+CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../parser/tokenAdapter.h
+CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../parser/tokenizer/tokenizer.h
+CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../test/doctest.hpp
+CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../test/test_parser.cpp
 
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o: ../parser/pygen.h
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o: ../test/doctest.hpp

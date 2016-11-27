@@ -33,6 +33,7 @@ enum TokenType {
     TOKEN_MINUS,
     TOKEN_MULTIPLY,
     TOKEN_DIVIDE,
+    TOKEN_MOD,
     TOKEN_ASSIGN,
     TOKEN_BITLSHIFT,
     TOKEN_BITRSHIFT,
@@ -57,6 +58,8 @@ enum TokenType {
     TOKEN_RBRACKET,
     TOKEN_LSQBRACKET,
     TOKEN_RSQBRACKET,
+    TOKEN_COMMA,
+    TOKEN_COLON
 };
 
 struct Token {
