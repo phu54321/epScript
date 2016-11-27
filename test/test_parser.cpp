@@ -25,13 +25,26 @@ TEST_CASE("Simple expression parsing") {
 
 
     SUBCASE("Logical operator") {
-                REQUIRE(ParseString("1 == 2 || 2 + 3 == 5 && 7 == 8") ==
-                        "_t1 = (1 == 2)\n"
-                        "_t2 = 2 + 3\n"
-                        "_t3 = (_t2 == 5)\n"
-                        "_t4 = (7 == 8)\n"
-                        "_t5 = [_t3, _t4]\n"
-                        "_t6 = EUDOr([_t1, _t5])\n"
-        );
+                REQUIRE(ParseString("if(1 == 2 || 2 + 3 == 5 && 7 == 8) 3;") ==
+                        "_t1 = Forward()\n"
+                        "_t2 = (1 == 2)\n"
+                        "_t3 = 2 + 3\n"
+                        "_t4 = (_t3 == 5)\n"
+                        "_t5 = (7 == 8)\n"
+                        "_t6 = [_t4, _t5]\n"
+                        "_t7 = EUDOr([_t2, _t6])\n"
+                        "EUDJumpIfNot(_t7, _t1)\n"
+                        "_t1 << NextTrigger()\n");
+
+                REQUIRE(ParseString("if(1 == 2) 3 + 4; else 5 + 6;") ==
+                        "_t1 = Forward()\n"
+                            "_t2 = (1 == 2)\n"
+                            "EUDJumpIfNot(_t2, _t1)\n"
+                            "_t3 = 3 + 4\n"
+                            "_t4 = Forward()\n"
+                            "EUDJump(_t4)\n"
+                            "_t1 << NextTrigger()\n"
+                            "_t5 = 5 + 6\n"
+                            "_t4 << NextTrigger()\n");
     }
 }

@@ -55,7 +55,9 @@ void throw_error(int code, const std::string& message) {
 %right UNARY.
 
 %nonassoc IFX.
+%nonassoc IFNOT.
 %nonassoc ELSE.
+
 
 program ::= stmt.
 
@@ -118,24 +120,44 @@ stmt_assignMulti ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
 
 // Control blocks
 
-// block ::= stmt.
 stmtList ::= stmt.
 stmtList ::= stmtList stmt.
-multilineBlock ::= LBRACKET stmtList RBRACKET.
+block ::= LBRACKET stmtList RBRACKET.
+block ::= LBRACKET error RBRACKET.
 
-/*
-sub_if_cond ::= lexpr(A). { (*pGen) << "if EUDIf()(" << *A << "):" << std::endl; delete A; }
-sub_endif ::= . { (*pGen) << "EUDEndIf()" << std::endl; }
-sub_else ::= . { (*pGen) << "if EUDElse()():" << std::endl; }
-if_stmt ::= IF LPAREN sub_if_cond RPAREN indent block unindent sub_endif. [IFX]
-if_stmt ::= IF LPAREN sub_if_cond RPAREN indent block unindent ELSE sub_else indent block unindent sub_endif. [ELSE]
-*/
+if_start(A) ::= IF. {
+    A = genTemp();
+    (*pGen) << *A << " = Forward()" << std::endl;
+}
+if_header(C) ::= if_start(A) LPAREN lexpr(B) RPAREN. {
+    (*pGen) << "EUDJumpIfNot(" << *B << ", " << *A << ")" << std::endl;
+    C = A; delete B;
+}
 
+if_stmt ::= if_header(A) stmt. [IFX] {
+    (*pGen) << *A << " << NextTrigger()" << std::endl;
+    delete A;
+}
+
+else_header(A) ::= if_header(B) stmt ELSE. [ELSE] {
+    A = genTemp();
+    (*pGen) << *A << " = Forward()" << std::endl;
+    (*pGen) << "EUDJump(" << *A << ")" << std::endl;
+    (*pGen) << *B << " << NextTrigger()" << std::endl;
+    delete B;
+}
+
+if_stmt ::= else_header(A) stmt. {
+    (*pGen) << *A << " << NextTrigger()" << std::endl;
+    delete A;
+}
+
+stmt ::= error SEMICOLON.
 stmt ::= expr SEMICOLON.
 stmt ::= stmt_assignMulti.
 stmt ::= stmt_assignSingle.
-stmt ::= lexpr.
-stmt ::= multilineBlock.
+stmt ::= if_stmt.
+stmt ::= block.
 
 
 %code {
