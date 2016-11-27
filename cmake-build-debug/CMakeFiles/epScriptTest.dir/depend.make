@@ -37,8 +37,6 @@ CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../parser/tokenizer/tokenize
 CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../test/doctest.hpp
 CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../test/test_parser.cpp
 
-CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o: ../parser/pygen.h
-CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o: ../test/doctest.hpp
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o: ../test/test_pygen.cpp
 
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o: ../parser/tokenizer/tokenizer.h

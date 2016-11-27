@@ -132,6 +132,7 @@ TokenPtr TokenizerImpl::getToken() {
     MATCHSTR("}", TOKEN_RBRACKET);
     MATCHSTR(",", TOKEN_COMMA);
     MATCHSTR(":", TOKEN_COLON);
+    MATCHSTR(";", TOKEN_SEMICOLON);
 
     return TK(TOKEN_INVALID);
 }

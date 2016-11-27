@@ -4,7 +4,7 @@ project(epScript)
 set_source_files_properties(parser/epparser.c PROPERTIES GENERATED TRUE)
 
 add_custom_command(
-        OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp
+        OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
         DEPENDS parser/epparser.lemon
         COMMAND lemon parser/epparser.lemon
         COMMAND rm -f parser/epparser.cpp && mv parser/epparser.c parser/epparser.cpp

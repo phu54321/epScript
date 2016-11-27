@@ -59,7 +59,8 @@ enum TokenType {
     TOKEN_LSQBRACKET,
     TOKEN_RSQBRACKET,
     TOKEN_COMMA,
-    TOKEN_COLON
+    TOKEN_COLON,
+    TOKEN_SEMICOLON,
 };
 
 struct Token {

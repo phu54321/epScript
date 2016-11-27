@@ -33,20 +33,40 @@ void throw_error(int code, const std::string& message) {
 %token_type {std::string*}
 %destructor nt { delete $$; }
 
+// Precedence table
+
+%left COMMA.
+
+%left ASSIGN.
+
+%left LOR.
+%left LAND.
+%right LNOT.
+%right DOUBLE_LNOT.  // Faster optimization for double lnot
+
+%nonassoc EQ LE LT GE GT NE.
+
 %left BITOR.
 %left BITXOR.
 %left BITAND.
 %left LSHIFT RSHIFT.
 %left PLUS MINUS.
 %left DIVIDE MULTIPLY MOD.
+%right UNARY.
+
+%nonassoc IFX.
+%nonassoc ELSE.
 
 program ::= stmt.
 
-// Related to expressions
-expr(A) ::= NUMBER(B). {
-    A = B;
-}
+// Common expressions
+nameList(A) ::= NAME(B) COMMA NAME(C). { A = new std::string((*B) + ", " + (*C)); delete B; delete C; }
+nameList(A) ::= nameList(B) COMMA NAME(C). { A = new std::string((*B) + ", " + (*C)); delete B; delete C; }
+exprList(A) ::= expr(B). { A = B; }
+exprList(A) ::= exprList(B) COMMA expr(C). { A = new std::string((*B) + ", " + (*C)); delete B; delete C; }
 
+// Related to expressions
+expr(A) ::= NUMBER(B). { A = B; }
 expr(A) ::= NAME(B). {
     if(pGen->undefined(*B)) {
         throw_error(103, ("Undefined name \'" + (*B) + "\'"));
@@ -67,39 +87,55 @@ expr(A) ::= expr(B) BITAND      expr(C). { A = genTemp(); (*pGen) << *A << " = "
 expr(A) ::= expr(B) BITOR       expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " | "  << *C << std::endl; delete B; delete C; }
 expr(A) ::= expr(B) BITXOR      expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " ^ "  << *C << std::endl; delete B; delete C; }
 
+// Unary operators
+expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(); (*pGen) << *A << " = +" << *B << std::endl; delete B; }
+expr(A) ::= MINUS   expr(B). [UNARY] { A = genTemp(); (*pGen) << *A << " = -" << *B << std::endl; delete B; }
+expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(); (*pGen) << *A << " = ~" << *B << std::endl; delete B; }
+
+// Logical operators
+lexpr(A) ::= expr(B) EQ expr(C).   { A = genTemp(); (*pGen) << *A << " = (" << *B << " == " << *C << ")" << std::endl; delete B; delete C; }
+lexpr(A) ::= expr(B) NE expr(C).   { A = genTemp(); (*pGen) << *A << " = (" << *B << " != " << *C << ")" << std::endl; delete B; delete C; }
+lexpr(A) ::= expr(B) LE expr(C).   { A = genTemp(); (*pGen) << *A << " = (" << *B << " <= " << *C << ")" << std::endl; delete B; delete C; }
+lexpr(A) ::= expr(B) LT expr(C).   { A = genTemp(); (*pGen) << *A << " = (" << *B << " < "  << *C << ")" << std::endl; delete B; delete C; }
+lexpr(A) ::= expr(B) GE expr(C).   { A = genTemp(); (*pGen) << *A << " = (" << *B << " >= " << *C << ")" << std::endl; delete B; delete C; }
+lexpr(A) ::= expr(B) GT expr(C).   { A = genTemp(); (*pGen) << *A << " = (" << *B << " > "  << *C << ")" << std::endl; delete B; delete C; }
+
+lexpr(A) ::= lexpr(B) LAND lexpr(C).  { A = genTemp(); (*pGen) << *A << " = [" << *B << ", " << *C << "]" << std::endl; delete B; delete C; }
+lexpr(A) ::= lexpr(B) LOR  lexpr(C).  { A = genTemp(); (*pGen) << *A << " = EUDOr([" << *B << ", " << *C << "])" << std::endl; delete B; delete C; }
+lexpr(A) ::= LNOT lexpr(B). { A = genTemp(); (*pGen) << *A << " = EUDNot(" << *B << ")" << std::endl; delete B; }
+lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
+
 // Statements
-stmt_assignSingle ::= NAME(A) ASSIGN expr(B). {
+stmt_assignSingle ::= NAME(A) ASSIGN expr(B) SEMICOLON. {
     (*pGen) << *A << " << " << *B << std::endl;
     delete A; delete B;
 }
 
-nameList(A) ::= NAME(B) COMMA NAME(C). {
-    A = new std::string((*B) + ", " + (*C));
-    delete B; delete C;
-}
-
-nameList(A) ::= nameList(B) COMMA NAME(C). {
-    A = new std::string((*B) + ", " + (*C));
-    delete B; delete C;
-}
-
-exprList(A) ::= expr(B). {
-    A = B;
-}
-
-exprList(A) ::= exprList(B) COMMA expr(C). {
-    A = new std::string((*B) + ", " + (*C));
-    delete B; delete C;
-}
-
-stmt_assignMulti ::= nameList(A) ASSIGN exprList(B). {
+stmt_assignMulti ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
     (*pGen) << "SetVariables([" << *A << "], [" << *B << "])" << std::endl;
     delete A; delete B;
 }
 
-stmt ::= expr(A). { delete A; }
+// Control blocks
+
+// block ::= stmt.
+stmtList ::= stmt.
+stmtList ::= stmtList stmt.
+multilineBlock ::= LBRACKET stmtList RBRACKET.
+
+/*
+sub_if_cond ::= lexpr(A). { (*pGen) << "if EUDIf()(" << *A << "):" << std::endl; delete A; }
+sub_endif ::= . { (*pGen) << "EUDEndIf()" << std::endl; }
+sub_else ::= . { (*pGen) << "if EUDElse()():" << std::endl; }
+if_stmt ::= IF LPAREN sub_if_cond RPAREN indent block unindent sub_endif. [IFX]
+if_stmt ::= IF LPAREN sub_if_cond RPAREN indent block unindent ELSE sub_else indent block unindent sub_endif. [ELSE]
+*/
+
+stmt ::= expr SEMICOLON.
 stmt ::= stmt_assignMulti.
 stmt ::= stmt_assignSingle.
+stmt ::= lexpr.
+stmt ::= multilineBlock.
 
 
 %code {
