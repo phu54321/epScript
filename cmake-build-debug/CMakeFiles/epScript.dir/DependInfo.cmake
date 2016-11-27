@@ -6,6 +6,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/whyask37/ClionProjects/epScript/main.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/main.cpp.o"
   "/Users/whyask37/ClionProjects/epScript/parser/epparser.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/epparser.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 

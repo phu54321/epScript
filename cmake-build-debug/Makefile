@@ -193,32 +193,62 @@ parser/epparser.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/epparser.cpp.s
 .PHONY : parser/epparser.cpp.s
 
-test/test_lexer.o: test/test_lexer.cpp.o
+parser/tokenizer.o: parser/tokenizer.cpp.o
 
-.PHONY : test/test_lexer.o
+.PHONY : parser/tokenizer.o
 
 # target to build an object file
-test/test_lexer.cpp.o:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_lexer.cpp.o
-.PHONY : test/test_lexer.cpp.o
+parser/tokenizer.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer.cpp.o
+.PHONY : parser/tokenizer.cpp.o
 
-test/test_lexer.i: test/test_lexer.cpp.i
+parser/tokenizer.i: parser/tokenizer.cpp.i
 
-.PHONY : test/test_lexer.i
+.PHONY : parser/tokenizer.i
 
 # target to preprocess a source file
-test/test_lexer.cpp.i:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_lexer.cpp.i
-.PHONY : test/test_lexer.cpp.i
+parser/tokenizer.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer.cpp.i
+.PHONY : parser/tokenizer.cpp.i
 
-test/test_lexer.s: test/test_lexer.cpp.s
+parser/tokenizer.s: parser/tokenizer.cpp.s
 
-.PHONY : test/test_lexer.s
+.PHONY : parser/tokenizer.s
 
 # target to generate assembly for a file
-test/test_lexer.cpp.s:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_lexer.cpp.s
-.PHONY : test/test_lexer.cpp.s
+parser/tokenizer.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer.cpp.s
+.PHONY : parser/tokenizer.cpp.s
+
+test/test_tokenizer.o: test/test_tokenizer.cpp.o
+
+.PHONY : test/test_tokenizer.o
+
+# target to build an object file
+test/test_tokenizer.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o
+.PHONY : test/test_tokenizer.cpp.o
+
+test/test_tokenizer.i: test/test_tokenizer.cpp.i
+
+.PHONY : test/test_tokenizer.i
+
+# target to preprocess a source file
+test/test_tokenizer.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.i
+.PHONY : test/test_tokenizer.cpp.i
+
+test/test_tokenizer.s: test/test_tokenizer.cpp.s
+
+.PHONY : test/test_tokenizer.s
+
+# target to generate assembly for a file
+test/test_tokenizer.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.s
+.PHONY : test/test_tokenizer.cpp.s
 
 test/testmain.o: test/testmain.cpp.o
 
@@ -263,9 +293,12 @@ help:
 	@echo "... parser/epparser.o"
 	@echo "... parser/epparser.i"
 	@echo "... parser/epparser.s"
-	@echo "... test/test_lexer.o"
-	@echo "... test/test_lexer.i"
-	@echo "... test/test_lexer.s"
+	@echo "... parser/tokenizer.o"
+	@echo "... parser/tokenizer.i"
+	@echo "... parser/tokenizer.s"
+	@echo "... test/test_tokenizer.o"
+	@echo "... test/test_tokenizer.i"
+	@echo "... test/test_tokenizer.s"
 	@echo "... test/testmain.o"
 	@echo "... test/testmain.i"
 	@echo "... test/testmain.s"
