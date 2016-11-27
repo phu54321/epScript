@@ -16,6 +16,10 @@ std::string* genTemp() {
     return new std::string(output);
 }
 
+void throw_error(int code, const std::string& message) {
+    std::cout << "[Error " << code << "] " << message << std::endl;
+}
+
 }
 
 %syntax_error {
@@ -28,40 +32,73 @@ std::string* genTemp() {
 %token_type {std::string*}
 %destructor nt { delete $$; }
 
+%left BITOR.
+%left BITXOR.
+%left BITAND.
+%left LSHIFT RSHIFT.
 %left PLUS MINUS.
-%left DIVIDE MULTIPLY.
+%left DIVIDE MULTIPLY MOD.
 
-program ::= expr(A).   {
-    delete A;
-}
+program ::= stmt.
 
-expr(A) ::= expr(B) MINUS  expr(C). {
-    A = genTemp();
-    (*pGen) << *A << " = " << *B << " - " << *C << std::endl;
-    delete B; delete C;
-}
-
-expr(A) ::= expr(B) PLUS  expr(C). {
-    A = genTemp();
-    (*pGen) << *A << " = " << *B << " + " << *C << std::endl;
-    delete B; delete C;
-}
-
-expr(A) ::= expr(B) MULTIPLY  expr(C). {
-    A = genTemp();
-    (*pGen) << *A << " = " << *B << " * " << *C << std::endl;
-    delete B; delete C;
-}
-
-expr(A) ::= expr(B) DIVIDE expr(C). {
-    A = genTemp();
-    (*pGen) << *A << " = " << *B << " / " << *C << std::endl;
-    delete B; delete C;
-}
-
+// Related to expressions
 expr(A) ::= NUMBER(B). {
     A = B;
 }
+
+expr(A) ::= NAME(B). {
+    if(pGen->undefined(*B)) {
+        throw_error(103, ("Undefined name \'" + (*B) + "\'"));
+        pGen->namedef(*B);
+    }
+    A = B;
+}
+
+// Binary operators
+expr(A) ::= expr(B) PLUS        expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " + "  << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) MINUS       expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " - "  << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) MULTIPLY    expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " * "  << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) DIVIDE      expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " // " << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) MOD         expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " % "  << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) LSHIFT      expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " << " << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) RSHIFT      expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " >> " << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) BITAND      expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " & "  << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) BITOR       expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " | "  << *C << std::endl; delete B; delete C; }
+expr(A) ::= expr(B) BITXOR      expr(C). { A = genTemp(); (*pGen) << *A << " = " << *B << " ^ "  << *C << std::endl; delete B; delete C; }
+
+// Statements
+stmt_assignSingle ::= NAME(A) ASSIGN expr(B). {
+    (*pGen) << *A << " << " << *B << std::endl;
+    delete A; delete B;
+}
+
+nameList(A) ::= NAME(B) COMMA NAME(C). {
+    A = new std::string((*B) + ", " + (*C));
+    delete B; delete C;
+}
+
+nameList(A) ::= nameList(B) COMMA NAME(C). {
+    A = new std::string((*B) + ", " + (*C));
+    delete B; delete C;
+}
+
+exprList(A) ::= expr(B). {
+    A = B;
+}
+
+exprList(A) ::= exprList(B) COMMA EXPR(C). {
+    A = new std::string((*B) + ", " + (*C));
+    delete B; delete C;
+}
+
+stmt_assignMulti ::= nameList(A) ASSIGN exprList(B). {
+    (*pGen) << "SetVariables([" << *A << "], [" << *B << "])" << std::endl;
+    delete A; delete B;
+}
+
+stmt ::= expr(A). { delete A; }
+stmt ::= stmt_assignMulti.
+stmt ::= stmt_assignSingle.
 
 
 %code {
@@ -70,12 +107,14 @@ TEST_CASE("Simple parser")
     void* pParser = ParseAlloc (malloc);
     PyGenerator* pgen = new PyGenerator;
 
+    pgen->namedef("test");
+
     // 15 / 5
-    Parse (pParser, NUMBER, new std::string("15"), pgen);
+    Parse (pParser, NAME, new std::string("test"), pgen);
     Parse (pParser, DIVIDE, new std::string(), pgen);
     Parse (pParser, NUMBER, new std::string("5"), pgen);
     Parse (pParser, 0, new std::string(), pgen);
-    REQUIRE(pgen->str() == "_t1 = 15 / 5\n");
+    REQUIRE(pgen->str() == "_t1 = test // 5\n");
 
     ParseFree(pParser, free );
     delete pgen;
