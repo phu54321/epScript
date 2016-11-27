@@ -58,15 +58,16 @@ enum TokenType {
 };
 
 struct Token {
-    Token(TokenType type, const std::string& data) : type(type), data(data) {}
-    Token(TokenType type) : type(type) {}
+    Token(TokenType type, const std::string& data, int line) : type(type), data(data), line(line) {}
+    Token(TokenType type, int line) : type(type), line(line) {}
     TokenType type;
     std::string data;
+    int line;
 };
 
 using TokenPtr = std::shared_ptr<Token>;
 
-
+class TokenizerImpl;
 class Tokenizer {
 public:
     Tokenizer(std::istream& is);
@@ -75,8 +76,7 @@ public:
     TokenPtr getToken();
 
 private:
-    std::vector<char> data;
-    char* cursor;
+    TokenizerImpl* _impl;
 };
 
 #endif //EPSCRIPT_TOKENIZER_H
