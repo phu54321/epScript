@@ -25,6 +25,16 @@ TEST_CASE("Tokenizing comparison operators") {
             REQUIRE(tok.getToken() == nullptr);
 }
 
+TEST_CASE("Tokenizing brackets") {
+    std::stringstream test_input("()[]");
+    Tokenizer tok(test_input);
+            REQUIRE(tok.getToken()->type == TOKEN_LPAREN);
+            REQUIRE(tok.getToken()->type == TOKEN_RPAREN);
+            REQUIRE(tok.getToken()->type == TOKEN_LSQBRACKET);
+            REQUIRE(tok.getToken()->type == TOKEN_RSQBRACKET);
+            REQUIRE(tok.getToken() == nullptr);
+}
+
 
 TEST_CASE("Tokenizing names") {
     std::stringstream test_input("forvar test var for function if elif else while break continue v1");
@@ -56,3 +66,26 @@ TEST_CASE("Tokenizing mixed names/operators") {
             REQUIRE(tok.getToken() == nullptr);
 }
 
+
+TEST_CASE("Tokenizing complex operators") {
+    std::stringstream test_input("(a & b) || (c ^ b) && x + y[]");
+    Tokenizer tok(test_input);
+            REQUIRE(tok.getToken()->data == "(");
+            REQUIRE(tok.getToken()->data == "a");
+            REQUIRE(tok.getToken()->data == "&");
+            REQUIRE(tok.getToken()->data == "b");
+            REQUIRE(tok.getToken()->data == ")");
+            REQUIRE(tok.getToken()->data == "||");
+            REQUIRE(tok.getToken()->data == "(");
+            REQUIRE(tok.getToken()->data == "c");
+            REQUIRE(tok.getToken()->data == "^");
+            REQUIRE(tok.getToken()->data == "b");
+            REQUIRE(tok.getToken()->data == ")");
+            REQUIRE(tok.getToken()->data == "&&");
+            REQUIRE(tok.getToken()->data == "x");
+            REQUIRE(tok.getToken()->data == "+");
+            REQUIRE(tok.getToken()->data == "y");
+            REQUIRE(tok.getToken()->data == "[");
+            REQUIRE(tok.getToken()->data == "]");
+            REQUIRE(tok.getToken() == nullptr);
+}

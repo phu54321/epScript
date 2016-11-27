@@ -46,7 +46,7 @@ TokenizerImpl::~TokenizerImpl() {}
 #define MATCHSTR(s, tokenType) \
     if(strncmp(s, cursor, sizeof(s) - 1) == 0) { \
         cursor += sizeof(s) - 1; \
-        return TK(tokenType); \
+        return TK(tokenType, s); \
 }
 
 static_assert(sizeof("string") == 7, "sizeof string should be strlen(str) + 1");
@@ -103,20 +103,38 @@ TokenPtr TokenizerImpl::getToken() {
         return TK(TOKEN_NAME, identifier);
     }
 
+    // Brackets
+    MATCHSTR("(", TOKEN_LPAREN);
+    MATCHSTR(")", TOKEN_RPAREN);
+    MATCHSTR("[", TOKEN_LSQBRACKET);
+    MATCHSTR("]", TOKEN_RSQBRACKET);
+
     // Operators
+    MATCHSTR("&&", TOKEN_LAND);
+    MATCHSTR("||", TOKEN_LOR);
+
+    MATCHSTR("<<", TOKEN_BITLSHIFT);
+    MATCHSTR(">>", TOKEN_BITRSHIFT);
+    MATCHSTR("~", TOKEN_BITNOT);
+    MATCHSTR("&", TOKEN_BITAND);  // After TOKEN_LAND
+    MATCHSTR("|", TOKEN_BITOR);  // After TOKEN_LOR
+    MATCHSTR("^", TOKEN_BITXOR);
+
+    MATCHSTR("==", TOKEN_EQ);
+    MATCHSTR("<=", TOKEN_LE);
+    MATCHSTR(">=", TOKEN_GE);
+    MATCHSTR("<", TOKEN_LT);  // After TOKEN_BITLSHIFT
+    MATCHSTR(">", TOKEN_GT);  // After TOKEN_BITRSHIFT
+    MATCHSTR("!=", TOKEN_NE);  // After TOKEN_LNOT
+
+    MATCHSTR("!", TOKEN_LNOT);
+
     MATCHSTR("+", TOKEN_PLUS);
     MATCHSTR("-", TOKEN_MINUS);
     MATCHSTR("*", TOKEN_MULTIPLY);
     MATCHSTR("/", TOKEN_DIVIDE);
 
-    MATCHSTR("==", TOKEN_EQ);
-    MATCHSTR("<=", TOKEN_LE);
-    MATCHSTR(">=", TOKEN_GE);
-    MATCHSTR("<", TOKEN_LT);
-    MATCHSTR(">", TOKEN_GT);
-    MATCHSTR("!=", TOKEN_NE);
-
-    MATCHSTR("=", TOKEN_ASSIGN);
+    MATCHSTR("=", TOKEN_ASSIGN);  // After Comparators
 
     return TK(TOKEN_INVALID);
 }
