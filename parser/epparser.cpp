@@ -1050,13 +1050,15 @@ static void yy_reduce(
 {
     (*pGen) << yymsp[-3].minor.yy0->data << " = EUDVariable()" << std::endl;
     (*pGen) << yymsp[-3].minor.yy0->data << " << " << yymsp[-1].minor.yy0->data << std::endl;
-    pGen->namedef(yymsp[-3].minor.yy0->data);
+    if(!pGen->namedef(yymsp[-3].minor.yy0->data)) {
+        throw_error(yymsp[-3].minor.yy0->line, 196, ("Redeclaration of variable \'" + (yymsp[-3].minor.yy0->data) + "\'"));
+    }
     delete yymsp[-3].minor.yy0;
 }
-#line 1057 "parser/epparser.c"
+#line 1059 "parser/epparser.c"
         break;
       case 32: /* vdefMulti_stmt ::= VAR nameList SEMICOLON */
-#line 144 "parser/epparser.lemon"
+#line 146 "parser/epparser.lemon"
 {
     std::string& s = yymsp[-1].minor.yy0->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
@@ -1066,17 +1068,20 @@ static void yy_reduce(
     const char *p = s.data(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
-        pGen->namedef(std::string(p, p2 - p));
+        std::string varname(p, p2 - p);
+        if(!pGen->namedef(varname)) {
+            throw_error(yymsp[-1].minor.yy0->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
+        }
         if(*p2 == '\0') break;
         p = p2 = p2 + 2;
     }
 
     delete yymsp[-1].minor.yy0;
 }
-#line 1077 "parser/epparser.c"
+#line 1082 "parser/epparser.c"
         break;
       case 33: /* vdefMultiAssign_stmt ::= VAR nameList ASSIGN exprList SEMICOLON */
-#line 161 "parser/epparser.lemon"
+#line 166 "parser/epparser.lemon"
 {
     std::string& s = yymsp[-3].minor.yy0->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
@@ -1094,10 +1099,10 @@ static void yy_reduce(
 
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1098 "parser/epparser.c"
+#line 1103 "parser/epparser.c"
         break;
       case 34: /* assign_stmt ::= NAME ASSIGN expr SEMICOLON */
-#line 179 "parser/epparser.lemon"
+#line 184 "parser/epparser.lemon"
 {
     (*pGen) << yymsp[-3].minor.yy0->data << " << " << yymsp[-1].minor.yy0->data << std::endl;
     if(pGen->undefined(yymsp[-3].minor.yy0->data)) {
@@ -1106,10 +1111,10 @@ static void yy_reduce(
     }
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1110 "parser/epparser.c"
+#line 1115 "parser/epparser.c"
         break;
       case 35: /* assignMulti_stmt ::= nameList ASSIGN exprList SEMICOLON */
-#line 188 "parser/epparser.lemon"
+#line 193 "parser/epparser.lemon"
 {
     (*pGen) << "SetVariables([" << yymsp[-3].minor.yy0->data << "], [" << yymsp[-1].minor.yy0->data << "])" << std::endl;
 
@@ -1127,42 +1132,42 @@ static void yy_reduce(
 
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1131 "parser/epparser.c"
+#line 1136 "parser/epparser.c"
         break;
       case 39: /* block ::= LBRACKET error RBRACKET */
-#line 210 "parser/epparser.lemon"
+#line 215 "parser/epparser.lemon"
 {
     throw_error(yymsp[0].minor.yy0->line, 6974, "General syntax error");
 }
-#line 1138 "parser/epparser.c"
+#line 1143 "parser/epparser.c"
         break;
       case 40: /* if_start ::= IF */
-#line 216 "parser/epparser.lemon"
+#line 221 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp(yymsp[0].minor.yy0);
     (*pGen) << yygotominor.yy0->data << " = Forward()" << std::endl;
 }
-#line 1146 "parser/epparser.c"
+#line 1151 "parser/epparser.c"
         break;
       case 41: /* if_header ::= if_start LPAREN lexpr RPAREN */
-#line 220 "parser/epparser.lemon"
+#line 225 "parser/epparser.lemon"
 {
     (*pGen) << "EUDJumpIfNot(" << yymsp[-1].minor.yy0->data << ", " << yymsp[-3].minor.yy0->data << ")" << std::endl;
     yygotominor.yy0 = yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1154 "parser/epparser.c"
+#line 1159 "parser/epparser.c"
         break;
       case 42: /* if_stmt ::= if_header stmt */
       case 44: /* if_stmt ::= else_header stmt */ yytestcase(yyruleno==44);
-#line 225 "parser/epparser.lemon"
+#line 230 "parser/epparser.lemon"
 {
     (*pGen) << yymsp[-1].minor.yy0->data << " << NextTrigger()" << std::endl;
     delete yymsp[-1].minor.yy0;
 }
-#line 1163 "parser/epparser.c"
+#line 1168 "parser/epparser.c"
         break;
       case 43: /* else_header ::= if_header stmt ELSE */
-#line 230 "parser/epparser.lemon"
+#line 235 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp(yymsp[0].minor.yy0);
     (*pGen) << yygotominor.yy0->data << " = Forward()" << std::endl;
@@ -1170,10 +1175,10 @@ static void yy_reduce(
     (*pGen) << yymsp[-2].minor.yy0->data << " << NextTrigger()" << std::endl;
     delete yymsp[-2].minor.yy0;
 }
-#line 1174 "parser/epparser.c"
+#line 1179 "parser/epparser.c"
         break;
       case 45: /* while_start ::= WHILE */
-#line 245 "parser/epparser.lemon"
+#line 250 "parser/epparser.lemon"
 {
     auto lbegin = genTemp(yymsp[0].minor.yy0);
     auto lend = genTemp(yymsp[0].minor.yy0);
@@ -1184,10 +1189,10 @@ static void yy_reduce(
     yygotominor.yy0 = lbegin;
     delete yymsp[0].minor.yy0;
 }
-#line 1188 "parser/epparser.c"
+#line 1193 "parser/epparser.c"
         break;
       case 46: /* while_cond ::= LPAREN lexpr RPAREN */
-#line 256 "parser/epparser.lemon"
+#line 261 "parser/epparser.lemon"
 {
     auto lblock = getLastBlock();
     if(!lblock) {
@@ -1198,10 +1203,10 @@ static void yy_reduce(
     }
     delete yymsp[-1].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 1202 "parser/epparser.c"
+#line 1207 "parser/epparser.c"
         break;
       case 47: /* while_stmt ::= while_start while_cond stmt */
-#line 267 "parser/epparser.lemon"
+#line 272 "parser/epparser.lemon"
 {
     auto lblock = getLastBlock();
     if(!lblock) {
@@ -1213,10 +1218,10 @@ static void yy_reduce(
     }
     delete yymsp[-2].minor.yy0;
 }
-#line 1217 "parser/epparser.c"
+#line 1222 "parser/epparser.c"
         break;
       case 48: /* continue_stmt ::= CONTINUE SEMICOLON */
-#line 280 "parser/epparser.lemon"
+#line 285 "parser/epparser.lemon"
 {
     auto lblock = getLastBlock();
     if(!lblock) {
@@ -1227,10 +1232,10 @@ static void yy_reduce(
     }
     delete yymsp[0].minor.yy0;
 }
-#line 1231 "parser/epparser.c"
+#line 1236 "parser/epparser.c"
         break;
       case 49: /* break_stmt ::= BREAK SEMICOLON */
-#line 291 "parser/epparser.lemon"
+#line 296 "parser/epparser.lemon"
 {
     auto lblock = getLastBlock();
     if(!lblock) {
@@ -1241,12 +1246,12 @@ static void yy_reduce(
     }
     delete yymsp[0].minor.yy0;
 }
-#line 1245 "parser/epparser.c"
+#line 1250 "parser/epparser.c"
         break;
       case 50: /* stmt ::= error SEMICOLON */
-#line 304 "parser/epparser.lemon"
+#line 309 "parser/epparser.lemon"
 { throw_error(yymsp[0].minor.yy0->line, 6974, "General syntax error"); }
-#line 1250 "parser/epparser.c"
+#line 1255 "parser/epparser.c"
         break;
       default:
       /* (0) program ::= stmt */ yytestcase(yyruleno==0);
@@ -1328,7 +1333,7 @@ static void yy_syntax_error(
 #line 46 "parser/epparser.lemon"
 
     errorOccured = true;
-#line 1332 "parser/epparser.c"
+#line 1337 "parser/epparser.c"
   ParseARG_STORE; /* Suppress warning about unused %extra_argument variable */
 }
 
@@ -1519,7 +1524,7 @@ void Parse(
   }while( yymajor!=YYNOCODE && yypParser->yyidx>=0 );
   return;
 }
-#line 321 "parser/epparser.lemon"
+#line 326 "parser/epparser.lemon"
 
 
 // #define PARSER_DEBUG
@@ -1555,4 +1560,4 @@ std::string ParseString(const std::string& code)
     if(!errorOccured) return pGen.str();
     else throw std::runtime_error("Invalid syntax");
 }
-#line 1559 "parser/epparser.c"
+#line 1564 "parser/epparser.c"

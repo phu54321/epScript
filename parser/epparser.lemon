@@ -137,7 +137,9 @@ vdef_stmt ::= VAR NAME(A) SEMICOLON. {
 vdefAssign_stmt ::= VAR NAME(A) ASSIGN expr(B) SEMICOLON. {
     (*pGen) << A->data << " = EUDVariable()" << std::endl;
     (*pGen) << A->data << " << " << B->data << std::endl;
-    pGen->namedef(A->data);
+    if(!pGen->namedef(A->data)) {
+        throw_error(A->line, 196, ("Redeclaration of variable \'" + (A->data) + "\'"));
+    }
     delete A;
 }
 
@@ -150,7 +152,10 @@ vdefMulti_stmt ::= VAR nameList(A) SEMICOLON. {
     const char *p = s.data(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
-        pGen->namedef(std::string(p, p2 - p));
+        std::string varname(p, p2 - p);
+        if(!pGen->namedef(varname)) {
+            throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
+        }
         if(*p2 == '\0') break;
         p = p2 = p2 + 2;
     }
