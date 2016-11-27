@@ -58,12 +58,9 @@ include CMakeFiles/epScript.dir/progress.make
 include CMakeFiles/epScript.dir/flags.make
 
 ../parser/epparser.cpp: ../parser/epparser.lemon
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating ../parser/epparser.cpp, ../parser/epparser.h"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating ../parser/epparser.cpp"
 	cd /Users/whyask37/ClionProjects/epScript && lemon parser/epparser.lemon
 	cd /Users/whyask37/ClionProjects/epScript && rm -f parser/epparser.cpp && mv parser/epparser.c parser/epparser.cpp
-
-../parser/epparser.h: ../parser/epparser.cpp
-	@$(CMAKE_COMMAND) -E touch_nocreate ../parser/epparser.h
 
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: CMakeFiles/epScript.dir/flags.make
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/epparser.cpp
@@ -251,7 +248,6 @@ CMakeFiles/epScript.dir/clean:
 .PHONY : CMakeFiles/epScript.dir/clean
 
 CMakeFiles/epScript.dir/depend: ../parser/epparser.cpp
-CMakeFiles/epScript.dir/depend: ../parser/epparser.h
 	cd /Users/whyask37/ClionProjects/epScript/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/whyask37/ClionProjects/epScript /Users/whyask37/ClionProjects/epScript /Users/whyask37/ClionProjects/epScript/cmake-build-debug /Users/whyask37/ClionProjects/epScript/cmake-build-debug /Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/epScript.dir/depend
 

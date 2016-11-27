@@ -4,13 +4,13 @@
 /* First off, code is included that follows the "include" declaration
 ** in the input grammar file. */
 #include <stdio.h>
-#line 6 "parser/epparser.lemon"
+#line 1 "parser/epparser.lemon"
 
 #include <stdio.h>
 #include <assert.h>
+#include <string>
 #include "epparser.h"
 #include "../test/doctest.hpp"
-
 static int temp = 0;
 #line 16 "parser/epparser.c"
 /* Next is all token values, in a form suitable for use by makeheaders.
@@ -30,7 +30,7 @@ static int temp = 0;
 #endif
 /* The next thing included is series of defines which control
 ** various aspects of the generated parser.
-**    YYCODETYPE         is the dataString type used for storing terminal
+**    YYCODETYPE         is the data type used for storing terminal
 **                       and nonterminal numbers.  "unsigned char" is
 **                       used if there are fewer than 250 terminals
 **                       and nonterminals.  "int" is used otherwise.
@@ -41,13 +41,13 @@ static int temp = 0;
 **    YYFALLBACK         If defined, this indicates that one or more tokens
 **                       have fall-back values which should be used if the
 **                       original value of the token will not parse.
-**    YYACTIONTYPE       is the dataString type used for storing terminal
+**    YYACTIONTYPE       is the data type used for storing terminal
 **                       and nonterminal numbers.  "unsigned char" is
 **                       used if there are fewer than 250 rules and
 **                       states combined.  "int" is used otherwise.
-**    ParseTOKENTYPE     is the dataString type used for minor tokens given
+**    ParseTOKENTYPE     is the data type used for minor tokens given 
 **                       directly to the parser from the tokenizer.
-**    YYMINORTYPE        is the dataString type used for all minor tokens.
+**    YYMINORTYPE        is the data type used for all minor tokens.
 **                       This is typically a union of many types, one of
 **                       which is ParseTOKENTYPE.  The entry in the union
 **                       for base tokens is called "yy0".
@@ -262,7 +262,7 @@ void ParseTrace(FILE *TraceFILE, char *zTracePrompt){
 ** are required.  The following table supplies these names */
 static const char *const yyTokenName[] = { 
   "$",             "PLUS",          "MINUS",         "DIVIDE",      
-  "TIMES",         "INTEGER",       "error",         "program",     
+  "MULTIPLY",      "NUMBER",        "error",         "program",     
   "expr",        
 };
 #endif /* NDEBUG */
@@ -274,9 +274,9 @@ static const char *const yyRuleName[] = {
  /*   0 */ "program ::= expr",
  /*   1 */ "expr ::= expr MINUS expr",
  /*   2 */ "expr ::= expr PLUS expr",
- /*   3 */ "expr ::= expr TIMES expr",
+ /*   3 */ "expr ::= expr MULTIPLY expr",
  /*   4 */ "expr ::= expr DIVIDE expr",
- /*   5 */ "expr ::= INTEGER",
+ /*   5 */ "expr ::= NUMBER",
 };
 #endif /* NDEBUG */
 
@@ -642,27 +642,27 @@ static void yy_reduce(
   **     break;
   */
       case 0: /* program ::= expr */
-#line 19 "parser/epparser.lemon"
+#line 18 "parser/epparser.lemon"
 { temp = yymsp[0].minor.yy0; }
 #line 648 "parser/epparser.c"
         break;
       case 1: /* expr ::= expr MINUS expr */
-#line 21 "parser/epparser.lemon"
+#line 20 "parser/epparser.lemon"
 { yygotominor.yy0 = yymsp[-2].minor.yy0 - yymsp[0].minor.yy0; }
 #line 653 "parser/epparser.c"
         break;
       case 2: /* expr ::= expr PLUS expr */
-#line 22 "parser/epparser.lemon"
+#line 21 "parser/epparser.lemon"
 { yygotominor.yy0 = yymsp[-2].minor.yy0 + yymsp[0].minor.yy0; }
 #line 658 "parser/epparser.c"
         break;
-      case 3: /* expr ::= expr TIMES expr */
-#line 23 "parser/epparser.lemon"
+      case 3: /* expr ::= expr MULTIPLY expr */
+#line 22 "parser/epparser.lemon"
 { yygotominor.yy0 = yymsp[-2].minor.yy0 * yymsp[0].minor.yy0; }
 #line 663 "parser/epparser.c"
         break;
       case 4: /* expr ::= expr DIVIDE expr */
-#line 24 "parser/epparser.lemon"
+#line 23 "parser/epparser.lemon"
 {
     if (yymsp[0].minor.yy0 != 0) {
         yygotominor.yy0 = yymsp[-2].minor.yy0 / yymsp[0].minor.yy0;
@@ -672,8 +672,8 @@ static void yy_reduce(
 }
 #line 674 "parser/epparser.c"
         break;
-      case 5: /* expr ::= INTEGER */
-#line 33 "parser/epparser.lemon"
+      case 5: /* expr ::= NUMBER */
+#line 32 "parser/epparser.lemon"
 { yygotominor.yy0 = yymsp[0].minor.yy0; }
 #line 679 "parser/epparser.c"
         break;
@@ -737,7 +737,7 @@ static void yy_syntax_error(
 ){
   ParseARG_FETCH;
 #define TOKEN (yyminor.yy0)
-#line 15 "parser/epparser.lemon"
+#line 10 "parser/epparser.lemon"
 
     printf("Syntax error!\n");
 #line 744 "parser/epparser.c"
@@ -931,7 +931,7 @@ void Parse(
   }while( yymajor!=YYNOCODE && yypParser->yyidx>=0 );
   return;
 }
-#line 36 "parser/epparser.lemon"
+#line 35 "parser/epparser.lemon"
 
 TEST_CASE("Simple parser")
 {
@@ -940,9 +940,9 @@ TEST_CASE("Simple parser")
     /* First input:
         15 / 5
                                   */
-    Parse (pParser, INTEGER, 15);
+    Parse (pParser, NUMBER, 15);
     Parse (pParser, DIVIDE, 0);
-    Parse (pParser, INTEGER, 5);
+    Parse (pParser, NUMBER, 5);
     Parse (pParser, 0, 0);
     REQUIRE(temp == 3);
 
@@ -950,9 +950,9 @@ TEST_CASE("Simple parser")
           50 + 125
                                  */
 
-    Parse (pParser, INTEGER, 50);
+    Parse (pParser, NUMBER, 50);
     Parse (pParser, PLUS, 0);
-    Parse (pParser, INTEGER, 125);
+    Parse (pParser, NUMBER, 125);
     Parse (pParser, 0, 0);
     REQUIRE(temp == 175);
 
@@ -962,11 +962,11 @@ TEST_CASE("Simple parser")
 
 
 
-    Parse (pParser, INTEGER, 50);
-    Parse (pParser, TIMES, 0);
-    Parse (pParser, INTEGER, 125);
+    Parse (pParser, NUMBER, 50);
+    Parse (pParser, MULTIPLY, 0);
+    Parse (pParser, NUMBER, 125);
     Parse (pParser, PLUS, 0);
-    Parse (pParser, INTEGER, 125);
+    Parse (pParser, NUMBER, 125);
     Parse (pParser, 0, 0);
     REQUIRE(temp == 6375);
 

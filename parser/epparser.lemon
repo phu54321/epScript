@@ -1,14 +1,9 @@
-%token_type {int}
-
-%left PLUS MINUS.
-%left DIVIDE TIMES.
-
 %include {
 #include <stdio.h>
 #include <assert.h>
+#include <string>
 #include "epparser.h"
 #include "../test/doctest.hpp"
-
 static int temp = 0;
 }
 
@@ -16,11 +11,15 @@ static int temp = 0;
     printf("Syntax error!\n");
 }
 
+%token_type {int}
+%left PLUS MINUS.
+%left DIVIDE MULTIPLY.
+
 program ::= expr(A).   { temp = A; }
 
 expr(A) ::= expr(B) MINUS  expr(C).   { A = B - C; }
 expr(A) ::= expr(B) PLUS  expr(C).   { A = B + C; }
-expr(A) ::= expr(B) TIMES  expr(C).   { A = B * C; }
+expr(A) ::= expr(B) MULTIPLY  expr(C).   { A = B * C; }
 expr(A) ::= expr(B) DIVIDE expr(C).  {
     if (C != 0) {
         A = B / C;
@@ -30,7 +29,7 @@ expr(A) ::= expr(B) DIVIDE expr(C).  {
 }  /* end of DIVIDE */
 
 
-expr(A) ::= INTEGER(B). { A = B; }
+expr(A) ::= NUMBER(B). { A = B; }
 
 
 %code {
@@ -41,9 +40,9 @@ TEST_CASE("Simple parser")
     /* First input:
         15 / 5
                                   */
-    Parse (pParser, INTEGER, 15);
+    Parse (pParser, NUMBER, 15);
     Parse (pParser, DIVIDE, 0);
-    Parse (pParser, INTEGER, 5);
+    Parse (pParser, NUMBER, 5);
     Parse (pParser, 0, 0);
     REQUIRE(temp == 3);
 
@@ -51,9 +50,9 @@ TEST_CASE("Simple parser")
           50 + 125
                                  */
 
-    Parse (pParser, INTEGER, 50);
+    Parse (pParser, NUMBER, 50);
     Parse (pParser, PLUS, 0);
-    Parse (pParser, INTEGER, 125);
+    Parse (pParser, NUMBER, 125);
     Parse (pParser, 0, 0);
     REQUIRE(temp == 175);
 
@@ -63,11 +62,11 @@ TEST_CASE("Simple parser")
 
 
 
-    Parse (pParser, INTEGER, 50);
-    Parse (pParser, TIMES, 0);
-    Parse (pParser, INTEGER, 125);
+    Parse (pParser, NUMBER, 50);
+    Parse (pParser, MULTIPLY, 0);
+    Parse (pParser, NUMBER, 125);
     Parse (pParser, PLUS, 0);
-    Parse (pParser, INTEGER, 125);
+    Parse (pParser, NUMBER, 125);
     Parse (pParser, 0, 0);
     REQUIRE(temp == 6375);
 

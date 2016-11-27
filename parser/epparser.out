@@ -2,98 +2,98 @@ State 0:
           program ::= * expr
           expr ::= * expr MINUS expr
           expr ::= * expr PLUS expr
-          expr ::= * expr TIMES expr
+          expr ::= * expr MULTIPLY expr
           expr ::= * expr DIVIDE expr
-          expr ::= * INTEGER
+          expr ::= * NUMBER
 
-                       INTEGER shift  10
+                        NUMBER shift  10
                        program accept
                           expr shift  5
 
 State 1:
           expr ::= * expr MINUS expr
           expr ::= * expr PLUS expr
-          expr ::= * expr TIMES expr
-          expr ::= expr TIMES * expr
+          expr ::= * expr MULTIPLY expr
+          expr ::= expr MULTIPLY * expr
           expr ::= * expr DIVIDE expr
-          expr ::= * INTEGER
+          expr ::= * NUMBER
 
-                       INTEGER shift  10
+                        NUMBER shift  10
                           expr shift  8
 
 State 2:
           expr ::= * expr MINUS expr
           expr ::= expr MINUS * expr
           expr ::= * expr PLUS expr
-          expr ::= * expr TIMES expr
+          expr ::= * expr MULTIPLY expr
           expr ::= * expr DIVIDE expr
-          expr ::= * INTEGER
+          expr ::= * NUMBER
 
-                       INTEGER shift  10
+                        NUMBER shift  10
                           expr shift  7
 
 State 3:
           expr ::= * expr MINUS expr
           expr ::= * expr PLUS expr
-          expr ::= * expr TIMES expr
+          expr ::= * expr MULTIPLY expr
           expr ::= * expr DIVIDE expr
           expr ::= expr DIVIDE * expr
-          expr ::= * INTEGER
+          expr ::= * NUMBER
 
-                       INTEGER shift  10
+                        NUMBER shift  10
                           expr shift  9
 
 State 4:
           expr ::= * expr MINUS expr
           expr ::= * expr PLUS expr
           expr ::= expr PLUS * expr
-          expr ::= * expr TIMES expr
+          expr ::= * expr MULTIPLY expr
           expr ::= * expr DIVIDE expr
-          expr ::= * INTEGER
+          expr ::= * NUMBER
 
-                       INTEGER shift  10
+                        NUMBER shift  10
                           expr shift  6
 
 State 5:
       (0) program ::= expr *
           expr ::= expr * MINUS expr
           expr ::= expr * PLUS expr
-          expr ::= expr * TIMES expr
+          expr ::= expr * MULTIPLY expr
           expr ::= expr * DIVIDE expr
 
                              $ reduce 0
                           PLUS shift  4
                          MINUS shift  2
                         DIVIDE shift  3
-                         TIMES shift  1
+                      MULTIPLY shift  1
 
 State 6:
           expr ::= expr * MINUS expr
           expr ::= expr * PLUS expr
       (2) expr ::= expr PLUS expr *
-          expr ::= expr * TIMES expr
+          expr ::= expr * MULTIPLY expr
           expr ::= expr * DIVIDE expr
 
                         DIVIDE shift  3
-                         TIMES shift  1
+                      MULTIPLY shift  1
                      {default} reduce 2
 
 State 7:
           expr ::= expr * MINUS expr
       (1) expr ::= expr MINUS expr *
           expr ::= expr * PLUS expr
-          expr ::= expr * TIMES expr
+          expr ::= expr * MULTIPLY expr
           expr ::= expr * DIVIDE expr
 
                         DIVIDE shift  3
-                         TIMES shift  1
+                      MULTIPLY shift  1
                      {default} reduce 1
 
 State 8:
           expr ::= expr * MINUS expr
           expr ::= expr * PLUS expr
-          expr ::= expr * TIMES expr
-      (3) expr ::= expr TIMES expr *
+          expr ::= expr * MULTIPLY expr
+      (3) expr ::= expr MULTIPLY expr *
           expr ::= expr * DIVIDE expr
 
                      {default} reduce 3
@@ -101,14 +101,14 @@ State 8:
 State 9:
           expr ::= expr * MINUS expr
           expr ::= expr * PLUS expr
-          expr ::= expr * TIMES expr
+          expr ::= expr * MULTIPLY expr
           expr ::= expr * DIVIDE expr
       (4) expr ::= expr DIVIDE expr *
 
                      {default} reduce 4
 
 State 10:
-      (5) expr ::= INTEGER *
+      (5) expr ::= NUMBER *
 
                      {default} reduce 5
 
@@ -118,8 +118,8 @@ Symbols:
     1: PLUS
     2: MINUS
     3: DIVIDE
-    4: TIMES
-    5: INTEGER
+    4: MULTIPLY
+    5: NUMBER
     6: error:
-    7: program: INTEGER
-    8: expr: INTEGER
+    7: program: NUMBER
+    8: expr: NUMBER
