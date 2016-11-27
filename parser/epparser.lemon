@@ -91,7 +91,7 @@ exprList(A) ::= exprList(B) COMMA expr(C). { A = new Token((B->data) + ", " + (C
 expr(A) ::= NUMBER(B). { A = B; }
 expr(A) ::= NAME(B). {
     if(pGen->undefined(B->data)) {
-        throw_error(B->line, 103, ("Undefined name \'" + (B->data) + "\'"));
+        throw_error(B->line, 103, ("Undeclared variable \'" + (B->data) + "\'"));
         pGen->namedef(B->data);
     }
     A = B;
@@ -128,18 +128,82 @@ lexpr(A) ::= LNOT lexpr(B). { A = genTemp(B); (*pGen) << A->data << " = EUDNot("
 lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
 
 // Statements
-stmt_assignSingle ::= NAME(A) ASSIGN expr(B) SEMICOLON. {
+vdef_stmt ::= VAR NAME(A) SEMICOLON. {
+    (*pGen) << A->data << " = EUDVariable()" << std::endl;
+    pGen->namedef(A->data);
+    delete A;
+}
+
+vdefAssign_stmt ::= VAR NAME(A) ASSIGN expr(B) SEMICOLON. {
+    (*pGen) << A->data << " = EUDVariable()" << std::endl;
     (*pGen) << A->data << " << " << B->data << std::endl;
+    pGen->namedef(A->data);
+    delete A;
+}
+
+vdefMulti_stmt ::= VAR nameList(A) SEMICOLON. {
+    std::string& s = A->data;
+    int varCount = std::count(s.begin(), s.end(), ',') + 1;
+    (*pGen) << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
+
+    // Register variables.
+    const char *p = s.data(), *p2 = p;
+    while(1) {
+        while(*p2 != '\0' && *p2 != ',') p2++;
+        pGen->namedef(std::string(p, p2 - p));
+        if(*p2 == '\0') break;
+        p = p2 = p2 + 2;
+    }
+
+    delete A;
+}
+
+vdefMultiAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
+    std::string& s = A->data;
+    int varCount = std::count(s.begin(), s.end(), ',') + 1;
+    (*pGen) << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
+    (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
+
+    // Register variables.
+    const char *p = s.data(), *p2 = p;
+    while(1) {
+        while(*p2 != '\0' && *p2 != ',') p2++;
+        pGen->namedef(std::string(p, p2 - p));
+        if(*p2 == '\0') break;
+        p = p2 = p2 + 2;
+    }
+
     delete A; delete B;
 }
 
-stmt_assignMulti ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
+assign_stmt ::= NAME(A) ASSIGN expr(B) SEMICOLON. {
+    (*pGen) << A->data << " << " << B->data << std::endl;
+    if(pGen->undefined(A->data)) {
+        throw_error(A->line, 103, ("Undeclared variable \'" + (A->data) + "\'"));
+        pGen->namedef(A->data);
+    }
+    delete A; delete B;
+}
+
+assignMulti_stmt ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
     (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
+
+    const char *p = A->data.data(), *p2 = p;
+    while(1) {
+        while(*p2 != '\0' && *p2 != ',') p2++;
+        std::string varname(p, p2 - p);
+        if(pGen->undefined(varname)) {
+            throw_error(A->line, 103, ("Undeclared variable \'" + varname + "\'"));
+            pGen->namedef(varname);
+        }
+        if(*p2 == '\0') break;
+        p = p2 = p2 + 2;
+    }
+
     delete A; delete B;
 }
 
 // Control blocks
-
 stmtList ::= stmt.
 stmtList ::= stmtList stmt.
 block ::= LBRACKET stmtList RBRACKET.
@@ -238,9 +302,15 @@ break_stmt ::= BREAK SEMICOLON(T). {
 
 // General statements
 stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "General syntax error"); }
+
+stmt ::= SEMICOLON.
+stmt ::= vdef_stmt.
+stmt ::= vdefAssign_stmt.
+stmt ::= vdefMultiAssign_stmt.
+stmt ::= vdefMulti_stmt.
+stmt ::= assign_stmt.
+stmt ::= assignMulti_stmt.
 stmt ::= expr SEMICOLON.
-stmt ::= stmt_assignMulti.
-stmt ::= stmt_assignSingle.
 stmt ::= if_stmt.
 stmt ::= while_stmt.
 stmt ::= continue_stmt.
@@ -249,6 +319,9 @@ stmt ::= block.
 
 
 %code {
+
+// #define PARSER_DEBUG
+
 std::string ParseString(const std::string& code)
 {
     std::istringstream is(code);
@@ -257,10 +330,19 @@ std::string ParseString(const std::string& code)
     PyGenerator pGen;
     Token* token;
 
+#ifdef PARSER_DEBUG
+    std::cout << "Parsing string [[[\n" << code << "\n]]]\n";
+#endif
+
     tmpIndex = 1;
     errorOccured = false;
     while((token = tok.getToken()) != nullptr) {
-        if(tokenTypeConv(token)) Parse (pParser, token->type, token, &pGen);
+        if(tokenTypeConv(token)) {
+            Parse (pParser, token->type, token, &pGen);
+#ifdef PARSER_DEBUG
+            ParseTrace(stdout, "-- ");
+#endif
+        }
         else {
             throw_error(token->line, 8104, "Invalid token");
         }

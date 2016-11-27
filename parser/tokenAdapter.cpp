@@ -40,6 +40,7 @@ int getConvertedType(int type) {
         case TOKEN_WHILE: return WHILE;
         case TOKEN_CONTINUE: return CONTINUE;
         case TOKEN_BREAK: return BREAK;
+        case TOKEN_VAR: return VAR;
         default: return -1;
     }
 }

@@ -25,7 +25,17 @@ TEST_CASE("Simple expression parsing") {
     }
 
     SUBCASE("Error handling") {
+        // Don't have trailing semicolon.
                 REQUIRE_THROWS_AS(ParseString("{\n5 + 3 * 7\n}"), std::runtime_error);
+    }
+
+
+    SUBCASE("Variable assignment") {
+                REQUIRE(ParseString("var a;") == "a = EUDVariable()\n");
+                REQUIRE(ParseString("var a = 2;") == "a = EUDVariable()\na << 2\n");
+                REQUIRE(ParseString("var a, b = 2, 4;") == "a, b = EUDCreateVariables(2)\nSetVariables([a, b], [2, 4])\n");
+                REQUIRE(ParseString("{ var a; a = 2; } ") == "a = EUDVariable()\na << 2\n");
+                REQUIRE_THROWS_AS(ParseString("b = 2;"), std::runtime_error);
     }
 }
 
@@ -92,7 +102,6 @@ TEST_CASE("Control block parsing") {
                         "EUDJump(_t1)\n"
                         "_t2 << NextTrigger()\n");
     }
-
 }
 
 TEST_SUITE_END();
