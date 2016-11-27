@@ -121,5 +121,6 @@ Symbols:
     4: MULTIPLY
     5: NUMBER
     6: error:
-    7: program: NUMBER
-    8: expr: NUMBER
+    7: nt:
+    8: program: NUMBER
+    9: expr: NUMBER

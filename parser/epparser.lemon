@@ -2,75 +2,87 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string>
+#include <stdlib.h>
+#include <iostream>
 #include "epparser.h"
+#include "pygen.h"
 #include "../test/doctest.hpp"
-static int temp = 0;
+
+std::string* genTemp() {
+    static int i = 0;
+    static char output[20] = "_t";
+    i++;
+    sprintf(output, "_t%d", i);
+    return new std::string(output);
 }
+
+std::string temp;
+
+}
+
+%extra_argument { PyGenerator* pGen }
 
 %syntax_error {
     printf("Syntax error!\n");
 }
 
-%token_type {int}
+%token_type {std::string*}
+%destructor nt { delete $$; }
+
 %left PLUS MINUS.
 %left DIVIDE MULTIPLY.
 
-program ::= expr(A).   { temp = A; }
+program ::= expr(A).   {
+    temp = *A;
+    delete A;
+}
 
-expr(A) ::= expr(B) MINUS  expr(C).   { A = B - C; }
-expr(A) ::= expr(B) PLUS  expr(C).   { A = B + C; }
-expr(A) ::= expr(B) MULTIPLY  expr(C).   { A = B * C; }
-expr(A) ::= expr(B) DIVIDE expr(C).  {
-    if (C != 0) {
-        A = B / C;
-    } else {
-        printf("divide by zero\n");
-    }
-}  /* end of DIVIDE */
+expr(A) ::= expr(B) MINUS  expr(C).     {
+    A = genTemp();
+    (*pGen) << *A << " = " << *B << " - " << *C << std::endl;
+    delete B; delete C;
+}
 
+expr(A) ::= expr(B) PLUS  expr(C).      {
+    A = genTemp();
+    (*pGen) << *A << " = " << *B << " + " << *C << std::endl;
+    delete B; delete C;
+}
 
-expr(A) ::= NUMBER(B). { A = B; }
+expr(A) ::= expr(B) MULTIPLY  expr(C).  {
+    A = genTemp();
+    (*pGen) << *A << " = " << *B << " * " << *C << std::endl;
+    delete B; delete C;
+}
+
+expr(A) ::= expr(B) DIVIDE expr(C).     {
+    A = genTemp();
+    (*pGen) << *A << " = " << *B << " / " << *C << std::endl;
+    delete B; delete C;
+}
+
+expr(A) ::= NUMBER(B). {
+    A = B;
+}
 
 
 %code {
 TEST_CASE("Simple parser")
 {
     void* pParser = ParseAlloc (malloc);
+    PyGenerator* pgen = new PyGenerator;
 
     /* First input:
         15 / 5
                                   */
-    Parse (pParser, NUMBER, 15);
-    Parse (pParser, DIVIDE, 0);
-    Parse (pParser, NUMBER, 5);
-    Parse (pParser, 0, 0);
-    REQUIRE(temp == 3);
-
-    /*  Second input:
-          50 + 125
-                                 */
-
-    Parse (pParser, NUMBER, 50);
-    Parse (pParser, PLUS, 0);
-    Parse (pParser, NUMBER, 125);
-    Parse (pParser, 0, 0);
-    REQUIRE(temp == 175);
-
-    /*  Third input:
-          50 * 125 + 125
-                                 */
-
-
-
-    Parse (pParser, NUMBER, 50);
-    Parse (pParser, MULTIPLY, 0);
-    Parse (pParser, NUMBER, 125);
-    Parse (pParser, PLUS, 0);
-    Parse (pParser, NUMBER, 125);
-    Parse (pParser, 0, 0);
-    REQUIRE(temp == 6375);
+    Parse (pParser, NUMBER, new std::string("15"), pgen);
+    Parse (pParser, DIVIDE, new std::string(), pgen);
+    Parse (pParser, NUMBER, new std::string("5"), pgen);
+    Parse (pParser, 0, new std::string(), pgen);
+    REQUIRE(pgen->str() == "_t1 = 15 / 5\n");
 
     ParseFree(pParser, free );
+    delete pgen;
 
 }
 }
