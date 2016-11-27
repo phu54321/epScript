@@ -193,6 +193,66 @@ parser/epparser.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/epparser.cpp.s
 .PHONY : parser/epparser.cpp.s
 
+parser/tokChars.o: parser/tokChars.cpp.o
+
+.PHONY : parser/tokChars.o
+
+# target to build an object file
+parser/tokChars.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokChars.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokChars.cpp.o
+.PHONY : parser/tokChars.cpp.o
+
+parser/tokChars.i: parser/tokChars.cpp.i
+
+.PHONY : parser/tokChars.i
+
+# target to preprocess a source file
+parser/tokChars.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokChars.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokChars.cpp.i
+.PHONY : parser/tokChars.cpp.i
+
+parser/tokChars.s: parser/tokChars.cpp.s
+
+.PHONY : parser/tokChars.s
+
+# target to generate assembly for a file
+parser/tokChars.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokChars.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokChars.cpp.s
+.PHONY : parser/tokChars.cpp.s
+
+parser/tokIndent.o: parser/tokIndent.cpp.o
+
+.PHONY : parser/tokIndent.o
+
+# target to build an object file
+parser/tokIndent.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokIndent.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokIndent.cpp.o
+.PHONY : parser/tokIndent.cpp.o
+
+parser/tokIndent.i: parser/tokIndent.cpp.i
+
+.PHONY : parser/tokIndent.i
+
+# target to preprocess a source file
+parser/tokIndent.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokIndent.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokIndent.cpp.i
+.PHONY : parser/tokIndent.cpp.i
+
+parser/tokIndent.s: parser/tokIndent.cpp.s
+
+.PHONY : parser/tokIndent.s
+
+# target to generate assembly for a file
+parser/tokIndent.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokIndent.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokIndent.cpp.s
+.PHONY : parser/tokIndent.cpp.s
+
 parser/tokenizer.o: parser/tokenizer.cpp.o
 
 .PHONY : parser/tokenizer.o
@@ -222,6 +282,36 @@ parser/tokenizer.cpp.s:
 	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.s
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer.cpp.s
 .PHONY : parser/tokenizer.cpp.s
+
+parser/tokenizerImpl.o: parser/tokenizerImpl.cpp.o
+
+.PHONY : parser/tokenizerImpl.o
+
+# target to build an object file
+parser/tokenizerImpl.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o
+.PHONY : parser/tokenizerImpl.cpp.o
+
+parser/tokenizerImpl.i: parser/tokenizerImpl.cpp.i
+
+.PHONY : parser/tokenizerImpl.i
+
+# target to preprocess a source file
+parser/tokenizerImpl.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.i
+.PHONY : parser/tokenizerImpl.cpp.i
+
+parser/tokenizerImpl.s: parser/tokenizerImpl.cpp.s
+
+.PHONY : parser/tokenizerImpl.s
+
+# target to generate assembly for a file
+parser/tokenizerImpl.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.s
+.PHONY : parser/tokenizerImpl.cpp.s
 
 test/test_tokenizer.o: test/test_tokenizer.cpp.o
 
@@ -293,9 +383,18 @@ help:
 	@echo "... parser/epparser.o"
 	@echo "... parser/epparser.i"
 	@echo "... parser/epparser.s"
+	@echo "... parser/tokChars.o"
+	@echo "... parser/tokChars.i"
+	@echo "... parser/tokChars.s"
+	@echo "... parser/tokIndent.o"
+	@echo "... parser/tokIndent.i"
+	@echo "... parser/tokIndent.s"
 	@echo "... parser/tokenizer.o"
 	@echo "... parser/tokenizer.i"
 	@echo "... parser/tokenizer.s"
+	@echo "... parser/tokenizerImpl.o"
+	@echo "... parser/tokenizerImpl.i"
+	@echo "... parser/tokenizerImpl.s"
 	@echo "... test/test_tokenizer.o"
 	@echo "... test/test_tokenizer.i"
 	@echo "... test/test_tokenizer.s"

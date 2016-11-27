@@ -129,11 +129,35 @@
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/main.cpp">
 			<Option target="epScript"/>
 		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokChars.h">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokIndent.h">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer.cpp">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizer.h">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.h">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>

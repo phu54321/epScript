@@ -22,6 +22,7 @@ enum TokenType {
     TOKEN_WHILE,
     TOKEN_BREAK,
     TOKEN_CONTINUE,
+    TOKEN_PASS,
 
     // Identifiers
     TOKEN_NAME,
@@ -52,6 +53,9 @@ enum TokenType {
     // Other tokens
     TOKEN_LPAREN,
     TOKEN_RPAREN,
+    TOKEN_INDENT,
+    TOKEN_UNINDENT,
+    TOKEN_INVALIDINDENT,
     TOKEN_LSQBRACKET,
     TOKEN_RSQBRACKET,
 };

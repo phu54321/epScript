@@ -2,6 +2,7 @@
 #include <sstream>
 #include "doctest.hpp"
 
+TEST_SUITE("Basic tokenization");
 TEST_CASE("Tokenizing arithmetic operators") {
     std::stringstream test_input("+-*/");
     Tokenizer tok(test_input);
@@ -89,3 +90,77 @@ TEST_CASE("Tokenizing complex operators") {
             REQUIRE(tok.getToken()->data == "]");
             REQUIRE(tok.getToken() == nullptr);
 }
+
+TEST_CASE("Indentation") {
+    SUBCASE("Checking basic indentations") {
+        std::stringstream test_input(
+                "a\n"
+                "   b\n"
+                "       c\n"
+                "   d\n"
+                "   e\n"
+                "       f\n"
+                "g\n"
+        );
+        Tokenizer tok(test_input);
+                REQUIRE(tok.getToken()->data == "a");
+                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
+                REQUIRE(tok.getToken()->data == "b");
+                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
+                REQUIRE(tok.getToken()->data == "c");
+                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
+                REQUIRE(tok.getToken()->data == "d");
+                REQUIRE(tok.getToken()->data == "e");
+                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
+                REQUIRE(tok.getToken()->data == "f");
+                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
+                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
+                REQUIRE(tok.getToken()->data == "g");
+                REQUIRE(tok.getToken() == nullptr);
+    }
+
+    SUBCASE("Checking indentation after newline") {
+        std::stringstream test_input(
+                "a\n"
+                "\n"
+                "   b\n"
+                "\n"
+                "       c\n"
+                "\n"
+                "d\n"
+        );
+        Tokenizer tok(test_input);
+                REQUIRE(tok.getToken()->data == "a");
+                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
+                REQUIRE(tok.getToken()->data == "b");
+                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
+                REQUIRE(tok.getToken()->data == "c");
+                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
+                REQUIRE(tok.getToken()->type == TOKEN_UNINDENT);
+                REQUIRE(tok.getToken()->data == "d");
+                REQUIRE(tok.getToken() == nullptr);
+    }
+
+    SUBCASE("Checking invalid indentation") {
+        std::stringstream test_input(
+                "a\n"
+                "\n"
+                "   b\n"
+                "\n"
+                "       c\n"
+                "\n"
+                " d\n"
+        );
+        Tokenizer tok(test_input);
+                REQUIRE(tok.getToken()->data == "a");
+                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
+                REQUIRE(tok.getToken()->data == "b");
+                REQUIRE(tok.getToken()->type == TOKEN_INDENT);
+                REQUIRE(tok.getToken()->data == "c");
+                REQUIRE(tok.getToken()->type == TOKEN_INVALIDINDENT);
+                REQUIRE(tok.getToken() == nullptr);  // d line ignored
+    }
+}
+
+TEST_SUITE_END();
+

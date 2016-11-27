@@ -5,9 +5,24 @@ CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/epparser.cpp
  /Users/whyask37/ClionProjects/epScript/parser/epparser.h
  /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+CMakeFiles/epScriptTest.dir/parser/tokChars.cpp.o
+ /Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp
+ /Users/whyask37/ClionProjects/epScript/parser/tokChars.h
+CMakeFiles/epScriptTest.dir/parser/tokIndent.cpp.o
+ /Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp
+ /Users/whyask37/ClionProjects/epScript/parser/tokIndent.h
+ /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
 CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.o
+ /Users/whyask37/ClionProjects/epScript/parser/tokIndent.h
  /Users/whyask37/ClionProjects/epScript/parser/tokenizer.cpp
  /Users/whyask37/ClionProjects/epScript/parser/tokenizer.h
+ /Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.h
+CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.o
+ /Users/whyask37/ClionProjects/epScript/parser/tokChars.h
+ /Users/whyask37/ClionProjects/epScript/parser/tokIndent.h
+ /Users/whyask37/ClionProjects/epScript/parser/tokenizer.h
+ /Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp
+ /Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.h
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/tokenizer.h
  /Users/whyask37/ClionProjects/epScript/test/doctest.hpp

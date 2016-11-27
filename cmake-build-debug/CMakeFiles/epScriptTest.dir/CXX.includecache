@@ -22,9 +22,27 @@ stdio.h
 
 /Users/whyask37/ClionProjects/epScript/parser/epparser.h
 
+/Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp
+tokChars.h
+/Users/whyask37/ClionProjects/epScript/parser/tokChars.h
+
+/Users/whyask37/ClionProjects/epScript/parser/tokChars.h
+
+/Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp
+tokIndent.h
+/Users/whyask37/ClionProjects/epScript/parser/tokIndent.h
+../test/doctest.hpp
+/Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+
+/Users/whyask37/ClionProjects/epScript/parser/tokIndent.h
+vector
+-
+
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer.cpp
 tokenizer.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer.h
+tokenizerImpl.h
+/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.h
 
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer.h
 istream
@@ -33,6 +51,18 @@ vector
 -
 memory
 -
+
+/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp
+tokenizerImpl.h
+/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.h
+tokChars.h
+/Users/whyask37/ClionProjects/epScript/parser/tokChars.h
+
+/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.h
+tokenizer.h
+/Users/whyask37/ClionProjects/epScript/parser/tokenizer.h
+tokIndent.h
+/Users/whyask37/ClionProjects/epScript/parser/tokIndent.h
 
 /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
 ciso646

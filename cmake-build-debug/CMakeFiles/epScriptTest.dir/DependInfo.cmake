@@ -5,7 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/Users/whyask37/ClionProjects/epScript/parser/epparser.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/parser/epparser.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/parser/tokChars.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/parser/tokIndent.cpp.o"
   "/Users/whyask37/ClionProjects/epScript/parser/tokenizer.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/parser/tokenizer.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/parser/tokenizerImpl.cpp.o"
   "/Users/whyask37/ClionProjects/epScript/test/test_tokenizer.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o"
   "/Users/whyask37/ClionProjects/epScript/test/testmain.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/test/testmain.cpp.o"
   )

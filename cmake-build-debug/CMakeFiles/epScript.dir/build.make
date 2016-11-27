@@ -113,9 +113,81 @@ CMakeFiles/epScript.dir/parser/tokenizer.cpp.o.provides: CMakeFiles/epScript.dir
 CMakeFiles/epScript.dir/parser/tokenizer.cpp.o.provides.build: CMakeFiles/epScript.dir/parser/tokenizer.cpp.o
 
 
+CMakeFiles/epScript.dir/parser/tokChars.cpp.o: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/tokChars.cpp.o: ../parser/tokChars.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/epScript.dir/parser/tokChars.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/parser/tokChars.cpp.o -c /Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp
+
+CMakeFiles/epScript.dir/parser/tokChars.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/tokChars.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp > CMakeFiles/epScript.dir/parser/tokChars.cpp.i
+
+CMakeFiles/epScript.dir/parser/tokChars.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/tokChars.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/parser/tokChars.cpp -o CMakeFiles/epScript.dir/parser/tokChars.cpp.s
+
+CMakeFiles/epScript.dir/parser/tokChars.cpp.o.requires:
+
+.PHONY : CMakeFiles/epScript.dir/parser/tokChars.cpp.o.requires
+
+CMakeFiles/epScript.dir/parser/tokChars.cpp.o.provides: CMakeFiles/epScript.dir/parser/tokChars.cpp.o.requires
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokChars.cpp.o.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/tokChars.cpp.o.provides
+
+CMakeFiles/epScript.dir/parser/tokChars.cpp.o.provides.build: CMakeFiles/epScript.dir/parser/tokChars.cpp.o
+
+
+CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o: ../parser/tokenizerImpl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o -c /Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp
+
+CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp > CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.i
+
+CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/parser/tokenizerImpl.cpp -o CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.s
+
+CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o.requires:
+
+.PHONY : CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o.requires
+
+CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o.provides: CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o.requires
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o.provides
+
+CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o.provides.build: CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o
+
+
+CMakeFiles/epScript.dir/parser/tokIndent.cpp.o: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/tokIndent.cpp.o: ../parser/tokIndent.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/epScript.dir/parser/tokIndent.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/parser/tokIndent.cpp.o -c /Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp
+
+CMakeFiles/epScript.dir/parser/tokIndent.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/tokIndent.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp > CMakeFiles/epScript.dir/parser/tokIndent.cpp.i
+
+CMakeFiles/epScript.dir/parser/tokIndent.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/tokIndent.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/parser/tokIndent.cpp -o CMakeFiles/epScript.dir/parser/tokIndent.cpp.s
+
+CMakeFiles/epScript.dir/parser/tokIndent.cpp.o.requires:
+
+.PHONY : CMakeFiles/epScript.dir/parser/tokIndent.cpp.o.requires
+
+CMakeFiles/epScript.dir/parser/tokIndent.cpp.o.provides: CMakeFiles/epScript.dir/parser/tokIndent.cpp.o.requires
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokIndent.cpp.o.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/tokIndent.cpp.o.provides
+
+CMakeFiles/epScript.dir/parser/tokIndent.cpp.o.provides.build: CMakeFiles/epScript.dir/parser/tokIndent.cpp.o
+
+
 CMakeFiles/epScript.dir/main.cpp.o: CMakeFiles/epScript.dir/flags.make
 CMakeFiles/epScript.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/epScript.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/epScript.dir/main.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScript.dir/main.cpp.o -c /Users/whyask37/ClionProjects/epScript/main.cpp
 
 CMakeFiles/epScript.dir/main.cpp.i: cmake_force
@@ -141,6 +213,9 @@ CMakeFiles/epScript.dir/main.cpp.o.provides.build: CMakeFiles/epScript.dir/main.
 epScript_OBJECTS = \
 "CMakeFiles/epScript.dir/parser/epparser.cpp.o" \
 "CMakeFiles/epScript.dir/parser/tokenizer.cpp.o" \
+"CMakeFiles/epScript.dir/parser/tokChars.cpp.o" \
+"CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o" \
+"CMakeFiles/epScript.dir/parser/tokIndent.cpp.o" \
 "CMakeFiles/epScript.dir/main.cpp.o"
 
 # External object files for target epScript
@@ -148,10 +223,13 @@ epScript_EXTERNAL_OBJECTS =
 
 epScript: CMakeFiles/epScript.dir/parser/epparser.cpp.o
 epScript: CMakeFiles/epScript.dir/parser/tokenizer.cpp.o
+epScript: CMakeFiles/epScript.dir/parser/tokChars.cpp.o
+epScript: CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o
+epScript: CMakeFiles/epScript.dir/parser/tokIndent.cpp.o
 epScript: CMakeFiles/epScript.dir/main.cpp.o
 epScript: CMakeFiles/epScript.dir/build.make
 epScript: CMakeFiles/epScript.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable epScript"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable epScript"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/epScript.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -161,6 +239,9 @@ CMakeFiles/epScript.dir/build: epScript
 
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/epparser.cpp.o.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer.cpp.o.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokChars.cpp.o.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizerImpl.cpp.o.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokIndent.cpp.o.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/main.cpp.o.requires
 
 .PHONY : CMakeFiles/epScript.dir/requires
