@@ -1,20 +1,32 @@
 // Streambuf
 
+#include <string>
 #include <streambuf>
 #include <sstream>
-#include <string>
+#include <set>
+#include <vector>
 #include "pygen.h"
+
+struct Closure {
+    std::set<std::string> definedNames;
+};
 
 class PyGeneratorBuf : public std::streambuf {
 public:
-    PyGeneratorBuf() : lineStart(false), currentIndent(0) {}
+    PyGeneratorBuf() : lineStart(false) {
+        _closureList.push_back(Closure());
+    }
     ~PyGeneratorBuf() {}
 
     std::string str() { return os.str(); }
-    void indent() { currentIndent += 4; }
+    void indent() {
+        _closureList.push_back(Closure());
+    }
     void unindent() {
-        if(currentIndent == 0) throw std::logic_error("Negative currentIndent");
-        currentIndent -= 4;
+        if(_closureList.size() == 1) {
+            throw std::logic_error("Not enough closures");
+        }
+        _closureList.pop_back();
     }
 
     virtual int overflow (int c) {
@@ -31,7 +43,7 @@ public:
             }
 
             // Indent line
-            for(int i = 0 ; i < currentIndent ; i++) {
+            for(int i = 0 ; i < (_closureList.size() - 1) * 4 ; i++) {
                 os.put(' ');
             }
             lineStart = false;
@@ -45,10 +57,27 @@ public:
         return ch;
     }
 
+    bool namedef(const std::string& name) {
+        auto& nameSet = _closureList[_closureList.size() - 1].definedNames;
+        if(nameSet.find(name) != nameSet.end()) {
+            return false;
+        }
+        nameSet.insert(name);
+        return true;
+    }
+
+    bool undefined(const std::string& name) const {
+        for(const auto& closure : _closureList) {
+            const auto& nameSet = closure.definedNames;
+            if(nameSet.find(name) != nameSet.end()) return false;
+        }
+        return true;
+    }
+
 
 private:
     std::ostringstream os;
-    int currentIndent;
+    std::vector<Closure> _closureList;
     bool lineStart;
 };
 
@@ -72,4 +101,12 @@ void PyGenerator::indent() {
 
 void PyGenerator::unindent() {
     pbuf->unindent();
+}
+
+bool PyGenerator::namedef(const std::string &name) {
+    return pbuf->namedef(name);
+}
+
+bool PyGenerator::undefined(const std::string &name) {
+    return pbuf->undefined(name);
 }

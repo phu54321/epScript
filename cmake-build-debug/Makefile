@@ -343,32 +343,32 @@ parser/tokenizer/tokenizerImpl.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.s
 .PHONY : parser/tokenizer/tokenizerImpl.cpp.s
 
-test/test_parser.o: test/test_parser.cpp.o
+test/test_pygen.o: test/test_pygen.cpp.o
 
-.PHONY : test/test_parser.o
+.PHONY : test/test_pygen.o
 
 # target to build an object file
-test/test_parser.cpp.o:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o
-.PHONY : test/test_parser.cpp.o
+test/test_pygen.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o
+.PHONY : test/test_pygen.cpp.o
 
-test/test_parser.i: test/test_parser.cpp.i
+test/test_pygen.i: test/test_pygen.cpp.i
 
-.PHONY : test/test_parser.i
+.PHONY : test/test_pygen.i
 
 # target to preprocess a source file
-test/test_parser.cpp.i:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_parser.cpp.i
-.PHONY : test/test_parser.cpp.i
+test/test_pygen.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.i
+.PHONY : test/test_pygen.cpp.i
 
-test/test_parser.s: test/test_parser.cpp.s
+test/test_pygen.s: test/test_pygen.cpp.s
 
-.PHONY : test/test_parser.s
+.PHONY : test/test_pygen.s
 
 # target to generate assembly for a file
-test/test_parser.cpp.s:
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_parser.cpp.s
-.PHONY : test/test_parser.cpp.s
+test/test_pygen.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.s
+.PHONY : test/test_pygen.cpp.s
 
 test/test_tokenizer.o: test/test_tokenizer.cpp.o
 
@@ -455,9 +455,9 @@ help:
 	@echo "... parser/tokenizer/tokenizerImpl.o"
 	@echo "... parser/tokenizer/tokenizerImpl.i"
 	@echo "... parser/tokenizer/tokenizerImpl.s"
-	@echo "... test/test_parser.o"
-	@echo "... test/test_parser.i"
-	@echo "... test/test_parser.s"
+	@echo "... test/test_pygen.o"
+	@echo "... test/test_pygen.i"
+	@echo "... test/test_pygen.s"
 	@echo "... test/test_tokenizer.o"
 	@echo "... test/test_tokenizer.i"
 	@echo "... test/test_tokenizer.s"

@@ -13,9 +13,15 @@ class PyGenerator : public std::ostream {
 public:
     PyGenerator();
     virtual ~PyGenerator();
+
+    // String generation
     std::string str();
     void indent();
     void unindent();
+
+    // Variable table generation
+    bool namedef(const std::string& name);
+    bool undefined(const std::string& name);
 
 private:
     PyGeneratorBuf* pbuf;

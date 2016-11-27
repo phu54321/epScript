@@ -230,28 +230,28 @@ CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o.provides: CMakeFiles/epScr
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o.provides.build: CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o
 
 
-CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: CMakeFiles/epScriptTest.dir/flags.make
-CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o: ../test/test_parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o -c /Users/whyask37/ClionProjects/epScript/test/test_parser.cpp
+CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o: CMakeFiles/epScriptTest.dir/flags.make
+CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o: ../test/test_pygen.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o -c /Users/whyask37/ClionProjects/epScript/test/test_pygen.cpp
 
-CMakeFiles/epScriptTest.dir/test/test_parser.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScriptTest.dir/test/test_parser.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/test/test_parser.cpp > CMakeFiles/epScriptTest.dir/test/test_parser.cpp.i
+CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/whyask37/ClionProjects/epScript/test/test_pygen.cpp > CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.i
 
-CMakeFiles/epScriptTest.dir/test/test_parser.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScriptTest.dir/test/test_parser.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/test/test_parser.cpp -o CMakeFiles/epScriptTest.dir/test/test_parser.cpp.s
+CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/whyask37/ClionProjects/epScript/test/test_pygen.cpp -o CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.s
 
-CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o.requires:
+CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o.requires:
 
-.PHONY : CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o.requires
+.PHONY : CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o.requires
 
-CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o.provides: CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o.requires
-	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o.provides.build
-.PHONY : CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o.provides
+CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o.provides: CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o.requires
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o.provides.build
+.PHONY : CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o.provides
 
-CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o.provides.build: CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o
+CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o.provides.build: CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o
 
 
 CMakeFiles/epScriptTest.dir/test/testmain.cpp.o: CMakeFiles/epScriptTest.dir/flags.make
@@ -287,7 +287,7 @@ epScriptTest_OBJECTS = \
 "CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.o" \
 "CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o" \
 "CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o" \
-"CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o" \
+"CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o" \
 "CMakeFiles/epScriptTest.dir/test/testmain.cpp.o"
 
 # External object files for target epScriptTest
@@ -300,7 +300,7 @@ epScriptTest: CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.o
 epScriptTest: CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.o
 epScriptTest: CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o
 epScriptTest: CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o
-epScriptTest: CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o
+epScriptTest: CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o
 epScriptTest: CMakeFiles/epScriptTest.dir/test/testmain.cpp.o
 epScriptTest: CMakeFiles/epScriptTest.dir/build.make
 epScriptTest: CMakeFiles/epScriptTest.dir/link.txt
@@ -319,7 +319,7 @@ CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/tokeniz
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.o.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/pygen.cpp.o.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o.requires
-CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o.requires
+CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/testmain.cpp.o.requires
 
 .PHONY : CMakeFiles/epScriptTest.dir/requires
