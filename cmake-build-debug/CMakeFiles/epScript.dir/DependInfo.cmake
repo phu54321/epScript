@@ -14,6 +14,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/gitclones/epScript/parser/tokenizer/tokIndent.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj"
   "C:/gitclones/epScript/parser/tokenizer/tokenizer.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokenizer.cpp.obj"
   "C:/gitclones/epScript/parser/tokenizer/tokenizerImpl.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj"
+  "C:/gitclones/epScript/scriptDaemon.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/scriptDaemon.cpp.obj"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

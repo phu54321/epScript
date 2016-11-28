@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj"
   "CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj"
   "CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.obj"
+  "CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj"
   "CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj"
   "CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj"
   "CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj"

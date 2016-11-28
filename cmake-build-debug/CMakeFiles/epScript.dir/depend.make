@@ -46,3 +46,8 @@ CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/tokeni
 CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/tokenizer/tokenizerImpl.cpp
 CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/tokenizer/tokenizerImpl.h
 
+CMakeFiles/epScript.dir/scriptDaemon.cpp.obj: ../parser/epparser.h
+CMakeFiles/epScript.dir/scriptDaemon.cpp.obj: ../parser/tokenAdapter.h
+CMakeFiles/epScript.dir/scriptDaemon.cpp.obj: ../parser/tokenizer/tokenizer.h
+CMakeFiles/epScript.dir/scriptDaemon.cpp.obj: ../scriptDaemon.cpp
+

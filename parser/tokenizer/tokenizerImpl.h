@@ -9,7 +9,7 @@
 
 class TokenizerImpl {
 public:
-    TokenizerImpl(std::istream& is);
+    TokenizerImpl(const std::string& data);
     ~TokenizerImpl();
     Token* getToken();
     int getCurrentLine() const;

@@ -10,6 +10,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj"
   "CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj"
   "CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj"
+  "CMakeFiles/epScript.dir/scriptDaemon.cpp.obj"
   "CMakeFiles/epScript.dir/main.cpp.obj"
   "epScript.pdb"
   "epScript.exe"

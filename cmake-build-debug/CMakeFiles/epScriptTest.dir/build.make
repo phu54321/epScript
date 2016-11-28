@@ -281,9 +281,33 @@ CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.obj.provides: CMakeFiles/e
 CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.obj.provides.build: CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.obj
 
 
+CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
+CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj: ../scriptDaemon.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\scriptDaemon.cpp.obj -c C:\gitclones\epScript\scriptDaemon.cpp
+
+CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.i"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\scriptDaemon.cpp > CMakeFiles\epScriptTest.dir\scriptDaemon.cpp.i
+
+CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.s"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\scriptDaemon.cpp -o CMakeFiles\epScriptTest.dir\scriptDaemon.cpp.s
+
+CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.requires:
+
+.PHONY : CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.requires
+
+CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.provides: CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.provides.build
+.PHONY : CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.provides
+
+CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.provides.build: CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj
+
+
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj: ../test/test_tokenizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\test\test_tokenizer.cpp.obj -c C:\gitclones\epScript\test\test_tokenizer.cpp
 
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.i: cmake_force
@@ -307,7 +331,7 @@ CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj.provides.build: CMakeFil
 
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj: ../test/test_pygen.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\test\test_pygen.cpp.obj -c C:\gitclones\epScript\test\test_pygen.cpp
 
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.i: cmake_force
@@ -331,7 +355,7 @@ CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj.provides.build: CMakeFiles/e
 
 CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj: ../test/test_parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\test\test_parser.cpp.obj -c C:\gitclones\epScript\test\test_parser.cpp
 
 CMakeFiles/epScriptTest.dir/test/test_parser.cpp.i: cmake_force
@@ -355,7 +379,7 @@ CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj.provides.build: CMakeFiles/
 
 CMakeFiles/epScriptTest.dir/test/testmain.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/test/testmain.cpp.obj: ../test/testmain.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/epScriptTest.dir/test/testmain.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/epScriptTest.dir/test/testmain.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\test\testmain.cpp.obj -c C:\gitclones\epScript\test\testmain.cpp
 
 CMakeFiles/epScriptTest.dir/test/testmain.cpp.i: cmake_force
@@ -388,6 +412,7 @@ epScriptTest_OBJECTS = \
 "CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.obj" \
+"CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj" \
@@ -405,6 +430,7 @@ epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/pygen.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.obj
+epScriptTest.exe: CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj
@@ -413,7 +439,7 @@ epScriptTest.exe: CMakeFiles/epScriptTest.dir/build.make
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/linklibs.rsp
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/objects1.rsp
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable epScriptTest.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable epScriptTest.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\epScriptTest.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -430,6 +456,7 @@ CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/pygen.c
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.obj.requires
+CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj.requires

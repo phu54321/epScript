@@ -6,9 +6,10 @@
 #include "tokChars.h"
 #include "condAct.h"
 #include <string.h>
+#include <assert.h>
 
-TokenizerImpl::TokenizerImpl(std::istream& is)
-        : data(std::istreambuf_iterator<char>(is), std::istreambuf_iterator<char>()) {
+TokenizerImpl::TokenizerImpl(const std::string& is)
+        : data(is.begin(), is.end()) {
     // Negative -> Positive
     data.push_back(EOF);
     data.push_back(0);
@@ -68,7 +69,8 @@ Token* TokenizerImpl::getToken() {
     } while(true);
 
     // EOF check
-    if(cursor == data.data() + data.size() - 2) {
+    assert(cursor <= data.data() + data.size() - 2);
+    if(cursor >= data.data() + data.size() - 2) {
         return nullptr;  // EOF
     }
 

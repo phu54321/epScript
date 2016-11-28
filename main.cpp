@@ -6,13 +6,14 @@
 
 extern bool PARSER_DEBUG;
 
-static std::string getFile(const std::string& fname) {
-    FILE* fp = fopen(fname.c_str(), "r");
+std::string getFile(const std::string& fname) {
+    FILE* fp = fopen(fname.c_str(), "rb");
     if(fp == nullptr) {
         throw std::runtime_error("Input file not found : " + fname);
     }
+
     fseek(fp, 0, SEEK_END);
-    size_t fsize = ftell(fp);
+    long fsize = ftell(fp);
     rewind(fp);
 
     char* data = new char[fsize];
@@ -24,10 +25,13 @@ static std::string getFile(const std::string& fname) {
 }
 
 int usage() {
+    printf("Usage : epScript [-v]\n");
     printf("Usage : epScript [-v] [-o output] input\n");
     printf("Usage : epScript [-v] input1 input2 input3 .. inputN\n");
     return -1;
 }
+
+int runDaemon(void);
 
 int main(int argc, char** argv) {
     PARSER_DEBUG = false;
@@ -50,8 +54,8 @@ int main(int argc, char** argv) {
         }
     }
 
-    if(optind == argc) {  // No input file
-        return usage();
+    if(optind == argc) {  // No input file - Self daemon mode
+        return runDaemon();
     }
 
     else if(optind < argc - 1 && ofname != "") { // Multiple input files with -o

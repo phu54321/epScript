@@ -1903,14 +1903,13 @@ int PARSER_DEBUG = 0;
 
 std::string ParseString(const std::string& code)
 {
-    std::istringstream is(code);
-    Tokenizer tok(is);
+    Tokenizer tok(code);
     void* pParser = ParseAlloc (malloc);
     PyGenerator pGen;
     Token* token;
     currentTokenizingLine = 0;
 
-    if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code << "\n]]]\n";
+    if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
 
     tmpIndex = 1;
     errorOccured = false;
@@ -1918,11 +1917,10 @@ std::string ParseString(const std::string& code)
         if (currentTokenizingLine != tok.getCurrentLine()) {
             currentTokenizingLine = tok.getCurrentLine();
             pGen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
-            if(PARSER_DEBUG) printf("[[]] reading line %s\n", tok.getCurrentLineString().c_str());
+            if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }
         if (tokenTypeConv(token)) {
             Parse (pParser, token->type, token, &pGen);
-            if(PARSER_DEBUG) ParseTrace(stdout, "-- ");
         }
         else {
             throw_error(token->line, 8104, "Invalid token");
@@ -1934,4 +1932,4 @@ std::string ParseString(const std::string& code)
     if(!errorOccured) return postProcessCode(pGen.str());
     else throw std::runtime_error("Invalid syntax");
 }
-#line 1938 "parser\\epparser.c"
+#line 1936 "parser\\epparser.c"

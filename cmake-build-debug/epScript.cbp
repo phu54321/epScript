@@ -189,6 +189,10 @@
 			<Option target="epScript"/>
 			<Option target="epScriptTest"/>
 		</Unit>
+		<Unit filename="C:/gitclones/epScript/scriptDaemon.cpp">
+			<Option target="epScript"/>
+			<Option target="epScriptTest"/>
+		</Unit>
 		<Unit filename="C:/gitclones/epScript/test/test_parser.cpp">
 			<Option target="epScriptTest"/>
 		</Unit>

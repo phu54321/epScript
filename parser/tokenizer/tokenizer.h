@@ -91,7 +91,7 @@ struct Token {
 class TokenizerImpl;
 class Tokenizer {
 public:
-    Tokenizer(std::istream& is);
+    Tokenizer(const std::string& data);
     ~Tokenizer();
 
     Token* getToken();

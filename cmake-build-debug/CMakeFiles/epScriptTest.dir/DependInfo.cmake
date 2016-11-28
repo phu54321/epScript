@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/gitclones/epScript/parser/tokenizer/tokIndent.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.obj"
   "C:/gitclones/epScript/parser/tokenizer/tokenizer.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizer.cpp.obj"
   "C:/gitclones/epScript/parser/tokenizer/tokenizerImpl.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.obj"
+  "C:/gitclones/epScript/scriptDaemon.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj"
   "C:/gitclones/epScript/test/test_parser.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj"
   "C:/gitclones/epScript/test/test_pygen.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj"
   "C:/gitclones/epScript/test/test_tokenizer.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj"

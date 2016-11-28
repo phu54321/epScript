@@ -432,6 +432,36 @@ parser/tokenizer/tokenizerImpl.cpp.s:
 	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.s
 .PHONY : parser/tokenizer/tokenizerImpl.cpp.s
 
+scriptDaemon.obj: scriptDaemon.cpp.obj
+
+.PHONY : scriptDaemon.obj
+
+# target to build an object file
+scriptDaemon.cpp.obj:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/scriptDaemon.cpp.obj
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj
+.PHONY : scriptDaemon.cpp.obj
+
+scriptDaemon.i: scriptDaemon.cpp.i
+
+.PHONY : scriptDaemon.i
+
+# target to preprocess a source file
+scriptDaemon.cpp.i:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/scriptDaemon.cpp.i
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.i
+.PHONY : scriptDaemon.cpp.i
+
+scriptDaemon.s: scriptDaemon.cpp.s
+
+.PHONY : scriptDaemon.s
+
+# target to generate assembly for a file
+scriptDaemon.cpp.s:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/scriptDaemon.cpp.s
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.s
+.PHONY : scriptDaemon.cpp.s
+
 test/test_parser.obj: test/test_parser.cpp.obj
 
 .PHONY : test/test_parser.obj
@@ -580,6 +610,9 @@ help:
 	@echo ... parser/tokenizer/tokenizerImpl.obj
 	@echo ... parser/tokenizer/tokenizerImpl.i
 	@echo ... parser/tokenizer/tokenizerImpl.s
+	@echo ... scriptDaemon.obj
+	@echo ... scriptDaemon.i
+	@echo ... scriptDaemon.s
 	@echo ... test/test_parser.obj
 	@echo ... test/test_parser.i
 	@echo ... test/test_parser.s
