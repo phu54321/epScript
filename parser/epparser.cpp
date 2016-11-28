@@ -1130,7 +1130,7 @@ static void yy_reduce(
       case 15: /* expr ::= MAPSTRING LPAREN STRING RPAREN */
 #line 132 "parser/epparser.lemon"
 {
-    yymsp[-1].minor.yy0->data = "EncodeString(" + yymsp[-1].minor.yy0->data + ")";
+    yymsp[-1].minor.yy0->data = "GetStringIndex(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-1].minor.yy0, *pGen);
 }
 #line 1137 "parser/epparser.c"
@@ -1138,7 +1138,7 @@ static void yy_reduce(
       case 16: /* expr ::= UNIT LPAREN STRING RPAREN */
 #line 137 "parser/epparser.lemon"
 {
-    yymsp[-1].minor.yy0->data = "EncodeUnit(" + yymsp[-1].minor.yy0->data + ")";
+    yymsp[-1].minor.yy0->data = "GetUnitIndex(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-1].minor.yy0, *pGen);
 }
 #line 1145 "parser/epparser.c"
@@ -1146,7 +1146,7 @@ static void yy_reduce(
       case 17: /* expr ::= SWITCH LPAREN STRING RPAREN */
 #line 142 "parser/epparser.lemon"
 {
-    yymsp[-1].minor.yy0->data = "EncodeSwitch(" + yymsp[-1].minor.yy0->data + ")";
+    yymsp[-1].minor.yy0->data = "GetSwitchIndex(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-1].minor.yy0, *pGen);
 }
 #line 1153 "parser/epparser.c"
@@ -1154,7 +1154,7 @@ static void yy_reduce(
       case 18: /* expr ::= LOCATION LPAREN STRING RPAREN */
 #line 147 "parser/epparser.lemon"
 {
-    yymsp[-1].minor.yy0->data = "EncodeLocation(" + yymsp[-1].minor.yy0->data + ")";
+    yymsp[-1].minor.yy0->data = "GetLocationIndex(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-1].minor.yy0, *pGen);
 }
 #line 1161 "parser/epparser.c"

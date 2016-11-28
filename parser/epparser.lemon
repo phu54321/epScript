@@ -130,22 +130,22 @@ expr(A) ::= LPAREN expr(B) RPAREN. {
 }
 
 expr(A) ::= MAPSTRING LPAREN STRING(B) RPAREN. {
-    B->data = "EncodeString(" + B->data + ")";
+    B->data = "GetStringIndex(" + B->data + ")";
     A = mkTokenTemp(B, *pGen);
 }
 
 expr(A) ::= UNIT LPAREN STRING(B) RPAREN. {
-    B->data = "EncodeUnit(" + B->data + ")";
+    B->data = "GetUnitIndex(" + B->data + ")";
     A = mkTokenTemp(B, *pGen);
 }
 
 expr(A) ::= SWITCH LPAREN STRING(B) RPAREN. {
-    B->data = "EncodeSwitch(" + B->data + ")";
+    B->data = "GetSwitchIndex(" + B->data + ")";
     A = mkTokenTemp(B, *pGen);
 }
 
 expr(A) ::= LOCATION LPAREN STRING(B) RPAREN. {
-    B->data = "EncodeLocation(" + B->data + ")";
+    B->data = "GetLocationIndex(" + B->data + ")";
     A = mkTokenTemp(B, *pGen);
 }
 
