@@ -97,9 +97,8 @@ funcexpr(out) ::= NAME(name) LPAREN exprList(exprs) RPAREN.  [FUNCCALL] {
     }
     */
 
-    out = genTemp(name);
-    (*pGen) << out->data << " = " << name->data << "(" << exprs->data << ")" << std::endl;
-    delete name; delete exprs;
+    name->data += "(" + exprs->data + ")";
+    out = mkTokenTemp(name, *pGen);
 }
 
 
@@ -109,6 +108,7 @@ funcexpr(out) ::= NAME(name) LPAREN RPAREN.  [FUNCCALL] {
     else {
         name->data = "f_" + name->data;
     }
+
     /*
     if (pGen->undefined(name->data)) {
         throw_error(name->line, 4449, ("Undefined function " + name->data));
@@ -116,25 +116,28 @@ funcexpr(out) ::= NAME(name) LPAREN RPAREN.  [FUNCCALL] {
     }
     */
 
-    out = genTemp(name);
-    (*pGen) << out->data << " = " << name->data << "()" << std::endl;
-    delete name;
+    name->data += "()";
+    out = mkTokenTemp(name, *pGen);
 }
 
 
 // Binary operators
 expr(A) ::= funcexpr(B).  { A = B; }
-expr(A) ::= LPAREN expr(B) RPAREN. [PARENEXPR]  { A = B; }
-expr(A) ::= expr(B) PLUS        expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " + "  << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) MINUS       expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " - "  << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) MULTIPLY    expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " * "  << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) DIVIDE      expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " // " << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) MOD         expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " % "  << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) LSHIFT      expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " << " << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) RSHIFT      expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " >> " << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) BITAND      expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " & "  << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) BITOR       expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " | "  << C->data << std::endl; delete B; delete C; }
-expr(A) ::= expr(B) BITXOR      expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " ^ "  << C->data << std::endl; delete B; delete C; }
+expr(A) ::= LPAREN expr(B) RPAREN. {
+    B->data = "(" + B->data + ")";
+    A = mkTokenTemp(B, *pGen);
+}
+
+expr(A) ::= expr(B) PLUS        expr(C). { A = binaryMerge(B, "+",  C, *pGen); }
+expr(A) ::= expr(B) MINUS       expr(C). { A = binaryMerge(B, "-",  C, *pGen); }
+expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binaryMerge(B, "*",  C, *pGen); }
+expr(A) ::= expr(B) DIVIDE      expr(C). { A = binaryMerge(B, "//", C, *pGen); }
+expr(A) ::= expr(B) MOD         expr(C). { A = binaryMerge(B, "%",  C, *pGen); }
+expr(A) ::= expr(B) LSHIFT      expr(C). { A = binaryMerge(B, "<<", C, *pGen); }
+expr(A) ::= expr(B) RSHIFT      expr(C). { A = binaryMerge(B, ">>", C, *pGen); }
+expr(A) ::= expr(B) BITAND      expr(C). { A = binaryMerge(B, "&",  C, *pGen); }
+expr(A) ::= expr(B) BITOR       expr(C). { A = binaryMerge(B, "|",  C, *pGen); }
+expr(A) ::= expr(B) BITXOR      expr(C). { A = binaryMerge(B, "^",  C, *pGen); }
 
 // Unary operators
 expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = +" << B->data << std::endl; delete B; }
@@ -142,16 +145,30 @@ expr(A) ::= MINUS   expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " =
 expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = ~" << B->data << std::endl; delete B; }
 
 // Logical operators
-lexpr(A) ::= expr(B) EQ expr(C).   { A = genTemp(C); (*pGen) << A->data << " = (" << B->data << " == " << C->data << ")" << std::endl; delete B; delete C; }
-lexpr(A) ::= expr(B) NE expr(C).   { A = genTemp(C); (*pGen) << A->data << " = (" << B->data << " != " << C->data << ")" << std::endl; delete B; delete C; }
-lexpr(A) ::= expr(B) LE expr(C).   { A = genTemp(C); (*pGen) << A->data << " = (" << B->data << " <= " << C->data << ")" << std::endl; delete B; delete C; }
-lexpr(A) ::= expr(B) LT expr(C).   { A = genTemp(C); (*pGen) << A->data << " = (" << B->data << " < "  << C->data << ")" << std::endl; delete B; delete C; }
-lexpr(A) ::= expr(B) GE expr(C).   { A = genTemp(C); (*pGen) << A->data << " = (" << B->data << " >= " << C->data << ")" << std::endl; delete B; delete C; }
-lexpr(A) ::= expr(B) GT expr(C).   { A = genTemp(C); (*pGen) << A->data << " = (" << B->data << " > "  << C->data << ")" << std::endl; delete B; delete C; }
+lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C, *pGen); }
+lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C, *pGen); }
+lexpr(A) ::= expr(B) LE expr(C).   { A = binaryMerge(B, "<=", C, *pGen); }
+lexpr(A) ::= expr(B) LT expr(C).   { A = binaryMerge(B, "<",  C, *pGen); }
+lexpr(A) ::= expr(B) GE expr(C).   { A = binaryMerge(B, ">=", C, *pGen); }
+lexpr(A) ::= expr(B) GT expr(C).   { A = binaryMerge(B, ">" , C, *pGen); }
 
-lexpr(A) ::= lexpr(B) LAND lexpr(C).  { A = genTemp(C); (*pGen) << A->data << " = [" << B->data << ", " << C->data << "]" << std::endl; delete B; delete C; }
-lexpr(A) ::= lexpr(B) LOR  lexpr(C).  { A = genTemp(C); (*pGen) << A->data << " = EUDOr([" << B->data << ", " << C->data << "])" << std::endl; delete B; delete C; }
-lexpr(A) ::= LNOT lexpr(B). { A = genTemp(B); (*pGen) << A->data << " = EUDNot(" << B->data << ")" << std::endl; delete B; }
+lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
+    B->data = "[" + B->data + ", " + C->data + "]";
+    delete C;
+    A = mkTokenTemp(B, *pGen);
+}
+
+lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
+    B->data = "EUDOr([" + B->data + ", " + C->data + "])";
+    delete C;
+    A = mkTokenTemp(B, *pGen);
+}
+
+lexpr(A) ::= LNOT lexpr(B).  {
+    B->data = "EUDNot([" + B->data + "])";
+    A = mkTokenTemp(B, *pGen);
+}
+
 lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
 
 
@@ -163,8 +180,7 @@ vdef_stmt ::= VAR NAME(A) SEMICOLON. {
 }
 
 vdefAssign_stmt ::= VAR NAME(A) ASSIGN expr(B) SEMICOLON. {
-    (*pGen) << A->data << " = EUDVariable()" << std::endl;
-    (*pGen) << A->data << " << " << B->data << std::endl;
+    (*pGen) << A->data << " = MakeVariable([" << B->data << "])" << std::endl;
     if(!pGen->namedef(A->data)) {
         throw_error(A->line, 196, ("Redeclaration of variable \'" + (A->data) + "\'"));
     }
@@ -187,9 +203,7 @@ vdefMulti_stmt ::= VAR nameList(A) SEMICOLON. {
 
 vdefMultiAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
     std::string& s = A->data;
-    int varCount = std::count(s.begin(), s.end(), ',') + 1;
-    (*pGen) << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
-    (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
+    (*pGen) << s << " = MakeVariable([" << B->data << "])" << std::endl;
 
     // Register variables.
     commaListIter(s, [&](const std::string& varname) {
@@ -362,7 +376,7 @@ stmt ::= vdefMultiAssign_stmt.
 stmt ::= vdefMulti_stmt.
 stmt ::= assign_stmt.
 stmt ::= assignMulti_stmt.
-stmt ::= expr SEMICOLON.
+stmt ::= expr(A) SEMICOLON. { (*pGen) << A->data << std::endl; }
 stmt ::= if_stmt.
 stmt ::= while_stmt.
 stmt ::= foreach_stmt.

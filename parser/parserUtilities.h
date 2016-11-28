@@ -6,6 +6,7 @@
 #define EPSCRIPT_PARSERUTILITIES_H
 
 #include "tokenizer/tokenizer.h"
+#include "pygen.h"
 #include <string>
 #include <iostream>
 
@@ -54,6 +55,27 @@ static inline std::string &rtrim(std::string& s) {
 // trim from both ends
 static inline std::string trim(std::string s) {
     return ltrim(rtrim(s));
+}
+
+const int LENGTH_LIMIT = 60;
+
+Token* mkTokenTemp(Token* a, PyGenerator& pGen) {
+    if(a->data.size() > LENGTH_LIMIT) {
+        Token* t = genTemp(a);
+        pGen << t->data << " = " << a->data << std::endl;
+        delete a;
+        return t;
+    }
+    else {
+        a->type = TOKEN_TEMP;
+        return a;
+    }
+}
+
+Token* binaryMerge(Token* a, const std::string& opstr, Token* b, PyGenerator& pGen) {
+    b->data = a->data + (" " + opstr + " ") + b->data;
+    delete a;
+    return mkTokenTemp(b, pGen);
 }
 
 

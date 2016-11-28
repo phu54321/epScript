@@ -4300,51 +4300,50 @@ Symbols:
    32: LPAREN
    33: RPAREN
    34: FUNCCALL
-   35: PARENEXPR
-   36: VAR
-   37: SEMICOLON
-   38: LBRACKET
-   39: RBRACKET
-   40: IF
-   41: WHILE
-   42: FOR
-   43: COLON
-   44: CONTINUE
-   45: BREAK
-   46: FUNCTION
-   47: RETURN
-   48: error:
-   49: nt:
-   50: program: VAR FUNCTION
-   51: chunks: <lambda> VAR FUNCTION
-   52: numList: NUMBER
-   53: nameList: NAME
-   54: exprList: PLUS MINUS BITNOT NUMBER NAME LPAREN
-   55: funcexpr: NAME
-   56: expr: PLUS MINUS BITNOT NUMBER NAME LPAREN
-   57: lexpr: LNOT PLUS MINUS BITNOT NUMBER NAME LPAREN
-   58: vdef_stmt: VAR
-   59: vdefAssign_stmt: VAR
-   60: vdefMulti_stmt: VAR
-   61: vdefMultiAssign_stmt: VAR
-   62: assign_stmt: NAME
-   63: assignMulti_stmt: NAME
-   64: stmtList: PLUS MINUS BITNOT NUMBER NAME LPAREN VAR SEMICOLON LBRACKET IF WHILE FOR CONTINUE BREAK RETURN
-   65: stmt: PLUS MINUS BITNOT NUMBER NAME LPAREN VAR SEMICOLON LBRACKET IF WHILE FOR CONTINUE BREAK RETURN
-   66: block: LBRACKET
-   67: if_start: IF
-   68: if_header: IF
-   69: if_stmt: IF
-   70: else_header: IF
-   71: while_start: WHILE
-   72: while_header: WHILE
-   73: while_stmt: WHILE
-   74: foreach_header: FOR
-   75: foreach_stmt: FOR
-   76: continue_stmt: CONTINUE
-   77: break_stmt: BREAK
-   78: function_start: FUNCTION
-   79: function_header: FUNCTION
-   80: fdef_chunk: FUNCTION
-   81: return_stmt: RETURN
-   82: chunk: VAR FUNCTION
+   35: VAR
+   36: SEMICOLON
+   37: LBRACKET
+   38: RBRACKET
+   39: IF
+   40: WHILE
+   41: FOR
+   42: COLON
+   43: CONTINUE
+   44: BREAK
+   45: FUNCTION
+   46: RETURN
+   47: error:
+   48: nt:
+   49: program: VAR FUNCTION
+   50: chunks: <lambda> VAR FUNCTION
+   51: numList: NUMBER
+   52: nameList: NAME
+   53: exprList: PLUS MINUS BITNOT NUMBER NAME LPAREN
+   54: funcexpr: NAME
+   55: expr: PLUS MINUS BITNOT NUMBER NAME LPAREN
+   56: lexpr: LNOT PLUS MINUS BITNOT NUMBER NAME LPAREN
+   57: vdef_stmt: VAR
+   58: vdefAssign_stmt: VAR
+   59: vdefMulti_stmt: VAR
+   60: vdefMultiAssign_stmt: VAR
+   61: assign_stmt: NAME
+   62: assignMulti_stmt: NAME
+   63: stmtList: PLUS MINUS BITNOT NUMBER NAME LPAREN VAR SEMICOLON LBRACKET IF WHILE FOR CONTINUE BREAK RETURN
+   64: stmt: PLUS MINUS BITNOT NUMBER NAME LPAREN VAR SEMICOLON LBRACKET IF WHILE FOR CONTINUE BREAK RETURN
+   65: block: LBRACKET
+   66: if_start: IF
+   67: if_header: IF
+   68: if_stmt: IF
+   69: else_header: IF
+   70: while_start: WHILE
+   71: while_header: WHILE
+   72: while_stmt: WHILE
+   73: foreach_header: FOR
+   74: foreach_stmt: FOR
+   75: continue_stmt: CONTINUE
+   76: break_stmt: BREAK
+   77: function_start: FUNCTION
+   78: function_header: FUNCTION
+   79: fdef_chunk: FUNCTION
+   80: return_stmt: RETURN
+   81: chunk: VAR FUNCTION
