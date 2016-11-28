@@ -13,7 +13,9 @@ enum TokenType {
     TOKEN_INVALID,
     TOKEN_TEMP,
 
-    // Variables
+    // Keywords
+    TOKEN_FROM,
+    TOKEN_IMPORT,
     TOKEN_VAR,
     TOKEN_FUNCTION,
     TOKEN_IF,

@@ -8,11 +8,16 @@ CMakeFiles/epScript.dir/main.cpp.o: ../parser/tokenizer/tokenizer.h
 
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/epparser.cpp
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/epparser.h
+CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/eudplibGlobals.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/parserUtilities.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/pygen.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/tokenAdapter.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/tokenizer/tokenizer.h
 
+CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.o: ../parser/eudplibGlobals.cpp
+CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.o: ../parser/eudplibGlobals.h
+
+CMakeFiles/epScript.dir/parser/pygen.cpp.o: ../parser/eudplibGlobals.h
 CMakeFiles/epScript.dir/parser/pygen.cpp.o: ../parser/pygen.cpp
 CMakeFiles/epScript.dir/parser/pygen.cpp.o: ../parser/pygen.h
 

@@ -87,16 +87,11 @@ expr(A) ::= NAME(B). {
 // Function calls
 funcexpr(out) ::= NAME(name) LPAREN exprList(exprs) RPAREN.  [FUNCCALL] {
     // Preprocess name
-    if(name->data[0] == '_' || ('A' <= name->data[0] && name->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
-    else {
-        name->data = "f_" + name->data;
-    }
-    /*
+    funcNamePreprocess(name->data);
     if (pGen->undefined(name->data)) {
         throw_error(name->line, 4449, ("Undefined function " + name->data));
         pGen->namedef(name->data);
     }
-    */
 
     name->data += "(" + exprs->data + ")";
     out = mkTokenTemp(name, *pGen);
@@ -105,17 +100,11 @@ funcexpr(out) ::= NAME(name) LPAREN exprList(exprs) RPAREN.  [FUNCCALL] {
 
 funcexpr(out) ::= NAME(name) LPAREN RPAREN.  [FUNCCALL] {
     // Preprocess name
-    if(name->data[0] == '_' || ('A' <= name->data[0] && name->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
-    else {
-        name->data = "f_" + name->data;
-    }
-
-    /*
+    funcNamePreprocess(name->data);
     if (pGen->undefined(name->data)) {
         throw_error(name->line, 4449, ("Undefined function " + name->data));
         pGen->namedef(name->data);
     }
-    */
 
     name->data += "()";
     out = mkTokenTemp(name, *pGen);
@@ -318,6 +307,9 @@ while_stmt ::= while_header stmt. {
 foreach_header ::= FOR LPAREN nameList(names) COLON exprList(exprs) RPAREN. {
     (*pGen) << "for " << names->data << " in " << exprs->data << ":" << std::endl;
     pGen->indent();
+    commaListIter(names->data, [&](const std::string& s) {
+        pGen->namedef(s);
+    });
 }
 
 foreach_stmt ::= foreach_header stmt. {
@@ -337,11 +329,7 @@ break_stmt ::= BREAK SEMICOLON. {
 // Function declaration
 function_start(start) ::= FUNCTION NAME(name).  {
     // Preprocess name
-    if(name->data[0] == '_' || ('A' <= name->data[0] && name->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
-    else {
-        name->data = "f_" + name->data;
-    }
-
+    funcNamePreprocess(name->data);
     start = name;
     if(!pGen->namedef(name->data)) {
         throw_error(name->line, 4495, "Duplicate function name " + name->data);
@@ -382,6 +370,7 @@ fdef_chunk ::= function_header stmt. {
 return_stmt ::= RETURN SEMICOLON. {
     (*pGen) << "EUDReturn()" << std::endl;
 }
+
 return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
     (*pGen) << "EUDReturn(" << exprs->data << ")" << std::endl;
     delete exprs;
@@ -466,6 +455,29 @@ stmt ::= block.
 
 
 // Program building block
+
+import_chunk ::= FROM NAME(name) IMPORT nameList(B). {
+    (*pGen) << "from " << name->data << " import " << B->data << std::endl;
+    commaListIter(B->data, [&](std::string varname) {
+        funcNamePreprocess(varname);
+        if(!pGen->namedef(varname)) {
+            throw_error(B->line, 8118, ("Importing already-declared function " + varname));
+        }
+        else (*pGen) << "from " << name->data << " import " << varname << std::endl;
+    });
+    delete name; delete B;
+}
+
+import_chunk ::= FROM NAME(name) IMPORT NAME(B). {
+    funcNamePreprocess(B->data);
+    if(!pGen->namedef(B->data)) {
+        throw_error(B->line, 8118, ("Importing already-declared function " + B->data));
+    }
+    else (*pGen) << "from " << name->data << " import " << B->data << std::endl;
+    delete name; delete B;
+}
+
+chunk ::= import_chunk.
 chunk ::= fdef_chunk.
 chunk ::= vdef_stmt.
 chunk ::= vdefMulti_stmt.
@@ -474,7 +486,7 @@ chunks ::= chunks chunk.
 
 %code {
 
-// #define PARSER_DEBUG
+int PARSER_DEBUG = 0;
 
 std::string ParseString(const std::string& code)
 {
@@ -485,9 +497,7 @@ std::string ParseString(const std::string& code)
     Token* token;
     currentTokenizingLine = 0;
 
-#ifdef PARSER_DEBUG
-    std::cout << "Parsing string [[[\n" << code << "\n]]]\n";
-#endif
+    if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code << "\n]]]\n";
 
     tmpIndex = 1;
     errorOccured = false;
@@ -495,15 +505,11 @@ std::string ParseString(const std::string& code)
         if (currentTokenizingLine != tok.getCurrentLine()) {
             currentTokenizingLine = tok.getCurrentLine();
             pGen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
-#ifdef PARSER_DEBUG
-            printf("reading line %s\n", tok.getCurrentLineString().c_str());
-#endif
+            if(PARSER_DEBUG) printf("[[]] reading line %s\n", tok.getCurrentLineString().c_str());
         }
         if (tokenTypeConv(token)) {
             Parse (pParser, token->type, token, &pGen);
-#ifdef PARSER_DEBUG
-            ParseTrace(stdout, "-- ");
-#endif
+            if(PARSER_DEBUG) ParseTrace(stdout, "-- ");
         }
         else {
             throw_error(token->line, 8104, "Invalid token");
@@ -512,7 +518,7 @@ std::string ParseString(const std::string& code)
     Parse (pParser, 0, nullptr, &pGen);
     ParseFree(pParser, free );
 
-    if(!errorOccured) return iwCollapse(pGen.str());
+    if(!errorOccured) return postProcessCode(pGen.str());
     else throw std::runtime_error("Invalid syntax");
 }
 }

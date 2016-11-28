@@ -10,6 +10,7 @@
 #include <string>
 #include <iostream>
 #include <regex>
+#include "eudplibGlobals.h"
 
 static bool errorOccured = false;
 
@@ -81,8 +82,42 @@ Token* binaryMerge(Token* a, const std::string& opstr, Token* b, PyGenerator& pG
 
 
 static std::regex iwCollapseRegex("\n( *)(_t\\d+) = (EUDWhile|EUDIf)\\(\\)\n\\1if \\2\\((.+)\\):");
-std::string iwCollapse(std::string&& in) {
+std::string iwCollapse(const std::string& in) {
     return std::regex_replace(in, iwCollapseRegex, "\n$1if $3()($4):");
+}
+
+void funcNamePreprocess(std::string& s) {
+    if(isBuiltinFunc(s)) return;  // Some builtin function don't have f_ prefixes. (b2i4) Pass them as-is
+    if(s[0] == '_' || ('A' <= s[0] && s[0] <= 'Z')) return;  // Name starts with uppercase -> Don't modify
+    else s = "f_" + s;
+}
+
+const char* stubCode =
+        "# epScript support code\n"
+        "\n"
+        "from eudplib import *\n"
+        "\n"
+        "def _SRET(v, klist):\n"
+        "    return (v[k] for k in klist)\n"
+        "\n"
+        "def _MVAR(vs):\n"
+        "    rets = []\n"
+        "    for v in FlattenList(vs):\n"
+        "        if IsEUDVariable(v):\n"
+        "            rets.append(v)\n"
+        "        else:\n"
+        "            var = EUDVariable()\n"
+        "            var << v\n"
+        "            rets.append(var)\n"
+        "    return List2Assignable(rets)\n"
+        "\n"
+        "# epScript user code\n";
+
+std::string postProcessCode(const std::string& _s) {
+    std::string s = iwCollapse(_s);
+
+    // Add default functions
+    return stubCode + s;
 }
 
 #endif //EPSCRIPT_PARSERUTILITIES_H

@@ -50,3 +50,5 @@
 #define RETURN                          50
 #define CONDITIONNAME                   51
 #define ACTIONNAME                      52
+#define FROM                            53
+#define IMPORT                          54

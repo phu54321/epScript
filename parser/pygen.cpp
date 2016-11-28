@@ -6,6 +6,7 @@
 #include <set>
 #include <vector>
 #include "pygen.h"
+#include "eudplibGlobals.h"
 
 struct Closure {
     std::set<std::string> definedNames;
@@ -72,6 +73,9 @@ public:
     }
 
     bool undefined(const std::string& name) const {
+        if(isBuiltinFunc(name)) return false;
+        else if(isBuiltinConst(name)) return false;
+
         for(const auto& closure : _closureList) {
             const auto& nameSet = closure.definedNames;
             if(nameSet.find(name) != nameSet.end()) return false;

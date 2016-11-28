@@ -193,6 +193,36 @@ parser/epparser.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/epparser.cpp.s
 .PHONY : parser/epparser.cpp.s
 
+parser/eudplibGlobals.o: parser/eudplibGlobals.cpp.o
+
+.PHONY : parser/eudplibGlobals.o
+
+# target to build an object file
+parser/eudplibGlobals.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.o
+.PHONY : parser/eudplibGlobals.cpp.o
+
+parser/eudplibGlobals.i: parser/eudplibGlobals.cpp.i
+
+.PHONY : parser/eudplibGlobals.i
+
+# target to preprocess a source file
+parser/eudplibGlobals.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.i
+.PHONY : parser/eudplibGlobals.cpp.i
+
+parser/eudplibGlobals.s: parser/eudplibGlobals.cpp.s
+
+.PHONY : parser/eudplibGlobals.s
+
+# target to generate assembly for a file
+parser/eudplibGlobals.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.s
+.PHONY : parser/eudplibGlobals.cpp.s
+
 parser/pygen.o: parser/pygen.cpp.o
 
 .PHONY : parser/pygen.o
@@ -527,6 +557,9 @@ help:
 	@echo "... parser/epparser.o"
 	@echo "... parser/epparser.i"
 	@echo "... parser/epparser.s"
+	@echo "... parser/eudplibGlobals.o"
+	@echo "... parser/eudplibGlobals.i"
+	@echo "... parser/eudplibGlobals.s"
 	@echo "... parser/pygen.o"
 	@echo "... parser/pygen.i"
 	@echo "... parser/pygen.s"
