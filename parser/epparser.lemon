@@ -146,7 +146,13 @@ expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " =
 expr(A) ::= MINUS   expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = -" << B->data << std::endl; delete B; }
 expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = ~" << B->data << std::endl; delete B; }
 
-// Logical operators
+// Logical expressions
+lexpr(A) ::= CONDITIONNAME(B) LPAREN exprList(C) RPAREN. {
+    B->data = B->data + "(" + C->data + ")";
+    delete C;
+    A = mkTokenTemp(B, *pGen);
+}
+
 lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C, *pGen); }
 lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C, *pGen); }
 lexpr(A) ::= expr(B) LE expr(C).   { A = binaryMerge(B, "<=", C, *pGen); }
@@ -172,6 +178,7 @@ lexpr(A) ::= LNOT lexpr(B).  {
 }
 
 lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
+
 
 
 // Statements
