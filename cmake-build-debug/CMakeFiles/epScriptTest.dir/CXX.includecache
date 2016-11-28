@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/whyask37/ClionProjects/epScript/parser/epparser.cpp
+C:/gitclones/epScript/parser/epparser.cpp
 stdio.h
 -
 stdio.h
@@ -20,31 +20,43 @@ iostream
 sstream
 -
 epparser.h
-/Users/whyask37/ClionProjects/epScript/parser/epparser.h
+C:/gitclones/epScript/parser/epparser.h
 pygen.h
-/Users/whyask37/ClionProjects/epScript/parser/pygen.h
+C:/gitclones/epScript/parser/pygen.h
 tokenAdapter.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.h
+C:/gitclones/epScript/parser/tokenAdapter.h
 parserUtilities.h
-/Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
+C:/gitclones/epScript/parser/parserUtilities.h
 stdio.h
 -
 
-/Users/whyask37/ClionProjects/epScript/parser/epparser.h
+C:/gitclones/epScript/parser/epparser.h
 
-/Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
+C:/gitclones/epScript/parser/eudplibGlobals.cpp
+unordered_set
+-
+eudplibGlobals.h
+C:/gitclones/epScript/parser/eudplibGlobals.h
+
+C:/gitclones/epScript/parser/eudplibGlobals.h
+string
+-
+
+C:/gitclones/epScript/parser/parserUtilities.h
 tokenizer/tokenizer.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+C:/gitclones/epScript/parser/tokenizer/tokenizer.h
 pygen.h
-/Users/whyask37/ClionProjects/epScript/parser/pygen.h
+C:/gitclones/epScript/parser/pygen.h
 string
 -
 iostream
 -
 regex
 -
+eudplibGlobals.h
+C:/gitclones/epScript/parser/eudplibGlobals.h
 
-/Users/whyask37/ClionProjects/epScript/parser/pygen.cpp
+C:/gitclones/epScript/parser/pygen.cpp
 string
 -
 streambuf
@@ -56,55 +68,59 @@ set
 vector
 -
 pygen.h
-/Users/whyask37/ClionProjects/epScript/parser/pygen.h
+C:/gitclones/epScript/parser/pygen.h
+eudplibGlobals.h
+C:/gitclones/epScript/parser/eudplibGlobals.h
 
-/Users/whyask37/ClionProjects/epScript/parser/pygen.h
+C:/gitclones/epScript/parser/pygen.h
 string
 -
 ostream
 -
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.cpp
+C:/gitclones/epScript/parser/tokenAdapter.cpp
 tokenAdapter.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.h
+C:/gitclones/epScript/parser/tokenAdapter.h
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.h
+C:/gitclones/epScript/parser/tokenAdapter.h
 tokenizer/tokenizer.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+C:/gitclones/epScript/parser/tokenizer/tokenizer.h
 epparser.h
-/Users/whyask37/ClionProjects/epScript/parser/epparser.h
+C:/gitclones/epScript/parser/epparser.h
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/condAct.h
+C:/gitclones/epScript/parser/tokenizer/condAct.h
 string
 -
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/condact.cpp
+C:/gitclones/epScript/parser/tokenizer/condact.cpp
 condAct.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/condAct.h
+C:/gitclones/epScript/parser/tokenizer/condAct.h
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.cpp
+C:/gitclones/epScript/parser/tokenizer/tokChars.cpp
 tokChars.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.h
+C:/gitclones/epScript/parser/tokenizer/tokChars.h
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.h
+C:/gitclones/epScript/parser/tokenizer/tokChars.h
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokIndent.cpp
+C:/gitclones/epScript/parser/tokenizer/tokIndent.cpp
 tokIndent.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokIndent.h
+C:/gitclones/epScript/parser/tokenizer/tokIndent.h
 ../../test/doctest.hpp
-/Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+C:/gitclones/epScript/test/doctest.hpp
+stdexcept
+-
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokIndent.h
+C:/gitclones/epScript/parser/tokenizer/tokIndent.h
 vector
 -
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.cpp
+C:/gitclones/epScript/parser/tokenizer/tokenizer.cpp
 tokenizer.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+C:/gitclones/epScript/parser/tokenizer/tokenizer.h
 tokenizerImpl.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.h
+C:/gitclones/epScript/parser/tokenizer/tokenizerImpl.h
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+C:/gitclones/epScript/parser/tokenizer/tokenizer.h
 istream
 -
 vector
@@ -112,19 +128,21 @@ vector
 memory
 -
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.cpp
+C:/gitclones/epScript/parser/tokenizer/tokenizerImpl.cpp
 tokenizerImpl.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.h
+C:/gitclones/epScript/parser/tokenizer/tokenizerImpl.h
 tokChars.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.h
+C:/gitclones/epScript/parser/tokenizer/tokChars.h
 condAct.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/condAct.h
+C:/gitclones/epScript/parser/tokenizer/condAct.h
+string.h
+-
 
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.h
+C:/gitclones/epScript/parser/tokenizer/tokenizerImpl.h
 tokenizer.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+C:/gitclones/epScript/parser/tokenizer/tokenizer.h
 
-/Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+C:/gitclones/epScript/test/doctest.hpp
 ciso646
 -
 iosfwd
@@ -134,7 +152,7 @@ iosfwd
 cstddef
 -
 doctest_fwd.h
-/Users/whyask37/ClionProjects/epScript/test/doctest_fwd.h
+C:/gitclones/epScript/test/doctest_fwd.h
 ctime
 -
 cmath
@@ -174,11 +192,11 @@ unistd.h
 sys/sysctl.h
 -
 
-/Users/whyask37/ClionProjects/epScript/test/test_parser.cpp
+C:/gitclones/epScript/test/test_parser.cpp
 ../parser/tokenAdapter.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.h
+C:/gitclones/epScript/parser/tokenAdapter.h
 doctest.hpp
-/Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+C:/gitclones/epScript/test/doctest.hpp
 string
 -
 cstdio
@@ -186,25 +204,25 @@ cstdio
 regex
 -
 
-/Users/whyask37/ClionProjects/epScript/test/test_pygen.cpp
+C:/gitclones/epScript/test/test_pygen.cpp
 ../parser/pygen.h
-/Users/whyask37/ClionProjects/epScript/parser/pygen.h
+C:/gitclones/epScript/parser/pygen.h
 sstream
 -
 iostream
 -
 doctest.hpp
-/Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+C:/gitclones/epScript/test/doctest.hpp
 
-/Users/whyask37/ClionProjects/epScript/test/test_tokenizer.cpp
+C:/gitclones/epScript/test/test_tokenizer.cpp
 ../parser/tokenizer/tokenizer.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+C:/gitclones/epScript/parser/tokenizer/tokenizer.h
 sstream
 -
 doctest.hpp
-/Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+C:/gitclones/epScript/test/doctest.hpp
 
-/Users/whyask37/ClionProjects/epScript/test/testmain.cpp
+C:/gitclones/epScript/test/testmain.cpp
 doctest.hpp
-/Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+C:/gitclones/epScript/test/doctest.hpp
 

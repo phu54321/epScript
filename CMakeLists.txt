@@ -3,14 +3,30 @@ project(epScript)
 
 set_source_files_properties(parser/epparser.c PROPERTIES GENERATED TRUE)
 
-add_custom_command(
-        OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
-        DEPENDS parser/epparser.lemon
-        COMMAND ./lemon2 parser/epparser.lemon
-        COMMAND rm -f parser/epparser.cpp && mv parser/epparser.c parser/epparser.cpp
-        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-        VERBATIM
-)
+
+if (WIN32)
+    add_custom_command(
+            OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
+            DEPENDS parser/epparser.lemon
+            COMMAND ./lemon2 parser\\epparser.lemon
+            COMMAND copy parser\\epparser.c parser\\epparser.cpp
+            COMMAND del parser\\epparser.c
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            VERBATIM
+    )
+
+else ()
+    add_custom_command(
+            OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
+            DEPENDS parser/epparser.lemon
+            COMMAND ./lemon2 parser/epparser.lemon
+            COMMAND rm -f parser/epparser.cpp
+            COMMAND mv parser/epparser.c parser/epparser.cpp
+            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+            VERBATIM
+    )
+
+endif()
 
 set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokenizer.cpp

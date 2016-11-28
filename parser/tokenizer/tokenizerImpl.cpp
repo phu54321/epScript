@@ -5,6 +5,7 @@
 #include "tokenizerImpl.h"
 #include "tokChars.h"
 #include "condAct.h"
+#include <string.h>
 
 TokenizerImpl::TokenizerImpl(std::istream& is)
         : data(std::istreambuf_iterator<char>(is), std::istreambuf_iterator<char>()) {
