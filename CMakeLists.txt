@@ -38,5 +38,3 @@ set(TEST_SOURCE_FILES test/test_tokenizer.cpp test/test_pygen.cpp test/test_pars
 add_executable(epScript ${SOURCE_FILES} main.cpp)
 add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
 set_target_properties(epScript PROPERTIES COMPILE_FLAGS "-DDOCTEST_CONFIG_DISABLE")
-
-set(CMAKE_BUILD_TYPE Release)

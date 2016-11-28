@@ -43,6 +43,8 @@ for name, value in module_to_doc.__dict__.items():
 
     nlist.append(name)
 
+if mode != 2:
+    mode.extend(["beforeTriggerExec", "afterTriggerExec", "onPluginStart"])
 print('\n==================================\n')
 nlist.sort()
 nlist = ['"%s", ' % name for name in nlist]

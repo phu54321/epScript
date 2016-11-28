@@ -26,11 +26,11 @@
 #define NAME                            26
 #define LSQBRACKET                      27
 #define RSQBRACKET                      28
-#define LPAREN                          29
-#define RPAREN                          30
-#define FUNCCALL                        31
-#define MAPSTRING                       32
-#define STRING                          33
+#define STRING                          29
+#define LPAREN                          30
+#define RPAREN                          31
+#define FUNCCALL                        32
+#define MAPSTRING                       33
 #define UNIT                            34
 #define SWITCH                          35
 #define LOCATION                        36

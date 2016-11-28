@@ -73,7 +73,7 @@ std::unordered_set<std::string> builtinFuncSet = {
         "f_playerexist", "f_rand", "f_randomize", "f_repmovsd_epd", "f_setcurpl",
         "f_simpleprint", "f_sqrt", "f_srand", "f_strcmp", "f_strcpy",
         "f_unpatchall", "f_wread", "f_wwrite", "hptr", "i2b1", "i2b2", "i2b4",
-        "selftype", "u2b", "unProxy", "Kills"
+        "selftype", "u2b", "unProxy", "Kills", "beforeTriggerExec", "afterTriggerExec", "onPluginStart"
 };
 
 std::unordered_set<std::string> builtinConstSet = {

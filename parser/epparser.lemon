@@ -58,13 +58,17 @@ numList(A) ::= numList(B) COMMA NUMBER(C). {
     A = new Token(B->data + ", " + C->data, C);
     delete B; delete C;
 }
-nameList(A) ::= NAME(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
-nameList(A) ::= nameList(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+nameListMulti(A) ::= NAME(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+nameListMulti(A) ::= nameListMulti(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+nameList(A) ::= NAME(B). { A = B; }
+nameList(A) ::= nameListMulti(B). { A = B; }
+
 exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList(C) RSQBRACKET RSQBRACKET. {
     A = genTemp(C);
     (*pGen) << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
     delete B; delete C;
 }
+
 expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
     A = genTemp(C);
     (*pGen) << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
@@ -72,7 +76,7 @@ expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
 }
 
 exprList(A) ::= expr(B). [COMMA] { A = B; }
-exprList(A) ::= exprList(B) COMMA expr(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+exprList(A) ::= exprList(B) COMMA exprList(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 
 // Related to expressions
 expr(A) ::= NUMBER(B). { A = B; }
@@ -85,7 +89,15 @@ expr(A) ::= NAME(B). {
 }
 
 // Function calls
-funcexpr(out) ::= NAME(name) LPAREN exprList(exprs) RPAREN.  [FUNCCALL] {
+fArgs(A) ::= expr(B). { A = B; }
+fArgs(A) ::= STRING(B). { A = B; }
+fArgs(A) ::= fArgs(B) COMMA fArgs(C). {
+    B->data = B->data + ", " + C->data;
+    B->type = TOKEN_TEMP;
+    A = B;
+}
+
+funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     // Preprocess name
     funcNamePreprocess(name->data);
     if (pGen->undefined(name->data)) {
@@ -198,7 +210,7 @@ vdefAssign_stmt ::= VAR NAME(A) ASSIGN expr(B) SEMICOLON. {
     delete A;
 }
 
-vdefMulti_stmt ::= VAR nameList(A) SEMICOLON. {
+vdefMulti_stmt ::= VAR nameListMulti(A) SEMICOLON. {
     std::string& s = A->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
     (*pGen) << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
@@ -212,7 +224,7 @@ vdefMulti_stmt ::= VAR nameList(A) SEMICOLON. {
     delete A;
 }
 
-vdefMultiAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
+vdefMultiAssign_stmt ::= VAR nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
     std::string& s = A->data;
     (*pGen) << s << " = _MVAR([" << B->data << "])" << std::endl;
 
@@ -235,7 +247,7 @@ assign_stmt ::= NAME(A) ASSIGN expr(B) SEMICOLON. {
     delete A; delete B;
 }
 
-assignMulti_stmt ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
+assignMulti_stmt ::= nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
     (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
 
     commaListIter(A->data, [&](const std::string& varname) {
@@ -377,18 +389,9 @@ return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
 }
 
 
-
 // Trigger statements
-caExpr(A) ::= expr(B). { A = B; }
-caExpr(A) ::= STRING(B). { A = B; }
-caExpr(A) ::= caExpr(B) COMMA caExpr(C). {
-    B->data = B->data + ", " + C->data;
-    B->type = TOKEN_TEMP;
-    A = B;
-}
 
-
-lexpr(A) ::= CONDITIONNAME(B) LPAREN caExpr(C) RPAREN. {
+lexpr(A) ::= CONDITIONNAME(B) LPAREN fArgs(C) RPAREN. {
     B->data = B->data + "(" + C->data + ")";
     delete C;
     A = mkTokenTemp(B, *pGen);
@@ -399,7 +402,7 @@ lexpr(A) ::= CONDITIONNAME(B) LPAREN RPAREN. {
     A = mkTokenTemp(B, *pGen);
 }
 
-action(X) ::= ACTIONNAME(A) LPAREN caExpr(B) RPAREN SEMICOLON. {
+action(X) ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN SEMICOLON. {
     X = genTemp(A);
     X->data =  A->data + "(" + B->data + ")";
     delete A; delete B;
@@ -418,12 +421,12 @@ actions(A) ::= actions(B) action(C). {
 }
 
 actionStmt ::= action(X). {
-    (*pGen) << "DoEvents(" << X->data << ")" << std::endl;
+    (*pGen) << "DoActions(" << X->data << ")" << std::endl;
     delete X;
 }
 
 actionStmt ::= actions(X). {
-    (*pGen) << "DoEvents([" << std::endl;
+    (*pGen) << "DoActions([" << std::endl;
     pGen->indent();
     (*pGen) << X->data << std::endl;
     pGen->unindent(false);
@@ -468,15 +471,6 @@ import_chunk ::= FROM NAME(name) IMPORT nameList(B). {
     delete name; delete B;
 }
 
-import_chunk ::= FROM NAME(name) IMPORT NAME(B). {
-    funcNamePreprocess(B->data);
-    if(!pGen->namedef(B->data)) {
-        throw_error(B->line, 8118, ("Importing already-declared function " + B->data));
-    }
-    else (*pGen) << "from " << name->data << " import " << B->data << std::endl;
-    delete name; delete B;
-}
-
 chunk ::= import_chunk.
 chunk ::= fdef_chunk.
 chunk ::= vdef_stmt.
@@ -508,6 +502,9 @@ std::string ParseString(const std::string& code)
         }
         if (tokenTypeConv(token)) {
             Parse (pParser, token->type, token, &pGen);
+#ifndef NDEBUG
+            if(PARSER_DEBUG) ParseTrace(stdout, "--");
+#endif
         }
         else {
             throw_error(token->line, 8104, "Invalid token");
