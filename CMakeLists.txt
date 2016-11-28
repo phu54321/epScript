@@ -6,7 +6,7 @@ set_source_files_properties(parser/epparser.c PROPERTIES GENERATED TRUE)
 add_custom_command(
         OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
         DEPENDS parser/epparser.lemon
-        COMMAND lemon -c parser/epparser.lemon
+        COMMAND ./lemon2 parser/epparser.lemon
         COMMAND rm -f parser/epparser.cpp && mv parser/epparser.c parser/epparser.cpp
         WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
         VERBATIM
