@@ -1392,7 +1392,7 @@ static void yy_reduce(
 #line 62 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp(yymsp[-2].minor.yy0);
-    (*pGen) << yygotominor.yy0->data << " = SelectReturns(" << yymsp[-5].minor.yy0->data << ", [" << yymsp[-2].minor.yy0->data << "])" << std::endl;
+    (*pGen) << yygotominor.yy0->data << " = _SRET(" << yymsp[-5].minor.yy0->data << ", [" << yymsp[-2].minor.yy0->data << "])" << std::endl;
     delete yymsp[-5].minor.yy0; delete yymsp[-2].minor.yy0;
 }
 #line 1399 "parser/epparser.c"
@@ -1598,7 +1598,7 @@ static void yy_reduce(
       case 39: /* vdefAssign_stmt ::= VAR NAME ASSIGN expr SEMICOLON */
 #line 182 "parser/epparser.lemon"
 {
-    (*pGen) << yymsp[-3].minor.yy0->data << " = MakeVariable([" << yymsp[-1].minor.yy0->data << "])" << std::endl;
+    (*pGen) << yymsp[-3].minor.yy0->data << " = _MVAR([" << yymsp[-1].minor.yy0->data << "])" << std::endl;
     if(!pGen->namedef(yymsp[-3].minor.yy0->data)) {
         throw_error(yymsp[-3].minor.yy0->line, 196, ("Redeclaration of variable \'" + (yymsp[-3].minor.yy0->data) + "\'"));
     }
@@ -1627,7 +1627,7 @@ static void yy_reduce(
 #line 204 "parser/epparser.lemon"
 {
     std::string& s = yymsp[-3].minor.yy0->data;
-    (*pGen) << s << " = MakeVariable([" << yymsp[-1].minor.yy0->data << "])" << std::endl;
+    (*pGen) << s << " = _MVAR([" << yymsp[-1].minor.yy0->data << "])" << std::endl;
 
     // Register variables.
     commaListIter(s, [&](const std::string& varname) {

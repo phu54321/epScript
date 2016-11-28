@@ -61,12 +61,12 @@ nameList(A) ::= NAME(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->da
 nameList(A) ::= nameList(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList(C) RSQBRACKET RSQBRACKET. {
     A = genTemp(C);
-    (*pGen) << A->data << " = SelectReturns(" << B->data << ", [" << C->data << "])" << std::endl;
+    (*pGen) << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
     delete B; delete C;
 }
 expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
     A = genTemp(C);
-    (*pGen) << A->data << " = SelectReturns(" << B->data << ", [" << C->data << "])" << std::endl;
+    (*pGen) << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
     delete B; delete C;
 }
 
@@ -180,7 +180,7 @@ vdef_stmt ::= VAR NAME(A) SEMICOLON. {
 }
 
 vdefAssign_stmt ::= VAR NAME(A) ASSIGN expr(B) SEMICOLON. {
-    (*pGen) << A->data << " = MakeVariable([" << B->data << "])" << std::endl;
+    (*pGen) << A->data << " = _MVAR([" << B->data << "])" << std::endl;
     if(!pGen->namedef(A->data)) {
         throw_error(A->line, 196, ("Redeclaration of variable \'" + (A->data) + "\'"));
     }
@@ -203,7 +203,7 @@ vdefMulti_stmt ::= VAR nameList(A) SEMICOLON. {
 
 vdefMultiAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
     std::string& s = A->data;
-    (*pGen) << s << " = MakeVariable([" << B->data << "])" << std::endl;
+    (*pGen) << s << " = _MVAR([" << B->data << "])" << std::endl;
 
     // Register variables.
     commaListIter(s, [&](const std::string& varname) {
