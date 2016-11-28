@@ -48,7 +48,6 @@ int currentTokenizingLine;
 %right UNARY BITNOT.
 %nonassoc NUMBER NAME.
 
-
 program ::= chunks.
 
 // Common expressions
@@ -371,9 +370,36 @@ return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
 
 
 // Trigger statements
-actionStmt ::= ACTIONNAME(A) LPAREN exprList(B) RPAREN SEMICOLON. {
-    (*pGen) << "DoActions(" << A->data << "(" << B->data << "))" << std::endl;
+action(X) ::= ACTIONNAME(A) LPAREN exprList(B) RPAREN SEMICOLON. {
+    X = genTemp(A);
+    X->data =  A->data + "(" + B->data + ")";
     delete A; delete B;
+}
+
+actions(A) ::= action(B) action(C). {
+    A = B;
+    B->data += ",\n" + C->data;
+    delete C;
+}
+
+actions(A) ::= actions(B) action(C). {
+    A = B;
+    B->data += ",\n" + C->data;
+    delete C;
+}
+
+actionStmt ::= action(X). {
+    (*pGen) << "DoEvents(" << X->data << ")" << std::endl;
+    delete X;
+}
+
+actionStmt ::= actions(X). {
+    (*pGen) << "DoEvents([" << std::endl;
+    pGen->indent();
+    (*pGen) << X->data << std::endl;
+    pGen->unindent(false);
+    (*pGen) << "])" << std::endl;
+    delete X;
 }
 
 

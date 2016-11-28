@@ -1,11 +1,11 @@
 State 0:
           program ::= * chunks
-     (87) chunks ::= *
+     (91) chunks ::= *
           chunks ::= * chunks chunk
 
                        program accept
                         chunks shift  8
-                     {default} reduce 87
+                     {default} reduce 91
 
 State 1:
           nameList ::= * NAME COMMA NAME
@@ -56,7 +56,11 @@ State 1:
           break_stmt ::= * BREAK SEMICOLON
           return_stmt ::= * RETURN SEMICOLON
           return_stmt ::= * RETURN exprList SEMICOLON
-          actionStmt ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= * action action
+          actions ::= * actions action
+          actionStmt ::= * action
+          actionStmt ::= * actions
           stmt ::= * error SEMICOLON
           stmt ::= * SEMICOLON
           stmt ::= * vdef_stmt
@@ -78,45 +82,47 @@ State 1:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  73
+                        NUMBER shift  174
+                          NAME shift  75
                         LPAREN shift  42
-                           VAR shift  46
-                     SEMICOLON shift  134
+                           VAR shift  48
+                     SEMICOLON shift  136
                       LBRACKET shift  1
-                            IF shift  152
-                         WHILE shift  145
-                           FOR shift  93
-                      CONTINUE shift  92
-                         BREAK shift  91
+                            IF shift  156
+                         WHILE shift  149
+                           FOR shift  95
+                      CONTINUE shift  94
+                         BREAK shift  93
                         RETURN shift  9
-                    ACTIONNAME shift  90
-                         error shift  74
-                      nameList shift  81
-                      funcexpr shift  102
-                          expr shift  51
-                     vdef_stmt shift  133
-               vdefAssign_stmt shift  132
-                vdefMulti_stmt shift  130
-          vdefMultiAssign_stmt shift  131
-                   assign_stmt shift  129
-              assignMulti_stmt shift  128
+                    ACTIONNAME shift  92
+                         error shift  76
+                      nameList shift  83
+                      funcexpr shift  104
+                          expr shift  53
+                     vdef_stmt shift  135
+               vdefAssign_stmt shift  134
+                vdefMulti_stmt shift  132
+          vdefMultiAssign_stmt shift  133
+                   assign_stmt shift  131
+              assignMulti_stmt shift  130
                       stmtList shift  2
-                          stmt shift  155
-                         block shift  120
-                      if_start shift  97
+                          stmt shift  159
+                         block shift  122
+                      if_start shift  99
                      if_header shift  6
-                       if_stmt shift  126
+                       if_stmt shift  128
                    else_header shift  5
-                   while_start shift  94
+                   while_start shift  96
                   while_header shift  4
-                    while_stmt shift  125
+                    while_stmt shift  127
                 foreach_header shift  3
-                  foreach_stmt shift  124
-                 continue_stmt shift  123
-                    break_stmt shift  122
-                   return_stmt shift  121
-                    actionStmt shift  127
+                  foreach_stmt shift  126
+                 continue_stmt shift  125
+                    break_stmt shift  124
+                   return_stmt shift  123
+                        action shift  46
+                       actions shift  45
+                    actionStmt shift  129
 
 State 2:
           nameList ::= * NAME COMMA NAME
@@ -165,7 +171,11 @@ State 2:
           break_stmt ::= * BREAK SEMICOLON
           return_stmt ::= * RETURN SEMICOLON
           return_stmt ::= * RETURN exprList SEMICOLON
-          actionStmt ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= * action action
+          actions ::= * actions action
+          actionStmt ::= * action
+          actionStmt ::= * actions
           stmt ::= * error SEMICOLON
           stmt ::= * SEMICOLON
           stmt ::= * vdef_stmt
@@ -187,45 +197,47 @@ State 2:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  73
+                        NUMBER shift  174
+                          NAME shift  75
                         LPAREN shift  42
-                           VAR shift  46
-                     SEMICOLON shift  134
+                           VAR shift  48
+                     SEMICOLON shift  136
                       LBRACKET shift  1
-                      RBRACKET shift  153
-                            IF shift  152
-                         WHILE shift  145
-                           FOR shift  93
-                      CONTINUE shift  92
-                         BREAK shift  91
+                      RBRACKET shift  157
+                            IF shift  156
+                         WHILE shift  149
+                           FOR shift  95
+                      CONTINUE shift  94
+                         BREAK shift  93
                         RETURN shift  9
-                    ACTIONNAME shift  90
-                         error shift  88
-                      nameList shift  81
-                      funcexpr shift  102
-                          expr shift  51
-                     vdef_stmt shift  133
-               vdefAssign_stmt shift  132
-                vdefMulti_stmt shift  130
-          vdefMultiAssign_stmt shift  131
-                   assign_stmt shift  129
-              assignMulti_stmt shift  128
-                          stmt shift  154
-                         block shift  120
-                      if_start shift  97
+                    ACTIONNAME shift  92
+                         error shift  90
+                      nameList shift  83
+                      funcexpr shift  104
+                          expr shift  53
+                     vdef_stmt shift  135
+               vdefAssign_stmt shift  134
+                vdefMulti_stmt shift  132
+          vdefMultiAssign_stmt shift  133
+                   assign_stmt shift  131
+              assignMulti_stmt shift  130
+                          stmt shift  158
+                         block shift  122
+                      if_start shift  99
                      if_header shift  6
-                       if_stmt shift  126
+                       if_stmt shift  128
                    else_header shift  5
-                   while_start shift  94
+                   while_start shift  96
                   while_header shift  4
-                    while_stmt shift  125
+                    while_stmt shift  127
                 foreach_header shift  3
-                  foreach_stmt shift  124
-                 continue_stmt shift  123
-                    break_stmt shift  122
-                   return_stmt shift  121
-                    actionStmt shift  127
+                  foreach_stmt shift  126
+                 continue_stmt shift  125
+                    break_stmt shift  124
+                   return_stmt shift  123
+                        action shift  46
+                       actions shift  45
+                    actionStmt shift  129
 
 State 3:
           nameList ::= * NAME COMMA NAME
@@ -273,7 +285,11 @@ State 3:
           break_stmt ::= * BREAK SEMICOLON
           return_stmt ::= * RETURN SEMICOLON
           return_stmt ::= * RETURN exprList SEMICOLON
-          actionStmt ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= * action action
+          actions ::= * actions action
+          actionStmt ::= * action
+          actionStmt ::= * actions
           stmt ::= * error SEMICOLON
           stmt ::= * SEMICOLON
           stmt ::= * vdef_stmt
@@ -295,44 +311,46 @@ State 3:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  73
+                        NUMBER shift  174
+                          NAME shift  75
                         LPAREN shift  42
-                           VAR shift  46
-                     SEMICOLON shift  134
+                           VAR shift  48
+                     SEMICOLON shift  136
                       LBRACKET shift  1
-                            IF shift  152
-                         WHILE shift  145
-                           FOR shift  93
-                      CONTINUE shift  92
-                         BREAK shift  91
+                            IF shift  156
+                         WHILE shift  149
+                           FOR shift  95
+                      CONTINUE shift  94
+                         BREAK shift  93
                         RETURN shift  9
-                    ACTIONNAME shift  90
-                         error shift  88
-                      nameList shift  81
-                      funcexpr shift  102
-                          expr shift  51
-                     vdef_stmt shift  133
-               vdefAssign_stmt shift  132
-                vdefMulti_stmt shift  130
-          vdefMultiAssign_stmt shift  131
-                   assign_stmt shift  129
-              assignMulti_stmt shift  128
-                          stmt shift  141
-                         block shift  120
-                      if_start shift  97
+                    ACTIONNAME shift  92
+                         error shift  90
+                      nameList shift  83
+                      funcexpr shift  104
+                          expr shift  53
+                     vdef_stmt shift  135
+               vdefAssign_stmt shift  134
+                vdefMulti_stmt shift  132
+          vdefMultiAssign_stmt shift  133
+                   assign_stmt shift  131
+              assignMulti_stmt shift  130
+                          stmt shift  145
+                         block shift  122
+                      if_start shift  99
                      if_header shift  6
-                       if_stmt shift  126
+                       if_stmt shift  128
                    else_header shift  5
-                   while_start shift  94
+                   while_start shift  96
                   while_header shift  4
-                    while_stmt shift  125
+                    while_stmt shift  127
                 foreach_header shift  3
-                  foreach_stmt shift  124
-                 continue_stmt shift  123
-                    break_stmt shift  122
-                   return_stmt shift  121
-                    actionStmt shift  127
+                  foreach_stmt shift  126
+                 continue_stmt shift  125
+                    break_stmt shift  124
+                   return_stmt shift  123
+                        action shift  46
+                       actions shift  45
+                    actionStmt shift  129
 
 State 4:
           nameList ::= * NAME COMMA NAME
@@ -380,7 +398,11 @@ State 4:
           break_stmt ::= * BREAK SEMICOLON
           return_stmt ::= * RETURN SEMICOLON
           return_stmt ::= * RETURN exprList SEMICOLON
-          actionStmt ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= * action action
+          actions ::= * actions action
+          actionStmt ::= * action
+          actionStmt ::= * actions
           stmt ::= * error SEMICOLON
           stmt ::= * SEMICOLON
           stmt ::= * vdef_stmt
@@ -402,44 +424,46 @@ State 4:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  73
+                        NUMBER shift  174
+                          NAME shift  75
                         LPAREN shift  42
-                           VAR shift  46
-                     SEMICOLON shift  134
+                           VAR shift  48
+                     SEMICOLON shift  136
                       LBRACKET shift  1
-                            IF shift  152
-                         WHILE shift  145
-                           FOR shift  93
-                      CONTINUE shift  92
-                         BREAK shift  91
+                            IF shift  156
+                         WHILE shift  149
+                           FOR shift  95
+                      CONTINUE shift  94
+                         BREAK shift  93
                         RETURN shift  9
-                    ACTIONNAME shift  90
-                         error shift  88
-                      nameList shift  81
-                      funcexpr shift  102
-                          expr shift  51
-                     vdef_stmt shift  133
-               vdefAssign_stmt shift  132
-                vdefMulti_stmt shift  130
-          vdefMultiAssign_stmt shift  131
-                   assign_stmt shift  129
-              assignMulti_stmt shift  128
-                          stmt shift  143
-                         block shift  120
-                      if_start shift  97
+                    ACTIONNAME shift  92
+                         error shift  90
+                      nameList shift  83
+                      funcexpr shift  104
+                          expr shift  53
+                     vdef_stmt shift  135
+               vdefAssign_stmt shift  134
+                vdefMulti_stmt shift  132
+          vdefMultiAssign_stmt shift  133
+                   assign_stmt shift  131
+              assignMulti_stmt shift  130
+                          stmt shift  147
+                         block shift  122
+                      if_start shift  99
                      if_header shift  6
-                       if_stmt shift  126
+                       if_stmt shift  128
                    else_header shift  5
-                   while_start shift  94
+                   while_start shift  96
                   while_header shift  4
-                    while_stmt shift  125
+                    while_stmt shift  127
                 foreach_header shift  3
-                  foreach_stmt shift  124
-                 continue_stmt shift  123
-                    break_stmt shift  122
-                   return_stmt shift  121
-                    actionStmt shift  127
+                  foreach_stmt shift  126
+                 continue_stmt shift  125
+                    break_stmt shift  124
+                   return_stmt shift  123
+                        action shift  46
+                       actions shift  45
+                    actionStmt shift  129
 
 State 5:
           nameList ::= * NAME COMMA NAME
@@ -487,7 +511,11 @@ State 5:
           break_stmt ::= * BREAK SEMICOLON
           return_stmt ::= * RETURN SEMICOLON
           return_stmt ::= * RETURN exprList SEMICOLON
-          actionStmt ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= * action action
+          actions ::= * actions action
+          actionStmt ::= * action
+          actionStmt ::= * actions
           stmt ::= * error SEMICOLON
           stmt ::= * SEMICOLON
           stmt ::= * vdef_stmt
@@ -509,44 +537,46 @@ State 5:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  73
+                        NUMBER shift  174
+                          NAME shift  75
                         LPAREN shift  42
-                           VAR shift  46
-                     SEMICOLON shift  134
+                           VAR shift  48
+                     SEMICOLON shift  136
                       LBRACKET shift  1
-                            IF shift  152
-                         WHILE shift  145
-                           FOR shift  93
-                      CONTINUE shift  92
-                         BREAK shift  91
+                            IF shift  156
+                         WHILE shift  149
+                           FOR shift  95
+                      CONTINUE shift  94
+                         BREAK shift  93
                         RETURN shift  9
-                    ACTIONNAME shift  90
-                         error shift  88
-                      nameList shift  81
-                      funcexpr shift  102
-                          expr shift  51
-                     vdef_stmt shift  133
-               vdefAssign_stmt shift  132
-                vdefMulti_stmt shift  130
-          vdefMultiAssign_stmt shift  131
-                   assign_stmt shift  129
-              assignMulti_stmt shift  128
-                          stmt shift  146
-                         block shift  120
-                      if_start shift  97
+                    ACTIONNAME shift  92
+                         error shift  90
+                      nameList shift  83
+                      funcexpr shift  104
+                          expr shift  53
+                     vdef_stmt shift  135
+               vdefAssign_stmt shift  134
+                vdefMulti_stmt shift  132
+          vdefMultiAssign_stmt shift  133
+                   assign_stmt shift  131
+              assignMulti_stmt shift  130
+                          stmt shift  150
+                         block shift  122
+                      if_start shift  99
                      if_header shift  6
-                       if_stmt shift  126
+                       if_stmt shift  128
                    else_header shift  5
-                   while_start shift  94
+                   while_start shift  96
                   while_header shift  4
-                    while_stmt shift  125
+                    while_stmt shift  127
                 foreach_header shift  3
-                  foreach_stmt shift  124
-                 continue_stmt shift  123
-                    break_stmt shift  122
-                   return_stmt shift  121
-                    actionStmt shift  127
+                  foreach_stmt shift  126
+                 continue_stmt shift  125
+                    break_stmt shift  124
+                   return_stmt shift  123
+                        action shift  46
+                       actions shift  45
+                    actionStmt shift  129
 
 State 6:
           nameList ::= * NAME COMMA NAME
@@ -595,7 +625,11 @@ State 6:
           break_stmt ::= * BREAK SEMICOLON
           return_stmt ::= * RETURN SEMICOLON
           return_stmt ::= * RETURN exprList SEMICOLON
-          actionStmt ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= * action action
+          actions ::= * actions action
+          actionStmt ::= * action
+          actionStmt ::= * actions
           stmt ::= * error SEMICOLON
           stmt ::= * SEMICOLON
           stmt ::= * vdef_stmt
@@ -617,44 +651,46 @@ State 6:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  73
+                        NUMBER shift  174
+                          NAME shift  75
                         LPAREN shift  42
-                           VAR shift  46
-                     SEMICOLON shift  134
+                           VAR shift  48
+                     SEMICOLON shift  136
                       LBRACKET shift  1
-                            IF shift  152
-                         WHILE shift  145
-                           FOR shift  93
-                      CONTINUE shift  92
-                         BREAK shift  91
+                            IF shift  156
+                         WHILE shift  149
+                           FOR shift  95
+                      CONTINUE shift  94
+                         BREAK shift  93
                         RETURN shift  9
-                    ACTIONNAME shift  90
-                         error shift  88
-                      nameList shift  81
-                      funcexpr shift  102
-                          expr shift  51
-                     vdef_stmt shift  133
-               vdefAssign_stmt shift  132
-                vdefMulti_stmt shift  130
-          vdefMultiAssign_stmt shift  131
-                   assign_stmt shift  129
-              assignMulti_stmt shift  128
-                          stmt shift  95
-                         block shift  120
-                      if_start shift  97
+                    ACTIONNAME shift  92
+                         error shift  90
+                      nameList shift  83
+                      funcexpr shift  104
+                          expr shift  53
+                     vdef_stmt shift  135
+               vdefAssign_stmt shift  134
+                vdefMulti_stmt shift  132
+          vdefMultiAssign_stmt shift  133
+                   assign_stmt shift  131
+              assignMulti_stmt shift  130
+                          stmt shift  97
+                         block shift  122
+                      if_start shift  99
                      if_header shift  6
-                       if_stmt shift  126
+                       if_stmt shift  128
                    else_header shift  5
-                   while_start shift  94
+                   while_start shift  96
                   while_header shift  4
-                    while_stmt shift  125
+                    while_stmt shift  127
                 foreach_header shift  3
-                  foreach_stmt shift  124
-                 continue_stmt shift  123
-                    break_stmt shift  122
-                   return_stmt shift  121
-                    actionStmt shift  127
+                  foreach_stmt shift  126
+                 continue_stmt shift  125
+                    break_stmt shift  124
+                   return_stmt shift  123
+                        action shift  46
+                       actions shift  45
+                    actionStmt shift  129
 
 State 7:
           nameList ::= * NAME COMMA NAME
@@ -702,7 +738,11 @@ State 7:
           fdef_chunk ::= function_header * stmt
           return_stmt ::= * RETURN SEMICOLON
           return_stmt ::= * RETURN exprList SEMICOLON
-          actionStmt ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= * action action
+          actions ::= * actions action
+          actionStmt ::= * action
+          actionStmt ::= * actions
           stmt ::= * error SEMICOLON
           stmt ::= * SEMICOLON
           stmt ::= * vdef_stmt
@@ -724,44 +764,46 @@ State 7:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  73
+                        NUMBER shift  174
+                          NAME shift  75
                         LPAREN shift  42
-                           VAR shift  46
-                     SEMICOLON shift  134
+                           VAR shift  48
+                     SEMICOLON shift  136
                       LBRACKET shift  1
-                            IF shift  152
-                         WHILE shift  145
-                           FOR shift  93
-                      CONTINUE shift  92
-                         BREAK shift  91
+                            IF shift  156
+                         WHILE shift  149
+                           FOR shift  95
+                      CONTINUE shift  94
+                         BREAK shift  93
                         RETURN shift  9
-                    ACTIONNAME shift  90
-                         error shift  88
-                      nameList shift  81
-                      funcexpr shift  102
-                          expr shift  51
-                     vdef_stmt shift  133
-               vdefAssign_stmt shift  132
-                vdefMulti_stmt shift  130
-          vdefMultiAssign_stmt shift  131
-                   assign_stmt shift  129
-              assignMulti_stmt shift  128
-                          stmt shift  118
-                         block shift  120
-                      if_start shift  97
+                    ACTIONNAME shift  92
+                         error shift  90
+                      nameList shift  83
+                      funcexpr shift  104
+                          expr shift  53
+                     vdef_stmt shift  135
+               vdefAssign_stmt shift  134
+                vdefMulti_stmt shift  132
+          vdefMultiAssign_stmt shift  133
+                   assign_stmt shift  131
+              assignMulti_stmt shift  130
+                          stmt shift  120
+                         block shift  122
+                      if_start shift  99
                      if_header shift  6
-                       if_stmt shift  126
+                       if_stmt shift  128
                    else_header shift  5
-                   while_start shift  94
+                   while_start shift  96
                   while_header shift  4
-                    while_stmt shift  125
+                    while_stmt shift  127
                 foreach_header shift  3
-                  foreach_stmt shift  124
-                 continue_stmt shift  123
-                    break_stmt shift  122
-                   return_stmt shift  121
-                    actionStmt shift  127
+                  foreach_stmt shift  126
+                 continue_stmt shift  125
+                    break_stmt shift  124
+                   return_stmt shift  123
+                        action shift  46
+                       actions shift  45
+                    actionStmt shift  129
 
 State 8:
       (0) program ::= chunks *
@@ -777,14 +819,14 @@ State 8:
           chunks ::= chunks * chunk
 
                              $ reduce 0
-                           VAR shift  48
-                      FUNCTION shift  111
-                     vdef_stmt shift  116
-                vdefMulti_stmt shift  115
-                function_start shift  110
+                           VAR shift  50
+                      FUNCTION shift  113
+                     vdef_stmt shift  118
+                vdefMulti_stmt shift  117
+                function_start shift  112
                function_header shift  7
-                    fdef_chunk shift  117
-                         chunk shift  114
+                    fdef_chunk shift  119
+                         chunk shift  116
 
 State 9:
           exprList ::= * funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET
@@ -816,13 +858,13 @@ State 9:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                     SEMICOLON shift  137
-                      exprList shift  76
-                      funcexpr shift  108
-                          expr shift  61
+                     SEMICOLON shift  141
+                      exprList shift  78
+                      funcexpr shift  110
+                          expr shift  63
 
 State 10:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -861,12 +903,12 @@ State 10:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  49
-                         lexpr shift  67
+                      funcexpr shift  104
+                          expr shift  51
+                         lexpr shift  69
 
 State 11:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -907,12 +949,12 @@ State 11:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  49
-                         lexpr shift  149
+                      funcexpr shift  104
+                          expr shift  51
+                         lexpr shift  153
 
 State 12:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -952,12 +994,12 @@ State 12:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  49
-                         lexpr shift  150
+                      funcexpr shift  104
+                          expr shift  51
+                         lexpr shift  154
 
 State 13:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -996,12 +1038,12 @@ State 13:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  49
-                         lexpr shift  96
+                      funcexpr shift  104
+                          expr shift  51
+                         lexpr shift  98
 
 State 14:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1040,12 +1082,12 @@ State 14:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  49
-                         lexpr shift  151
+                      funcexpr shift  104
+                          expr shift  51
+                         lexpr shift  155
 
 State 15:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1084,12 +1126,12 @@ State 15:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  49
-                         lexpr shift  68
+                      funcexpr shift  104
+                          expr shift  51
+                         lexpr shift  70
 
 State 16:
           exprList ::= * funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET
@@ -1121,13 +1163,13 @@ State 16:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                        RPAREN shift  161
-                      exprList shift  82
-                      funcexpr shift  108
-                          expr shift  61
+                        RPAREN shift  165
+                      exprList shift  84
+                      funcexpr shift  110
+                          expr shift  63
 
 State 17:
           exprList ::= * funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET
@@ -1153,17 +1195,17 @@ State 17:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
-          actionStmt ::= ACTIONNAME LPAREN * exprList RPAREN SEMICOLON
+          action ::= ACTIONNAME LPAREN * exprList RPAREN SEMICOLON
 
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      exprList shift  75
-                      funcexpr shift  108
-                          expr shift  61
+                      exprList shift  77
+                      funcexpr shift  110
+                          expr shift  63
 
 State 18:
           exprList ::= * funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET
@@ -1194,12 +1236,12 @@ State 18:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      exprList shift  77
-                      funcexpr shift  108
-                          expr shift  61
+                      exprList shift  79
+                      funcexpr shift  110
+                          expr shift  63
 
 State 19:
           exprList ::= * funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET
@@ -1230,12 +1272,12 @@ State 19:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      exprList shift  79
-                      funcexpr shift  108
-                          expr shift  61
+                      exprList shift  81
+                      funcexpr shift  110
+                          expr shift  63
 
 State 20:
           exprList ::= * funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET
@@ -1266,12 +1308,12 @@ State 20:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      exprList shift  80
-                      funcexpr shift  108
-                          expr shift  61
+                      exprList shift  82
+                      funcexpr shift  110
+                          expr shift  63
 
 State 21:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1299,11 +1341,11 @@ State 21:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  54
+                      funcexpr shift  104
+                          expr shift  56
 
 State 22:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1331,11 +1373,11 @@ State 22:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  55
+                      funcexpr shift  104
+                          expr shift  57
 
 State 23:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1363,11 +1405,11 @@ State 23:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  56
+                      funcexpr shift  104
+                          expr shift  58
 
 State 24:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1395,11 +1437,11 @@ State 24:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  57
+                      funcexpr shift  104
+                          expr shift  59
 
 State 25:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1427,11 +1469,11 @@ State 25:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  58
+                      funcexpr shift  104
+                          expr shift  60
 
 State 26:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1459,11 +1501,11 @@ State 26:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  59
+                      funcexpr shift  104
+                          expr shift  61
 
 State 27:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1491,11 +1533,11 @@ State 27:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  50
+                      funcexpr shift  104
+                          expr shift  52
 
 State 28:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1523,11 +1565,11 @@ State 28:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  52
+                      funcexpr shift  104
+                          expr shift  54
 
 State 29:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1555,11 +1597,11 @@ State 29:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  60
+                      funcexpr shift  104
+                          expr shift  62
 
 State 30:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1587,11 +1629,11 @@ State 30:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  163
+                      funcexpr shift  104
+                          expr shift  167
 
 State 31:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1619,11 +1661,11 @@ State 31:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  164
+                      funcexpr shift  104
+                          expr shift  168
 
 State 32:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1651,11 +1693,11 @@ State 32:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  165
+                      funcexpr shift  104
+                          expr shift  169
 
 State 33:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1683,11 +1725,11 @@ State 33:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  63
+                      funcexpr shift  104
+                          expr shift  65
 
 State 34:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1715,11 +1757,11 @@ State 34:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  62
+                      funcexpr shift  104
+                          expr shift  64
 
 State 35:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1747,11 +1789,11 @@ State 35:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  64
+                      funcexpr shift  104
+                          expr shift  66
 
 State 36:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1779,11 +1821,11 @@ State 36:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  65
+                      funcexpr shift  104
+                          expr shift  67
 
 State 37:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1811,11 +1853,11 @@ State 37:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  66
+                      funcexpr shift  104
+                          expr shift  68
 
 State 38:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1843,11 +1885,11 @@ State 38:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  166
+                      funcexpr shift  104
+                          expr shift  170
 
 State 39:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1875,11 +1917,11 @@ State 39:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  167
+                      funcexpr shift  104
+                          expr shift  171
 
 State 40:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1907,11 +1949,11 @@ State 40:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  168
+                      funcexpr shift  104
+                          expr shift  172
 
 State 41:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1939,11 +1981,11 @@ State 41:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  72
+                      funcexpr shift  104
+                          expr shift  74
 
 State 42:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1971,11 +2013,11 @@ State 42:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  53
+                      funcexpr shift  104
+                          expr shift  55
 
 State 43:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2003,11 +2045,11 @@ State 43:
                           PLUS shift  32
                          MINUS shift  31
                         BITNOT shift  30
-                        NUMBER shift  170
-                          NAME shift  98
+                        NUMBER shift  174
+                          NAME shift  100
                         LPAREN shift  42
-                      funcexpr shift  102
-                          expr shift  71
+                      funcexpr shift  104
+                          expr shift  73
 
 State 44:
           nameList ::= * NAME COMMA NAME
@@ -2015,19 +2057,39 @@ State 44:
           function_header ::= function_start LPAREN * nameList RPAREN
           function_header ::= function_start LPAREN * RPAREN
 
-                          NAME shift  109
-                        RPAREN shift  175
-                      nameList shift  85
+                          NAME shift  111
+                        RPAREN shift  179
+                      nameList shift  87
 
 State 45:
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= actions * action
+     (70) actionStmt ::= actions *
+
+                    ACTIONNAME shift  92
+                    ACTIONNAME reduce 70  ** Parsing conflict **
+                        action shift  138
+                     {default} reduce 70
+
+State 46:
+          action ::= * ACTIONNAME LPAREN exprList RPAREN SEMICOLON
+          actions ::= action * action
+     (69) actionStmt ::= action *
+
+                    ACTIONNAME shift  92
+                    ACTIONNAME reduce 69  ** Parsing conflict **
+                        action shift  139
+                     {default} reduce 69
+
+State 47:
           nameList ::= * NAME COMMA NAME
           nameList ::= * nameList COMMA NAME
           foreach_header ::= FOR LPAREN * nameList COLON exprList RPAREN
 
-                          NAME shift  109
-                      nameList shift  78
+                          NAME shift  111
+                      nameList shift  80
 
-State 46:
+State 48:
           nameList ::= * NAME COMMA NAME
           nameList ::= * nameList COMMA NAME
           vdef_stmt ::= VAR * NAME SEMICOLON
@@ -2035,28 +2097,28 @@ State 46:
           vdefMulti_stmt ::= VAR * nameList SEMICOLON
           vdefMultiAssign_stmt ::= VAR * nameList ASSIGN exprList SEMICOLON
 
-                          NAME shift  70
-                      nameList shift  69
+                          NAME shift  72
+                      nameList shift  71
 
-State 47:
+State 49:
           numList ::= * NUMBER COMMA NUMBER
           numList ::= * numList COMMA NUMBER
           exprList ::= funcexpr LSQBRACKET LSQBRACKET * numList RSQBRACKET RSQBRACKET
           expr ::= funcexpr LSQBRACKET LSQBRACKET * NUMBER RSQBRACKET RSQBRACKET
 
-                        NUMBER shift  84
-                       numList shift  83
+                        NUMBER shift  86
+                       numList shift  85
 
-State 48:
+State 50:
           nameList ::= * NAME COMMA NAME
           nameList ::= * nameList COMMA NAME
           vdef_stmt ::= VAR * NAME SEMICOLON
           vdefMulti_stmt ::= VAR * nameList SEMICOLON
 
-                          NAME shift  87
-                      nameList shift  86
+                          NAME shift  89
+                      nameList shift  88
 
-State 49:
+State 51:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2091,7 +2153,7 @@ State 49:
                       MULTIPLY shift  40
                            MOD shift  38
 
-State 50:
+State 52:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2114,9 +2176,9 @@ State 50:
                         DIVIDE shift  39
                       MULTIPLY shift  40
                            MOD shift  38
-                     SEMICOLON shift  157
+                     SEMICOLON shift  161
 
-State 51:
+State 53:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2139,9 +2201,9 @@ State 51:
                         DIVIDE shift  39
                       MULTIPLY shift  40
                            MOD shift  38
-                     SEMICOLON shift  158
+                     SEMICOLON shift  162
 
-State 52:
+State 54:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2164,9 +2226,9 @@ State 52:
                         DIVIDE shift  39
                       MULTIPLY shift  40
                            MOD shift  38
-                     SEMICOLON shift  160
+                     SEMICOLON shift  164
 
-State 53:
+State 55:
           expr ::= LPAREN expr * RPAREN
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
@@ -2189,9 +2251,9 @@ State 53:
                         DIVIDE shift  39
                       MULTIPLY shift  40
                            MOD shift  38
-                        RPAREN shift  169
+                        RPAREN shift  173
 
-State 54:
+State 56:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2216,7 +2278,7 @@ State 54:
                            MOD shift  38
                      {default} reduce 33
 
-State 55:
+State 57:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2241,7 +2303,7 @@ State 55:
                            MOD shift  38
                      {default} reduce 32
 
-State 56:
+State 58:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2266,7 +2328,7 @@ State 56:
                            MOD shift  38
                      {default} reduce 31
 
-State 57:
+State 59:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2291,7 +2353,7 @@ State 57:
                            MOD shift  38
                      {default} reduce 30
 
-State 58:
+State 60:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2316,7 +2378,7 @@ State 58:
                            MOD shift  38
                      {default} reduce 29
 
-State 59:
+State 61:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2341,7 +2403,7 @@ State 59:
                            MOD shift  38
                      {default} reduce 28
 
-State 60:
+State 62:
       (8) exprList ::= exprList COMMA expr *
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
@@ -2366,7 +2428,7 @@ State 60:
                            MOD shift  38
                      {default} reduce 8
 
-State 61:
+State 63:
       (7) exprList ::= expr *
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
@@ -2391,7 +2453,7 @@ State 61:
                            MOD shift  38
                      {default} reduce 7
 
-State 62:
+State 64:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2415,7 +2477,7 @@ State 62:
                            MOD shift  38
                      {default} reduce 23
 
-State 63:
+State 65:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2438,7 +2500,7 @@ State 63:
                            MOD shift  38
                      {default} reduce 24
 
-State 64:
+State 66:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2460,7 +2522,7 @@ State 64:
                            MOD shift  38
                      {default} reduce 22
 
-State 65:
+State 67:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2480,7 +2542,7 @@ State 65:
                            MOD shift  38
                      {default} reduce 21
 
-State 66:
+State 68:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -2500,43 +2562,43 @@ State 66:
                            MOD shift  38
                      {default} reduce 20
 
-State 67:
+State 69:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
           while_header ::= while_start LPAREN lexpr * RPAREN
 
                            LOR shift  13
                           LAND shift  14
-                        RPAREN shift  144
+                        RPAREN shift  148
 
-State 68:
+State 70:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
           if_header ::= if_start LPAREN lexpr * RPAREN
 
                            LOR shift  13
                           LAND shift  14
-                        RPAREN shift  148
+                        RPAREN shift  152
 
-State 69:
+State 71:
           nameList ::= nameList * COMMA NAME
           vdefMulti_stmt ::= VAR nameList * SEMICOLON
           vdefMultiAssign_stmt ::= VAR nameList * ASSIGN exprList SEMICOLON
 
-                         COMMA shift  112
+                         COMMA shift  114
                         ASSIGN shift  19
-                     SEMICOLON shift  178
+                     SEMICOLON shift  182
 
-State 70:
+State 72:
           nameList ::= NAME * COMMA NAME
           vdef_stmt ::= VAR NAME * SEMICOLON
           vdefAssign_stmt ::= VAR NAME * ASSIGN expr SEMICOLON
 
-                         COMMA shift  113
+                         COMMA shift  115
                         ASSIGN shift  27
-                     SEMICOLON shift  180
+                     SEMICOLON shift  184
 
-State 71:
+State 73:
           expr ::= expr * PLUS expr
      (15) expr ::= expr PLUS expr *
           expr ::= expr * MINUS expr
@@ -2554,7 +2616,7 @@ State 71:
                            MOD shift  38
                      {default} reduce 15
 
-State 72:
+State 74:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
      (16) expr ::= expr MINUS expr *
@@ -2572,160 +2634,160 @@ State 72:
                            MOD shift  38
                      {default} reduce 16
 
-State 73:
+State 75:
           nameList ::= NAME * COMMA NAME
      (10) expr ::= NAME *
           funcexpr ::= NAME * LPAREN exprList RPAREN
           funcexpr ::= NAME * LPAREN RPAREN
           assign_stmt ::= NAME * ASSIGN expr SEMICOLON
 
-                         COMMA shift  113
+                         COMMA shift  115
                         ASSIGN shift  28
                         LPAREN shift  16
                      {default} reduce 10
 
-State 74:
+State 76:
           block ::= LBRACKET error * RBRACKET
           stmt ::= error * SEMICOLON
 
-                     SEMICOLON shift  135
-                      RBRACKET shift  119
+                     SEMICOLON shift  137
+                      RBRACKET shift  121
 
-State 75:
+State 77:
           exprList ::= exprList * COMMA expr
-          actionStmt ::= ACTIONNAME LPAREN exprList * RPAREN SEMICOLON
+          action ::= ACTIONNAME LPAREN exprList * RPAREN SEMICOLON
 
                          COMMA shift  29
-                        RPAREN shift  89
+                        RPAREN shift  91
 
-State 76:
+State 78:
           exprList ::= exprList * COMMA expr
           return_stmt ::= RETURN exprList * SEMICOLON
 
                          COMMA shift  29
-                     SEMICOLON shift  138
+                     SEMICOLON shift  142
 
-State 77:
+State 79:
           exprList ::= exprList * COMMA expr
           foreach_header ::= FOR LPAREN nameList COLON exprList * RPAREN
 
                          COMMA shift  29
-                        RPAREN shift  142
+                        RPAREN shift  146
 
-State 78:
+State 80:
           nameList ::= nameList * COMMA NAME
           foreach_header ::= FOR LPAREN nameList * COLON exprList RPAREN
 
-                         COMMA shift  112
+                         COMMA shift  114
                          COLON shift  18
 
-State 79:
+State 81:
           exprList ::= exprList * COMMA expr
           vdefMultiAssign_stmt ::= VAR nameList ASSIGN exprList * SEMICOLON
 
                          COMMA shift  29
-                     SEMICOLON shift  156
+                     SEMICOLON shift  160
 
-State 80:
+State 82:
           exprList ::= exprList * COMMA expr
           assignMulti_stmt ::= nameList ASSIGN exprList * SEMICOLON
 
                          COMMA shift  29
-                     SEMICOLON shift  159
+                     SEMICOLON shift  163
 
-State 81:
+State 83:
           nameList ::= nameList * COMMA NAME
           assignMulti_stmt ::= nameList * ASSIGN exprList SEMICOLON
 
-                         COMMA shift  112
+                         COMMA shift  114
                         ASSIGN shift  20
 
-State 82:
+State 84:
           exprList ::= exprList * COMMA expr
           funcexpr ::= NAME LPAREN exprList * RPAREN
 
                          COMMA shift  29
-                        RPAREN shift  162
+                        RPAREN shift  166
 
-State 83:
+State 85:
           numList ::= numList * COMMA NUMBER
           exprList ::= funcexpr LSQBRACKET LSQBRACKET numList * RSQBRACKET RSQBRACKET
-
-                         COMMA shift  104
-                    RSQBRACKET shift  103
-
-State 84:
-          numList ::= NUMBER * COMMA NUMBER
-          expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER * RSQBRACKET RSQBRACKET
 
                          COMMA shift  106
                     RSQBRACKET shift  105
 
-State 85:
+State 86:
+          numList ::= NUMBER * COMMA NUMBER
+          expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER * RSQBRACKET RSQBRACKET
+
+                         COMMA shift  108
+                    RSQBRACKET shift  107
+
+State 87:
           nameList ::= nameList * COMMA NAME
           function_header ::= function_start LPAREN nameList * RPAREN
 
-                         COMMA shift  112
-                        RPAREN shift  176
+                         COMMA shift  114
+                        RPAREN shift  180
 
-State 86:
+State 88:
           nameList ::= nameList * COMMA NAME
           vdefMulti_stmt ::= VAR nameList * SEMICOLON
 
-                         COMMA shift  112
-                     SEMICOLON shift  178
+                         COMMA shift  114
+                     SEMICOLON shift  182
 
-State 87:
+State 89:
           nameList ::= NAME * COMMA NAME
           vdef_stmt ::= VAR NAME * SEMICOLON
 
-                         COMMA shift  113
-                     SEMICOLON shift  180
-
-State 88:
-          stmt ::= error * SEMICOLON
-
-                     SEMICOLON shift  135
-
-State 89:
-          actionStmt ::= ACTIONNAME LPAREN exprList RPAREN * SEMICOLON
-
-                     SEMICOLON shift  136
+                         COMMA shift  115
+                     SEMICOLON shift  184
 
 State 90:
-          actionStmt ::= ACTIONNAME * LPAREN exprList RPAREN SEMICOLON
+          stmt ::= error * SEMICOLON
 
-                        LPAREN shift  17
+                     SEMICOLON shift  137
 
 State 91:
-          break_stmt ::= BREAK * SEMICOLON
-
-                     SEMICOLON shift  139
-
-State 92:
-          continue_stmt ::= CONTINUE * SEMICOLON
+          action ::= ACTIONNAME LPAREN exprList RPAREN * SEMICOLON
 
                      SEMICOLON shift  140
 
-State 93:
-          foreach_header ::= FOR * LPAREN nameList COLON exprList RPAREN
+State 92:
+          action ::= ACTIONNAME * LPAREN exprList RPAREN SEMICOLON
 
-                        LPAREN shift  45
+                        LPAREN shift  17
+
+State 93:
+          break_stmt ::= BREAK * SEMICOLON
+
+                     SEMICOLON shift  143
 
 State 94:
+          continue_stmt ::= CONTINUE * SEMICOLON
+
+                     SEMICOLON shift  144
+
+State 95:
+          foreach_header ::= FOR * LPAREN nameList COLON exprList RPAREN
+
+                        LPAREN shift  47
+
+State 96:
           while_header ::= while_start * LPAREN lexpr RPAREN
 
                         LPAREN shift  10
 
-State 95:
+State 97:
      (50) if_stmt ::= if_header stmt *
           else_header ::= if_header stmt * ELSE
 
-                          ELSE shift  147
+                          ELSE shift  151
                           ELSE reduce 50  ** Parsing conflict **
                      {default} reduce 50
 
-State 96:
+State 98:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
      (35) lexpr ::= lexpr LOR lexpr *
@@ -2733,12 +2795,12 @@ State 96:
                           LAND shift  14
                      {default} reduce 35
 
-State 97:
+State 99:
           if_header ::= if_start * LPAREN lexpr RPAREN
 
                         LPAREN shift  15
 
-State 98:
+State 100:
      (10) expr ::= NAME *
           funcexpr ::= NAME * LPAREN exprList RPAREN
           funcexpr ::= NAME * LPAREN RPAREN
@@ -2746,264 +2808,274 @@ State 98:
                         LPAREN shift  16
                      {default} reduce 10
 
-State 99:
+State 101:
           expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER * RSQBRACKET RSQBRACKET
 
-                    RSQBRACKET shift  105
-
-State 100:
-          expr ::= funcexpr LSQBRACKET LSQBRACKET * NUMBER RSQBRACKET RSQBRACKET
-
-                        NUMBER shift  99
-
-State 101:
-          expr ::= funcexpr LSQBRACKET * LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
-
-                    LSQBRACKET shift  100
+                    RSQBRACKET shift  107
 
 State 102:
+          expr ::= funcexpr LSQBRACKET LSQBRACKET * NUMBER RSQBRACKET RSQBRACKET
+
+                        NUMBER shift  101
+
+State 103:
+          expr ::= funcexpr LSQBRACKET * LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
+
+                    LSQBRACKET shift  102
+
+State 104:
           expr ::= funcexpr * LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
      (13) expr ::= funcexpr *
 
-                    LSQBRACKET shift  101
+                    LSQBRACKET shift  103
                      {default} reduce 13
 
-State 103:
+State 105:
           exprList ::= funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET * RSQBRACKET
 
-                    RSQBRACKET shift  171
-
-State 104:
-          numList ::= numList COMMA * NUMBER
-
-                        NUMBER shift  172
-
-State 105:
-          expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET * RSQBRACKET
-
-                    RSQBRACKET shift  173
+                    RSQBRACKET shift  175
 
 State 106:
-          numList ::= NUMBER COMMA * NUMBER
+          numList ::= numList COMMA * NUMBER
 
-                        NUMBER shift  174
+                        NUMBER shift  176
 
 State 107:
+          expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET * RSQBRACKET
+
+                    RSQBRACKET shift  177
+
+State 108:
+          numList ::= NUMBER COMMA * NUMBER
+
+                        NUMBER shift  178
+
+State 109:
           exprList ::= funcexpr LSQBRACKET * LSQBRACKET numList RSQBRACKET RSQBRACKET
           expr ::= funcexpr LSQBRACKET * LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
 
-                    LSQBRACKET shift  47
+                    LSQBRACKET shift  49
 
-State 108:
+State 110:
           exprList ::= funcexpr * LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET
           expr ::= funcexpr * LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
      (13) expr ::= funcexpr *
 
-                    LSQBRACKET shift  107
+                    LSQBRACKET shift  109
                      {default} reduce 13
 
-State 109:
+State 111:
           nameList ::= NAME * COMMA NAME
 
-                         COMMA shift  113
+                         COMMA shift  115
 
-State 110:
+State 112:
           function_header ::= function_start * LPAREN nameList RPAREN
           function_header ::= function_start * LPAREN RPAREN
 
                         LPAREN shift  44
 
-State 111:
-          function_start ::= FUNCTION * NAME
-
-                          NAME shift  177
-
-State 112:
-          nameList ::= nameList COMMA * NAME
-
-                          NAME shift  179
-
 State 113:
-          nameList ::= NAME COMMA * NAME
+          function_start ::= FUNCTION * NAME
 
                           NAME shift  181
 
 State 114:
-     (88) chunks ::= chunks chunk *
+          nameList ::= nameList COMMA * NAME
+
+                          NAME shift  183
+
+State 115:
+          nameList ::= NAME COMMA * NAME
+
+                          NAME shift  185
+
+State 116:
+     (92) chunks ::= chunks chunk *
+
+                     {default} reduce 92
+
+State 117:
+     (90) chunk ::= vdefMulti_stmt *
+
+                     {default} reduce 90
+
+State 118:
+     (89) chunk ::= vdef_stmt *
+
+                     {default} reduce 89
+
+State 119:
+     (88) chunk ::= fdef_chunk *
 
                      {default} reduce 88
 
-State 115:
-     (86) chunk ::= vdefMulti_stmt *
-
-                     {default} reduce 86
-
-State 116:
-     (85) chunk ::= vdef_stmt *
-
-                     {default} reduce 85
-
-State 117:
-     (84) chunk ::= fdef_chunk *
-
-                     {default} reduce 84
-
-State 118:
+State 120:
      (63) fdef_chunk ::= function_header stmt *
 
                      {default} reduce 63
 
-State 119:
+State 121:
      (47) block ::= LBRACKET error RBRACKET *
 
                      {default} reduce 47
 
-State 120:
-     (83) stmt ::= block *
+State 122:
+     (87) stmt ::= block *
+
+                     {default} reduce 87
+
+State 123:
+     (86) stmt ::= return_stmt *
+
+                     {default} reduce 86
+
+State 124:
+     (85) stmt ::= break_stmt *
+
+                     {default} reduce 85
+
+State 125:
+     (84) stmt ::= continue_stmt *
+
+                     {default} reduce 84
+
+State 126:
+     (83) stmt ::= foreach_stmt *
 
                      {default} reduce 83
 
-State 121:
-     (82) stmt ::= return_stmt *
+State 127:
+     (82) stmt ::= while_stmt *
 
                      {default} reduce 82
 
-State 122:
-     (81) stmt ::= break_stmt *
+State 128:
+     (81) stmt ::= if_stmt *
 
                      {default} reduce 81
 
-State 123:
-     (80) stmt ::= continue_stmt *
+State 129:
+     (80) stmt ::= actionStmt *
 
                      {default} reduce 80
 
-State 124:
-     (79) stmt ::= foreach_stmt *
-
-                     {default} reduce 79
-
-State 125:
-     (78) stmt ::= while_stmt *
+State 130:
+     (78) stmt ::= assignMulti_stmt *
 
                      {default} reduce 78
 
-State 126:
-     (77) stmt ::= if_stmt *
+State 131:
+     (77) stmt ::= assign_stmt *
 
                      {default} reduce 77
 
-State 127:
-     (76) stmt ::= actionStmt *
+State 132:
+     (76) stmt ::= vdefMulti_stmt *
 
                      {default} reduce 76
 
-State 128:
-     (74) stmt ::= assignMulti_stmt *
+State 133:
+     (75) stmt ::= vdefMultiAssign_stmt *
+
+                     {default} reduce 75
+
+State 134:
+     (74) stmt ::= vdefAssign_stmt *
 
                      {default} reduce 74
 
-State 129:
-     (73) stmt ::= assign_stmt *
+State 135:
+     (73) stmt ::= vdef_stmt *
 
                      {default} reduce 73
 
-State 130:
-     (72) stmt ::= vdefMulti_stmt *
+State 136:
+     (72) stmt ::= SEMICOLON *
 
                      {default} reduce 72
 
-State 131:
-     (71) stmt ::= vdefMultiAssign_stmt *
+State 137:
+     (71) stmt ::= error SEMICOLON *
 
                      {default} reduce 71
 
-State 132:
-     (70) stmt ::= vdefAssign_stmt *
-
-                     {default} reduce 70
-
-State 133:
-     (69) stmt ::= vdef_stmt *
-
-                     {default} reduce 69
-
-State 134:
-     (68) stmt ::= SEMICOLON *
+State 138:
+     (68) actions ::= actions action *
 
                      {default} reduce 68
 
-State 135:
-     (67) stmt ::= error SEMICOLON *
+State 139:
+     (67) actions ::= action action *
 
                      {default} reduce 67
 
-State 136:
-     (66) actionStmt ::= ACTIONNAME LPAREN exprList RPAREN SEMICOLON *
+State 140:
+     (66) action ::= ACTIONNAME LPAREN exprList RPAREN SEMICOLON *
 
                      {default} reduce 66
 
-State 137:
+State 141:
      (64) return_stmt ::= RETURN SEMICOLON *
 
                      {default} reduce 64
 
-State 138:
+State 142:
      (65) return_stmt ::= RETURN exprList SEMICOLON *
 
                      {default} reduce 65
 
-State 139:
+State 143:
      (59) break_stmt ::= BREAK SEMICOLON *
 
                      {default} reduce 59
 
-State 140:
+State 144:
      (58) continue_stmt ::= CONTINUE SEMICOLON *
 
                      {default} reduce 58
 
-State 141:
+State 145:
      (57) foreach_stmt ::= foreach_header stmt *
 
                      {default} reduce 57
 
-State 142:
+State 146:
      (56) foreach_header ::= FOR LPAREN nameList COLON exprList RPAREN *
 
                      {default} reduce 56
 
-State 143:
+State 147:
      (55) while_stmt ::= while_header stmt *
 
                      {default} reduce 55
 
-State 144:
+State 148:
      (54) while_header ::= while_start LPAREN lexpr RPAREN *
 
                      {default} reduce 54
 
-State 145:
+State 149:
      (53) while_start ::= WHILE *
 
                      {default} reduce 53
 
-State 146:
+State 150:
      (52) if_stmt ::= else_header stmt *
 
                      {default} reduce 52
 
-State 147:
+State 151:
      (51) else_header ::= if_header stmt ELSE *
 
                      {default} reduce 51
 
-State 148:
+State 152:
      (49) if_header ::= if_start LPAREN lexpr RPAREN *
 
                      {default} reduce 49
 
-State 149:
+State 153:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
      (36) lexpr ::= LNOT lexpr *
@@ -3011,76 +3083,76 @@ State 149:
 
                      {default} reduce 37
 
-State 150:
+State 154:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
      (36) lexpr ::= LNOT lexpr *
 
                      {default} reduce 36
 
-State 151:
+State 155:
           lexpr ::= lexpr * LAND lexpr
      (34) lexpr ::= lexpr LAND lexpr *
           lexpr ::= lexpr * LOR lexpr
 
                      {default} reduce 34
 
-State 152:
+State 156:
      (48) if_start ::= IF *
 
                      {default} reduce 48
 
-State 153:
+State 157:
      (46) block ::= LBRACKET stmtList RBRACKET *
 
                      {default} reduce 46
 
-State 154:
+State 158:
      (45) stmtList ::= stmtList stmt *
 
                      {default} reduce 45
 
-State 155:
+State 159:
      (44) stmtList ::= stmt *
 
                      {default} reduce 44
 
-State 156:
+State 160:
      (41) vdefMultiAssign_stmt ::= VAR nameList ASSIGN exprList SEMICOLON *
 
                      {default} reduce 41
 
-State 157:
+State 161:
      (39) vdefAssign_stmt ::= VAR NAME ASSIGN expr SEMICOLON *
 
                      {default} reduce 39
 
-State 158:
-     (75) stmt ::= expr SEMICOLON *
+State 162:
+     (79) stmt ::= expr SEMICOLON *
 
-                     {default} reduce 75
+                     {default} reduce 79
 
-State 159:
+State 163:
      (43) assignMulti_stmt ::= nameList ASSIGN exprList SEMICOLON *
 
                      {default} reduce 43
 
-State 160:
+State 164:
      (42) assign_stmt ::= NAME ASSIGN expr SEMICOLON *
 
                      {default} reduce 42
 
-State 161:
+State 165:
      (12) funcexpr ::= NAME LPAREN RPAREN *
 
                      {default} reduce 12
 
-State 162:
+State 166:
      (11) funcexpr ::= NAME LPAREN exprList RPAREN *
 
                      {default} reduce 11
 
-State 163:
+State 167:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -3095,7 +3167,7 @@ State 163:
 
                      {default} reduce 27
 
-State 164:
+State 168:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -3110,7 +3182,7 @@ State 164:
 
                      {default} reduce 26
 
-State 165:
+State 169:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -3125,7 +3197,7 @@ State 165:
 
                      {default} reduce 25
 
-State 166:
+State 170:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -3140,7 +3212,7 @@ State 166:
 
                      {default} reduce 19
 
-State 167:
+State 171:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -3155,7 +3227,7 @@ State 167:
 
                      {default} reduce 18
 
-State 168:
+State 172:
           expr ::= expr * PLUS expr
           expr ::= expr * MINUS expr
           expr ::= expr * MULTIPLY expr
@@ -3170,67 +3242,67 @@ State 168:
 
                      {default} reduce 17
 
-State 169:
+State 173:
      (14) expr ::= LPAREN expr RPAREN *
 
                      {default} reduce 14
 
-State 170:
+State 174:
       (9) expr ::= NUMBER *
 
                      {default} reduce 9
 
-State 171:
+State 175:
       (5) exprList ::= funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET *
 
                      {default} reduce 5
 
-State 172:
+State 176:
       (2) numList ::= numList COMMA NUMBER *
 
                      {default} reduce 2
 
-State 173:
+State 177:
       (6) expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET *
 
                      {default} reduce 6
 
-State 174:
+State 178:
       (1) numList ::= NUMBER COMMA NUMBER *
 
                      {default} reduce 1
 
-State 175:
+State 179:
      (62) function_header ::= function_start LPAREN RPAREN *
 
                      {default} reduce 62
 
-State 176:
+State 180:
      (61) function_header ::= function_start LPAREN nameList RPAREN *
 
                      {default} reduce 61
 
-State 177:
+State 181:
      (60) function_start ::= FUNCTION NAME *
 
                      {default} reduce 60
 
-State 178:
+State 182:
      (40) vdefMulti_stmt ::= VAR nameList SEMICOLON *
 
                      {default} reduce 40
 
-State 179:
+State 183:
       (4) nameList ::= nameList COMMA NAME *
 
                      {default} reduce 4
 
-State 180:
+State 184:
      (38) vdef_stmt ::= VAR NAME SEMICOLON *
 
                      {default} reduce 38
 
-State 181:
+State 185:
       (3) nameList ::= NAME COMMA NAME *
 
                      {default} reduce 3
@@ -3318,5 +3390,7 @@ Symbols:
    78: function_header: FUNCTION
    79: fdef_chunk: FUNCTION
    80: return_stmt: RETURN
-   81: actionStmt: ACTIONNAME
-   82: chunk: VAR FUNCTION
+   81: action: ACTIONNAME
+   82: actions: ACTIONNAME
+   83: actionStmt: ACTIONNAME
+   84: chunk: VAR FUNCTION

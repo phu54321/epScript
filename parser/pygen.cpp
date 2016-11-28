@@ -22,12 +22,12 @@ public:
     void indent() {
         _closureList.push_back(Closure());
     }
-    void unindent() {
+    void unindent(bool issueNewline) {
         if(_closureList.size() == 1) {
             throw std::logic_error("Not enough closures");
         }
         _closureList.pop_back();
-        justUnindented = true;
+        if(issueNewline) justUnindented = true;
     }
 
     virtual int overflow (int c) {
@@ -105,8 +105,8 @@ void PyGenerator::indent() {
     pbuf->indent();
 }
 
-void PyGenerator::unindent() {
-    pbuf->unindent();
+void PyGenerator::unindent(bool issueNewline) {
+    pbuf->unindent(issueNewline);
 }
 
 bool PyGenerator::namedef(const std::string &name) {
