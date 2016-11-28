@@ -28,7 +28,7 @@ int daemonTurn(void) {
 
                     // Check if update is needed
                     bool needUpdating = false;
-                    if(!access(ofname.c_str(), F_OK) != -1) needUpdating = true;
+                    if(access(ofname.c_str(), F_OK) == -1) needUpdating = true;
                     else {
                         struct stat istat, ostat;
                         stat(ifname.c_str(), &istat);
@@ -41,7 +41,6 @@ int daemonTurn(void) {
                         std::string out;
                         try {
                             std::string code = getFile(ifname);
-                            std::cout << code << std::endl;
                             out = ParseString(code);
                         } catch(std::runtime_error e) {
                             printf("-- Error while parsing file \"%s\" : %s\n", c_file.name, e.what());
@@ -62,6 +61,7 @@ int daemonTurn(void) {
 }
 
 int runDaemon(void) {
+    printf("Using daemon mode...\n");
     while(1) {
         daemonTurn();
         sleep(1);
