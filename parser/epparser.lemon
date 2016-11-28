@@ -45,6 +45,8 @@
 %nonassoc IFNOT.
 %nonassoc ELSE.
 
+%left ACTIONNAME.
+
 
 program ::= chunks.
 
@@ -351,7 +353,7 @@ function_header ::= function_start(fname) LPAREN RPAREN. {
     delete fname;
 }
 
-fdef_chunk ::= function_header stmt . {
+fdef_chunk ::= function_header stmt. {
     pGen->unindent();
 }
 
@@ -366,8 +368,17 @@ return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
 }
 
 
+
+// Trigger statements
+actionStmt ::= ACTIONNAME(A) LPAREN exprList(B) RPAREN SEMICOLON. {
+    (*pGen) << "DoActions(" << A->data << "(" << B->data << "))" << std::endl;
+    delete A; delete B;
+}
+
+
 // General statements
 stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "General syntax error"); }
+
 
 stmt ::= SEMICOLON.
 stmt ::= vdef_stmt.
@@ -377,6 +388,7 @@ stmt ::= vdefMulti_stmt.
 stmt ::= assign_stmt.
 stmt ::= assignMulti_stmt.
 stmt ::= expr(A) SEMICOLON. { (*pGen) << A->data << std::endl; }
+stmt ::= actionStmt.
 stmt ::= if_stmt.
 stmt ::= while_stmt.
 stmt ::= foreach_stmt.
@@ -395,7 +407,7 @@ chunks ::= chunks chunk.
 
 %code {
 
-// #define PARSER_DEBUG
+#define PARSER_DEBUG
 
 std::string ParseString(const std::string& code)
 {
@@ -416,6 +428,9 @@ std::string ParseString(const std::string& code)
         if (line != tok.getCurrentLine()) {
             line = tok.getCurrentLine();
             pGen << "# (Line " << line << ") " << trim(tok.getCurrentLineString()) << std::endl;
+#ifdef PARSER_DEBUG
+            printf("reading line %s\n", tok.getCurrentLineString().c_str());
+#endif
         }
         if (tokenTypeConv(token)) {
             Parse (pParser, token->type, token, &pGen);

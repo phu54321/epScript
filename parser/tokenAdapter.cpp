@@ -47,6 +47,8 @@ int getConvertedType(int type) {
         case TOKEN_VAR: return VAR;
         case TOKEN_FUNCTION: return FUNCTION;
         case TOKEN_RETURN: return RETURN;
+        // case TOKEN_CONDITION: return CONDITIONNAME;
+        case TOKEN_ACTION: return ACTIONNAME;
         default: return -1;
     }
 }

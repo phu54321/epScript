@@ -28,6 +28,8 @@ enum TokenType {
     // Identifiers
     TOKEN_NAME,
     TOKEN_NUMBER,
+    TOKEN_CONDITION,
+    TOKEN_ACTION,
 
     // Operators
     TOKEN_ASSIGN,

@@ -253,6 +253,36 @@ parser/tokenAdapter.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.s
 .PHONY : parser/tokenAdapter.cpp.s
 
+parser/tokenizer/condact.o: parser/tokenizer/condact.cpp.o
+
+.PHONY : parser/tokenizer/condact.o
+
+# target to build an object file
+parser/tokenizer/condact.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.o
+.PHONY : parser/tokenizer/condact.cpp.o
+
+parser/tokenizer/condact.i: parser/tokenizer/condact.cpp.i
+
+.PHONY : parser/tokenizer/condact.i
+
+# target to preprocess a source file
+parser/tokenizer/condact.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.i
+.PHONY : parser/tokenizer/condact.cpp.i
+
+parser/tokenizer/condact.s: parser/tokenizer/condact.cpp.s
+
+.PHONY : parser/tokenizer/condact.s
+
+# target to generate assembly for a file
+parser/tokenizer/condact.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.s
+.PHONY : parser/tokenizer/condact.cpp.s
+
 parser/tokenizer/tokChars.o: parser/tokenizer/tokChars.cpp.o
 
 .PHONY : parser/tokenizer/tokChars.o
@@ -503,6 +533,9 @@ help:
 	@echo "... parser/tokenAdapter.o"
 	@echo "... parser/tokenAdapter.i"
 	@echo "... parser/tokenAdapter.s"
+	@echo "... parser/tokenizer/condact.o"
+	@echo "... parser/tokenizer/condact.i"
+	@echo "... parser/tokenizer/condact.s"
 	@echo "... parser/tokenizer/tokChars.o"
 	@echo "... parser/tokenizer/tokChars.i"
 	@echo "... parser/tokenizer/tokChars.s"

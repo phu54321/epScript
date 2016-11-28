@@ -21,6 +21,9 @@ CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.o: ../parser/tokenAdapter.cpp
 CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.o: ../parser/tokenAdapter.h
 CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.o: ../parser/tokenizer/tokenizer.h
 
+CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.o: ../parser/tokenizer/condAct.h
+CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.o: ../parser/tokenizer/condact.cpp
+
 CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.cpp
 CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.o: ../parser/tokenizer/tokChars.h
 
@@ -32,6 +35,7 @@ CMakeFiles/epScript.dir/parser/tokenizer/tokenizer.cpp.o: ../parser/tokenizer/to
 CMakeFiles/epScript.dir/parser/tokenizer/tokenizer.cpp.o: ../parser/tokenizer/tokenizer.h
 CMakeFiles/epScript.dir/parser/tokenizer/tokenizer.cpp.o: ../parser/tokenizer/tokenizerImpl.h
 
+CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/condAct.h
 CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokChars.h
 CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokenizer.h
 CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.o: ../parser/tokenizer/tokenizerImpl.cpp

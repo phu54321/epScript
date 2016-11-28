@@ -4,6 +4,7 @@
 
 #include "tokenizerImpl.h"
 #include "tokChars.h"
+#include "condAct.h"
 
 TokenizerImpl::TokenizerImpl(std::istream& is)
         : data(std::istreambuf_iterator<char>(is), std::istreambuf_iterator<char>()) {
@@ -86,6 +87,10 @@ Token* TokenizerImpl::getToken() {
         if(identifier == "break") return TK(TOKEN_BREAK);
         if(identifier == "continue") return TK(TOKEN_CONTINUE);
         if(identifier == "return") return TK(TOKEN_RETURN);
+
+        if(isConditionName(identifier)) return TK(TOKEN_CONDITION, identifier);
+        if(isActionName(identifier)) return TK(TOKEN_ACTION, identifier);
+
         return TK(TOKEN_NAME, identifier);
     }
 
