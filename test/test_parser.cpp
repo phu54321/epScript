@@ -3,7 +3,7 @@
 #include <string>
 #include <cstdio>
 
-std::string get_testdata(std::string dataname) {
+static std::string get_testdata(std::string dataname) {
     dataname = "../test/testdata/" + dataname;
     FILE* fp = fopen(dataname.c_str(), "rb");
     if(fp == nullptr) {
@@ -39,8 +39,7 @@ TEST_CASE("Simple expression parsing") {
 
 
     SUBCASE("Variable assignment") {
-                REQUIRE(ParseString("var a;") == "a = EUDVariable()\n");
-                REQUIRE(ParseString("function x() { var a; a = 2; } ") == "@EUDFunc\ndef f_x():\n    a = EUDVariable()\n    a << 2\n");
+                REQUIRE(ParseString("var a;") == "# (Line 1) var a;\na = EUDVariable()\n");
                 REQUIRE_THROWS_AS(ParseString("b = 2;"), std::runtime_error);
     }
 }

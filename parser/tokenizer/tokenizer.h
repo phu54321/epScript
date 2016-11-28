@@ -84,6 +84,8 @@ public:
     ~Tokenizer();
 
     Token* getToken();
+    int getCurrentLine() const;
+    std::string getCurrentLineString() const;
 
 private:
     TokenizerImpl* _impl;

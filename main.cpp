@@ -3,6 +3,26 @@
 #include <iostream>
 #include "parser/tokenAdapter.h"
 
+static std::string get_testdata(std::string dataname) {
+    dataname = "../test/testdata/" + dataname;
+    FILE* fp = fopen(dataname.c_str(), "rb");
+    if(fp == nullptr) {
+        return "";
+    }
+    fseek(fp, 0, SEEK_END);
+    size_t fsize = ftell(fp);
+    rewind(fp);
+
+    char* data = new char[fsize];
+    fread(data, 1, fsize, fp);
+    fclose(fp);
+    std::string code(data, fsize);
+    delete[] data;
+    return code;
+}
+
+#define check(infile, outfile) (ParseString(get_testdata(infile)) == get_testdata(outfile))
+
 int main(int argc, const char** argv) {
     if(argc != 2) {
         printf("Usage : epScript [input]\n");

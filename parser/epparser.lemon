@@ -360,12 +360,31 @@ stmt ::= block.
 chunk ::= fdef_chunk.
 chunk ::= vdef_stmt.
 chunk ::= vdefMulti_stmt.
-chunks ::= chunk.
+chunks ::= .
 chunks ::= chunks chunk.
 
 %code {
 
 // #define PARSER_DEBUG
+
+// trim from start
+static inline std::string &ltrim(std::string &s) {
+    s.erase(s.begin(), std::find_if(s.begin(), s.end(),
+            std::not1(std::ptr_fun<int, int>(std::isspace))));
+    return s;
+}
+
+// trim from end
+static inline std::string &rtrim(std::string& s) {
+    s.erase(std::find_if(s.rbegin(), s.rend(),
+            std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+    return s;
+}
+
+// trim from both ends
+static inline std::string trim(std::string s) {
+    return ltrim(rtrim(s));
+}
 
 std::string ParseString(const std::string& code)
 {
@@ -374,6 +393,7 @@ std::string ParseString(const std::string& code)
     void* pParser = ParseAlloc (malloc);
     PyGenerator pGen;
     Token* token;
+    int line = 0;
 
 #ifdef PARSER_DEBUG
     std::cout << "Parsing string [[[\n" << code << "\n]]]\n";
@@ -381,8 +401,12 @@ std::string ParseString(const std::string& code)
 
     tmpIndex = 1;
     errorOccured = false;
-    while((token = tok.getToken()) != nullptr) {
-        if(tokenTypeConv(token)) {
+    while ((token = tok.getToken()) != nullptr) {
+        if (line != tok.getCurrentLine()) {
+            line = tok.getCurrentLine();
+            pGen << "# (Line " << line << ") " << trim(tok.getCurrentLineString()) << std::endl;
+        }
+        if (tokenTypeConv(token)) {
             Parse (pParser, token->type, token, &pGen);
 #ifdef PARSER_DEBUG
             ParseTrace(stdout, "-- ");

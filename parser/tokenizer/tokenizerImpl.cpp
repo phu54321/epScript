@@ -18,6 +18,18 @@ TokenizerImpl::~TokenizerImpl() {}
 
 ////
 
+int TokenizerImpl::getCurrentLine() const {
+    return line;
+}
+
+std::string TokenizerImpl::getCurrentLineString() const {
+    const char *lineStart = cursor - 1, *lineEnd = cursor;
+    while(lineStart > data.data() && *lineStart != '\n') lineStart--;
+    if(*lineStart == '\n') lineStart++;
+    while(*lineEnd != EOF && *lineEnd != '\n') lineEnd++;
+    return std::string(lineStart, lineEnd - lineStart);
+}
+
 Token* TokenizerImpl::TK(TokenType type) {
     return new Token(type, line);
 }

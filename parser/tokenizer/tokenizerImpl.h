@@ -12,6 +12,8 @@ public:
     TokenizerImpl(std::istream& is);
     ~TokenizerImpl();
     Token* getToken();
+    int getCurrentLine() const;
+    std::string getCurrentLineString() const;
 
 private:
     Token* TK(TokenType type);
