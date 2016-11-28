@@ -98,13 +98,13 @@ LBlock* getLastBlock() {
 **                       defined, then do no error processing.
 */
 #define YYCODETYPE unsigned char
-#define YYNOCODE 73
+#define YYNOCODE 80
 #define YYACTIONTYPE unsigned char
 #define ParseTOKENTYPE Token*
 typedef union {
   int yyinit;
   ParseTOKENTYPE yy0;
-  int yy145;
+  int yy159;
 } YYMINORTYPE;
 #ifndef YYSTACKDEPTH
 #define YYSTACKDEPTH 100
@@ -113,10 +113,10 @@ typedef union {
 #define ParseARG_PDECL , PyGenerator* pGen 
 #define ParseARG_FETCH  PyGenerator* pGen  = yypParser->pGen 
 #define ParseARG_STORE yypParser->pGen  = pGen 
-#define YYNSTATE 142
-#define YYNRULE 76
-#define YYERRORSYMBOL 41
-#define YYERRSYMDT yy145
+#define YYNSTATE 155
+#define YYNRULE 82
+#define YYERRORSYMBOL 45
+#define YYERRSYMDT yy159
 #define YY_NO_ACTION      (YYNSTATE+YYNRULE+2)
 #define YY_ACCEPT_ACTION  (YYNSTATE+YYNRULE+1)
 #define YY_ERROR_ACTION   (YYNSTATE+YYNRULE)
@@ -186,119 +186,135 @@ static const YYMINORTYPE yyzerominor = { 0 };
 **  yy_default[]       Default action for each state.
 */
 static const YYACTIONTYPE yy_action[] = {
- /*     0 */    70,   10,   11,   43,   72,   87,   44,   73,   48,   94,
- /*    10 */    95,   97,   96,   98,   99,    2,  118,  104,   74,    3,
- /*    20 */   100,    5,   41,   80,  101,  102,  103,   72,  136,   44,
- /*    30 */    69,   48,   94,   95,   97,   96,   98,   99,   57,  123,
- /*    40 */   104,   74,    3,  100,    5,   41,   80,  101,  102,  103,
- /*    50 */    72,   43,   44,  131,   55,   94,   95,   97,   96,   98,
- /*    60 */    99,   56,   89,  104,   74,    3,  100,    5,   41,   80,
- /*    70 */   101,  102,  103,   72,   43,   44,   61,   46,   94,   95,
- /*    80 */    97,   96,   98,   99,  107,  119,  104,   74,    3,  100,
- /*    90 */     5,   41,   80,  101,  102,  103,   72,   43,   44,  135,
- /*   100 */   105,   94,   95,   97,   96,   98,   99,   62,  139,  104,
- /*   110 */    74,    3,  100,    5,   41,   80,  101,  102,  103,   72,
- /*   120 */    92,   44,  108,  116,   94,   95,   97,   96,   98,   99,
- /*   130 */   114,   82,  104,   74,    3,  100,    5,   41,   17,  101,
- /*   140 */   102,  103,   24,   22,   21,   20,   19,   23,   29,   30,
- /*   150 */    28,   26,   27,   25,   34,   36,   35,   37,   32,   33,
- /*   160 */    26,   27,   25,   34,   36,   35,   37,   66,  122,  113,
- /*   170 */   117,   18,   42,   93,    1,  120,  121,  140,   78,   79,
- /*   180 */    32,   33,   83,   48,   84,   77,   32,   33,  124,   76,
- /*   190 */   122,   67,   43,   18,  134,   66,  122,  219,    7,   18,
- /*   200 */    42,   93,    1,   45,  121,  140,   78,   79,   71,   29,
- /*   210 */    30,   28,   26,   27,   25,   34,   36,   35,   37,   29,
- /*   220 */    30,   28,   26,   27,   25,   34,   36,   35,   37,  115,
- /*   230 */    30,   28,   26,   27,   25,   34,   36,   35,   37,  112,
- /*   240 */    29,   30,   28,   26,   27,   25,   34,   36,   35,   37,
- /*   250 */    28,   26,   27,   25,   34,   36,   35,   37,   14,   68,
- /*   260 */   110,   29,   30,   28,   26,   27,   25,   34,   36,   35,
- /*   270 */    37,   32,   33,  127,   13,  128,   86,   38,   12,   75,
- /*   280 */    76,  122,   86,   31,   18,   75,   16,   32,   33,  142,
- /*   290 */     6,   81,    4,  125,  130,   75,   76,  122,   10,   11,
- /*   300 */    18,   17,   86,   25,   34,   36,   35,   37,  109,   65,
- /*   310 */     8,  132,   36,   35,   37,   75,   15,  132,   43,   60,
- /*   320 */    64,   40,   11,   63,  126,   88,   50,   51,  138,   85,
- /*   330 */    47,  141,  129,  111,  109,   52,   17,   53,  137,   39,
- /*   340 */    54,   92,   91,  106,   90,    9,   49,   86,  133,    8,
- /*   350 */    59,  220,  220,   58,
+ /*     0 */    70,   88,   94,   55,   87,   74,  148,   98,   47,  238,
+ /*    10 */     7,  101,  103,  106,  105,  107,  108,    2,  124,  118,
+ /*    20 */    77,    4,  109,    3,   44,  155,  110,  112,  114,   93,
+ /*    30 */    98,   45,  116,  136,   74,   15,   98,   47,   98,   49,
+ /*    40 */   101,  103,  106,  105,  107,  108,   85,  147,  118,   77,
+ /*    50 */     4,  109,    3,   44,  151,  110,  112,  114,   93,   71,
+ /*    60 */    43,  116,   96,   74,  129,   98,   47,   40,   92,  101,
+ /*    70 */   103,  106,  105,  107,  108,   73,  130,  118,   77,    4,
+ /*    80 */   109,    3,   44,  100,  110,  112,  114,   93,   86,   32,
+ /*    90 */   116,   82,   74,   31,   98,   47,   98,   48,  101,  103,
+ /*   100 */   106,  105,  107,  108,   75,   91,  118,   77,    4,  109,
+ /*   110 */     3,   44,   80,  110,  112,  114,   93,   78,   80,  116,
+ /*   120 */     8,   74,   84,   98,   47,   98,   46,  101,  103,  106,
+ /*   130 */   105,  107,  108,  149,  144,  118,   77,    4,  109,    3,
+ /*   140 */    44,   68,  110,  112,  114,   93,   86,  135,  116,   96,
+ /*   150 */    74,  152,   98,   47,   98,   52,  101,  103,  106,  105,
+ /*   160 */   107,  108,  137,  126,  118,   77,    4,  109,    3,   44,
+ /*   170 */    95,  110,  112,  114,   21,   18,   22,  116,  125,   34,
+ /*   180 */    36,   37,   38,   39,   35,   26,   27,   25,   23,   24,
+ /*   190 */    19,   20,   21,   18,   22,   10,   28,   29,   98,   45,
+ /*   200 */   154,   62,   30,   97,   66,   25,   23,   24,   19,   20,
+ /*   210 */    21,   18,   22,   41,   99,    1,  127,  128,  145,   83,
+ /*   220 */    79,   67,    9,   28,   29,   88,   94,   55,  150,   30,
+ /*   230 */    97,   66,   23,   24,   19,   20,   21,   18,   22,    8,
+ /*   240 */    41,   99,    1,   11,  128,  145,   83,   79,  143,    9,
+ /*   250 */    98,   45,  117,   81,   26,   27,   25,   23,   24,   19,
+ /*   260 */    20,   21,   18,   22,   27,   25,   23,   24,   19,   20,
+ /*   270 */    21,   18,   22,   28,   29,   98,   45,  119,  138,   30,
+ /*   280 */    97,   89,   19,   20,   21,   18,   22,   69,  132,  142,
+ /*   290 */   133,   26,   27,   25,   23,   24,   19,   20,   21,   18,
+ /*   300 */    22,    6,   13,   98,  115,   14,   90,    5,  131,  239,
+ /*   310 */   134,   42,   80,   16,  122,   28,   29,  239,   28,   29,
+ /*   320 */   239,   30,   97,   89,   30,   97,   89,   31,   26,   27,
+ /*   330 */    25,   23,   24,   19,   20,   21,   18,   22,   98,   45,
+ /*   340 */   239,  139,  239,   98,   45,  239,   63,  135,   86,   86,
+ /*   350 */    33,  121,   72,   94,   55,   98,  113,   76,   94,   55,
+ /*   360 */    98,  111,  123,   80,   17,   26,   27,   25,   23,   24,
+ /*   370 */    19,   20,   21,   18,   22,   12,   10,   12,   10,   98,
+ /*   380 */    58,   98,   57,  141,  141,   98,   59,   98,   61,   98,
+ /*   390 */   102,   98,  153,   31,   98,   65,   98,   60,  239,  239,
+ /*   400 */   239,   98,   64,   98,  104,  239,  140,  239,  146,   98,
+ /*   410 */    54,   98,   56,   98,   50,   98,   51,   98,   53,  239,
+ /*   420 */   239,  239,  239,  239,  239,  239,  239,  239,  120,
 };
 static const YYCODETYPE yy_lookahead[] = {
- /*     0 */    41,    3,    4,   47,   45,   49,   47,   46,   47,   50,
- /*    10 */    51,   52,   53,   54,   55,   56,   57,   58,   59,   60,
- /*    20 */    61,   62,   63,   41,   65,   66,   67,   45,   30,   47,
- /*    30 */    46,   47,   50,   51,   52,   53,   54,   55,   47,   57,
- /*    40 */    58,   59,   60,   61,   62,   63,   41,   65,   66,   67,
- /*    50 */    45,   47,   47,   49,   47,   50,   51,   52,   53,   54,
- /*    60 */    55,   47,   57,   58,   59,   60,   61,   62,   63,   41,
- /*    70 */    65,   66,   67,   45,   47,   47,   49,   47,   50,   51,
- /*    80 */    52,   53,   54,   55,   47,   57,   58,   59,   60,   61,
- /*    90 */    62,   63,   41,   65,   66,   67,   45,   47,   47,   49,
- /*   100 */    47,   50,   51,   52,   53,   54,   55,   47,   57,   58,
- /*   110 */    59,   60,   61,   62,   63,   41,   65,   66,   67,   45,
- /*   120 */    33,   47,   35,   47,   50,   51,   52,   53,   54,   55,
- /*   130 */    47,   57,   58,   59,   60,   61,   62,   63,    1,   65,
- /*   140 */    66,   67,    7,    8,    9,   10,   11,   12,   13,   14,
- /*   150 */    15,   16,   17,   18,   19,   20,   21,   22,   18,   19,
- /*   160 */    16,   17,   18,   19,   20,   21,   22,   27,   28,   47,
- /*   170 */    33,   31,   32,   33,   34,   35,   36,   37,   38,   39,
- /*   180 */    18,   19,   46,   47,   48,   27,   18,   19,   30,   27,
- /*   190 */    28,   45,   47,   31,   49,   27,   28,   43,   44,   31,
- /*   200 */    32,   33,   34,   47,   36,   37,   38,   39,   27,   13,
- /*   210 */    14,   15,   16,   17,   18,   19,   20,   21,   22,   13,
- /*   220 */    14,   15,   16,   17,   18,   19,   20,   21,   22,   33,
- /*   230 */    14,   15,   16,   17,   18,   19,   20,   21,   22,   33,
- /*   240 */    13,   14,   15,   16,   17,   18,   19,   20,   21,   22,
- /*   250 */    15,   16,   17,   18,   19,   20,   21,   22,    5,   45,
- /*   260 */    33,   13,   14,   15,   16,   17,   18,   19,   20,   21,
- /*   270 */    22,   18,   19,   50,    5,   52,    1,    2,   29,    1,
- /*   280 */    27,   28,    1,    2,   31,    1,    2,   18,   19,    0,
- /*   290 */    64,   68,   69,   70,   71,    1,   27,   28,    3,    4,
- /*   300 */    31,    1,    1,   18,   19,   20,   21,   22,   33,   27,
- /*   310 */    29,   33,   20,   21,   22,    1,    2,   33,   47,   45,
- /*   320 */    49,   32,    4,   47,   30,   30,   47,   47,   30,   40,
- /*   330 */    47,   27,   27,   33,   33,   47,    1,   47,   26,   29,
- /*   340 */    47,   33,   33,   47,   33,   29,   47,    1,   27,   29,
- /*   350 */    47,   72,   72,   47,
+ /*     0 */    45,   51,   52,   53,   54,   50,   36,   52,   53,   47,
+ /*    10 */    48,   56,   57,   58,   59,   60,   61,   62,   63,   64,
+ /*    20 */    65,   66,   67,   68,   69,    0,   71,   72,   73,   45,
+ /*    30 */    52,   53,   77,   55,   50,   33,   52,   53,   52,   53,
+ /*    40 */    56,   57,   58,   59,   60,   61,   26,   63,   64,   65,
+ /*    50 */    66,   67,   68,   69,   34,   71,   72,   73,   45,   50,
+ /*    60 */    35,   77,   36,   50,   38,   52,   53,   33,   43,   56,
+ /*    70 */    57,   58,   59,   60,   61,   26,   63,   64,   65,   66,
+ /*    80 */    67,   68,   69,   25,   71,   72,   73,   45,    1,    2,
+ /*    90 */    77,    1,   50,    1,   52,   53,   52,   53,   56,   57,
+ /*   100 */    58,   59,   60,   61,   49,   63,   64,   65,   66,   67,
+ /*   110 */    68,   69,    1,   71,   72,   73,   45,   31,    1,   77,
+ /*   120 */    33,   50,   32,   52,   53,   52,   53,   56,   57,   58,
+ /*   130 */    59,   60,   61,   36,   63,   64,   65,   66,   67,   68,
+ /*   140 */    69,   50,   71,   72,   73,   45,    1,   36,   77,   36,
+ /*   150 */    50,   34,   52,   53,   52,   53,   56,   57,   58,   59,
+ /*   160 */    60,   61,   26,   63,   64,   65,   66,   67,   68,   69,
+ /*   170 */    32,   71,   72,   73,   20,   21,   22,   77,   26,    7,
+ /*   180 */     8,    9,   10,   11,   12,   13,   14,   15,   16,   17,
+ /*   190 */    18,   19,   20,   21,   22,    4,   18,   19,   52,   53,
+ /*   200 */    25,   55,   24,   25,   26,   15,   16,   17,   18,   19,
+ /*   210 */    20,   21,   22,   35,   36,   37,   38,   39,   40,   41,
+ /*   220 */    42,   26,   44,   18,   19,   51,   52,   53,   54,   24,
+ /*   230 */    25,   26,   16,   17,   18,   19,   20,   21,   22,   33,
+ /*   240 */    35,   36,   37,   33,   39,   40,   41,   42,   26,   44,
+ /*   250 */    52,   53,   34,   55,   13,   14,   15,   16,   17,   18,
+ /*   260 */    19,   20,   21,   22,   14,   15,   16,   17,   18,   19,
+ /*   270 */    20,   21,   22,   18,   19,   52,   53,   36,   55,   24,
+ /*   280 */    25,   26,   18,   19,   20,   21,   22,   50,   56,   30,
+ /*   290 */    58,   13,   14,   15,   16,   17,   18,   19,   20,   21,
+ /*   300 */    22,   70,    5,   52,   53,    5,   74,   75,   76,   79,
+ /*   310 */    78,   31,    1,    2,   36,   18,   19,   79,   18,   19,
+ /*   320 */    79,   24,   25,   26,   24,   25,   26,    1,   13,   14,
+ /*   330 */    15,   16,   17,   18,   19,   20,   21,   22,   52,   53,
+ /*   340 */    79,   55,   79,   52,   53,   79,   55,   36,    1,    1,
+ /*   350 */     2,   36,   51,   52,   53,   52,   53,   51,   52,   53,
+ /*   360 */    52,   53,   36,    1,    2,   13,   14,   15,   16,   17,
+ /*   370 */    18,   19,   20,   21,   22,    3,    4,    3,    4,   52,
+ /*   380 */    53,   52,   53,   36,   36,   52,   53,   52,   53,   52,
+ /*   390 */    53,   52,   53,    1,   52,   53,   52,   53,   79,   79,
+ /*   400 */    79,   52,   53,   52,   53,   79,   34,   79,   34,   52,
+ /*   410 */    53,   52,   53,   52,   53,   52,   53,   52,   53,   79,
+ /*   420 */    79,   79,   79,   79,   79,   79,   79,   79,   36,
 };
-#define YY_SHIFT_USE_DFLT (-3)
-#define YY_SHIFT_MAX 87
+#define YY_SHIFT_USE_DFLT (-31)
+#define YY_SHIFT_MAX 94
 static const short yy_shift_ofst[] = {
- /*     0 */    -3,  168,  140,  168,  168,  168,  168,  289,  162,  253,
- /*    10 */   253,  253,  253,  269,  269,  162,  162,  162,  162,  162,
- /*    20 */   162,  162,  162,  162,  162,  162,  162,  162,  162,  162,
- /*    30 */   162,  162,  162,  162,  162,  162,  162,  162,  162,  158,
- /*    40 */   181,  249,  282,  135,  206,  196,  227,  248,  248,  248,
- /*    50 */   248,  248,  248,  248,  248,  216,  235,  144,  285,  285,
- /*    60 */   284,  295,  292,  292,   -2,  275,  281,  294,  278,  300,
- /*    70 */    87,  301,  314,  137,  316,  321,  320,  346,  311,  309,
- /*    80 */   308,  310,  312,  335,  298,  305,  304,  318,
+ /*     0 */   -31,  205,  178,  205,  205,  205,  205,   25,  255,  255,
+ /*    10 */   297,  297,  297,  300,  300,  297,  255,  255,  255,  255,
+ /*    20 */   255,  255,  255,  255,  255,  255,  255,  255,  255,  255,
+ /*    30 */   255,  255,  255,  255,  255,  255,  255,  255,  255,  255,
+ /*    40 */    20,  195,   58,   49,    2,  172,  241,  315,  278,  352,
+ /*    50 */   352,  352,  352,  352,  352,  352,  352,  250,  190,  216,
+ /*    60 */   264,  264,  372,  374,  154,  154,   87,  348,  311,  117,
+ /*    70 */    26,  111,  326,  347,  362,   90,  392,  210,  280,   97,
+ /*    80 */   136,  191,  175,  -30,  138,  145,  222,  218,   92,  206,
+ /*    90 */    34,  259,  152,  113,   86,
 };
-#define YY_REDUCE_USE_DFLT (-45)
-#define YY_REDUCE_MAX 42
+#define YY_REDUCE_USE_DFLT (-51)
+#define YY_REDUCE_MAX 44
 static const short yy_reduce_ofst[] = {
- /*     0 */   154,  -41,   28,   74,  -18,   51,    5,  223,  136,  271,
- /*    10 */   -44,    4,   27,   50,  145,  -16,  -39,  299,  296,  293,
- /*    20 */   290,  288,  283,  280,  279,  276,  303,  306,   -9,    7,
- /*    30 */    14,   30,   37,   53,   60,   76,   83,  122,  156,  146,
- /*    40 */   214,  226,  274,
+ /*     0 */   -38,  -45,  100,   71,   42,   13,  -16,  232,  -50,  174,
+ /*    10 */   -22,  146,  198,  223,  286,  291,  301,  306,  339,  349,
+ /*    20 */   342,  337,  351,  344,  335,  333,  329,  327,  308,  303,
+ /*    30 */   251,  102,   73,   44,  -14,  357,  365,  363,  361,  359,
+ /*    40 */   237,   91,   55,    9,  231,
 };
 static const YYACTIONTYPE yy_default[] = {
- /*     0 */   216,  218,  218,  218,  218,  218,  218,  218,  148,  218,
- /*    10 */   218,  218,  218,  218,  218,  218,  218,  218,  218,  218,
- /*    20 */   218,  218,  218,  218,  218,  218,  218,  218,  218,  218,
- /*    30 */   218,  218,  218,  218,  218,  218,  218,  218,  218,  218,
- /*    40 */   218,  218,  218,  218,  218,  218,  218,  167,  145,  146,
- /*    50 */   165,  166,  168,  169,  170,  160,  161,  159,  158,  157,
- /*    60 */   218,  218,  153,  152,  218,  218,  150,  218,  218,  218,
- /*    70 */   218,  218,  218,  218,  218,  218,  150,  218,  218,  218,
- /*    80 */   218,  218,  187,  147,  218,  218,  218,  172,  191,  192,
- /*    90 */   193,  194,  199,  200,  201,  202,  203,  204,  205,  206,
- /*   100 */   208,  209,  210,  211,  212,  163,  164,  162,  184,  175,
- /*   110 */   179,  180,  207,  156,  155,  176,  154,  178,  181,  182,
- /*   120 */   183,  185,  149,  198,  197,  213,  196,  214,  215,  195,
- /*   130 */   217,  171,  177,  144,  173,  174,  186,  188,  151,  189,
- /*   140 */   190,  143,
+ /*     0 */   235,  237,  237,  237,  237,  237,  237,  237,  164,  164,
+ /*    10 */   237,  237,  237,  237,  237,  237,  237,  237,  237,  237,
+ /*    20 */   237,  237,  237,  237,  237,  237,  237,  237,  237,  237,
+ /*    30 */   237,  237,  237,  237,  237,  237,  237,  237,  237,  237,
+ /*    40 */   237,  237,  237,  237,  237,  237,  237,  237,  237,  182,
+ /*    50 */   186,  185,  162,  184,  183,  161,  187,  177,  178,  176,
+ /*    60 */   174,  175,  237,  237,  169,  170,  166,  237,  237,  237,
+ /*    70 */   237,  237,  237,  237,  237,  237,  237,  237,  237,  237,
+ /*    80 */   237,  189,  237,  237,  237,  237,  237,  237,  163,  166,
+ /*    90 */   237,  204,  237,  237,  168,  160,  217,  165,  168,  218,
+ /*   100 */   156,  219,  172,  220,  173,  221,  222,  223,  224,  226,
+ /*   110 */   227,  179,  228,  180,  229,  181,  230,  167,  231,  196,
+ /*   120 */   197,  225,  193,  195,  198,  212,  199,  200,  202,  201,
+ /*   130 */   215,  232,  233,  234,  236,  194,  188,  159,  190,  191,
+ /*   140 */   203,  192,  205,  158,  206,  207,  208,  209,  210,  211,
+ /*   150 */   216,  214,  213,  171,  157,
 };
 #define YY_SZ_ACTTAB (int)(sizeof(yy_action)/sizeof(yy_action[0]))
 
@@ -398,18 +414,20 @@ static const char *const yyTokenName[] = {
   "NE",            "BITOR",         "BITXOR",        "BITAND",      
   "LSHIFT",        "RSHIFT",        "PLUS",          "MINUS",       
   "DIVIDE",        "MULTIPLY",      "MOD",           "UNARY",       
-  "IFX",           "IFNOT",         "ELSE",          "NAME",        
-  "NUMBER",        "LPAREN",        "RPAREN",        "BITNOT",      
-  "VAR",           "SEMICOLON",     "LBRACKET",      "RBRACKET",    
-  "IF",            "WHILE",         "CONTINUE",      "BREAK",       
-  "FUNCTION",      "error",         "nt",            "program",     
-  "chunks",        "nameList",      "exprList",      "expr",        
-  "emptyableExprList",  "lexpr",         "vdef_stmt",     "vdefAssign_stmt",
-  "vdefMulti_stmt",  "vdefMultiAssign_stmt",  "assign_stmt",   "assignMulti_stmt",
-  "stmtList",      "stmt",          "block",         "if_start",    
-  "if_header",     "if_stmt",       "else_header",   "while_start", 
-  "while_cond",    "while_stmt",    "continue_stmt",  "break_stmt",  
-  "function_start",  "function_header",  "fdef_chunk",    "chunk",       
+  "BITNOT",        "NUMBER",        "NAME",          "FUNCCALL",    
+  "IFX",           "IFNOT",         "ELSE",          "LSQBRACKET",  
+  "RSQBRACKET",    "LPAREN",        "RPAREN",        "VAR",         
+  "SEMICOLON",     "LBRACKET",      "RBRACKET",      "IF",          
+  "WHILE",         "CONTINUE",      "BREAK",         "FUNCTION",    
+  "RETURN",        "error",         "nt",            "program",     
+  "chunks",        "numList",       "nameList",      "exprList",    
+  "funcexpr",      "expr",          "emptyableExprList",  "lexpr",       
+  "vdef_stmt",     "vdefAssign_stmt",  "vdefMulti_stmt",  "vdefMultiAssign_stmt",
+  "assign_stmt",   "assignMulti_stmt",  "stmtList",      "stmt",        
+  "block",         "if_start",      "if_header",     "if_stmt",     
+  "else_header",   "while_start",   "while_cond",    "while_stmt",  
+  "continue_stmt",  "break_stmt",    "function_start",  "function_header",
+  "fdef_chunk",    "return_stmt",   "chunk",       
 };
 #endif /* NDEBUG */
 
@@ -418,81 +436,87 @@ static const char *const yyTokenName[] = {
 */
 static const char *const yyRuleName[] = {
  /*   0 */ "program ::= chunks",
- /*   1 */ "nameList ::= NAME COMMA NAME",
- /*   2 */ "nameList ::= nameList COMMA NAME",
- /*   3 */ "exprList ::= expr",
- /*   4 */ "exprList ::= exprList COMMA expr",
- /*   5 */ "emptyableExprList ::= exprList",
- /*   6 */ "emptyableExprList ::=",
- /*   7 */ "expr ::= NUMBER",
- /*   8 */ "expr ::= NAME",
- /*   9 */ "expr ::= NAME LPAREN emptyableExprList RPAREN",
- /*  10 */ "expr ::= expr PLUS expr",
- /*  11 */ "expr ::= expr MINUS expr",
- /*  12 */ "expr ::= expr MULTIPLY expr",
- /*  13 */ "expr ::= expr DIVIDE expr",
- /*  14 */ "expr ::= expr MOD expr",
- /*  15 */ "expr ::= expr LSHIFT expr",
- /*  16 */ "expr ::= expr RSHIFT expr",
- /*  17 */ "expr ::= expr BITAND expr",
- /*  18 */ "expr ::= expr BITOR expr",
- /*  19 */ "expr ::= expr BITXOR expr",
- /*  20 */ "expr ::= PLUS expr",
- /*  21 */ "expr ::= MINUS expr",
- /*  22 */ "expr ::= BITNOT expr",
- /*  23 */ "lexpr ::= expr EQ expr",
- /*  24 */ "lexpr ::= expr NE expr",
- /*  25 */ "lexpr ::= expr LE expr",
- /*  26 */ "lexpr ::= expr LT expr",
- /*  27 */ "lexpr ::= expr GE expr",
- /*  28 */ "lexpr ::= expr GT expr",
- /*  29 */ "lexpr ::= lexpr LAND lexpr",
- /*  30 */ "lexpr ::= lexpr LOR lexpr",
- /*  31 */ "lexpr ::= LNOT lexpr",
- /*  32 */ "lexpr ::= LNOT LNOT lexpr",
- /*  33 */ "vdef_stmt ::= VAR NAME SEMICOLON",
- /*  34 */ "vdefAssign_stmt ::= VAR NAME ASSIGN expr SEMICOLON",
- /*  35 */ "vdefMulti_stmt ::= VAR nameList SEMICOLON",
- /*  36 */ "vdefMultiAssign_stmt ::= VAR nameList ASSIGN exprList SEMICOLON",
- /*  37 */ "assign_stmt ::= NAME ASSIGN expr SEMICOLON",
- /*  38 */ "assignMulti_stmt ::= nameList ASSIGN exprList SEMICOLON",
- /*  39 */ "stmtList ::= stmt",
- /*  40 */ "stmtList ::= stmtList stmt",
- /*  41 */ "block ::= LBRACKET stmtList RBRACKET",
- /*  42 */ "block ::= LBRACKET error RBRACKET",
- /*  43 */ "if_start ::= IF",
- /*  44 */ "if_header ::= if_start LPAREN lexpr RPAREN",
- /*  45 */ "if_stmt ::= if_header stmt",
- /*  46 */ "else_header ::= if_header stmt ELSE",
- /*  47 */ "if_stmt ::= else_header stmt",
- /*  48 */ "while_start ::= WHILE",
- /*  49 */ "while_cond ::= LPAREN lexpr RPAREN",
- /*  50 */ "while_stmt ::= while_start while_cond stmt",
- /*  51 */ "continue_stmt ::= CONTINUE SEMICOLON",
- /*  52 */ "break_stmt ::= BREAK SEMICOLON",
- /*  53 */ "function_start ::= FUNCTION NAME",
- /*  54 */ "function_header ::= function_start LPAREN nameList RPAREN",
- /*  55 */ "function_header ::= function_start LPAREN RPAREN",
- /*  56 */ "fdef_chunk ::= function_header stmt",
- /*  57 */ "stmt ::= error SEMICOLON",
- /*  58 */ "stmt ::= SEMICOLON",
- /*  59 */ "stmt ::= vdef_stmt",
- /*  60 */ "stmt ::= vdefAssign_stmt",
- /*  61 */ "stmt ::= vdefMultiAssign_stmt",
- /*  62 */ "stmt ::= vdefMulti_stmt",
- /*  63 */ "stmt ::= assign_stmt",
- /*  64 */ "stmt ::= assignMulti_stmt",
- /*  65 */ "stmt ::= expr SEMICOLON",
- /*  66 */ "stmt ::= if_stmt",
- /*  67 */ "stmt ::= while_stmt",
- /*  68 */ "stmt ::= continue_stmt",
- /*  69 */ "stmt ::= break_stmt",
- /*  70 */ "stmt ::= block",
- /*  71 */ "chunk ::= fdef_chunk",
- /*  72 */ "chunk ::= vdef_stmt",
- /*  73 */ "chunk ::= vdefMulti_stmt",
- /*  74 */ "chunks ::=",
- /*  75 */ "chunks ::= chunks chunk",
+ /*   1 */ "numList ::= NUMBER",
+ /*   2 */ "numList ::= numList COMMA NUMBER",
+ /*   3 */ "nameList ::= NAME COMMA NAME",
+ /*   4 */ "nameList ::= nameList COMMA NAME",
+ /*   5 */ "exprList ::= funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET",
+ /*   6 */ "exprList ::= expr",
+ /*   7 */ "exprList ::= exprList COMMA expr",
+ /*   8 */ "emptyableExprList ::= exprList",
+ /*   9 */ "emptyableExprList ::=",
+ /*  10 */ "expr ::= NUMBER",
+ /*  11 */ "expr ::= NAME",
+ /*  12 */ "funcexpr ::= NAME LPAREN emptyableExprList RPAREN",
+ /*  13 */ "expr ::= funcexpr",
+ /*  14 */ "expr ::= expr PLUS expr",
+ /*  15 */ "expr ::= expr MINUS expr",
+ /*  16 */ "expr ::= expr MULTIPLY expr",
+ /*  17 */ "expr ::= expr DIVIDE expr",
+ /*  18 */ "expr ::= expr MOD expr",
+ /*  19 */ "expr ::= expr LSHIFT expr",
+ /*  20 */ "expr ::= expr RSHIFT expr",
+ /*  21 */ "expr ::= expr BITAND expr",
+ /*  22 */ "expr ::= expr BITOR expr",
+ /*  23 */ "expr ::= expr BITXOR expr",
+ /*  24 */ "expr ::= PLUS expr",
+ /*  25 */ "expr ::= MINUS expr",
+ /*  26 */ "expr ::= BITNOT expr",
+ /*  27 */ "lexpr ::= expr EQ expr",
+ /*  28 */ "lexpr ::= expr NE expr",
+ /*  29 */ "lexpr ::= expr LE expr",
+ /*  30 */ "lexpr ::= expr LT expr",
+ /*  31 */ "lexpr ::= expr GE expr",
+ /*  32 */ "lexpr ::= expr GT expr",
+ /*  33 */ "lexpr ::= lexpr LAND lexpr",
+ /*  34 */ "lexpr ::= lexpr LOR lexpr",
+ /*  35 */ "lexpr ::= LNOT lexpr",
+ /*  36 */ "lexpr ::= LNOT LNOT lexpr",
+ /*  37 */ "vdef_stmt ::= VAR NAME SEMICOLON",
+ /*  38 */ "vdefAssign_stmt ::= VAR NAME ASSIGN expr SEMICOLON",
+ /*  39 */ "vdefMulti_stmt ::= VAR nameList SEMICOLON",
+ /*  40 */ "vdefMultiAssign_stmt ::= VAR nameList ASSIGN exprList SEMICOLON",
+ /*  41 */ "assign_stmt ::= NAME ASSIGN expr SEMICOLON",
+ /*  42 */ "assignMulti_stmt ::= nameList ASSIGN exprList SEMICOLON",
+ /*  43 */ "stmtList ::= stmt",
+ /*  44 */ "stmtList ::= stmtList stmt",
+ /*  45 */ "block ::= LBRACKET stmtList RBRACKET",
+ /*  46 */ "block ::= LBRACKET error RBRACKET",
+ /*  47 */ "if_start ::= IF",
+ /*  48 */ "if_header ::= if_start LPAREN lexpr RPAREN",
+ /*  49 */ "if_stmt ::= if_header stmt",
+ /*  50 */ "else_header ::= if_header stmt ELSE",
+ /*  51 */ "if_stmt ::= else_header stmt",
+ /*  52 */ "while_start ::= WHILE",
+ /*  53 */ "while_cond ::= LPAREN lexpr RPAREN",
+ /*  54 */ "while_stmt ::= while_start while_cond stmt",
+ /*  55 */ "continue_stmt ::= CONTINUE SEMICOLON",
+ /*  56 */ "break_stmt ::= BREAK SEMICOLON",
+ /*  57 */ "function_start ::= FUNCTION NAME",
+ /*  58 */ "function_header ::= function_start LPAREN nameList RPAREN",
+ /*  59 */ "function_header ::= function_start LPAREN RPAREN",
+ /*  60 */ "fdef_chunk ::= function_header stmt",
+ /*  61 */ "return_stmt ::= RETURN emptyableExprList",
+ /*  62 */ "stmt ::= error SEMICOLON",
+ /*  63 */ "stmt ::= SEMICOLON",
+ /*  64 */ "stmt ::= vdef_stmt",
+ /*  65 */ "stmt ::= vdefAssign_stmt",
+ /*  66 */ "stmt ::= vdefMultiAssign_stmt",
+ /*  67 */ "stmt ::= vdefMulti_stmt",
+ /*  68 */ "stmt ::= assign_stmt",
+ /*  69 */ "stmt ::= assignMulti_stmt",
+ /*  70 */ "stmt ::= expr SEMICOLON",
+ /*  71 */ "stmt ::= if_stmt",
+ /*  72 */ "stmt ::= while_stmt",
+ /*  73 */ "stmt ::= continue_stmt",
+ /*  74 */ "stmt ::= break_stmt",
+ /*  75 */ "stmt ::= return_stmt",
+ /*  76 */ "stmt ::= block",
+ /*  77 */ "chunk ::= fdef_chunk",
+ /*  78 */ "chunk ::= vdef_stmt",
+ /*  79 */ "chunk ::= vdefMulti_stmt",
+ /*  80 */ "chunks ::=",
+ /*  81 */ "chunks ::= chunks chunk",
 };
 #endif /* NDEBUG */
 
@@ -571,11 +595,11 @@ static void yy_destructor(
     ** which appear on the RHS of the rule, but which are not used
     ** inside the C code.
     */
-    case 42: /* nt */
+    case 46: /* nt */
 {
 #line 54 "parser/epparser.lemon"
  delete (yypminor->yy0); 
-#line 579 "parser/epparser.c"
+#line 603 "parser/epparser.c"
 }
       break;
     default:  break;   /* If no destructor action specified: do nothing */
@@ -804,82 +828,88 @@ static const struct {
   YYCODETYPE lhs;         /* Symbol on the left-hand side of the rule */
   unsigned char nrhs;     /* Number of right-hand side symbols in the rule */
 } yyRuleInfo[] = {
-  { 43, 1 },
-  { 45, 3 },
-  { 45, 3 },
-  { 46, 1 },
-  { 46, 3 },
-  { 48, 1 },
-  { 48, 0 },
   { 47, 1 },
-  { 47, 1 },
-  { 47, 4 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 3 },
-  { 47, 2 },
-  { 47, 2 },
-  { 47, 2 },
-  { 49, 3 },
-  { 49, 3 },
-  { 49, 3 },
-  { 49, 3 },
-  { 49, 3 },
-  { 49, 3 },
-  { 49, 3 },
-  { 49, 3 },
-  { 49, 2 },
+  { 49, 1 },
   { 49, 3 },
   { 50, 3 },
-  { 51, 5 },
-  { 52, 3 },
-  { 53, 5 },
-  { 54, 4 },
-  { 55, 4 },
-  { 56, 1 },
-  { 56, 2 },
+  { 50, 3 },
+  { 51, 6 },
+  { 51, 1 },
+  { 51, 3 },
+  { 54, 1 },
+  { 54, 0 },
+  { 53, 1 },
+  { 53, 1 },
+  { 52, 4 },
+  { 53, 1 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 3 },
+  { 53, 2 },
+  { 53, 2 },
+  { 53, 2 },
+  { 55, 3 },
+  { 55, 3 },
+  { 55, 3 },
+  { 55, 3 },
+  { 55, 3 },
+  { 55, 3 },
+  { 55, 3 },
+  { 55, 3 },
+  { 55, 2 },
+  { 55, 3 },
+  { 56, 3 },
+  { 57, 5 },
   { 58, 3 },
-  { 58, 3 },
-  { 59, 1 },
+  { 59, 5 },
   { 60, 4 },
-  { 61, 2 },
-  { 62, 3 },
-  { 61, 2 },
-  { 63, 1 },
+  { 61, 4 },
+  { 62, 1 },
+  { 62, 2 },
   { 64, 3 },
-  { 65, 3 },
-  { 66, 2 },
+  { 64, 3 },
+  { 65, 1 },
+  { 66, 4 },
   { 67, 2 },
-  { 68, 2 },
-  { 69, 4 },
-  { 69, 3 },
-  { 70, 2 },
-  { 57, 2 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 2 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 1 },
-  { 57, 1 },
-  { 71, 1 },
-  { 71, 1 },
-  { 71, 1 },
-  { 44, 0 },
-  { 44, 2 },
+  { 68, 3 },
+  { 67, 2 },
+  { 69, 1 },
+  { 70, 3 },
+  { 71, 3 },
+  { 72, 2 },
+  { 73, 2 },
+  { 74, 2 },
+  { 75, 4 },
+  { 75, 3 },
+  { 76, 2 },
+  { 77, 2 },
+  { 63, 2 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 2 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 63, 1 },
+  { 78, 1 },
+  { 78, 1 },
+  { 78, 1 },
+  { 48, 0 },
+  { 48, 2 },
 };
 
 static void yy_accept(yyParser*);  /* Forward Declaration */
@@ -934,28 +964,47 @@ static void yy_reduce(
   **  #line <lineno> <thisfile>
   **     break;
   */
-      case 1: /* nameList ::= NAME COMMA NAME */
-      case 2: /* nameList ::= nameList COMMA NAME */ yytestcase(yyruleno==2);
-      case 4: /* exprList ::= exprList COMMA expr */ yytestcase(yyruleno==4);
-#line 85 "parser/epparser.lemon"
-{ yygotominor.yy0 = new Token((yymsp[-2].minor.yy0->data) + ", " + (yymsp[0].minor.yy0->data), yymsp[0].minor.yy0); delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 943 "parser/epparser.c"
-        break;
-      case 3: /* exprList ::= expr */
-      case 5: /* emptyableExprList ::= exprList */ yytestcase(yyruleno==5);
-      case 7: /* expr ::= NUMBER */ yytestcase(yyruleno==7);
-      case 32: /* lexpr ::= LNOT LNOT lexpr */ yytestcase(yyruleno==32);
-#line 87 "parser/epparser.lemon"
+      case 1: /* numList ::= NUMBER */
+      case 6: /* exprList ::= expr */ yytestcase(yyruleno==6);
+      case 8: /* emptyableExprList ::= exprList */ yytestcase(yyruleno==8);
+      case 10: /* expr ::= NUMBER */ yytestcase(yyruleno==10);
+      case 13: /* expr ::= funcexpr */ yytestcase(yyruleno==13);
+      case 36: /* lexpr ::= LNOT LNOT lexpr */ yytestcase(yyruleno==36);
+#line 86 "parser/epparser.lemon"
 { yygotominor.yy0 = yymsp[0].minor.yy0; }
-#line 951 "parser/epparser.c"
+#line 976 "parser/epparser.c"
         break;
-      case 6: /* emptyableExprList ::= */
-#line 90 "parser/epparser.lemon"
+      case 2: /* numList ::= numList COMMA NUMBER */
+#line 87 "parser/epparser.lemon"
+{
+    yygotominor.yy0 = new Token(yymsp[-2].minor.yy0->data + ", " + yymsp[0].minor.yy0->data, yymsp[0].minor.yy0);
+    delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
+}
+#line 984 "parser/epparser.c"
+        break;
+      case 3: /* nameList ::= NAME COMMA NAME */
+      case 4: /* nameList ::= nameList COMMA NAME */ yytestcase(yyruleno==4);
+      case 7: /* exprList ::= exprList COMMA expr */ yytestcase(yyruleno==7);
+#line 91 "parser/epparser.lemon"
+{ yygotominor.yy0 = new Token((yymsp[-2].minor.yy0->data) + ", " + (yymsp[0].minor.yy0->data), yymsp[0].minor.yy0); delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 991 "parser/epparser.c"
+        break;
+      case 5: /* exprList ::= funcexpr LSQBRACKET LSQBRACKET numList RSQBRACKET RSQBRACKET */
+#line 93 "parser/epparser.lemon"
+{
+    yygotominor.yy0 = genTemp(yymsp[-2].minor.yy0);
+    (*pGen) << yygotominor.yy0->data << " = SelectReturns(" << yymsp[-5].minor.yy0->data << ", [" << yymsp[-2].minor.yy0->data << "])" << std::endl;
+    delete yymsp[-5].minor.yy0; delete yymsp[-2].minor.yy0;
+}
+#line 1000 "parser/epparser.c"
+        break;
+      case 9: /* emptyableExprList ::= */
+#line 102 "parser/epparser.lemon"
 { yygotominor.yy0 = new Token(TOKEN_TEMP, "", -1); }
-#line 956 "parser/epparser.c"
+#line 1005 "parser/epparser.c"
         break;
-      case 8: /* expr ::= NAME */
-#line 94 "parser/epparser.lemon"
+      case 11: /* expr ::= NAME */
+#line 106 "parser/epparser.lemon"
 {
     if(pGen->undefined(yymsp[0].minor.yy0->data)) {
         throw_error(yymsp[0].minor.yy0->line, 103, ("Undeclared variable \'" + (yymsp[0].minor.yy0->data) + "\'"));
@@ -963,149 +1012,150 @@ static void yy_reduce(
     }
     yygotominor.yy0 = yymsp[0].minor.yy0;
 }
-#line 967 "parser/epparser.c"
+#line 1016 "parser/epparser.c"
         break;
-      case 9: /* expr ::= NAME LPAREN emptyableExprList RPAREN */
-#line 103 "parser/epparser.lemon"
+      case 12: /* funcexpr ::= NAME LPAREN emptyableExprList RPAREN */
+#line 115 "parser/epparser.lemon"
 {
     // Preprocess yymsp[-3].minor.yy0
-    if('A' <= yymsp[-3].minor.yy0->data[0] && yymsp[-3].minor.yy0->data[0] <= 'Z');  // Name starts with uppercase -> Don't modify
+    if(yymsp[-3].minor.yy0->data[0] == '_' || ('A' <= yymsp[-3].minor.yy0->data[0] && yymsp[-3].minor.yy0->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
     else {
         yymsp[-3].minor.yy0->data = "f_" + yymsp[-3].minor.yy0->data;
     }
-
+    /*
     if (pGen->undefined(yymsp[-3].minor.yy0->data)) {
         throw_error(yymsp[-3].minor.yy0->line, 4449, ("Undefined function " + yymsp[-3].minor.yy0->data));
         pGen->namedef(yymsp[-3].minor.yy0->data);
     }
+    */
 
     yygotominor.yy0 = genTemp(yymsp[-3].minor.yy0);
     (*pGen) << yygotominor.yy0->data << " = " << yymsp[-3].minor.yy0->data << "(" << yymsp[-1].minor.yy0->data << ")" << std::endl;
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 987 "parser/epparser.c"
-        break;
-      case 10: /* expr ::= expr PLUS expr */
-#line 122 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " + "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 992 "parser/epparser.c"
-        break;
-      case 11: /* expr ::= expr MINUS expr */
-#line 123 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " - "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 997 "parser/epparser.c"
-        break;
-      case 12: /* expr ::= expr MULTIPLY expr */
-#line 124 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " * "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 1002 "parser/epparser.c"
-        break;
-      case 13: /* expr ::= expr DIVIDE expr */
-#line 125 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " // " << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 1007 "parser/epparser.c"
-        break;
-      case 14: /* expr ::= expr MOD expr */
-#line 126 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " % "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 1012 "parser/epparser.c"
-        break;
-      case 15: /* expr ::= expr LSHIFT expr */
-#line 127 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " << " << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 1017 "parser/epparser.c"
-        break;
-      case 16: /* expr ::= expr RSHIFT expr */
-#line 128 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " >> " << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 1022 "parser/epparser.c"
-        break;
-      case 17: /* expr ::= expr BITAND expr */
-#line 129 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " & "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 1027 "parser/epparser.c"
-        break;
-      case 18: /* expr ::= expr BITOR expr */
-#line 130 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " | "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
-#line 1032 "parser/epparser.c"
-        break;
-      case 19: /* expr ::= expr BITXOR expr */
-#line 131 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " ^ "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1037 "parser/epparser.c"
         break;
-      case 20: /* expr ::= PLUS expr */
-#line 134 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = +" << yymsp[0].minor.yy0->data << std::endl; delete yymsp[0].minor.yy0; }
+      case 14: /* expr ::= expr PLUS expr */
+#line 136 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " + "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1042 "parser/epparser.c"
         break;
-      case 21: /* expr ::= MINUS expr */
-#line 135 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = -" << yymsp[0].minor.yy0->data << std::endl; delete yymsp[0].minor.yy0; }
+      case 15: /* expr ::= expr MINUS expr */
+#line 137 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " - "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1047 "parser/epparser.c"
         break;
-      case 22: /* expr ::= BITNOT expr */
-#line 136 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = ~" << yymsp[0].minor.yy0->data << std::endl; delete yymsp[0].minor.yy0; }
+      case 16: /* expr ::= expr MULTIPLY expr */
+#line 138 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " * "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1052 "parser/epparser.c"
         break;
-      case 23: /* lexpr ::= expr EQ expr */
+      case 17: /* expr ::= expr DIVIDE expr */
 #line 139 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " == " << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " // " << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1057 "parser/epparser.c"
         break;
-      case 24: /* lexpr ::= expr NE expr */
+      case 18: /* expr ::= expr MOD expr */
 #line 140 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " != " << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " % "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1062 "parser/epparser.c"
         break;
-      case 25: /* lexpr ::= expr LE expr */
+      case 19: /* expr ::= expr LSHIFT expr */
 #line 141 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " <= " << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " << " << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1067 "parser/epparser.c"
         break;
-      case 26: /* lexpr ::= expr LT expr */
+      case 20: /* expr ::= expr RSHIFT expr */
 #line 142 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " < "  << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " >> " << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1072 "parser/epparser.c"
         break;
-      case 27: /* lexpr ::= expr GE expr */
+      case 21: /* expr ::= expr BITAND expr */
 #line 143 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " >= " << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " & "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1077 "parser/epparser.c"
         break;
-      case 28: /* lexpr ::= expr GT expr */
+      case 22: /* expr ::= expr BITOR expr */
 #line 144 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " > "  << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " | "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1082 "parser/epparser.c"
         break;
-      case 29: /* lexpr ::= lexpr LAND lexpr */
-#line 146 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = [" << yymsp[-2].minor.yy0->data << ", " << yymsp[0].minor.yy0->data << "]" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+      case 23: /* expr ::= expr BITXOR expr */
+#line 145 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = " << yymsp[-2].minor.yy0->data << " ^ "  << yymsp[0].minor.yy0->data << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
 #line 1087 "parser/epparser.c"
         break;
-      case 30: /* lexpr ::= lexpr LOR lexpr */
-#line 147 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = EUDOr([" << yymsp[-2].minor.yy0->data << ", " << yymsp[0].minor.yy0->data << "])" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+      case 24: /* expr ::= PLUS expr */
+#line 148 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = +" << yymsp[0].minor.yy0->data << std::endl; delete yymsp[0].minor.yy0; }
 #line 1092 "parser/epparser.c"
         break;
-      case 31: /* lexpr ::= LNOT lexpr */
-#line 148 "parser/epparser.lemon"
-{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = EUDNot(" << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[0].minor.yy0; }
+      case 25: /* expr ::= MINUS expr */
+#line 149 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = -" << yymsp[0].minor.yy0->data << std::endl; delete yymsp[0].minor.yy0; }
 #line 1097 "parser/epparser.c"
         break;
-      case 33: /* vdef_stmt ::= VAR NAME SEMICOLON */
-#line 152 "parser/epparser.lemon"
+      case 26: /* expr ::= BITNOT expr */
+#line 150 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = ~" << yymsp[0].minor.yy0->data << std::endl; delete yymsp[0].minor.yy0; }
+#line 1102 "parser/epparser.c"
+        break;
+      case 27: /* lexpr ::= expr EQ expr */
+#line 153 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " == " << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 1107 "parser/epparser.c"
+        break;
+      case 28: /* lexpr ::= expr NE expr */
+#line 154 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " != " << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 1112 "parser/epparser.c"
+        break;
+      case 29: /* lexpr ::= expr LE expr */
+#line 155 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " <= " << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 1117 "parser/epparser.c"
+        break;
+      case 30: /* lexpr ::= expr LT expr */
+#line 156 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " < "  << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 1122 "parser/epparser.c"
+        break;
+      case 31: /* lexpr ::= expr GE expr */
+#line 157 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " >= " << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 1127 "parser/epparser.c"
+        break;
+      case 32: /* lexpr ::= expr GT expr */
+#line 158 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = (" << yymsp[-2].minor.yy0->data << " > "  << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 1132 "parser/epparser.c"
+        break;
+      case 33: /* lexpr ::= lexpr LAND lexpr */
+#line 160 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = [" << yymsp[-2].minor.yy0->data << ", " << yymsp[0].minor.yy0->data << "]" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 1137 "parser/epparser.c"
+        break;
+      case 34: /* lexpr ::= lexpr LOR lexpr */
+#line 161 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = EUDOr([" << yymsp[-2].minor.yy0->data << ", " << yymsp[0].minor.yy0->data << "])" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+#line 1142 "parser/epparser.c"
+        break;
+      case 35: /* lexpr ::= LNOT lexpr */
+#line 162 "parser/epparser.lemon"
+{ yygotominor.yy0 = genTemp(yymsp[0].minor.yy0); (*pGen) << yygotominor.yy0->data << " = EUDNot(" << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[0].minor.yy0; }
+#line 1147 "parser/epparser.c"
+        break;
+      case 37: /* vdef_stmt ::= VAR NAME SEMICOLON */
+#line 166 "parser/epparser.lemon"
 {
     (*pGen) << yymsp[-1].minor.yy0->data << " = EUDVariable()" << std::endl;
     pGen->namedef(yymsp[-1].minor.yy0->data);
     delete yymsp[-1].minor.yy0;
 }
-#line 1106 "parser/epparser.c"
+#line 1156 "parser/epparser.c"
         break;
-      case 34: /* vdefAssign_stmt ::= VAR NAME ASSIGN expr SEMICOLON */
-#line 158 "parser/epparser.lemon"
+      case 38: /* vdefAssign_stmt ::= VAR NAME ASSIGN expr SEMICOLON */
+#line 172 "parser/epparser.lemon"
 {
     (*pGen) << yymsp[-3].minor.yy0->data << " = EUDVariable()" << std::endl;
     (*pGen) << yymsp[-3].minor.yy0->data << " << " << yymsp[-1].minor.yy0->data << std::endl;
@@ -1114,17 +1164,17 @@ static void yy_reduce(
     }
     delete yymsp[-3].minor.yy0;
 }
-#line 1118 "parser/epparser.c"
+#line 1168 "parser/epparser.c"
         break;
-      case 35: /* vdefMulti_stmt ::= VAR nameList SEMICOLON */
-#line 167 "parser/epparser.lemon"
+      case 39: /* vdefMulti_stmt ::= VAR nameList SEMICOLON */
+#line 181 "parser/epparser.lemon"
 {
     std::string& s = yymsp[-1].minor.yy0->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
     (*pGen) << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
 
     // Register variables.
-    const char *p = s.data(), *p2 = p;
+    const char *p = s.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         std::string varname(p, p2 - p);
@@ -1137,10 +1187,10 @@ static void yy_reduce(
 
     delete yymsp[-1].minor.yy0;
 }
-#line 1141 "parser/epparser.c"
+#line 1191 "parser/epparser.c"
         break;
-      case 36: /* vdefMultiAssign_stmt ::= VAR nameList ASSIGN exprList SEMICOLON */
-#line 187 "parser/epparser.lemon"
+      case 40: /* vdefMultiAssign_stmt ::= VAR nameList ASSIGN exprList SEMICOLON */
+#line 201 "parser/epparser.lemon"
 {
     std::string& s = yymsp[-3].minor.yy0->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
@@ -1148,7 +1198,7 @@ static void yy_reduce(
     (*pGen) << "SetVariables([" << yymsp[-3].minor.yy0->data << "], [" << yymsp[-1].minor.yy0->data << "])" << std::endl;
 
     // Register variables.
-    const char *p = s.data(), *p2 = p;
+    const char *p = s.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         pGen->namedef(std::string(p, p2 - p));
@@ -1158,10 +1208,10 @@ static void yy_reduce(
 
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1162 "parser/epparser.c"
+#line 1212 "parser/epparser.c"
         break;
-      case 37: /* assign_stmt ::= NAME ASSIGN expr SEMICOLON */
-#line 205 "parser/epparser.lemon"
+      case 41: /* assign_stmt ::= NAME ASSIGN expr SEMICOLON */
+#line 219 "parser/epparser.lemon"
 {
     (*pGen) << yymsp[-3].minor.yy0->data << " << " << yymsp[-1].minor.yy0->data << std::endl;
     if(pGen->undefined(yymsp[-3].minor.yy0->data)) {
@@ -1170,14 +1220,14 @@ static void yy_reduce(
     }
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1174 "parser/epparser.c"
+#line 1224 "parser/epparser.c"
         break;
-      case 38: /* assignMulti_stmt ::= nameList ASSIGN exprList SEMICOLON */
-#line 214 "parser/epparser.lemon"
+      case 42: /* assignMulti_stmt ::= nameList ASSIGN exprList SEMICOLON */
+#line 228 "parser/epparser.lemon"
 {
     (*pGen) << "SetVariables([" << yymsp[-3].minor.yy0->data << "], [" << yymsp[-1].minor.yy0->data << "])" << std::endl;
 
-    const char *p = yymsp[-3].minor.yy0->data.data(), *p2 = p;
+    const char *p = yymsp[-3].minor.yy0->data.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         std::string varname(p, p2 - p);
@@ -1191,42 +1241,42 @@ static void yy_reduce(
 
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1195 "parser/epparser.c"
+#line 1245 "parser/epparser.c"
         break;
-      case 42: /* block ::= LBRACKET error RBRACKET */
-#line 236 "parser/epparser.lemon"
+      case 46: /* block ::= LBRACKET error RBRACKET */
+#line 250 "parser/epparser.lemon"
 {
     throw_error(yymsp[0].minor.yy0->line, 6974, "General syntax error");
 }
-#line 1202 "parser/epparser.c"
+#line 1252 "parser/epparser.c"
         break;
-      case 43: /* if_start ::= IF */
-#line 242 "parser/epparser.lemon"
+      case 47: /* if_start ::= IF */
+#line 256 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp(yymsp[0].minor.yy0);
     (*pGen) << yygotominor.yy0->data << " = Forward()" << std::endl;
 }
-#line 1210 "parser/epparser.c"
+#line 1260 "parser/epparser.c"
         break;
-      case 44: /* if_header ::= if_start LPAREN lexpr RPAREN */
-#line 246 "parser/epparser.lemon"
+      case 48: /* if_header ::= if_start LPAREN lexpr RPAREN */
+#line 260 "parser/epparser.lemon"
 {
     (*pGen) << "EUDJumpIfNot(" << yymsp[-1].minor.yy0->data << ", " << yymsp[-3].minor.yy0->data << ")" << std::endl;
     yygotominor.yy0 = yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1218 "parser/epparser.c"
+#line 1268 "parser/epparser.c"
         break;
-      case 45: /* if_stmt ::= if_header stmt */
-      case 47: /* if_stmt ::= else_header stmt */ yytestcase(yyruleno==47);
-#line 251 "parser/epparser.lemon"
+      case 49: /* if_stmt ::= if_header stmt */
+      case 51: /* if_stmt ::= else_header stmt */ yytestcase(yyruleno==51);
+#line 265 "parser/epparser.lemon"
 {
     (*pGen) << yymsp[-1].minor.yy0->data << " << NextTrigger()" << std::endl;
     delete yymsp[-1].minor.yy0;
 }
-#line 1227 "parser/epparser.c"
+#line 1277 "parser/epparser.c"
         break;
-      case 46: /* else_header ::= if_header stmt ELSE */
-#line 256 "parser/epparser.lemon"
+      case 50: /* else_header ::= if_header stmt ELSE */
+#line 270 "parser/epparser.lemon"
 {
     yygotominor.yy0 = genTemp(yymsp[0].minor.yy0);
     (*pGen) << yygotominor.yy0->data << " = Forward()" << std::endl;
@@ -1234,10 +1284,10 @@ static void yy_reduce(
     (*pGen) << yymsp[-2].minor.yy0->data << " << NextTrigger()" << std::endl;
     delete yymsp[-2].minor.yy0;
 }
-#line 1238 "parser/epparser.c"
+#line 1288 "parser/epparser.c"
         break;
-      case 48: /* while_start ::= WHILE */
-#line 271 "parser/epparser.lemon"
+      case 52: /* while_start ::= WHILE */
+#line 285 "parser/epparser.lemon"
 {
     auto lbegin = genTemp(yymsp[0].minor.yy0);
     auto lend = genTemp(yymsp[0].minor.yy0);
@@ -1248,10 +1298,10 @@ static void yy_reduce(
     yygotominor.yy0 = lbegin;
     delete yymsp[0].minor.yy0;
 }
-#line 1252 "parser/epparser.c"
+#line 1302 "parser/epparser.c"
         break;
-      case 49: /* while_cond ::= LPAREN lexpr RPAREN */
-#line 282 "parser/epparser.lemon"
+      case 53: /* while_cond ::= LPAREN lexpr RPAREN */
+#line 296 "parser/epparser.lemon"
 {
     auto lblock = getLastBlock();
     if(!lblock) {
@@ -1262,10 +1312,10 @@ static void yy_reduce(
     }
     delete yymsp[-1].minor.yy0; delete yymsp[0].minor.yy0;
 }
-#line 1266 "parser/epparser.c"
+#line 1316 "parser/epparser.c"
         break;
-      case 50: /* while_stmt ::= while_start while_cond stmt */
-#line 293 "parser/epparser.lemon"
+      case 54: /* while_stmt ::= while_start while_cond stmt */
+#line 307 "parser/epparser.lemon"
 {
     auto lblock = getLastBlock();
     if(!lblock) {
@@ -1277,10 +1327,10 @@ static void yy_reduce(
     }
     delete yymsp[-2].minor.yy0;
 }
-#line 1281 "parser/epparser.c"
+#line 1331 "parser/epparser.c"
         break;
-      case 51: /* continue_stmt ::= CONTINUE SEMICOLON */
-#line 306 "parser/epparser.lemon"
+      case 55: /* continue_stmt ::= CONTINUE SEMICOLON */
+#line 320 "parser/epparser.lemon"
 {
     auto lblock = getLastBlock();
     if(!lblock) {
@@ -1291,10 +1341,10 @@ static void yy_reduce(
     }
     delete yymsp[0].minor.yy0;
 }
-#line 1295 "parser/epparser.c"
+#line 1345 "parser/epparser.c"
         break;
-      case 52: /* break_stmt ::= BREAK SEMICOLON */
-#line 317 "parser/epparser.lemon"
+      case 56: /* break_stmt ::= BREAK SEMICOLON */
+#line 331 "parser/epparser.lemon"
 {
     auto lblock = getLastBlock();
     if(!lblock) {
@@ -1305,13 +1355,13 @@ static void yy_reduce(
     }
     delete yymsp[0].minor.yy0;
 }
-#line 1309 "parser/epparser.c"
+#line 1359 "parser/epparser.c"
         break;
-      case 53: /* function_start ::= FUNCTION NAME */
-#line 329 "parser/epparser.lemon"
+      case 57: /* function_start ::= FUNCTION NAME */
+#line 343 "parser/epparser.lemon"
 {
     // Preprocess yymsp[0].minor.yy0
-    if('A' <= yymsp[0].minor.yy0->data[0] && yymsp[0].minor.yy0->data[0] <= 'Z');  // Name starts with uppercase -> Don't modify
+    if(yymsp[0].minor.yy0->data[0] == '_' || ('A' <= yymsp[0].minor.yy0->data[0] && yymsp[0].minor.yy0->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
     else {
         yymsp[0].minor.yy0->data = "f_" + yymsp[0].minor.yy0->data;
     }
@@ -1321,10 +1371,10 @@ static void yy_reduce(
         throw_error(yymsp[0].minor.yy0->line, 4495, "Duplicate function yymsp[0].minor.yy0 " + yymsp[0].minor.yy0->data);
     }
 }
-#line 1325 "parser/epparser.c"
+#line 1375 "parser/epparser.c"
         break;
-      case 54: /* function_header ::= function_start LPAREN nameList RPAREN */
-#line 342 "parser/epparser.lemon"
+      case 58: /* function_header ::= function_start LPAREN nameList RPAREN */
+#line 356 "parser/epparser.lemon"
 {
     (*pGen) << "@EUDFunc" << std::endl;
     (*pGen) << "def " << yymsp[-3].minor.yy0->data << "(" << yymsp[-1].minor.yy0->data << "):" << std::endl;
@@ -1332,7 +1382,7 @@ static void yy_reduce(
 
     // Register variables.
     const std::string& s = yymsp[-1].minor.yy0->data;
-    const char *p = s.data(), *p2 = p;
+    const char *p = s.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         std::string varname(p, p2 - p);
@@ -1346,10 +1396,10 @@ static void yy_reduce(
     tmpIndex = 1;
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }
-#line 1350 "parser/epparser.c"
+#line 1400 "parser/epparser.c"
         break;
-      case 55: /* function_header ::= function_start LPAREN RPAREN */
-#line 364 "parser/epparser.lemon"
+      case 59: /* function_header ::= function_start LPAREN RPAREN */
+#line 378 "parser/epparser.lemon"
 {
     (*pGen) << "@EUDFunc" << std::endl;
     (*pGen) << "def " << yymsp[-2].minor.yy0->data << "():" << std::endl;
@@ -1357,43 +1407,51 @@ static void yy_reduce(
     tmpIndex = 1;
     delete yymsp[-2].minor.yy0;
 }
-#line 1361 "parser/epparser.c"
+#line 1411 "parser/epparser.c"
         break;
-      case 56: /* fdef_chunk ::= function_header stmt */
-#line 372 "parser/epparser.lemon"
+      case 60: /* fdef_chunk ::= function_header stmt */
+#line 386 "parser/epparser.lemon"
 {
     pGen->unindent();
 }
-#line 1368 "parser/epparser.c"
+#line 1418 "parser/epparser.c"
         break;
-      case 57: /* stmt ::= error SEMICOLON */
-#line 378 "parser/epparser.lemon"
+      case 61: /* return_stmt ::= RETURN emptyableExprList */
+#line 392 "parser/epparser.lemon"
+{
+    (*pGen) << "EUDReturn(" << yymsp[0].minor.yy0->data << ")" << std::endl;
+}
+#line 1425 "parser/epparser.c"
+        break;
+      case 62: /* stmt ::= error SEMICOLON */
+#line 398 "parser/epparser.lemon"
 { throw_error(yymsp[0].minor.yy0->line, 6974, "General syntax error"); }
-#line 1373 "parser/epparser.c"
+#line 1430 "parser/epparser.c"
         break;
       default:
       /* (0) program ::= chunks */ yytestcase(yyruleno==0);
-      /* (39) stmtList ::= stmt */ yytestcase(yyruleno==39);
-      /* (40) stmtList ::= stmtList stmt */ yytestcase(yyruleno==40);
-      /* (41) block ::= LBRACKET stmtList RBRACKET */ yytestcase(yyruleno==41);
-      /* (58) stmt ::= SEMICOLON */ yytestcase(yyruleno==58);
-      /* (59) stmt ::= vdef_stmt */ yytestcase(yyruleno==59);
-      /* (60) stmt ::= vdefAssign_stmt */ yytestcase(yyruleno==60);
-      /* (61) stmt ::= vdefMultiAssign_stmt */ yytestcase(yyruleno==61);
-      /* (62) stmt ::= vdefMulti_stmt */ yytestcase(yyruleno==62);
-      /* (63) stmt ::= assign_stmt */ yytestcase(yyruleno==63);
-      /* (64) stmt ::= assignMulti_stmt */ yytestcase(yyruleno==64);
-      /* (65) stmt ::= expr SEMICOLON */ yytestcase(yyruleno==65);
-      /* (66) stmt ::= if_stmt */ yytestcase(yyruleno==66);
-      /* (67) stmt ::= while_stmt */ yytestcase(yyruleno==67);
-      /* (68) stmt ::= continue_stmt */ yytestcase(yyruleno==68);
-      /* (69) stmt ::= break_stmt */ yytestcase(yyruleno==69);
-      /* (70) stmt ::= block */ yytestcase(yyruleno==70);
-      /* (71) chunk ::= fdef_chunk */ yytestcase(yyruleno==71);
-      /* (72) chunk ::= vdef_stmt */ yytestcase(yyruleno==72);
-      /* (73) chunk ::= vdefMulti_stmt */ yytestcase(yyruleno==73);
-      /* (74) chunks ::= */ yytestcase(yyruleno==74);
-      /* (75) chunks ::= chunks chunk */ yytestcase(yyruleno==75);
+      /* (43) stmtList ::= stmt */ yytestcase(yyruleno==43);
+      /* (44) stmtList ::= stmtList stmt */ yytestcase(yyruleno==44);
+      /* (45) block ::= LBRACKET stmtList RBRACKET */ yytestcase(yyruleno==45);
+      /* (63) stmt ::= SEMICOLON */ yytestcase(yyruleno==63);
+      /* (64) stmt ::= vdef_stmt */ yytestcase(yyruleno==64);
+      /* (65) stmt ::= vdefAssign_stmt */ yytestcase(yyruleno==65);
+      /* (66) stmt ::= vdefMultiAssign_stmt */ yytestcase(yyruleno==66);
+      /* (67) stmt ::= vdefMulti_stmt */ yytestcase(yyruleno==67);
+      /* (68) stmt ::= assign_stmt */ yytestcase(yyruleno==68);
+      /* (69) stmt ::= assignMulti_stmt */ yytestcase(yyruleno==69);
+      /* (70) stmt ::= expr SEMICOLON */ yytestcase(yyruleno==70);
+      /* (71) stmt ::= if_stmt */ yytestcase(yyruleno==71);
+      /* (72) stmt ::= while_stmt */ yytestcase(yyruleno==72);
+      /* (73) stmt ::= continue_stmt */ yytestcase(yyruleno==73);
+      /* (74) stmt ::= break_stmt */ yytestcase(yyruleno==74);
+      /* (75) stmt ::= return_stmt */ yytestcase(yyruleno==75);
+      /* (76) stmt ::= block */ yytestcase(yyruleno==76);
+      /* (77) chunk ::= fdef_chunk */ yytestcase(yyruleno==77);
+      /* (78) chunk ::= vdef_stmt */ yytestcase(yyruleno==78);
+      /* (79) chunk ::= vdefMulti_stmt */ yytestcase(yyruleno==79);
+      /* (80) chunks ::= */ yytestcase(yyruleno==80);
+      /* (81) chunks ::= chunks chunk */ yytestcase(yyruleno==81);
         break;
   };
   yygoto = yyRuleInfo[yyruleno].lhs;
@@ -1456,7 +1514,7 @@ static void yy_syntax_error(
 #line 46 "parser/epparser.lemon"
 
     errorOccured = true;
-#line 1460 "parser/epparser.c"
+#line 1518 "parser/epparser.c"
   ParseARG_STORE; /* Suppress warning about unused %extra_argument variable */
 }
 
@@ -1647,7 +1705,7 @@ void Parse(
   }while( yymajor!=YYNOCODE && yypParser->yyidx>=0 );
   return;
 }
-#line 402 "parser/epparser.lemon"
+#line 423 "parser/epparser.lemon"
 
 
 // #define PARSER_DEBUG
@@ -1705,6 +1763,7 @@ std::string ParseString(const std::string& code)
     ParseFree(pParser, free );
 
     if(!errorOccured) return pGen.str();
-    else throw std::runtime_error("Invalid syntax");
+    // else throw std::runtime_error("Invalid syntax");
+    return pGen.str();
 }
-#line 1711 "parser/epparser.c"
+#line 1770 "parser/epparser.c"

@@ -34,6 +34,8 @@ int getConvertedType(int type) {
         case TOKEN_SEMICOLON: return SEMICOLON;
         case TOKEN_LBRACKET: return LBRACKET;
         case TOKEN_RBRACKET: return RBRACKET;
+        case TOKEN_LSQBRACKET: return LSQBRACKET;
+        case TOKEN_RSQBRACKET: return RSQBRACKET;
         case TOKEN_IF: return IF;
         case TOKEN_LPAREN: return LPAREN;
         case TOKEN_RPAREN: return RPAREN;
@@ -42,6 +44,7 @@ int getConvertedType(int type) {
         case TOKEN_BREAK: return BREAK;
         case TOKEN_VAR: return VAR;
         case TOKEN_FUNCTION: return FUNCTION;
+        case TOKEN_RETURN: return RETURN;
         default: return -1;
     }
 }

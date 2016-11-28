@@ -77,7 +77,7 @@ Token* TokenizerImpl::getToken() {
         if(identifier == "while") return TK(TOKEN_WHILE);
         if(identifier == "break") return TK(TOKEN_BREAK);
         if(identifier == "continue") return TK(TOKEN_CONTINUE);
-        if(identifier == "pass") return TK(TOKEN_PASS);
+        if(identifier == "return") return TK(TOKEN_RETURN);
         return TK(TOKEN_NAME, identifier);
     }
 
@@ -146,5 +146,6 @@ Token* TokenizerImpl::getToken() {
     MATCHSTR(":", TOKEN_COLON);
     MATCHSTR(";", TOKEN_SEMICOLON);
 
+    cursor++;  // Skip invalid token
     return TK(TOKEN_INVALID);
 }

@@ -23,19 +23,20 @@ enum TokenType {
     TOKEN_WHILE,
     TOKEN_BREAK,
     TOKEN_CONTINUE,
-    TOKEN_PASS,
+    TOKEN_RETURN,
 
     // Identifiers
     TOKEN_NAME,
     TOKEN_NUMBER,
 
     // Operators
+    TOKEN_ASSIGN,
+
     TOKEN_PLUS,
     TOKEN_MINUS,
     TOKEN_MULTIPLY,
     TOKEN_DIVIDE,
     TOKEN_MOD,
-    TOKEN_ASSIGN,
     TOKEN_BITLSHIFT,
     TOKEN_BITRSHIFT,
     TOKEN_BITAND,

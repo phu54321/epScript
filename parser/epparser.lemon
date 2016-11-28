@@ -56,7 +56,6 @@ LBlock* getLastBlock() {
 // Precedence table
 
 %left COMMA.
-
 %left ASSIGN.
 
 %left LOR.
@@ -72,7 +71,9 @@ LBlock* getLastBlock() {
 %left LSHIFT RSHIFT.
 %left PLUS MINUS.
 %left DIVIDE MULTIPLY MOD.
-%right UNARY.
+%right UNARY BITNOT.
+%nonassoc NUMBER NAME.
+%left FUNCCALL.
 
 %nonassoc IFX.
 %nonassoc IFNOT.
@@ -82,12 +83,23 @@ LBlock* getLastBlock() {
 program ::= chunks.
 
 // Common expressions
+numList(A) ::= NUMBER(B). { A = B; }
+numList(A) ::= numList(B) COMMA NUMBER(C). {
+    A = new Token(B->data + ", " + C->data, C);
+    delete B; delete C;
+}
 nameList(A) ::= NAME(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 nameList(A) ::= nameList(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
-exprList(A) ::= expr(B). { A = B; }
+exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList(C) RSQBRACKET RSQBRACKET. {
+    A = genTemp(C);
+    (*pGen) << A->data << " = SelectReturns(" << B->data << ", [" << C->data << "])" << std::endl;
+    delete B; delete C;
+}
+
+exprList(A) ::= expr(B). [COMMA] { A = B; }
 exprList(A) ::= exprList(B) COMMA expr(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
-emptyableExprList(A) ::= exprList(B). { A = B; }
-emptyableExprList(A) ::= . { A = new Token(TOKEN_TEMP, "", -1); }
+emptyableExprList(A) ::= exprList(B). [COMMA] { A = B; }
+emptyableExprList(A) ::= . [COMMA] { A = new Token(TOKEN_TEMP, "", -1); }
 
 // Related to expressions
 expr(A) ::= NUMBER(B). { A = B; }
@@ -100,17 +112,18 @@ expr(A) ::= NAME(B). {
 }
 
 // Function calls
-expr(out) ::= NAME(name) LPAREN emptyableExprList(exprs) RPAREN. {
+funcexpr(out) ::= NAME(name) LPAREN emptyableExprList(exprs) RPAREN. {
     // Preprocess name
-    if('A' <= name->data[0] && name->data[0] <= 'Z');  // Name starts with uppercase -> Don't modify
+    if(name->data[0] == '_' || ('A' <= name->data[0] && name->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
     else {
         name->data = "f_" + name->data;
     }
-
+    /*
     if (pGen->undefined(name->data)) {
         throw_error(name->line, 4449, ("Undefined function " + name->data));
         pGen->namedef(name->data);
     }
+    */
 
     out = genTemp(name);
     (*pGen) << out->data << " = " << name->data << "(" << exprs->data << ")" << std::endl;
@@ -119,6 +132,7 @@ expr(out) ::= NAME(name) LPAREN emptyableExprList(exprs) RPAREN. {
 
 
 // Binary operators
+expr(A) ::= funcexpr(B).  { A = B; }
 expr(A) ::= expr(B) PLUS        expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " + "  << C->data << std::endl; delete B; delete C; }
 expr(A) ::= expr(B) MINUS       expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " - "  << C->data << std::endl; delete B; delete C; }
 expr(A) ::= expr(B) MULTIPLY    expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " * "  << C->data << std::endl; delete B; delete C; }
@@ -148,6 +162,7 @@ lexpr(A) ::= lexpr(B) LOR  lexpr(C).  { A = genTemp(C); (*pGen) << A->data << " 
 lexpr(A) ::= LNOT lexpr(B). { A = genTemp(B); (*pGen) << A->data << " = EUDNot(" << B->data << ")" << std::endl; delete B; }
 lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
 
+
 // Statements
 vdef_stmt ::= VAR NAME(A) SEMICOLON. {
     (*pGen) << A->data << " = EUDVariable()" << std::endl;
@@ -170,7 +185,7 @@ vdefMulti_stmt ::= VAR nameList(A) SEMICOLON. {
     (*pGen) << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
 
     // Register variables.
-    const char *p = s.data(), *p2 = p;
+    const char *p = s.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         std::string varname(p, p2 - p);
@@ -191,7 +206,7 @@ vdefMultiAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
     (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
 
     // Register variables.
-    const char *p = s.data(), *p2 = p;
+    const char *p = s.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         pGen->namedef(std::string(p, p2 - p));
@@ -214,7 +229,7 @@ assign_stmt ::= NAME(A) ASSIGN expr(B) SEMICOLON. {
 assignMulti_stmt ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
     (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
 
-    const char *p = A->data.data(), *p2 = p;
+    const char *p = A->data.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         std::string varname(p, p2 - p);
@@ -328,7 +343,7 @@ break_stmt ::= BREAK SEMICOLON(T). {
 // Function declaration
 function_start(start) ::= FUNCTION NAME(name).  {
     // Preprocess name
-    if('A' <= name->data[0] && name->data[0] <= 'Z');  // Name starts with uppercase -> Don't modify
+    if(name->data[0] == '_' || ('A' <= name->data[0] && name->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
     else {
         name->data = "f_" + name->data;
     }
@@ -346,7 +361,7 @@ function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
 
     // Register variables.
     const std::string& s = args->data;
-    const char *p = s.data(), *p2 = p;
+    const char *p = s.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         std::string varname(p, p2 - p);
@@ -374,6 +389,12 @@ fdef_chunk ::= function_header stmt . {
 }
 
 
+// returns
+return_stmt ::= RETURN emptyableExprList(exprs). {
+    (*pGen) << "EUDReturn(" << exprs->data << ")" << std::endl;
+}
+
+
 // General statements
 stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "General syntax error"); }
 
@@ -389,6 +410,7 @@ stmt ::= if_stmt.
 stmt ::= while_stmt.
 stmt ::= continue_stmt.
 stmt ::= break_stmt.
+stmt ::= return_stmt.
 stmt ::= block.
 
 
@@ -456,6 +478,7 @@ std::string ParseString(const std::string& code)
     ParseFree(pParser, free );
 
     if(!errorOccured) return pGen.str();
-    else throw std::runtime_error("Invalid syntax");
+    // else throw std::runtime_error("Invalid syntax");
+    return pGen.str();
 }
 }
