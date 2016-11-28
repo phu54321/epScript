@@ -130,6 +130,26 @@ expr(A) ::= LPAREN expr(B) RPAREN. {
     A = mkTokenTemp(B, *pGen);
 }
 
+expr(A) ::= MAPSTRING LPAREN STRING(B) RPAREN. {
+    B->data = "EncodeString(" + B->data + ")";
+    A = mkTokenTemp(B, *pGen);
+}
+
+expr(A) ::= UNIT LPAREN STRING(B) RPAREN. {
+    B->data = "EncodeUnit(" + B->data + ")";
+    A = mkTokenTemp(B, *pGen);
+}
+
+expr(A) ::= SWITCH LPAREN STRING(B) RPAREN. {
+    B->data = "EncodeSwitch(" + B->data + ")";
+    A = mkTokenTemp(B, *pGen);
+}
+
+expr(A) ::= LOCATION LPAREN STRING(B) RPAREN. {
+    B->data = "EncodeLocation(" + B->data + ")";
+    A = mkTokenTemp(B, *pGen);
+}
+
 expr(A) ::= expr(B) PLUS        expr(C). { A = binaryMerge(B, "+",  C, *pGen); }
 expr(A) ::= expr(B) MINUS       expr(C). { A = binaryMerge(B, "-",  C, *pGen); }
 expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binaryMerge(B, "*",  C, *pGen); }
@@ -146,12 +166,6 @@ expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " =
 expr(A) ::= MINUS   expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = -" << B->data << std::endl; delete B; }
 expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = ~" << B->data << std::endl; delete B; }
 
-// Logical expressions
-lexpr(A) ::= CONDITIONNAME(B) LPAREN exprList(C) RPAREN. {
-    B->data = B->data + "(" + C->data + ")";
-    delete C;
-    A = mkTokenTemp(B, *pGen);
-}
 
 lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C, *pGen); }
 lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C, *pGen); }
@@ -377,7 +391,27 @@ return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
 
 
 // Trigger statements
-action(X) ::= ACTIONNAME(A) LPAREN exprList(B) RPAREN SEMICOLON. {
+caExpr(A) ::= expr(B). { A = B; }
+caExpr(A) ::= STRING(B). { A = B; }
+caExpr(A) ::= caExpr(B) COMMA caExpr(C). {
+    B->data = B->data + ", " + C->data;
+    B->type = TOKEN_TEMP;
+    A = B;
+}
+
+
+lexpr(A) ::= CONDITIONNAME(B) LPAREN caExpr(C) RPAREN. {
+    B->data = B->data + "(" + C->data + ")";
+    delete C;
+    A = mkTokenTemp(B, *pGen);
+}
+
+lexpr(A) ::= CONDITIONNAME(B) LPAREN RPAREN. {
+    B->data = B->data + "()";
+    A = mkTokenTemp(B, *pGen);
+}
+
+action(X) ::= ACTIONNAME(A) LPAREN caExpr(B) RPAREN SEMICOLON. {
     X = genTemp(A);
     X->data =  A->data + "(" + B->data + ")";
     delete A; delete B;

@@ -2,7 +2,7 @@
 
 bool isNameLeadChar(char ch) {
     return (
-            ch == '_' || ch == '$' ||
+            ch == '_' ||
             ('a' <= ch && ch <= 'z') ||
             ('A' <= ch && ch <= 'Z')
     );

@@ -94,6 +94,41 @@ Token* TokenizerImpl::getToken() {
         return TK(TOKEN_NAME, identifier);
     }
 
+    // String
+    if(*cursor == '\"') {
+        std::vector<char> buffer;  // String to hold escaped content.
+        buffer.push_back('\"');
+        cursor++;
+
+        while(*cursor != '\"') {
+            if(*cursor == '\n' || *cursor == EOF) { // Line end during string - Invalid token
+                // We don't skip newlines We need to count lines using them.
+                // Return invalid token message
+                return TK(TOKEN_INVALID);
+            }
+            else if(*cursor == '\\') {  // Escape character
+                cursor++;
+                if(*cursor == '\n') {
+                    cursor++;
+                }
+
+                // No special procesing is required. Python will take care of that.
+                else {
+                    buffer.push_back('\\');
+                    buffer.push_back(*cursor);
+                    cursor++;
+                }
+            }
+            else {
+                buffer.push_back(*cursor);
+                cursor++;
+            }
+        }
+        cursor++;
+        buffer.push_back('\"');
+        return TK(TOKEN_STRING, std::string(buffer.data(), buffer.size()));
+    }
+
     // Numbers
     if('0' <= *cursor && *cursor <= '9') {
         const char* numberStart = cursor;
@@ -119,6 +154,12 @@ Token* TokenizerImpl::getToken() {
             return TK(TOKEN_NUMBER, std::string(numberStart, cursor - numberStart));
         }
     }
+
+    // Mapdata getter
+    MATCHSTR("$U", TOKEN_UNITNAME);
+    MATCHSTR("$L", TOKEN_LOCNAME);
+    MATCHSTR("$S", TOKEN_SWITCHNAME);
+    MATCHSTR("$T", TOKEN_MAPSTRING);
 
     // Operators
     MATCHSTR("&&", TOKEN_LAND);

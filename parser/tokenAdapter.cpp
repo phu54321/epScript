@@ -49,6 +49,12 @@ int getConvertedType(int type) {
         case TOKEN_RETURN: return RETURN;
         case TOKEN_CONDITION: return CONDITIONNAME;
         case TOKEN_ACTION: return ACTIONNAME;
+        case TOKEN_STRING: return STRING;
+
+        case TOKEN_MAPSTRING: return MAPSTRING;
+        case TOKEN_UNITNAME: return UNIT;
+        case TOKEN_SWITCHNAME: return SWITCH;
+        case TOKEN_LOCNAME: return LOCATION;
         default: return -1;
     }
 }
