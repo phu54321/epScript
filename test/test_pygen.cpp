@@ -19,7 +19,7 @@ TEST_CASE("String output") {
     pgen.unindent();
     pgen.unindent();
     pgen << 4 << std::endl;
-            REQUIRE(pgen.str() == "1+1\n    2\n        3\n4\n");
+            REQUIRE(pgen.str() == "1+1\n    2\n        3\n\n4\n");
 }
 
 TEST_CASE("Closure name definition") {

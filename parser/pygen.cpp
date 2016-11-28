@@ -13,7 +13,7 @@ struct Closure {
 
 class PyGeneratorBuf : public std::streambuf {
 public:
-    PyGeneratorBuf() : lineStart(false) {
+    PyGeneratorBuf() : lineStart(false), justUnindented(false) {
         _closureList.push_back(Closure());
     }
     ~PyGeneratorBuf() {}
@@ -27,6 +27,7 @@ public:
             throw std::logic_error("Not enough closures");
         }
         _closureList.pop_back();
+        justUnindented = true;
     }
 
     virtual int overflow (int c) {
@@ -36,6 +37,10 @@ public:
 
         // Indent at the start of the line
         if (lineStart) {
+            if(justUnindented) {
+                os.put('\n');
+                justUnindented = false;
+            }
             // Sequential linebreaks -> don't indent empty line
             if(ch == '\n') {
                 os.put(ch);
@@ -79,6 +84,7 @@ private:
     std::ostringstream os;
     std::vector<Closure> _closureList;
     bool lineStart;
+    bool justUnindented;
 };
 
 

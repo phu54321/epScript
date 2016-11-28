@@ -9,6 +9,7 @@ def f_x():
     _t7 = EUDOr([_t2, _t6])
     EUDJumpIfNot(_t7, _t1)
     _t1 << NextTrigger()
+
 @EUDFunc
 def f_y():
     _t1 = Forward()
