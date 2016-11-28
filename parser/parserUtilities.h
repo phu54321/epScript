@@ -37,23 +37,6 @@ static void throw_error(int line, int code, const std::string& message) {
 
 ////
 
-
-// Loop block related
-struct LBlock {
-    std::string lbegin;
-    std::string lcont;
-    std::string lend;
-};
-
-std::vector<LBlock> lblocks;
-
-LBlock* getLastBlock() {
-    if(lblocks.empty()) return nullptr;
-    return &lblocks[lblocks.size() - 1];
-}
-
-////
-
 // trim from start
 static inline std::string &ltrim(std::string &s) {
     s.erase(s.begin(), std::find_if(s.begin(), s.end(),

@@ -235,65 +235,47 @@ block ::= LBRACKET error RBRACKET(A). {
 // If~Else block
 if_start(A) ::= IF(B). {
     A = genTemp(B);
-    (*pGen) << A->data << " = Forward()" << std::endl;
+    (*pGen) << A->data << " = EUDIf()" << std::endl;
 }
-if_header(C) ::= if_start(A) LPAREN lexpr(B) RPAREN. {
-    (*pGen) << "EUDJumpIfNot(" << B->data << ", " << A->data << ")" << std::endl;
-    C = A; delete B;
-}
-
-if_stmt ::= if_header(A) stmt. [IFX] {
-    (*pGen) << A->data << " << NextTrigger()" << std::endl;
-    delete A;
+if_header ::= if_start(A) LPAREN lexpr(B) RPAREN. {
+    (*pGen) << "if " << A->data << "(" << B->data << "):" << std::endl;
+    pGen->indent();
+    delete A; delete B;
 }
 
-else_header(A) ::= if_header(B) stmt ELSE(C). [ELSE] {
-    A = genTemp(C);
-    (*pGen) << A->data << " = Forward()" << std::endl;
-    (*pGen) << "EUDJump(" << A->data << ")" << std::endl;
-    (*pGen) << B->data << " << NextTrigger()" << std::endl;
-    delete B;
+if_stmt ::= if_header stmt. [IFX] {
+    pGen->unindent();
+    (*pGen) << "EUDEndIf()" << std::endl;
 }
 
-if_stmt ::= else_header(A) stmt. {
-    (*pGen) << A->data << " << NextTrigger()" << std::endl;
-    delete A;
+else_header ::= if_header stmt ELSE. [ELSE] {
+    pGen->unindent();
+    (*pGen) << "if EUDElse():" << std::endl;
+    pGen->indent();
+}
+
+if_stmt ::= else_header stmt. {
+    pGen->unindent();
+    (*pGen) << "EUDEndIf()" << std::endl;
 }
 
 
 // While block
 while_start(A) ::= WHILE(B). {
-    auto lbegin = genTemp(B);
-    auto lend = genTemp(B);
-    lblocks.push_back({lbegin->data, lbegin->data, lend->data});
-
-    (*pGen) << lbegin->data << " = NextTrigger()" << std::endl;
-    (*pGen) << lend->data << " = Forward()" << std::endl;
-    A = lbegin;
+    A = genTemp(B);
+    (*pGen) << A->data << " = EUDWhile()" << std::endl;
     delete B;
 }
 
-while_cond ::= LPAREN lexpr(C) RPAREN(T). {
-    auto lblock = getLastBlock();
-    if(!lblock) {
-        throw_error(T->line, 4217, "While scope is missing");
-    }
-    else {
-        (*pGen) << "EUDJumpIfNot(" << C->data << ", " << lblock->lend << ")" << std::endl;
-    }
-    delete C; delete T;
+while_header ::= while_start(A) LPAREN lexpr(B) RPAREN. {
+    (*pGen) << "if " << A->data << "(" << B->data << "):" << std::endl;
+    pGen->indent();
+    delete A; delete B;
 }
 
-while_stmt ::= while_start(T) while_cond stmt. {
-    auto lblock = getLastBlock();
-    if(!lblock) {
-        throw_error(T->line, 4217, "While scope is missing");
-    }
-    else {
-        (*pGen) << "EUDJump(" << lblock->lbegin << ")" << std::endl;
-        (*pGen) << lblock->lend << " << NextTrigger()" << std::endl;
-    }
-    delete T;
+while_stmt ::= while_header stmt. {
+    pGen->unindent();
+    (*pGen) << "EUDEndIf()" << std::endl;
 }
 
 // Foreach block
@@ -308,26 +290,12 @@ foreach_stmt ::= foreach_header stmt. {
 
 
 // Loop exits
-continue_stmt ::= CONTINUE SEMICOLON(T). {
-    auto lblock = getLastBlock();
-    if(!lblock) {
-        throw_error(T->line, 1554, "Continue inside non-loop");
-    }
-    else {
-        (*pGen) << "EUDJump(" << lblock->lcont << ")" << std::endl;
-    }
-    delete T;
+continue_stmt ::= CONTINUE SEMICOLON. {
+    (*pGen) << "EUDContinue()" << std::endl;
 }
 
-break_stmt ::= BREAK SEMICOLON(T). {
-    auto lblock = getLastBlock();
-    if(!lblock) {
-        throw_error(T->line, 5594, "Break inside non-loop");
-    }
-    else {
-        (*pGen) << "EUDJump(" << lblock->lend << ")" << std::endl;
-    }
-    delete T;
+break_stmt ::= BREAK SEMICOLON. {
+    (*pGen) << "EUDBreak()" << std::endl;
 }
 
 // Function declaration
@@ -423,8 +391,6 @@ std::string ParseString(const std::string& code)
     PyGenerator pGen;
     Token* token;
     int line = 0;
-
-    lblocks.clear();
 
 #ifdef PARSER_DEBUG
     std::cout << "Parsing string [[[\n" << code << "\n]]]\n";
