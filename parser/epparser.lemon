@@ -86,6 +86,8 @@ nameList(A) ::= NAME(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->da
 nameList(A) ::= nameList(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 exprList(A) ::= expr(B). { A = B; }
 exprList(A) ::= exprList(B) COMMA expr(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+emptyableExprList(A) ::= exprList(B). { A = B; }
+emptyableExprList(A) ::= . { A = new Token(TOKEN_TEMP, "", -1); }
 
 // Related to expressions
 expr(A) ::= NUMBER(B). { A = B; }
@@ -96,6 +98,25 @@ expr(A) ::= NAME(B). {
     }
     A = B;
 }
+
+// Function calls
+expr(out) ::= NAME(name) LPAREN emptyableExprList(exprs) RPAREN. {
+    // Preprocess name
+    if('A' <= name->data[0] && name->data[0] <= 'Z');  // Name starts with uppercase -> Don't modify
+    else {
+        name->data = "f_" + name->data;
+    }
+
+    if (pGen->undefined(name->data)) {
+        throw_error(name->line, 4449, ("Undefined function " + name->data));
+        pGen->namedef(name->data);
+    }
+
+    out = genTemp(name);
+    (*pGen) << out->data << " = " << name->data << "(" << exprs->data << ")" << std::endl;
+    delete name; delete exprs;
+}
+
 
 // Binary operators
 expr(A) ::= expr(B) PLUS        expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " + "  << C->data << std::endl; delete B; delete C; }
@@ -311,6 +332,7 @@ function_start(start) ::= FUNCTION NAME(name).  {
     else {
         name->data = "f_" + name->data;
     }
+
     start = name;
     if(!pGen->namedef(name->data)) {
         throw_error(name->line, 4495, "Duplicate function name " + name->data);
@@ -321,6 +343,20 @@ function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
     (*pGen) << "@EUDFunc" << std::endl;
     (*pGen) << "def " << fname->data << "(" << args->data << "):" << std::endl;
     pGen->indent();
+
+    // Register variables.
+    const std::string& s = args->data;
+    const char *p = s.data(), *p2 = p;
+    while(1) {
+        while(*p2 != '\0' && *p2 != ',') p2++;
+        std::string varname(p, p2 - p);
+        if(!pGen->namedef(varname)) {
+            throw_error(args->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
+        }
+        if(*p2 == '\0') break;
+        p = p2 = p2 + 2;
+    }
+
     tmpIndex = 1;
     delete fname; delete args;
 }

@@ -30,6 +30,7 @@ TEST_CASE("Simple expression parsing") {
         check("arith/arith_add.eps", "arith/arith_add.py");
         check("arith/arith_times.eps", "arith/arith_times.py");
         check("arith/arith_prec.eps", "arith/arith_prec.py");
+        check("arith/arith_fcall.eps", "arith/arith_fcall.py");
     }
 
     SUBCASE("Error handling") {
