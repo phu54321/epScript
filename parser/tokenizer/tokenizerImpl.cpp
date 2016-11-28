@@ -47,15 +47,23 @@ Token* TokenizerImpl::TK(TokenType type, const std::string& str) {
 static_assert(sizeof("string") == 7, "sizeof string should be strlen(str) + 1");
 
 Token* TokenizerImpl::getToken() {
-    // Skip spaces, including newline
-    while(isSpaceOrNewline(*cursor)) {
-        // Skipped through newline.
-        if(*cursor == '\n') {
-            line++;
-            cursor++;
+    do {
+        // Skip spaces, including newline
+        while (isSpaceOrNewline(*cursor)) {
+            // Skipped through newline.
+            if (*cursor == '\n') {
+                line++;
+                cursor++;
+            } else cursor++;
         }
-        else cursor++;
-    }
+
+        // Skip line comments
+        if (cursor[0] == '/' && cursor[1] == '/') {
+            while(*cursor != '\n') cursor++;
+            continue;
+        }
+        break;
+    } while(true);
 
     // EOF check
     if(cursor == data.data() + data.size() - 2) {
@@ -146,6 +154,7 @@ Token* TokenizerImpl::getToken() {
     MATCHSTR(":", TOKEN_COLON);
     MATCHSTR(";", TOKEN_SEMICOLON);
 
+    printf("Unknown token %c(%d)\n", *cursor, *cursor);
     cursor++;  // Skip invalid token
     return TK(TOKEN_INVALID);
 }

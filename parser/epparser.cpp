@@ -1660,25 +1660,6 @@ void Parse(
 
 // #define PARSER_DEBUG
 
-// trim from start
-static inline std::string &ltrim(std::string &s) {
-    s.erase(s.begin(), std::find_if(s.begin(), s.end(),
-            std::not1(std::ptr_fun<int, int>(std::isspace))));
-    return s;
-}
-
-// trim from end
-static inline std::string &rtrim(std::string& s) {
-    s.erase(std::find_if(s.rbegin(), s.rend(),
-            std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
-    return s;
-}
-
-// trim from both ends
-static inline std::string trim(std::string s) {
-    return ltrim(rtrim(s));
-}
-
 std::string ParseString(const std::string& code)
 {
     std::istringstream is(code);
@@ -1718,4 +1699,4 @@ std::string ParseString(const std::string& code)
     // else throw std::runtime_error("Invalid syntax");
     return pGen.str();
 }
-#line 1722 "parser/epparser.c"
+#line 1703 "parser/epparser.c"
