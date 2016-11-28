@@ -2,10 +2,11 @@
 #include "doctest.hpp"
 #include <string>
 #include <cstdio>
+#include <regex>
 
 static std::string get_testdata(std::string dataname) {
     dataname = "../test/testdata/" + dataname;
-    FILE* fp = fopen(dataname.c_str(), "rb");
+    FILE* fp = fopen(dataname.c_str(), "r");
     if(fp == nullptr) {
         return "";
     }
@@ -21,7 +22,15 @@ static std::string get_testdata(std::string dataname) {
     return code;
 }
 
-#define check(infile, outfile) REQUIRE(ParseString(get_testdata(infile)) == get_testdata(outfile))
+std::regex commentLine("^ *#.+\n");
+std::regex commentLineML("\n *#.+");
+std::string uncommentString(std::string&& data) {
+    std::string s = std::regex_replace(data, commentLine, "");
+    return std::regex_replace(s, commentLineML, "");
+}
+
+
+#define check(infile, outfile) CHECK(uncommentString(ParseString(get_testdata(infile))) == get_testdata(outfile))
 
 TEST_SUITE("Parser tests");
 

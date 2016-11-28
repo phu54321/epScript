@@ -17,7 +17,7 @@ public:
     // String generation
     std::string str();
     void indent();
-    void unindent(bool issueNewline = true);
+    void unindent(bool issueNewline);
 
     // Variable table generation
     bool namedef(const std::string& name);

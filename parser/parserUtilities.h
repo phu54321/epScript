@@ -9,6 +9,7 @@
 #include "pygen.h"
 #include <string>
 #include <iostream>
+#include <regex>
 
 static bool errorOccured = false;
 
@@ -78,5 +79,10 @@ Token* binaryMerge(Token* a, const std::string& opstr, Token* b, PyGenerator& pG
     return mkTokenTemp(b, pGen);
 }
 
+
+static std::regex iwCollapseRegex("\n( *)(_t\\d+) = (EUDWhile|EUDIf)\\(\\)\n\\1if \\2\\((.+)\\):");
+std::string iwCollapse(std::string&& in) {
+    return std::regex_replace(in, iwCollapseRegex, "\n$1if $3()($4):");
+}
 
 #endif //EPSCRIPT_PARSERUTILITIES_H

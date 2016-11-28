@@ -16,8 +16,8 @@ TEST_CASE("String output") {
     pgen.indent();
     pgen << 3 << std::endl;
             REQUIRE(pgen.str() == "1+1\n    2\n        3\n");
-    pgen.unindent();
-    pgen.unindent();
+    pgen.unindent(true);
+    pgen.unindent(true);
     pgen << 4 << std::endl;
             REQUIRE(pgen.str() == "1+1\n    2\n        3\n\n4\n");
 }
@@ -34,7 +34,7 @@ TEST_CASE("Closure name definition") {
             REQUIRE(pgen.undefined("HelloWorld") == false);
             REQUIRE(pgen.namedef("HelloWorld") == true);  // Hiding global declaration
             REQUIRE(pgen.namedef("x") == true);
-    pgen.unindent();
+    pgen.unindent(true);
             REQUIRE(pgen.undefined("x") == true);
             REQUIRE(pgen.undefined("HelloWorld") == false);
 }

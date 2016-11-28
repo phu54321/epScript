@@ -281,18 +281,18 @@ if_header ::= if_start(A) LPAREN lexpr(B) RPAREN. {
 }
 
 if_stmt ::= if_header stmt. [IFX] {
-    pGen->unindent();
+    pGen->unindent(false);
     (*pGen) << "EUDEndIf()" << std::endl;
 }
 
 else_header ::= if_header stmt ELSE. [ELSE] {
-    pGen->unindent();
-    (*pGen) << "if EUDElse():" << std::endl;
+    pGen->unindent(false);
+    (*pGen) << "if EUDElse()():" << std::endl;
     pGen->indent();
 }
 
 if_stmt ::= else_header stmt. {
-    pGen->unindent();
+    pGen->unindent(false);
     (*pGen) << "EUDEndIf()" << std::endl;
 }
 
@@ -311,8 +311,8 @@ while_header ::= while_start(A) LPAREN lexpr(B) RPAREN. {
 }
 
 while_stmt ::= while_header stmt. {
-    pGen->unindent();
-    (*pGen) << "EUDEndIf()" << std::endl;
+    pGen->unindent(false);
+    (*pGen) << "EUDEndWhile()" << std::endl;
 }
 
 // Foreach block
@@ -322,7 +322,7 @@ foreach_header ::= FOR LPAREN nameList(names) COLON exprList(exprs) RPAREN. {
 }
 
 foreach_stmt ::= foreach_header stmt. {
-    pGen->unindent();
+    pGen->unindent(true);
 }
 
 
@@ -375,7 +375,7 @@ function_header ::= function_start(fname) LPAREN RPAREN. {
 }
 
 fdef_chunk ::= function_header stmt. {
-    pGen->unindent();
+    pGen->unindent(true);
 }
 
 
@@ -455,7 +455,7 @@ stmt ::= vdefMultiAssign_stmt.
 stmt ::= vdefMulti_stmt.
 stmt ::= assign_stmt.
 stmt ::= assignMulti_stmt.
-stmt ::= expr(A) SEMICOLON. { (*pGen) << A->data << std::endl; }
+stmt ::= funcexpr(A) SEMICOLON. { (*pGen) << A->data << std::endl; }
 stmt ::= actionStmt.
 stmt ::= if_stmt.
 stmt ::= while_stmt.
@@ -513,8 +513,7 @@ std::string ParseString(const std::string& code)
     Parse (pParser, 0, nullptr, &pGen);
     ParseFree(pParser, free );
 
-    if(!errorOccured) return pGen.str();
-    // else throw std::runtime_error("Invalid syntax");
-    return pGen.str();
+    if(!errorOccured) return iwCollapse(pGen.str());
+    else throw std::runtime_error("Invalid syntax");
 }
 }

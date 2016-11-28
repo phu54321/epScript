@@ -25,12 +25,24 @@ pygen.h
 /Users/whyask37/ClionProjects/epScript/parser/pygen.h
 tokenAdapter.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.h
-tokenizer/tokenizer.h
-/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+parserUtilities.h
+/Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
 stdio.h
 -
 
 /Users/whyask37/ClionProjects/epScript/parser/epparser.h
+
+/Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
+tokenizer/tokenizer.h
+/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+pygen.h
+/Users/whyask37/ClionProjects/epScript/parser/pygen.h
+string
+-
+iostream
+-
+regex
+-
 
 /Users/whyask37/ClionProjects/epScript/parser/pygen.cpp
 string
@@ -61,6 +73,14 @@ tokenizer/tokenizer.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
 epparser.h
 /Users/whyask37/ClionProjects/epScript/parser/epparser.h
+
+/Users/whyask37/ClionProjects/epScript/parser/tokenizer/condAct.h
+string
+-
+
+/Users/whyask37/ClionProjects/epScript/parser/tokenizer/condact.cpp
+condAct.h
+/Users/whyask37/ClionProjects/epScript/parser/tokenizer/condAct.h
 
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.cpp
 tokChars.h
@@ -97,6 +117,8 @@ tokenizerImpl.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.h
 tokChars.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.h
+condAct.h
+/Users/whyask37/ClionProjects/epScript/parser/tokenizer/condAct.h
 
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.h
 tokenizer.h
@@ -160,6 +182,8 @@ doctest.hpp
 string
 -
 cstdio
+-
+regex
 -
 
 /Users/whyask37/ClionProjects/epScript/test/test_pygen.cpp
