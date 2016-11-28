@@ -41,6 +41,7 @@ int getConvertedType(int type) {
         case TOKEN_CONTINUE: return CONTINUE;
         case TOKEN_BREAK: return BREAK;
         case TOKEN_VAR: return VAR;
+        case TOKEN_FUNCTION: return FUNCTION;
         default: return -1;
     }
 }

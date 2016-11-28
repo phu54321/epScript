@@ -37,3 +37,4 @@
 #define WHILE                          37
 #define CONTINUE                       38
 #define BREAK                          39
+#define FUNCTION                       40
