@@ -33,7 +33,7 @@ void commaListIter(const std::string& s, T func) {
 }
 
 static void throw_error(int line, int code, const std::string& message) {
-    std::cout << "[Error " << code << "] Line " << line << " : " << message << std::endl;
+    std::cerr << "[Error " << code << "] Line " << line << " : " << message << std::endl;
     errorOccured = true;
 }
 

@@ -14,11 +14,10 @@ int currentTokenizingLine;
 
 %syntax_error {
     errorOccured = true;
-    throw_error(currentTokenizingLine, 629, "General syntax error");
 }
 
 %parse_failure {
-    throw_error(-1, 629, "Unrecoverable error");
+    throw_error(currentTokenizingLine, 629, "Unrecoverable error");
 }
 
 ////////
