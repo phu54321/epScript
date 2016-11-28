@@ -40,7 +40,6 @@
 %left DIVIDE MULTIPLY MOD.
 %right UNARY BITNOT.
 %nonassoc NUMBER NAME.
-%left FUNCCALL.
 
 %nonassoc IFX.
 %nonassoc IFNOT.
@@ -50,7 +49,10 @@
 program ::= chunks.
 
 // Common expressions
-numList(A) ::= NUMBER(B). { A = B; }
+numList(A) ::= NUMBER(B) COMMA NUMBER(C). {
+    A = new Token(B->data + ", " + C->data, C);
+    delete B; delete C;
+}
 numList(A) ::= numList(B) COMMA NUMBER(C). {
     A = new Token(B->data + ", " + C->data, C);
     delete B; delete C;
@@ -62,11 +64,14 @@ exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList(C) RSQBRACKET RSQBRACK
     (*pGen) << A->data << " = SelectReturns(" << B->data << ", [" << C->data << "])" << std::endl;
     delete B; delete C;
 }
+expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
+    A = genTemp(C);
+    (*pGen) << A->data << " = SelectReturns(" << B->data << ", [" << C->data << "])" << std::endl;
+    delete B; delete C;
+}
 
 exprList(A) ::= expr(B). [COMMA] { A = B; }
 exprList(A) ::= exprList(B) COMMA expr(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
-emptyableExprList(A) ::= exprList(B). [COMMA] { A = B; }
-emptyableExprList(A) ::= . [COMMA] { A = new Token(TOKEN_TEMP, "", -1); }
 
 // Related to expressions
 expr(A) ::= NUMBER(B). { A = B; }
@@ -79,7 +84,7 @@ expr(A) ::= NAME(B). {
 }
 
 // Function calls
-funcexpr(out) ::= NAME(name) LPAREN emptyableExprList(exprs) RPAREN. {
+funcexpr(out) ::= NAME(name) LPAREN exprList(exprs) RPAREN.  [FUNCCALL] {
     // Preprocess name
     if(name->data[0] == '_' || ('A' <= name->data[0] && name->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
     else {
@@ -98,8 +103,28 @@ funcexpr(out) ::= NAME(name) LPAREN emptyableExprList(exprs) RPAREN. {
 }
 
 
+funcexpr(out) ::= NAME(name) LPAREN RPAREN.  [FUNCCALL] {
+    // Preprocess name
+    if(name->data[0] == '_' || ('A' <= name->data[0] && name->data[0] <= 'Z'));  // Name starts with uppercase -> Don't modify
+    else {
+        name->data = "f_" + name->data;
+    }
+    /*
+    if (pGen->undefined(name->data)) {
+        throw_error(name->line, 4449, ("Undefined function " + name->data));
+        pGen->namedef(name->data);
+    }
+    */
+
+    out = genTemp(name);
+    (*pGen) << out->data << " = " << name->data << "()" << std::endl;
+    delete name;
+}
+
+
 // Binary operators
 expr(A) ::= funcexpr(B).  { A = B; }
+expr(A) ::= LPAREN expr(B) RPAREN. [PARENEXPR]  { A = B; }
 expr(A) ::= expr(B) PLUS        expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " + "  << C->data << std::endl; delete B; delete C; }
 expr(A) ::= expr(B) MINUS       expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " - "  << C->data << std::endl; delete B; delete C; }
 expr(A) ::= expr(B) MULTIPLY    expr(C). { A = genTemp(C); (*pGen) << A->data << " = " << B->data << " * "  << C->data << std::endl; delete B; delete C; }
@@ -271,6 +296,17 @@ while_stmt ::= while_start(T) while_cond stmt. {
     delete T;
 }
 
+// Foreach block
+foreach_header ::= FOR LPAREN nameList(names) COLON exprList(exprs) RPAREN. {
+    (*pGen) << "for " << names->data << " in " << exprs->data << ":" << std::endl;
+    pGen->indent();
+}
+
+foreach_stmt ::= foreach_header stmt. {
+    pGen->unindent();
+}
+
+
 // Loop exits
 continue_stmt ::= CONTINUE SEMICOLON(T). {
     auto lblock = getLastBlock();
@@ -339,8 +375,12 @@ fdef_chunk ::= function_header stmt . {
 
 
 // returns
-return_stmt ::= RETURN emptyableExprList(exprs). {
+return_stmt ::= RETURN SEMICOLON. {
+    (*pGen) << "EUDReturn()" << std::endl;
+}
+return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
     (*pGen) << "EUDReturn(" << exprs->data << ")" << std::endl;
+    delete exprs;
 }
 
 
@@ -357,6 +397,7 @@ stmt ::= assignMulti_stmt.
 stmt ::= expr SEMICOLON.
 stmt ::= if_stmt.
 stmt ::= while_stmt.
+stmt ::= foreach_stmt.
 stmt ::= continue_stmt.
 stmt ::= break_stmt.
 stmt ::= return_stmt.

@@ -59,7 +59,7 @@ include CMakeFiles/epScriptTest.dir/flags.make
 
 ../parser/epparser.cpp: ../parser/epparser.lemon
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating ../parser/epparser.cpp, ../parser/epparser.h"
-	cd /Users/whyask37/ClionProjects/epScript && lemon parser/epparser.lemon
+	cd /Users/whyask37/ClionProjects/epScript && lemon -c parser/epparser.lemon
 	cd /Users/whyask37/ClionProjects/epScript && rm -f parser/epparser.cpp && mv parser/epparser.c parser/epparser.cpp
 
 ../parser/epparser.h: ../parser/epparser.cpp
