@@ -8,6 +8,7 @@ CMakeFiles/epScript.dir/main.cpp.o: ../parser/tokenizer/tokenizer.h
 
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/epparser.cpp
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/epparser.h
+CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/parserUtilities.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/pygen.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/tokenAdapter.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.o: ../parser/tokenizer/tokenizer.h

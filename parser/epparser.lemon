@@ -1,5 +1,4 @@
 %include {
-
 #include <stdio.h>
 #include <assert.h>
 #include <string>
@@ -8,39 +7,7 @@
 #include "epparser.h"
 #include "pygen.h"
 #include "tokenAdapter.h"
-#include "tokenizer/tokenizer.h"
-
-static int tmpIndex = 0;
-static bool errorOccured = false;
-Token* genTemp(Token* lineSrc) {
-    static char output[20] = "_t";
-    sprintf(output, "_t%d", tmpIndex++);
-    return new Token(output, lineSrc);
-}
-
-void throw_error(int line, int code, const std::string& message) {
-    std::cout << "[Error " << code << "] Line " << line << " : " << message << std::endl;
-    errorOccured = true;
-}
-
-}
-
-%include {
-
-// Loop block related
-struct LBlock {
-    std::string lbegin;
-    std::string lcont;
-    std::string lend;
-};
-
-std::vector<LBlock> lblocks;
-
-LBlock* getLastBlock() {
-    if(lblocks.empty()) return nullptr;
-    return &lblocks[lblocks.size() - 1];
-}
-
+#include "parserUtilities.h"
 }
 
 %syntax_error {
@@ -185,17 +152,11 @@ vdefMulti_stmt ::= VAR nameList(A) SEMICOLON. {
     (*pGen) << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
 
     // Register variables.
-    const char *p = s.c_str(), *p2 = p;
-    while(1) {
-        while(*p2 != '\0' && *p2 != ',') p2++;
-        std::string varname(p, p2 - p);
+    commaListIter(s, [&](const std::string& varname) {
         if(!pGen->namedef(varname)) {
             throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
         }
-        if(*p2 == '\0') break;
-        p = p2 = p2 + 2;
-    }
-
+    });
     delete A;
 }
 
@@ -206,13 +167,11 @@ vdefMultiAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
     (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
 
     // Register variables.
-    const char *p = s.c_str(), *p2 = p;
-    while(1) {
-        while(*p2 != '\0' && *p2 != ',') p2++;
-        pGen->namedef(std::string(p, p2 - p));
-        if(*p2 == '\0') break;
-        p = p2 = p2 + 2;
-    }
+    commaListIter(s, [&](const std::string& varname) {
+        if(!pGen->namedef(varname)) {
+            throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
+        }
+    });
 
     delete A; delete B;
 }
@@ -229,17 +188,12 @@ assign_stmt ::= NAME(A) ASSIGN expr(B) SEMICOLON. {
 assignMulti_stmt ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
     (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
 
-    const char *p = A->data.c_str(), *p2 = p;
-    while(1) {
-        while(*p2 != '\0' && *p2 != ',') p2++;
-        std::string varname(p, p2 - p);
+    commaListIter(A->data, [&](const std::string& varname) {
         if(pGen->undefined(varname)) {
             throw_error(A->line, 103, ("Undeclared variable \'" + varname + "\'"));
             pGen->namedef(varname);
         }
-        if(*p2 == '\0') break;
-        p = p2 = p2 + 2;
-    }
+    });
 
     delete A; delete B;
 }
@@ -361,16 +315,11 @@ function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
 
     // Register variables.
     const std::string& s = args->data;
-    const char *p = s.c_str(), *p2 = p;
-    while(1) {
-        while(*p2 != '\0' && *p2 != ',') p2++;
-        std::string varname(p, p2 - p);
+    commaListIter(args->data, [&](const std::string& varname) {
         if(!pGen->namedef(varname)) {
             throw_error(args->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
         }
-        if(*p2 == '\0') break;
-        p = p2 = p2 + 2;
-    }
+    });
 
     tmpIndex = 1;
     delete fname; delete args;
@@ -452,6 +401,8 @@ std::string ParseString(const std::string& code)
     PyGenerator pGen;
     Token* token;
     int line = 0;
+
+    lblocks.clear();
 
 #ifdef PARSER_DEBUG
     std::cout << "Parsing string [[[\n" << code << "\n]]]\n";
