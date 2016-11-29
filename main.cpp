@@ -1,30 +1,13 @@
 #include <cstdio>
 #include <fstream>
 #include <iostream>
-#include "parser/tokenAdapter.h"
+#include "parser/parser.h"
 #include <unistd.h>
 
 #define VERSION "v0.1a"
 
 extern bool PARSER_DEBUG;
 
-std::string getFile(const std::string& fname) {
-    FILE* fp = fopen(fname.c_str(), "rb");
-    if(fp == nullptr) {
-        throw std::runtime_error("Input file not found : " + fname);
-    }
-
-    fseek(fp, 0, SEEK_END);
-    long fsize = ftell(fp);
-    rewind(fp);
-
-    char* data = new char[fsize];
-    fread(data, 1, fsize, fp);
-    fclose(fp);
-    std::string code(data, fsize);
-    delete[] data;
-    return code;
-}
 
 int usage() {
     printf("Usage : epScript [-v]\n");
@@ -71,7 +54,7 @@ int main(int argc, char** argv) {
         if(ofname == "") ofname = ifname.substr(0, ifname.find_last_of('.')) + ".py";
         try {
             std::string code = getFile(ifname);
-            std::string out = ParseString(code);
+            std::string out = addStubCode(ParseString(code));
             std::ofstream of(ofname);
             of << out << std::endl;
             of.close();
@@ -91,7 +74,7 @@ int main(int argc, char** argv) {
 
             try {
                 std::string code = getFile(ifname);
-                std::string out = ParseString(code);
+                std::string out = addStubCode(ParseString(code));
                 std::ofstream of(ofname);
                 of << out << std::endl;
                 of.close();

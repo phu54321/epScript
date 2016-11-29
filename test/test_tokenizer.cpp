@@ -4,7 +4,7 @@
 
 TEST_SUITE("Basic tokenization");
 TEST_CASE("Tokenizing arithmetic operators") {
-    std::stringstream test_input("+-*/");
+    std::string test_input("+-*/");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->type == TOKEN_PLUS);
             REQUIRE(tok.getToken()->type == TOKEN_MINUS);
@@ -15,7 +15,7 @@ TEST_CASE("Tokenizing arithmetic operators") {
 
 
 TEST_CASE("Tokenizing comparison operators") {
-    std::stringstream test_input("==!=<=>=<>");
+    std::string test_input("==!=<=>=<>");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->type == TOKEN_EQ);
             REQUIRE(tok.getToken()->type == TOKEN_NE);
@@ -27,7 +27,7 @@ TEST_CASE("Tokenizing comparison operators") {
 }
 
 TEST_CASE("Tokenizing brackets") {
-    std::stringstream test_input("()[]");
+    std::string test_input("()[]");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->type == TOKEN_LPAREN);
             REQUIRE(tok.getToken()->type == TOKEN_RPAREN);
@@ -38,7 +38,7 @@ TEST_CASE("Tokenizing brackets") {
 
 
 TEST_CASE("Tokenizing names") {
-    std::stringstream test_input("forvar test var for function if elif else while break continue v1");
+    std::string test_input("forvar test var for function if else while break continue v1");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->data == "forvar");  // forvar
             REQUIRE(tok.getToken()->data == "test");  // test
@@ -46,7 +46,6 @@ TEST_CASE("Tokenizing names") {
             REQUIRE(tok.getToken()->type == TOKEN_FOR);  // for
             REQUIRE(tok.getToken()->type == TOKEN_FUNCTION);  // function
             REQUIRE(tok.getToken()->type == TOKEN_IF);  // if
-            REQUIRE(tok.getToken()->type == TOKEN_ELIF);  // elif
             REQUIRE(tok.getToken()->type == TOKEN_ELSE);  // else
             REQUIRE(tok.getToken()->type == TOKEN_WHILE);  // while
             REQUIRE(tok.getToken()->type == TOKEN_BREAK);  // break
@@ -56,7 +55,7 @@ TEST_CASE("Tokenizing names") {
 }
 
 TEST_CASE("Tokenizing mixed names/operators") {
-    std::stringstream test_input("var v1 = a + b");
+    std::string test_input("var v1 = a + b");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->type == TOKEN_VAR);
             REQUIRE(tok.getToken()->data == "v1");
@@ -69,7 +68,7 @@ TEST_CASE("Tokenizing mixed names/operators") {
 
 
 TEST_CASE("Tokenizing complex operators") {
-    std::stringstream test_input("(a & b) || (c ^ b) && x + y[]");
+    std::string test_input("(a & b) || (c ^ b) && x + y[]");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->data == "(");
             REQUIRE(tok.getToken()->data == "a");
@@ -92,7 +91,7 @@ TEST_CASE("Tokenizing complex operators") {
 }
 
 TEST_CASE("Tokenizing numbers") {
-    std::stringstream test_input("0x123 + 456");
+    std::string test_input("0x123 + 456");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->data == "0x123");
             REQUIRE(tok.getToken()->type == TOKEN_PLUS);
@@ -101,7 +100,7 @@ TEST_CASE("Tokenizing numbers") {
 }
 
 TEST_CASE("Brackets") {
-    std::stringstream test_input(
+    std::string test_input(
             "a { \n"
                     "   b {\n"
                     "       c\n"

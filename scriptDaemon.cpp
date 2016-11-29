@@ -1,12 +1,11 @@
 #include <stdio.h>
-#include <stdlib.h> // exit()
 #include <io.h>
 #include <string>
 #include <sys/stat.h>
 #include <fstream>
 #include <unistd.h>
 #include <iostream>
-#include "parser/tokenAdapter.h"
+#include "parser/parser.h"
 
 std::string getFile(const std::string& fname);
 
@@ -41,7 +40,7 @@ int daemonTurn(void) {
                         std::string out;
                         try {
                             std::string code = getFile(ifname);
-                            out = ParseString(code);
+                            out = addStubCode(ParseString(code));
                         } catch(std::runtime_error e) {
                             printf("-- Error while parsing file \"%s\" : %s\n", c_file.name, e.what());
                             out = "raise RuntimeError('Compile error')";  // Stub

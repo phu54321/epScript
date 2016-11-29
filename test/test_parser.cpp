@@ -1,4 +1,4 @@
-#include "../parser/tokenAdapter.h"
+#include "../parser/parser.h"
 #include "doctest.hpp"
 #include <string>
 #include <cstdio>
@@ -6,20 +6,7 @@
 
 static std::string get_testdata(std::string dataname) {
     dataname = "../test/testdata/" + dataname;
-    FILE* fp = fopen(dataname.c_str(), "r");
-    if(fp == nullptr) {
-        return "";
-    }
-    fseek(fp, 0, SEEK_END);
-    size_t fsize = ftell(fp);
-    rewind(fp);
-
-    char* data = new char[fsize];
-    fread(data, 1, fsize, fp);
-    fclose(fp);
-    std::string code(data, fsize);
-    delete[] data;
-    return code;
+    return getFile(dataname);
 }
 
 std::regex commentLine("^ *#.+\n");
@@ -29,8 +16,12 @@ std::string uncommentString(std::string&& data) {
     return std::regex_replace(s, commentLineML, "");
 }
 
+std::regex crlf("\r\n");
+std::string unCRLF(const std::string& in) {
+    return std::regex_replace(in, crlf, "\n");
+}
 
-#define check(infile, outfile) CHECK(uncommentString(ParseString(get_testdata(infile))) == get_testdata(outfile))
+#define check(infile, outfile) CHECK(uncommentString(ParseString(get_testdata(infile))) == unCRLF(get_testdata(outfile)))
 
 TEST_SUITE("Parser tests");
 
@@ -49,7 +40,7 @@ TEST_CASE("Simple expression parsing") {
 
 
     SUBCASE("Variable assignment") {
-                REQUIRE(ParseString("var a;") == "# (Line 1) var a;\na = EUDVariable()\n");
+                REQUIRE(uncommentString(ParseString("var a;")) == "a = EUDCreateVariables(1)\n");
                 REQUIRE_THROWS_AS(ParseString("b = 2;"), std::runtime_error);
     }
 }

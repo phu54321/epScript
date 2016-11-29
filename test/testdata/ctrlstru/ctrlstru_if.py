@@ -8,10 +8,8 @@ def f_x():
 def f_y():
     if EUDIf()(1 == 2):
         EUDReturn(3)
+    if EUDElseIf()(4 == 5):
+        EUDReturn(6)
     if EUDElse()():
-        if EUDIf()(4 == 5):
-            EUDReturn(6)
-        if EUDElse()():
-            EUDReturn(7)
-        EUDEndIf()
+        EUDReturn(7)
     EUDEndIf()

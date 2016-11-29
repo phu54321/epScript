@@ -1990,7 +1990,7 @@ std::string ParseString(const std::string& code)
     Parse (pParser, 0, nullptr, &ps);
     ParseFree(pParser, free );
 
-    if(!errorOccured) return postProcessCode(ps.gen.str());
+    if(!errorOccured) return iwCollapse(ps.gen.str());
     else throw std::runtime_error("Invalid syntax");
 }
 #line 1997 "parser\\epparser.c"
