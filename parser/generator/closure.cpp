@@ -3,6 +3,7 @@
 #include <set>
 #include "closure.h"
 #include "eudplibGlobals.h"
+#include <functional>
 
 using std::string;
 
@@ -12,9 +13,14 @@ enum TableType {
     TABLE_CONST
 };
 
+struct ClosureEntry {
+    TableType type;
+    string mappedString;
+};
+
 struct Closure {
-    std::map<string, string> nameMap[3];
-    std::set<string> mapValueSet[3];
+    std::map<string, ClosureEntry> nameMap;
+    std::set<string> mapValueSet;
 };
 
 class ClosureManagerImpl {
@@ -39,10 +45,10 @@ public:
 
 private:
     Closure& lastClosure() { return closures[closures.size() - 1]; }
-    bool hasOutputName(const std::string& name, TableType table) const;
-    const Closure* findNearestKeyContainer(const std::string& name, TableType key) const;
+    bool hasOutputName(const std::string& name) const;
+    const Closure* findNearestNameContainer(const std::string &name) const;
     bool defTableValue(std::string& name, TableType table);
-    bool getTableValue(std::string& name, TableType table) const;
+    bool getTableValue(std::string& name, TableType table, std::function<bool(std::string&)> fallback) const;
 
 private:
     std::vector<Closure> closures;
@@ -84,34 +90,41 @@ bool ClosureManagerImpl::defConstant(std::string &name) {
 }
 
 bool ClosureManagerImpl::getFunction(std::string& name) const {
-    if(getTableValue(name, TABLE_FUNC)) return true;
-    return isBuiltinFunc(name);
+    return getTableValue(name, TABLE_FUNC, [](std::string& name) {
+        return isBuiltinFunc(name);
+    });
 }
 
 bool ClosureManagerImpl::getConstant(std::string& name) const {
-    if(getTableValue(name, TABLE_CONST)) return true;
-    return isBuiltinConst(name);
+    return getTableValue(name, TABLE_CONST, [](std::string& name) {
+        return isBuiltinConst(name);
+    });
 }
 
+
 bool ClosureManagerImpl::getVariable(std::string& name) const {
-    return getTableValue(name, TABLE_VAR);
+    return getTableValue(name, TABLE_VAR, [](std::string&) { return false; });
 }
 
 ///////
 
-const Closure* ClosureManagerImpl::findNearestKeyContainer(const std::string& name, TableType key) const {
+const Closure* ClosureManagerImpl::findNearestNameContainer(const std::string &name) const {
     for(auto it = closures.rbegin() ; it != closures.rend() ; it++) {
-        auto &map = it->nameMap[key];
+        auto &map = it->nameMap;
         if (map.find(name) != map.end()) return &(*it);
     }
     return nullptr;
 }
 
-bool ClosureManagerImpl::getTableValue(std::string& name, TableType table) const {
-    auto closure = findNearestKeyContainer(name, table);
-    if (closure == nullptr) return false;
-    name = closure->nameMap[table].find(name)->second;
-    return true;
+bool ClosureManagerImpl::getTableValue(std::string& name, TableType table, std::function<bool(std::string&)> fallback) const {
+    auto closure = findNearestNameContainer(name);
+    if (closure == nullptr) return fallback(name);
+    const auto& cEntry = closure->nameMap.find(name)->second;
+    if(cEntry.type == table) {
+        name = cEntry.mappedString;
+        return true;
+    }
+    else return false;
 }
 
 ///////
@@ -127,11 +140,12 @@ void ClosureManagerImpl::popScope() {
 
 bool ClosureManagerImpl::defTableValue(std::string &name, TableType table) {
     auto& lastClosure = this->lastClosure();
-    auto& map = lastClosure.nameMap[table];
-    if(map.find(name) != map.end()) return false; // Has duplicate
-    if(!hasOutputName(name, table)) {
-        map.insert(std::make_pair(name, name));
-        lastClosure.mapValueSet[table].insert(name);
+    auto& map = lastClosure.nameMap;
+    if(map.find(name) != map.end()) return false; // Has duplicate name
+    if(!hasOutputName(name)) {
+        ClosureEntry entry = {table, name};
+        map.insert(std::make_pair(name, entry));
+        lastClosure.mapValueSet.insert(name);
         return true;
     }
     else {
@@ -140,9 +154,10 @@ bool ClosureManagerImpl::defTableValue(std::string &name, TableType table) {
         for(i = 1 ; ; i++) {
             sprintf(postfix, "_%d", i);
             std::string otherName = name + postfix;
-            if(!hasOutputName(otherName, table)) {
-                map.insert(std::make_pair(name, otherName));
-                lastClosure.mapValueSet[table].insert(otherName);
+            if(!hasOutputName(otherName)) {
+                ClosureEntry entry = {table, otherName};
+                map.insert(std::make_pair(name, entry));
+                lastClosure.mapValueSet.insert(otherName);
                 name = otherName;
                 return true;
             }
@@ -151,9 +166,9 @@ bool ClosureManagerImpl::defTableValue(std::string &name, TableType table) {
 }
 
 
-bool ClosureManagerImpl::hasOutputName(const std::string& name, TableType table) const {
+bool ClosureManagerImpl::hasOutputName(const std::string& name) const {
     for(auto it = closures.rbegin() ; it != closures.rend() ; it++) {
-        auto &set = it->mapValueSet[table];
+        auto &set = it->mapValueSet;
         if (set.find(name) != set.end()) return true;
     }
     return false;
