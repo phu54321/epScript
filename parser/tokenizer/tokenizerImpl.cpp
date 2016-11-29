@@ -74,6 +74,51 @@ Token* TokenizerImpl::getToken() {
         return nullptr;  // EOF
     }
 
+    // String
+    if(*cursor == '\"' || (cursor[0] == 'b' && cursor[1] == '\"')) {
+        std::vector<char> buffer;  // String to hold escaped content.
+        buffer.reserve(200);
+
+        if(*cursor == '\"') {  // Str
+            buffer.push_back('\"');
+            cursor++;
+        }
+        else {  // Bytes
+            buffer.push_back('b');
+            buffer.push_back('\"');
+            cursor += 2;
+        }
+
+        while(*cursor != '\"') {
+            if(*cursor == '\n' || *cursor == EOF) { // Line end during string - Invalid token
+                // We don't skip newlines We need to count lines using them.
+                // Return invalid token message
+                return TK(TOKEN_INVALID);
+            }
+            else if(*cursor == '\\') {  // Escape character
+                cursor++;
+                if(*cursor == '\n') {
+                    cursor++;
+                }
+
+                    // No special procesing is required. Python will take care of that.
+                else {
+                    buffer.push_back('\\');
+                    buffer.push_back(*cursor);
+                    cursor++;
+                }
+            }
+            else {
+                buffer.push_back(*cursor);
+                cursor++;
+            }
+        }
+        cursor++;
+        buffer.push_back('\"');
+        return TK(TOKEN_STRING, std::string(buffer.data(), buffer.size()));
+    }
+
+
     // Identifiers
     if(isNameLeadChar(*cursor)) {
         const char* idfStart = cursor;
@@ -100,40 +145,6 @@ Token* TokenizerImpl::getToken() {
         return TK(TOKEN_NAME, identifier);
     }
 
-    // String
-    if(*cursor == '\"') {
-        std::vector<char> buffer;  // String to hold escaped content.
-        buffer.push_back('\"');
-        cursor++;
-
-        while(*cursor != '\"') {
-            if(*cursor == '\n' || *cursor == EOF) { // Line end during string - Invalid token
-                // We don't skip newlines We need to count lines using them.
-                // Return invalid token message
-                return TK(TOKEN_INVALID);
-            }
-            else if(*cursor == '\\') {  // Escape character
-                cursor++;
-                if(*cursor == '\n') {
-                    cursor++;
-                }
-
-                // No special procesing is required. Python will take care of that.
-                else {
-                    buffer.push_back('\\');
-                    buffer.push_back(*cursor);
-                    cursor++;
-                }
-            }
-            else {
-                buffer.push_back(*cursor);
-                cursor++;
-            }
-        }
-        cursor++;
-        buffer.push_back('\"');
-        return TK(TOKEN_STRING, std::string(buffer.data(), buffer.size()));
-    }
 
     // Numbers
     if('0' <= *cursor && *cursor <= '9') {
