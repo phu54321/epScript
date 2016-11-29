@@ -6,11 +6,11 @@
 #define EPSCRIPT_PARSERUTILITIES_H
 
 #include "tokenizer/tokenizer.h"
-#include "pygen.h"
+#include "generator/pygen.h"
 #include <string>
 #include <iostream>
 #include <regex>
-#include "eudplibGlobals.h"
+#include "generator/eudplibGlobals.h"
 
 static bool errorOccured = false;
 
@@ -22,15 +22,21 @@ Token* genTemp(Token* lineSrc) {
 }
 
 template <typename T>
-void commaListIter(const std::string& s, T func) {
+void commaListIter(std::string& s, T func) {
+    bool isFirst = true;
+    std::string out;
     const char *p = s.c_str(), *p2 = p;
     while(1) {
         while(*p2 != '\0' && *p2 != ',') p2++;
         std::string value(p, p2 - p);
         func(value);
+        if(isFirst) isFirst = false;
+        else out += ", ";
+        out += value;
         if(*p2 == '\0') break;
         p = p2 = p2 + 2;
     }
+    s = out;
 }
 
 static void throw_error(int line, int code, const std::string& message) {
@@ -81,7 +87,7 @@ Token* binaryMerge(Token* a, const std::string& opstr, Token* b, PyGenerator& pG
 }
 
 
-static std::regex iwCollapseRegex("\n( *)(_t\\d+) = (EUDWhile|EUDIf)\\(\\)\n\\1if \\2\\((.+)\\):");
+static std::regex iwCollapseRegex("\n( *)(_t\\d+) = (EUDWhile|EUDIf|EUDElseIf)\\(\\)\n\\1if \\2\\((.+)\\):");
 std::string iwCollapse(const std::string& in) {
     return std::regex_replace(in, iwCollapseRegex, "\n$1if $3()($4):");
 }

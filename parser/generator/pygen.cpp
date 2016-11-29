@@ -3,31 +3,22 @@
 #include <string>
 #include <streambuf>
 #include <sstream>
-#include <set>
-#include <vector>
 #include "pygen.h"
-#include "eudplibGlobals.h"
-
-struct Closure {
-    std::set<std::string> definedNames;
-};
 
 class PyGeneratorBuf : public std::streambuf {
 public:
-    PyGeneratorBuf() : lineStart(false), justUnindented(false) {
-        _closureList.push_back(Closure());
-    }
+    PyGeneratorBuf() : lineStart(false), justUnindented(false), currentIndent(0) {}
     ~PyGeneratorBuf() {}
 
     std::string str() { return os.str(); }
     void indent() {
-        _closureList.push_back(Closure());
+        currentIndent += 4;
     }
     void unindent(bool issueNewline) {
-        if(_closureList.size() == 1) {
+        if(currentIndent == 0) {
             throw std::logic_error("Not enough closures");
         }
-        _closureList.pop_back();
+        currentIndent -= 4;
         if(issueNewline) justUnindented = true;
     }
 
@@ -49,7 +40,7 @@ public:
             }
 
             // Indent line
-            for(int i = 0 ; i < (_closureList.size() - 1) * 4 ; i++) {
+            for(int i = 0 ; i < currentIndent ; i++) {
                 os.put(' ');
             }
             lineStart = false;
@@ -63,30 +54,9 @@ public:
         return ch;
     }
 
-    bool namedef(const std::string& name) {
-        auto& nameSet = _closureList[_closureList.size() - 1].definedNames;
-        if(nameSet.find(name) != nameSet.end()) {
-            return false;
-        }
-        nameSet.insert(name);
-        return true;
-    }
-
-    bool undefined(const std::string& name) const {
-        if(isBuiltinFunc(name)) return false;
-        else if(isBuiltinConst(name)) return false;
-
-        for(const auto& closure : _closureList) {
-            const auto& nameSet = closure.definedNames;
-            if(nameSet.find(name) != nameSet.end()) return false;
-        }
-        return true;
-    }
-
-
 private:
     std::ostringstream os;
-    std::vector<Closure> _closureList;
+    int currentIndent;
     bool lineStart;
     bool justUnindented;
 };
@@ -111,12 +81,4 @@ void PyGenerator::indent() {
 
 void PyGenerator::unindent(bool issueNewline) {
     pbuf->unindent(issueNewline);
-}
-
-bool PyGenerator::namedef(const std::string &name) {
-    return pbuf->namedef(name);
-}
-
-bool PyGenerator::undefined(const std::string &name) {
-    return pbuf->undefined(name);
 }

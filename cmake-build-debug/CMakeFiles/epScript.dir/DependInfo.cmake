@@ -6,8 +6,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_CXX
   "C:/gitclones/epScript/main.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/main.cpp.obj"
   "C:/gitclones/epScript/parser/epparser.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/epparser.cpp.obj"
-  "C:/gitclones/epScript/parser/eudplibGlobals.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj"
-  "C:/gitclones/epScript/parser/pygen.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/pygen.cpp.obj"
+  "C:/gitclones/epScript/parser/generator/closure.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj"
+  "C:/gitclones/epScript/parser/generator/eudplibGlobals.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj"
+  "C:/gitclones/epScript/parser/generator/pygen.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj"
   "C:/gitclones/epScript/parser/tokenAdapter.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj"
   "C:/gitclones/epScript/parser/tokenizer/condact.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj"
   "C:/gitclones/epScript/parser/tokenizer/tokChars.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.obj"

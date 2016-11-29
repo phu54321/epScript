@@ -185,28 +185,28 @@ CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj.provides: CMakeFiles/
 CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj
 
 
-CMakeFiles/epScript.dir/parser/pygen.cpp.obj: CMakeFiles/epScript.dir/flags.make
-CMakeFiles/epScript.dir/parser/pygen.cpp.obj: ../parser/pygen.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/epScript.dir/parser/pygen.cpp.obj"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\parser\pygen.cpp.obj -c C:\gitclones\epScript\parser\pygen.cpp
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj: ../parser/generator/pygen.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\parser\generator\pygen.cpp.obj -c C:\gitclones\epScript\parser\generator\pygen.cpp
 
-CMakeFiles/epScript.dir/parser/pygen.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/pygen.cpp.i"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\pygen.cpp > CMakeFiles\epScript.dir\parser\pygen.cpp.i
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/generator/pygen.cpp.i"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\generator\pygen.cpp > CMakeFiles\epScript.dir\parser\generator\pygen.cpp.i
 
-CMakeFiles/epScript.dir/parser/pygen.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/pygen.cpp.s"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\pygen.cpp -o CMakeFiles\epScript.dir\parser\pygen.cpp.s
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/generator/pygen.cpp.s"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\generator\pygen.cpp -o CMakeFiles\epScript.dir\parser\generator\pygen.cpp.s
 
-CMakeFiles/epScript.dir/parser/pygen.cpp.obj.requires:
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.requires:
 
-.PHONY : CMakeFiles/epScript.dir/parser/pygen.cpp.obj.requires
+.PHONY : CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.requires
 
-CMakeFiles/epScript.dir/parser/pygen.cpp.obj.provides: CMakeFiles/epScript.dir/parser/pygen.cpp.obj.requires
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/pygen.cpp.obj.provides.build
-.PHONY : CMakeFiles/epScript.dir/parser/pygen.cpp.obj.provides
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.provides: CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.provides
 
-CMakeFiles/epScript.dir/parser/pygen.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/pygen.cpp.obj
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj
 
 
 CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj: CMakeFiles/epScript.dir/flags.make
@@ -257,28 +257,28 @@ CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.provides: CMakeFiles/ep
 CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj
 
 
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj: CMakeFiles/epScript.dir/flags.make
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj: ../parser/eudplibGlobals.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\parser\eudplibGlobals.cpp.obj -c C:\gitclones\epScript\parser\eudplibGlobals.cpp
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj: ../parser/generator/eudplibGlobals.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\parser\generator\eudplibGlobals.cpp.obj -c C:\gitclones\epScript\parser\generator\eudplibGlobals.cpp
 
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.i"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\eudplibGlobals.cpp > CMakeFiles\epScript.dir\parser\eudplibGlobals.cpp.i
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.i"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\generator\eudplibGlobals.cpp > CMakeFiles\epScript.dir\parser\generator\eudplibGlobals.cpp.i
 
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.s"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\eudplibGlobals.cpp -o CMakeFiles\epScript.dir\parser\eudplibGlobals.cpp.s
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.s"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\generator\eudplibGlobals.cpp -o CMakeFiles\epScript.dir\parser\generator\eudplibGlobals.cpp.s
 
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj.requires:
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.requires:
 
-.PHONY : CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj.requires
+.PHONY : CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.requires
 
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj.provides: CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj.requires
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj.provides.build
-.PHONY : CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj.provides
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.provides: CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.provides
 
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj
 
 
 CMakeFiles/epScript.dir/scriptDaemon.cpp.obj: CMakeFiles/epScript.dir/flags.make
@@ -305,9 +305,33 @@ CMakeFiles/epScript.dir/scriptDaemon.cpp.obj.provides: CMakeFiles/epScript.dir/s
 CMakeFiles/epScript.dir/scriptDaemon.cpp.obj.provides.build: CMakeFiles/epScript.dir/scriptDaemon.cpp.obj
 
 
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj: ../parser/generator/closure.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\parser\generator\closure.cpp.obj -c C:\gitclones\epScript\parser\generator\closure.cpp
+
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/generator/closure.cpp.i"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\generator\closure.cpp > CMakeFiles\epScript.dir\parser\generator\closure.cpp.i
+
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/generator/closure.cpp.s"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\generator\closure.cpp -o CMakeFiles\epScript.dir\parser\generator\closure.cpp.s
+
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.requires:
+
+.PHONY : CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.requires
+
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.provides: CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.provides
+
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj
+
+
 CMakeFiles/epScript.dir/main.cpp.obj: CMakeFiles/epScript.dir/flags.make
 CMakeFiles/epScript.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/epScript.dir/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/epScript.dir/main.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\main.cpp.obj -c C:\gitclones\epScript\main.cpp
 
 CMakeFiles/epScript.dir/main.cpp.i: cmake_force
@@ -336,11 +360,12 @@ epScript_OBJECTS = \
 "CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj" \
-"CMakeFiles/epScript.dir/parser/pygen.cpp.obj" \
+"CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj" \
-"CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj" \
+"CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj" \
 "CMakeFiles/epScript.dir/scriptDaemon.cpp.obj" \
+"CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj" \
 "CMakeFiles/epScript.dir/main.cpp.obj"
 
 # External object files for target epScript
@@ -351,17 +376,18 @@ epScript.exe: CMakeFiles/epScript.dir/parser/tokenizer/tokenizer.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj
-epScript.exe: CMakeFiles/epScript.dir/parser/pygen.cpp.obj
+epScript.exe: CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj
-epScript.exe: CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj
+epScript.exe: CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/scriptDaemon.cpp.obj
+epScript.exe: CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/main.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/build.make
 epScript.exe: CMakeFiles/epScript.dir/linklibs.rsp
 epScript.exe: CMakeFiles/epScript.dir/objects1.rsp
 epScript.exe: CMakeFiles/epScript.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable epScript.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Linking CXX executable epScript.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\epScript.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -374,11 +400,12 @@ CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer/token
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj.requires
-CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/pygen.cpp.obj.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.requires
-CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/scriptDaemon.cpp.obj.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/main.cpp.obj.requires
 
 .PHONY : CMakeFiles/epScript.dir/requires

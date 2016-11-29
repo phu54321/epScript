@@ -192,65 +192,95 @@ parser/epparser.cpp.s:
 	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/epparser.cpp.s
 .PHONY : parser/epparser.cpp.s
 
-parser/eudplibGlobals.obj: parser/eudplibGlobals.cpp.obj
+parser/generator/closure.obj: parser/generator/closure.cpp.obj
 
-.PHONY : parser/eudplibGlobals.obj
-
-# target to build an object file
-parser/eudplibGlobals.cpp.obj:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.obj
-.PHONY : parser/eudplibGlobals.cpp.obj
-
-parser/eudplibGlobals.i: parser/eudplibGlobals.cpp.i
-
-.PHONY : parser/eudplibGlobals.i
-
-# target to preprocess a source file
-parser/eudplibGlobals.cpp.i:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.i
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.i
-.PHONY : parser/eudplibGlobals.cpp.i
-
-parser/eudplibGlobals.s: parser/eudplibGlobals.cpp.s
-
-.PHONY : parser/eudplibGlobals.s
-
-# target to generate assembly for a file
-parser/eudplibGlobals.cpp.s:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.s
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/eudplibGlobals.cpp.s
-.PHONY : parser/eudplibGlobals.cpp.s
-
-parser/pygen.obj: parser/pygen.cpp.obj
-
-.PHONY : parser/pygen.obj
+.PHONY : parser/generator/closure.obj
 
 # target to build an object file
-parser/pygen.cpp.obj:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/pygen.cpp.obj
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/pygen.cpp.obj
-.PHONY : parser/pygen.cpp.obj
+parser/generator/closure.cpp.obj:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/closure.cpp.obj
+.PHONY : parser/generator/closure.cpp.obj
 
-parser/pygen.i: parser/pygen.cpp.i
+parser/generator/closure.i: parser/generator/closure.cpp.i
 
-.PHONY : parser/pygen.i
+.PHONY : parser/generator/closure.i
 
 # target to preprocess a source file
-parser/pygen.cpp.i:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/pygen.cpp.i
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/pygen.cpp.i
-.PHONY : parser/pygen.cpp.i
+parser/generator/closure.cpp.i:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/closure.cpp.i
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/closure.cpp.i
+.PHONY : parser/generator/closure.cpp.i
 
-parser/pygen.s: parser/pygen.cpp.s
+parser/generator/closure.s: parser/generator/closure.cpp.s
 
-.PHONY : parser/pygen.s
+.PHONY : parser/generator/closure.s
 
 # target to generate assembly for a file
-parser/pygen.cpp.s:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/pygen.cpp.s
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/pygen.cpp.s
-.PHONY : parser/pygen.cpp.s
+parser/generator/closure.cpp.s:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/closure.cpp.s
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/closure.cpp.s
+.PHONY : parser/generator/closure.cpp.s
+
+parser/generator/eudplibGlobals.obj: parser/generator/eudplibGlobals.cpp.obj
+
+.PHONY : parser/generator/eudplibGlobals.obj
+
+# target to build an object file
+parser/generator/eudplibGlobals.cpp.obj:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/eudplibGlobals.cpp.obj
+.PHONY : parser/generator/eudplibGlobals.cpp.obj
+
+parser/generator/eudplibGlobals.i: parser/generator/eudplibGlobals.cpp.i
+
+.PHONY : parser/generator/eudplibGlobals.i
+
+# target to preprocess a source file
+parser/generator/eudplibGlobals.cpp.i:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.i
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/eudplibGlobals.cpp.i
+.PHONY : parser/generator/eudplibGlobals.cpp.i
+
+parser/generator/eudplibGlobals.s: parser/generator/eudplibGlobals.cpp.s
+
+.PHONY : parser/generator/eudplibGlobals.s
+
+# target to generate assembly for a file
+parser/generator/eudplibGlobals.cpp.s:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.s
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/eudplibGlobals.cpp.s
+.PHONY : parser/generator/eudplibGlobals.cpp.s
+
+parser/generator/pygen.obj: parser/generator/pygen.cpp.obj
+
+.PHONY : parser/generator/pygen.obj
+
+# target to build an object file
+parser/generator/pygen.cpp.obj:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/pygen.cpp.obj
+.PHONY : parser/generator/pygen.cpp.obj
+
+parser/generator/pygen.i: parser/generator/pygen.cpp.i
+
+.PHONY : parser/generator/pygen.i
+
+# target to preprocess a source file
+parser/generator/pygen.cpp.i:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/pygen.cpp.i
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/pygen.cpp.i
+.PHONY : parser/generator/pygen.cpp.i
+
+parser/generator/pygen.s: parser/generator/pygen.cpp.s
+
+.PHONY : parser/generator/pygen.s
+
+# target to generate assembly for a file
+parser/generator/pygen.cpp.s:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/generator/pygen.cpp.s
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/generator/pygen.cpp.s
+.PHONY : parser/generator/pygen.cpp.s
 
 parser/tokenAdapter.obj: parser/tokenAdapter.cpp.obj
 
@@ -586,12 +616,15 @@ help:
 	@echo ... parser/epparser.obj
 	@echo ... parser/epparser.i
 	@echo ... parser/epparser.s
-	@echo ... parser/eudplibGlobals.obj
-	@echo ... parser/eudplibGlobals.i
-	@echo ... parser/eudplibGlobals.s
-	@echo ... parser/pygen.obj
-	@echo ... parser/pygen.i
-	@echo ... parser/pygen.s
+	@echo ... parser/generator/closure.obj
+	@echo ... parser/generator/closure.i
+	@echo ... parser/generator/closure.s
+	@echo ... parser/generator/eudplibGlobals.obj
+	@echo ... parser/generator/eudplibGlobals.i
+	@echo ... parser/generator/eudplibGlobals.s
+	@echo ... parser/generator/pygen.obj
+	@echo ... parser/generator/pygen.i
+	@echo ... parser/generator/pygen.s
 	@echo ... parser/tokenAdapter.obj
 	@echo ... parser/tokenAdapter.i
 	@echo ... parser/tokenAdapter.s

@@ -5,9 +5,15 @@
 #include <iostream>
 #include <sstream>
 #include "epparser.h"
-#include "pygen.h"
+#include "generator/pygen.h"
+#include "generator/closure.h"
 #include "tokenAdapter.h"
 #include "parserUtilities.h"
+
+struct ParserStruct {
+    PyGenerator gen;
+    ClosureManager closure;
+};
 
 int currentTokenizingLine;
 }
@@ -16,13 +22,9 @@ int currentTokenizingLine;
     errorOccured = true;
 }
 
-%parse_failure {
-    throw_error(currentTokenizingLine, 629, "Unrecoverable error");
-}
-
 ////////
 
-%extra_argument { PyGenerator* pGen }
+%extra_argument { ParserStruct* ps }
 %token_type {Token*}
 %destructor nt { delete $$; }
 
@@ -65,13 +67,13 @@ nameList(A) ::= nameListMulti(B). { A = B; }
 
 exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList(C) RSQBRACKET RSQBRACKET. {
     A = genTemp(C);
-    (*pGen) << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
+    ps->gen << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
     delete B; delete C;
 }
 
 expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
     A = genTemp(C);
-    (*pGen) << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
+    ps->gen << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
     delete B; delete C;
 }
 
@@ -81,9 +83,9 @@ exprList(A) ::= exprList(B) COMMA exprList(C). { A = new Token((B->data) + ", " 
 // Related to expressions
 expr(A) ::= NUMBER(B). { A = B; }
 expr(A) ::= NAME(B). {
-    if(pGen->undefined(B->data)) {
+    if(!ps->closure.getConstant(B->data) && !ps->closure.getVariable(B->data)) {
         throw_error(B->line, 103, ("Undeclared variable \'" + (B->data) + "\'"));
-        pGen->namedef(B->data);
+        ps->closure.defVariable(B->data);
     }
     A = B;
 }
@@ -100,26 +102,26 @@ fArgs(A) ::= fArgs(B) COMMA fArgs(C). {
 funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     // Preprocess name
     funcNamePreprocess(name->data);
-    if (pGen->undefined(name->data)) {
+    if (!ps->closure.getFunction(name->data)) {
         throw_error(name->line, 4449, ("Undefined function " + name->data));
-        pGen->namedef(name->data);
+        ps->closure.defFunction(name->data);
     }
 
     name->data += "(" + exprs->data + ")";
-    out = mkTokenTemp(name, *pGen);
+    out = mkTokenTemp(name, ps->gen);
 }
 
 
 funcexpr(out) ::= NAME(name) LPAREN RPAREN.  [FUNCCALL] {
     // Preprocess name
     funcNamePreprocess(name->data);
-    if (pGen->undefined(name->data)) {
+    if (!ps->closure.getFunction(name->data)) {
         throw_error(name->line, 4449, ("Undefined function " + name->data));
-        pGen->namedef(name->data);
+        ps->closure.defFunction(name->data);
     }
 
     name->data += "()";
-    out = mkTokenTemp(name, *pGen);
+    out = mkTokenTemp(name, ps->gen);
 }
 
 
@@ -127,68 +129,68 @@ funcexpr(out) ::= NAME(name) LPAREN RPAREN.  [FUNCCALL] {
 expr(A) ::= funcexpr(B).  { A = B; }
 expr(A) ::= LPAREN expr(B) RPAREN. {
     B->data = "(" + B->data + ")";
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 expr(A) ::= MAPSTRING LPAREN STRING(B) RPAREN. {
     B->data = "GetStringIndex(" + B->data + ")";
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 expr(A) ::= UNIT LPAREN STRING(B) RPAREN. {
     B->data = "GetUnitIndex(" + B->data + ")";
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 expr(A) ::= SWITCH LPAREN STRING(B) RPAREN. {
     B->data = "GetSwitchIndex(" + B->data + ")";
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 expr(A) ::= LOCATION LPAREN STRING(B) RPAREN. {
     B->data = "GetLocationIndex(" + B->data + ")";
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
-expr(A) ::= expr(B) PLUS        expr(C). { A = binaryMerge(B, "+",  C, *pGen); }
-expr(A) ::= expr(B) MINUS       expr(C). { A = binaryMerge(B, "-",  C, *pGen); }
-expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binaryMerge(B, "*",  C, *pGen); }
-expr(A) ::= expr(B) DIVIDE      expr(C). { A = binaryMerge(B, "//", C, *pGen); }
-expr(A) ::= expr(B) MOD         expr(C). { A = binaryMerge(B, "%",  C, *pGen); }
-expr(A) ::= expr(B) LSHIFT      expr(C). { A = binaryMerge(B, "<<", C, *pGen); }
-expr(A) ::= expr(B) RSHIFT      expr(C). { A = binaryMerge(B, ">>", C, *pGen); }
-expr(A) ::= expr(B) BITAND      expr(C). { A = binaryMerge(B, "&",  C, *pGen); }
-expr(A) ::= expr(B) BITOR       expr(C). { A = binaryMerge(B, "|",  C, *pGen); }
-expr(A) ::= expr(B) BITXOR      expr(C). { A = binaryMerge(B, "^",  C, *pGen); }
+expr(A) ::= expr(B) PLUS        expr(C). { A = binaryMerge(B, "+",  C, ps->gen); }
+expr(A) ::= expr(B) MINUS       expr(C). { A = binaryMerge(B, "-",  C, ps->gen); }
+expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binaryMerge(B, "*",  C, ps->gen); }
+expr(A) ::= expr(B) DIVIDE      expr(C). { A = binaryMerge(B, "//", C, ps->gen); }
+expr(A) ::= expr(B) MOD         expr(C). { A = binaryMerge(B, "%",  C, ps->gen); }
+expr(A) ::= expr(B) LSHIFT      expr(C). { A = binaryMerge(B, "<<", C, ps->gen); }
+expr(A) ::= expr(B) RSHIFT      expr(C). { A = binaryMerge(B, ">>", C, ps->gen); }
+expr(A) ::= expr(B) BITAND      expr(C). { A = binaryMerge(B, "&",  C, ps->gen); }
+expr(A) ::= expr(B) BITOR       expr(C). { A = binaryMerge(B, "|",  C, ps->gen); }
+expr(A) ::= expr(B) BITXOR      expr(C). { A = binaryMerge(B, "^",  C, ps->gen); }
 
 // Unary operators
-expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = +" << B->data << std::endl; delete B; }
-expr(A) ::= MINUS   expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = -" << B->data << std::endl; delete B; }
-expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); (*pGen) << A->data << " = ~" << B->data << std::endl; delete B; }
+expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = +" << B->data << std::endl; delete B; }
+expr(A) ::= MINUS   expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = -" << B->data << std::endl; delete B; }
+expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = ~" << B->data << std::endl; delete B; }
 
 
-lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C, *pGen); }
-lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C, *pGen); }
-lexpr(A) ::= expr(B) LE expr(C).   { A = binaryMerge(B, "<=", C, *pGen); }
-lexpr(A) ::= expr(B) LT expr(C).   { A = binaryMerge(B, "<",  C, *pGen); }
-lexpr(A) ::= expr(B) GE expr(C).   { A = binaryMerge(B, ">=", C, *pGen); }
-lexpr(A) ::= expr(B) GT expr(C).   { A = binaryMerge(B, ">" , C, *pGen); }
+lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C, ps->gen); }
+lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C, ps->gen); }
+lexpr(A) ::= expr(B) LE expr(C).   { A = binaryMerge(B, "<=", C, ps->gen); }
+lexpr(A) ::= expr(B) LT expr(C).   { A = binaryMerge(B, "<",  C, ps->gen); }
+lexpr(A) ::= expr(B) GE expr(C).   { A = binaryMerge(B, ">=", C, ps->gen); }
+lexpr(A) ::= expr(B) GT expr(C).   { A = binaryMerge(B, ">" , C, ps->gen); }
 
 lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
     B->data = "[" + B->data + ", " + C->data + "]";
     delete C;
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
     B->data = "EUDOr([" + B->data + ", " + C->data + "])";
     delete C;
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 lexpr(A) ::= LNOT lexpr(B).  {
     B->data = "EUDNot([" + B->data + "])";
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
@@ -197,63 +199,64 @@ lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
 
 // Statements
 vdef_stmt ::= VAR NAME(A) SEMICOLON. {
-    (*pGen) << A->data << " = EUDVariable()" << std::endl;
-    pGen->namedef(A->data);
+    if(!ps->closure.defVariable(A->data)) {
+        throw_error(A->line, 196, ("Redeclaration of variable \'" + (A->data) + "\'"));
+    }
+    ps->gen << A->data << " = EUDVariable()" << std::endl;
     delete A;
 }
 
 vdefAssign_stmt ::= VAR NAME(A) ASSIGN expr(B) SEMICOLON. {
-    (*pGen) << A->data << " = _MVAR([" << B->data << "])" << std::endl;
-    if(!pGen->namedef(A->data)) {
+    if(!ps->closure.defVariable(A->data)) {
         throw_error(A->line, 196, ("Redeclaration of variable \'" + (A->data) + "\'"));
     }
+    ps->gen << A->data << " = _MVAR([" << B->data << "])" << std::endl;
     delete A;
 }
 
 vdefMulti_stmt ::= VAR nameListMulti(A) SEMICOLON. {
     std::string& s = A->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
-    (*pGen) << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
 
     // Register variables.
-    commaListIter(s, [&](const std::string& varname) {
-        if(!pGen->namedef(varname)) {
+    commaListIter(s, [&](std::string& varname) {
+        if(!ps->closure.defVariable(varname)) {
             throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
+    ps->gen << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
     delete A;
 }
 
 vdefMultiAssign_stmt ::= VAR nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
     std::string& s = A->data;
-    (*pGen) << s << " = _MVAR([" << B->data << "])" << std::endl;
 
     // Register variables.
-    commaListIter(s, [&](const std::string& varname) {
-        if(!pGen->namedef(varname)) {
+    commaListIter(s, [&](std::string& varname) {
+        if(!ps->closure.defVariable(varname)) {
             throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
-
+    ps->gen << s << " = _MVAR([" << B->data << "])" << std::endl;
     delete A; delete B;
 }
 
 assign_stmt ::= NAME(A) ASSIGN expr(B) SEMICOLON. {
-    (*pGen) << A->data << " << " << B->data << std::endl;
-    if(pGen->undefined(A->data)) {
+    ps->gen << A->data << " << " << B->data << std::endl;
+    if(!ps->closure.getVariable(A->data)) {
         throw_error(A->line, 103, ("Undeclared variable \'" + (A->data) + "\'"));
-        pGen->namedef(A->data);
+        ps->closure.defVariable(A->data);
     }
     delete A; delete B;
 }
 
 assignMulti_stmt ::= nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
-    (*pGen) << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
+    ps->gen << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
 
-    commaListIter(A->data, [&](const std::string& varname) {
-        if(pGen->undefined(varname)) {
+    commaListIter(A->data, [&](std::string& varname) {
+        if(!ps->closure.defVariable(varname)) {
             throw_error(A->line, 103, ("Undeclared variable \'" + varname + "\'"));
-            pGen->namedef(varname);
+            ps->closure.defVariable(varname);
         }
     });
 
@@ -263,79 +266,102 @@ assignMulti_stmt ::= nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
 // Control blocks
 stmtList ::= stmt.
 stmtList ::= stmtList stmt.
-block ::= LBRACKET stmtList RBRACKET.
-block ::= LBRACKET error RBRACKET(A). {
+blockStart ::= LBRACKET. {
+    ps->closure.pushScope();
+}
+
+block ::= blockStart stmtList RBRACKET. {
+    ps->closure.popScope();
+}
+
+block ::= blockStart error RBRACKET(A). {
     throw_error(A->line, 6298, "Block not terminated properly.");
+    ps->closure.popScope();
 }
 
 
 // If~Else block
 if_start(A) ::= IF(B). {
     A = genTemp(B);
-    (*pGen) << A->data << " = EUDIf()" << std::endl;
+    ps->gen << A->data << " = EUDIf()" << std::endl;
 }
 if_header ::= if_start(A) LPAREN lexpr(B) RPAREN. {
-    (*pGen) << "if " << A->data << "(" << B->data << "):" << std::endl;
-    pGen->indent();
+    ps->gen << "if " << A->data << "(" << B->data << "):" << std::endl;
+    ps->gen.indent();
     delete A; delete B;
 }
 
-if_stmt ::= if_header stmt. [IFX] {
-    pGen->unindent(false);
-    (*pGen) << "EUDEndIf()" << std::endl;
+if_block ::= if_header stmt.
+
+elif_start(A) ::= ELSE IF(B). {
+    A = genTemp(B);
+    ps->gen.unindent(false);
+    ps->gen << A->data << " = EUDElseIf()" << std::endl;
 }
 
-else_header ::= if_header stmt ELSE. [ELSE] {
-    pGen->unindent(false);
-    (*pGen) << "if EUDElse()():" << std::endl;
-    pGen->indent();
+elif_header ::= elif_start(A) LPAREN lexpr(B) RPAREN. {
+    ps->gen << "if " << A->data << "(" << B->data <<"):" << std::endl;
+    ps->gen.indent();
 }
 
-if_stmt ::= else_header stmt. {
-    pGen->unindent(false);
-    (*pGen) << "EUDEndIf()" << std::endl;
+if_block ::= if_block elif_header stmt.
+
+else_header ::= ELSE. {
+    ps->gen.unindent(false);
+    ps->gen << "if EUDElse()():" << std::endl;
+    ps->gen.indent();
+}
+
+if_stmt ::= if_block. {
+    ps->gen.unindent(false);
+    ps->gen << "EUDEndIf()" << std::endl;
+}
+
+if_stmt ::= if_block else_header stmt. {
+    ps->gen.unindent(false);
+    ps->gen << "EUDEndIf()" << std::endl;
 }
 
 
 // While block
 while_start(A) ::= WHILE(B). {
     A = genTemp(B);
-    (*pGen) << A->data << " = EUDWhile()" << std::endl;
+    ps->gen << A->data << " = EUDWhile()" << std::endl;
     delete B;
 }
 
 while_header ::= while_start(A) LPAREN lexpr(B) RPAREN. {
-    (*pGen) << "if " << A->data << "(" << B->data << "):" << std::endl;
-    pGen->indent();
+    ps->gen << "if " << A->data << "(" << B->data << "):" << std::endl;
+    ps->gen.indent();
     delete A; delete B;
 }
 
 while_stmt ::= while_header stmt. {
-    pGen->unindent(false);
-    (*pGen) << "EUDEndWhile()" << std::endl;
+    ps->gen.unindent(false);
+    ps->gen << "EUDEndWhile()" << std::endl;
 }
 
 // Foreach block
 foreach_header ::= FOR LPAREN nameList(names) COLON exprList(exprs) RPAREN. {
-    (*pGen) << "for " << names->data << " in " << exprs->data << ":" << std::endl;
-    pGen->indent();
-    commaListIter(names->data, [&](const std::string& s) {
-        pGen->namedef(s);
+    ps->gen << "for " << names->data << " in " << exprs->data << ":" << std::endl;
+    ps->gen.indent();
+    commaListIter(names->data, [&](std::string& s) {
+        ps->closure.defVariable(s);
     });
 }
 
 foreach_stmt ::= foreach_header stmt. {
-    pGen->unindent(true);
+    ps->gen.unindent(true);
 }
 
 
 // Loop exits
 continue_stmt ::= CONTINUE SEMICOLON. {
-    (*pGen) << "EUDContinue()" << std::endl;
+    ps->gen << "EUDContinue()" << std::endl;
 }
 
 break_stmt ::= BREAK SEMICOLON. {
-    (*pGen) << "EUDBreak()" << std::endl;
+    ps->gen << "EUDBreak()" << std::endl;
 }
 
 // Function declaration
@@ -343,20 +369,20 @@ function_start(start) ::= FUNCTION NAME(name).  {
     // Preprocess name
     funcNamePreprocess(name->data);
     start = name;
-    if(!pGen->namedef(name->data)) {
+    if(!ps->closure.defFunction(name->data)) {
         throw_error(name->line, 4495, "Duplicate function name " + name->data);
     }
 }
 
 function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
-    (*pGen) << "@EUDFunc" << std::endl;
-    (*pGen) << "def " << fname->data << "(" << args->data << "):" << std::endl;
-    pGen->indent();
+    ps->gen << "@EUDFunc" << std::endl;
+    ps->gen << "def " << fname->data << "(" << args->data << "):" << std::endl;
+    ps->gen.indent();
 
     // Register variables.
     const std::string& s = args->data;
-    commaListIter(args->data, [&](const std::string& varname) {
-        if(!pGen->namedef(varname)) {
+    commaListIter(args->data, [&](std::string& varname) {
+        if(!ps->closure.defVariable(varname)) {
             throw_error(args->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
@@ -366,25 +392,25 @@ function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
 }
 
 function_header ::= function_start(fname) LPAREN RPAREN. {
-    (*pGen) << "@EUDFunc" << std::endl;
-    (*pGen) << "def " << fname->data << "():" << std::endl;
-    pGen->indent();
+    ps->gen << "@EUDFunc" << std::endl;
+    ps->gen << "def " << fname->data << "():" << std::endl;
+    ps->gen.indent();
     tmpIndex = 1;
     delete fname;
 }
 
 fdef_chunk ::= function_header stmt. {
-    pGen->unindent(true);
+    ps->gen.unindent(true);
 }
 
 
 // returns
 return_stmt ::= RETURN SEMICOLON. {
-    (*pGen) << "EUDReturn()" << std::endl;
+    ps->gen << "EUDReturn()" << std::endl;
 }
 
 return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
-    (*pGen) << "EUDReturn(" << exprs->data << ")" << std::endl;
+    ps->gen << "EUDReturn(" << exprs->data << ")" << std::endl;
     delete exprs;
 }
 
@@ -394,12 +420,12 @@ return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
 lexpr(A) ::= CONDITIONNAME(B) LPAREN fArgs(C) RPAREN. {
     B->data = B->data + "(" + C->data + ")";
     delete C;
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 lexpr(A) ::= CONDITIONNAME(B) LPAREN RPAREN. {
     B->data = B->data + "()";
-    A = mkTokenTemp(B, *pGen);
+    A = mkTokenTemp(B, ps->gen);
 }
 
 action(X) ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN SEMICOLON. {
@@ -421,16 +447,16 @@ actions(A) ::= actions(B) action(C). {
 }
 
 actionStmt ::= action(X). {
-    (*pGen) << "DoActions(" << X->data << ")" << std::endl;
+    ps->gen << "DoActions(" << X->data << ")" << std::endl;
     delete X;
 }
 
 actionStmt ::= actions(X). {
-    (*pGen) << "DoActions([" << std::endl;
-    pGen->indent();
-    (*pGen) << X->data << std::endl;
-    pGen->unindent(false);
-    (*pGen) << "])" << std::endl;
+    ps->gen << "DoActions([" << std::endl;
+    ps->gen.indent();
+    ps->gen << X->data << std::endl;
+    ps->gen.unindent(false);
+    ps->gen << "])" << std::endl;
     delete X;
 }
 
@@ -446,7 +472,7 @@ stmt ::= vdefMultiAssign_stmt.
 stmt ::= vdefMulti_stmt.
 stmt ::= assign_stmt.
 stmt ::= assignMulti_stmt.
-stmt ::= funcexpr(A) SEMICOLON. { (*pGen) << A->data << std::endl; }
+stmt ::= funcexpr(A) SEMICOLON. { ps->gen << A->data << std::endl; }
 stmt ::= actionStmt.
 stmt ::= if_stmt.
 stmt ::= while_stmt.
@@ -460,13 +486,13 @@ stmt ::= block.
 // Program building block
 
 import_chunk ::= FROM NAME(name) IMPORT nameList(B). {
-    (*pGen) << "from " << name->data << " import " << B->data << std::endl;
+    ps->gen << "from " << name->data << " import " << B->data << std::endl;
     commaListIter(B->data, [&](std::string varname) {
         funcNamePreprocess(varname);
-        if(!pGen->namedef(varname)) {
+        if(!ps->closure.defFunction(varname)) {
             throw_error(B->line, 8118, ("Importing already-declared function " + varname));
         }
-        else (*pGen) << "from " << name->data << " import " << varname << std::endl;
+        else ps->gen << "from " << name->data << " import " << varname << std::endl;
     });
     delete name; delete B;
 }
@@ -486,7 +512,7 @@ std::string ParseString(const std::string& code)
 {
     Tokenizer tok(code);
     void* pParser = ParseAlloc (malloc);
-    PyGenerator pGen;
+    ParserStruct ps;
     Token* token;
     currentTokenizingLine = 0;
 
@@ -497,11 +523,11 @@ std::string ParseString(const std::string& code)
     while ((token = tok.getToken()) != nullptr) {
         if (currentTokenizingLine != tok.getCurrentLine()) {
             currentTokenizingLine = tok.getCurrentLine();
-            pGen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
+            ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }
         if (tokenTypeConv(token)) {
-            Parse (pParser, token->type, token, &pGen);
+            Parse (pParser, token->type, token, &ps);
 #ifndef NDEBUG
             if(PARSER_DEBUG) ParseTrace(stdout, "--");
 #endif
@@ -510,10 +536,10 @@ std::string ParseString(const std::string& code)
             throw_error(token->line, 8104, "Invalid token");
         }
     }
-    Parse (pParser, 0, nullptr, &pGen);
+    Parse (pParser, 0, nullptr, &ps);
     ParseFree(pParser, free );
 
-    if(!errorOccured) return postProcessCode(pGen.str());
+    if(!errorOccured) return postProcessCode(ps.gen.str());
     else throw std::runtime_error("Invalid syntax");
 }
 }

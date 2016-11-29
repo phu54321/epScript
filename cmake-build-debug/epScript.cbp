@@ -125,19 +125,27 @@
 		<Unit filename="C:/gitclones/epScript/main.cpp">
 			<Option target="epScript"/>
 		</Unit>
-		<Unit filename="C:/gitclones/epScript/parser/eudplibGlobals.cpp">
+		<Unit filename="C:/gitclones/epScript/parser/generator/closure.cpp">
 			<Option target="epScript"/>
 			<Option target="epScriptTest"/>
 		</Unit>
-		<Unit filename="C:/gitclones/epScript/parser/eudplibGlobals.h">
+		<Unit filename="C:/gitclones/epScript/parser/generator/closure.h">
 			<Option target="epScript"/>
 			<Option target="epScriptTest"/>
 		</Unit>
-		<Unit filename="C:/gitclones/epScript/parser/pygen.cpp">
+		<Unit filename="C:/gitclones/epScript/parser/generator/eudplibGlobals.cpp">
 			<Option target="epScript"/>
 			<Option target="epScriptTest"/>
 		</Unit>
-		<Unit filename="C:/gitclones/epScript/parser/pygen.h">
+		<Unit filename="C:/gitclones/epScript/parser/generator/eudplibGlobals.h">
+			<Option target="epScript"/>
+			<Option target="epScriptTest"/>
+		</Unit>
+		<Unit filename="C:/gitclones/epScript/parser/generator/pygen.cpp">
+			<Option target="epScript"/>
+			<Option target="epScriptTest"/>
+		</Unit>
+		<Unit filename="C:/gitclones/epScript/parser/generator/pygen.h">
 			<Option target="epScript"/>
 			<Option target="epScriptTest"/>
 		</Unit>

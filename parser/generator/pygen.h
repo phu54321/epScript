@@ -19,10 +19,6 @@ public:
     void indent();
     void unindent(bool issueNewline);
 
-    // Variable table generation
-    bool namedef(const std::string& name);
-    bool undefined(const std::string& name);
-
 private:
     PyGeneratorBuf* pbuf;
 };

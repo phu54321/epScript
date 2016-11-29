@@ -8,18 +8,22 @@ CMakeFiles/epScript.dir/main.cpp.obj: ../parser/tokenizer/tokenizer.h
 
 CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/epparser.cpp
 CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/epparser.h
-CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/eudplibGlobals.h
+CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/generator/closure.h
+CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/generator/eudplibGlobals.h
+CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/generator/pygen.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/parserUtilities.h
-CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/pygen.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/tokenAdapter.h
 CMakeFiles/epScript.dir/parser/epparser.cpp.obj: ../parser/tokenizer/tokenizer.h
 
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj: ../parser/eudplibGlobals.cpp
-CMakeFiles/epScript.dir/parser/eudplibGlobals.cpp.obj: ../parser/eudplibGlobals.h
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj: ../parser/generator/closure.cpp
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj: ../parser/generator/closure.h
+CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj: ../parser/generator/eudplibGlobals.h
 
-CMakeFiles/epScript.dir/parser/pygen.cpp.obj: ../parser/eudplibGlobals.h
-CMakeFiles/epScript.dir/parser/pygen.cpp.obj: ../parser/pygen.cpp
-CMakeFiles/epScript.dir/parser/pygen.cpp.obj: ../parser/pygen.h
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj: ../parser/generator/eudplibGlobals.cpp
+CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj: ../parser/generator/eudplibGlobals.h
+
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj: ../parser/generator/pygen.cpp
+CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj: ../parser/generator/pygen.h
 
 CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj: ../parser/epparser.h
 CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj: ../parser/tokenAdapter.cpp
