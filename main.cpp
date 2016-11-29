@@ -4,6 +4,8 @@
 #include "parser/tokenAdapter.h"
 #include <unistd.h>
 
+#define VERSION "v0.1a"
+
 extern bool PARSER_DEBUG;
 
 std::string getFile(const std::string& fname) {
@@ -34,6 +36,8 @@ int usage() {
 int runDaemon(void);
 
 int main(int argc, char** argv) {
+    printf("epScript " VERSION " - eudplib script compiler\n");
+
     PARSER_DEBUG = false;
 
     std::string ifname, ofname;

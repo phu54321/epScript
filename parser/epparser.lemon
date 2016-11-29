@@ -125,11 +125,17 @@ funcexpr(out) ::= NAME(name) LPAREN RPAREN.  [FUNCCALL] {
 }
 
 
-// Binary operators
+// Expressions
 expr(A) ::= funcexpr(B).  { A = B; }
+
 expr(A) ::= LPAREN expr(B) RPAREN. {
     B->data = "(" + B->data + ")";
     A = mkTokenTemp(B, ps->gen);
+}
+
+expr(A) ::= L2V LPAREN lexpr(B) RPAREN. {
+    B->data = "_L2V(" + B->data + ")";
+    A = genTemp(B);
 }
 
 expr(A) ::= MAPSTRING LPAREN STRING(B) RPAREN. {
@@ -152,6 +158,7 @@ expr(A) ::= LOCATION LPAREN STRING(B) RPAREN. {
     A = mkTokenTemp(B, ps->gen);
 }
 
+// Binary operators
 expr(A) ::= expr(B) PLUS        expr(C). { A = binaryMerge(B, "+",  C, ps->gen); }
 expr(A) ::= expr(B) MINUS       expr(C). { A = binaryMerge(B, "-",  C, ps->gen); }
 expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binaryMerge(B, "*",  C, ps->gen); }
@@ -169,6 +176,7 @@ expr(A) ::= MINUS   expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " =
 expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = ~" << B->data << std::endl; delete B; }
 
 
+// Logical expressions
 lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C, ps->gen); }
 lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C, ps->gen); }
 lexpr(A) ::= expr(B) LE expr(C).   { A = binaryMerge(B, "<=", C, ps->gen); }
@@ -369,6 +377,7 @@ function_start(start) ::= FUNCTION NAME(name).  {
     if(!ps->closure.defFunction(name->data)) {
         throw_error(name->line, 4495, "Duplicate function name " + name->data);
     }
+    ps->closure.pushScope();
 }
 
 function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
@@ -396,8 +405,9 @@ function_header ::= function_start(fname) LPAREN RPAREN. {
     delete fname;
 }
 
-fdef_chunk ::= function_header stmt. {
+fdef_chunk ::= function_header stmt . {
     ps->gen.unindent(true);
+    ps->closure.popScope();
 }
 
 

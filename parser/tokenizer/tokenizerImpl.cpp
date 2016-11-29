@@ -85,8 +85,8 @@ Token* TokenizerImpl::getToken() {
         if(identifier == "var") return TK(TOKEN_VAR);
         if(identifier == "const") return TK(TOKEN_CONST);
         if(identifier == "function") return TK(TOKEN_FUNCTION);
+        if(identifier == "l2v") return TK(TOKEN_L2V);
         if(identifier == "if") return TK(TOKEN_IF);
-        if(identifier == "elif") return TK(TOKEN_ELIF);
         if(identifier == "else") return TK(TOKEN_ELSE);
         if(identifier == "for") return TK(TOKEN_FOR);
         if(identifier == "while") return TK(TOKEN_WHILE);
