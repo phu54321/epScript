@@ -268,23 +268,6 @@ assignMulti_stmt ::= nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
     delete A; delete B;
 }
 
-// Control blocks
-stmtList ::= stmt.
-stmtList ::= stmtList stmt.
-blockStart ::= LBRACKET. {
-    ps->closure.pushScope();
-}
-
-block ::= blockStart stmtList RBRACKET. {
-    ps->closure.popScope();
-}
-
-block ::= blockStart error RBRACKET(A). {
-    throw_error(A->line, 6298, "Block not terminated properly.");
-    ps->closure.popScope();
-}
-
-
 // If~Else block
 if_start(A) ::= IF(B). {
     A = genTemp(B);
@@ -350,6 +333,7 @@ while_stmt ::= while_header stmt. {
 foreach_header ::= FOR LPAREN nameList(names) COLON exprList(exprs) RPAREN. {
     ps->gen << "for " << names->data << " in " << exprs->data << ":" << std::endl;
     ps->gen.indent();
+    ps->closure.pushScope();
     commaListIter(names->data, [&](std::string& s) {
         ps->closure.defVariable(s);
     });
@@ -357,6 +341,7 @@ foreach_header ::= FOR LPAREN nameList(names) COLON exprList(exprs) RPAREN. {
 
 foreach_stmt ::= foreach_header stmt. {
     ps->gen.unindent(true);
+    ps->closure.popScope();
 }
 
 
@@ -472,22 +457,34 @@ actionStmt ::= actions(X). {
 stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "Error while parsing statement"); }
 
 
-stmt ::= SEMICOLON.
-stmt ::= vdef_stmt.
-stmt ::= vdefAssign_stmt.
-stmt ::= cdef_stmt.
-stmt ::= assign_stmt.
-stmt ::= assignMulti_stmt.
-stmt ::= funcexpr(A) SEMICOLON. { ps->gen << A->data << std::endl; }
-stmt ::= actionStmt.
-stmt ::= if_stmt.
-stmt ::= while_stmt.
-stmt ::= foreach_stmt.
-stmt ::= continue_stmt.
-stmt ::= break_stmt.
-stmt ::= return_stmt.
-stmt ::= block.
+bodyStmt ::= SEMICOLON.
+bodyStmt ::= vdef_stmt.
+bodyStmt ::= vdefAssign_stmt.
+bodyStmt ::= cdef_stmt.
+bodyStmt ::= assign_stmt.
+bodyStmt ::= assignMulti_stmt.
+bodyStmt ::= funcexpr(A) SEMICOLON. { ps->gen << A->data << std::endl; }
+bodyStmt ::= actionStmt.
+bodyStmt ::= if_stmt.
+bodyStmt ::= while_stmt.
+bodyStmt ::= foreach_stmt.
+bodyStmt ::= continue_stmt.
+bodyStmt ::= break_stmt.
 
+bodyStmtList ::= .
+bodyStmtList ::= bodyStmtList bodyStmt.
+
+lbracket ::= LBRACKET. { ps->closure.pushScope(); }
+rbracket ::= RBRACKET. { ps->closure.popScope(); }
+
+stmt ::= bodyStmt.
+stmt ::= return_stmt.
+stmt ::= lbracket bodyStmtList rbracket.
+stmt ::= lbracket bodyStmtList return_stmt rbracket.
+stmt ::= lbracket error RBRACKET(A). {
+    throw_error(A->line, 6298, "Block not terminated properly.");
+    ps->closure.popScope();
+}
 
 // Program building block
 
