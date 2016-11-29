@@ -10,6 +10,7 @@ int getConvertedType(int type) {
         case TOKEN_FROM: return FROM;
         case TOKEN_IMPORT: return IMPORT;
         case TOKEN_VAR: return VAR;
+        case TOKEN_CONST: return CONST;
         case TOKEN_FUNCTION: return FUNCTION;
         case TOKEN_IF: return IF;
         // case TOKEN_ELIF: return ELIF;

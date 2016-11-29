@@ -198,23 +198,7 @@ lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
 
 
 // Statements
-vdef_stmt ::= VAR NAME(A) SEMICOLON. {
-    if(!ps->closure.defVariable(A->data)) {
-        throw_error(A->line, 196, ("Redeclaration of variable \'" + (A->data) + "\'"));
-    }
-    ps->gen << A->data << " = EUDVariable()" << std::endl;
-    delete A;
-}
-
-vdefAssign_stmt ::= VAR NAME(A) ASSIGN expr(B) SEMICOLON. {
-    if(!ps->closure.defVariable(A->data)) {
-        throw_error(A->line, 196, ("Redeclaration of variable \'" + (A->data) + "\'"));
-    }
-    ps->gen << A->data << " = _MVAR([" << B->data << "])" << std::endl;
-    delete A;
-}
-
-vdefMulti_stmt ::= VAR nameListMulti(A) SEMICOLON. {
+vdef_stmt ::= VAR nameList(A) SEMICOLON. {
     std::string& s = A->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
 
@@ -228,7 +212,7 @@ vdefMulti_stmt ::= VAR nameListMulti(A) SEMICOLON. {
     delete A;
 }
 
-vdefMultiAssign_stmt ::= VAR nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
+vdefAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
     std::string& s = A->data;
 
     // Register variables.
@@ -238,6 +222,19 @@ vdefMultiAssign_stmt ::= VAR nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
         }
     });
     ps->gen << s << " = _MVAR([" << B->data << "])" << std::endl;
+    delete A; delete B;
+}
+
+cdef_stmt ::= CONST nameList(A) ASSIGN exprList(B) SEMICOLON. {
+    std::string& s = A->data;
+
+    // Register constants.
+    commaListIter(s, [&](std::string& constname) {
+        if(!ps->closure.defConstant(constname)) {
+            throw_error(A->line, 196, ("Redeclaration of constant \'" + constname + "\'"));
+        }
+    });
+    ps->gen << s << " = List2Assignable([" << B->data << "])" << std::endl;
     delete A; delete B;
 }
 
@@ -468,8 +465,7 @@ stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "Error while parsing s
 stmt ::= SEMICOLON.
 stmt ::= vdef_stmt.
 stmt ::= vdefAssign_stmt.
-stmt ::= vdefMultiAssign_stmt.
-stmt ::= vdefMulti_stmt.
+stmt ::= cdef_stmt.
 stmt ::= assign_stmt.
 stmt ::= assignMulti_stmt.
 stmt ::= funcexpr(A) SEMICOLON. { ps->gen << A->data << std::endl; }
@@ -500,7 +496,7 @@ import_chunk ::= FROM NAME(name) IMPORT nameList(B). {
 chunk ::= import_chunk.
 chunk ::= fdef_chunk.
 chunk ::= vdef_stmt.
-chunk ::= vdefMulti_stmt.
+chunk ::= cdef_stmt.
 chunks ::= .
 chunks ::= chunks chunk.
 

@@ -17,6 +17,7 @@ enum TokenType {
     TOKEN_FROM,
     TOKEN_IMPORT,
     TOKEN_VAR,
+    TOKEN_CONST,
     TOKEN_FUNCTION,
     TOKEN_IF,
     TOKEN_ELIF,
