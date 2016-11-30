@@ -198,6 +198,13 @@ expr(A)::= NAME(B) PERIOD NAME(C). {
     A = mkTokenTemp(B);
 }
 
+expr(A)::= NAME(B) LSQBRACKET expr(C) RSQBRACKET. {
+    checkIsConstant(B->data);
+    B->data = B->data + "[" + C->data + "]";
+    delete C;
+    A = mkTokenTemp(B);
+}
+
 // Function calls
 fArgs_nonEmpty(A) ::= expr(B). { A = B; }
 fArgs_nonEmpty(A) ::= STRING(B). { A = B; }
@@ -346,7 +353,7 @@ vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOL
 
     if(varCount == 1) {
         ps->gen << s << " = EUDVariable()" << std::endl;
-        ps->gen << s << " << " << B->data << std::endl;
+        ps->gen << s << " << (" << B->data << ")" << std::endl;
     }
     else {
         ps->gen << s << " = _MVAR([" << B->data << "])" << std::endl;
@@ -381,9 +388,16 @@ lvalue(A) ::= NAME(B). {
     A = B;
 }
 
+lvalue(A) ::= NAME(B) LSQBRACKET NAME(C) RSQBRACKET. {
+    checkIsConstant(B->data);
+    C->data = "_ARRW(" + B->data + ", " + C->data + ")";
+    A = mkTokenTemp(C);
+    delete B;
+}
+
 lvalue(A) ::= NAME(B) PERIOD NAME(C). {
     checkIsConstant(B->data);
-    C->data = "_FWARP(" + B->data + ", '" + C->data + "')";
+    C->data = "_ATTW(" + B->data + ", '" + C->data + "')";
     A = mkTokenTemp(C);
     delete B;
 }
@@ -391,7 +405,7 @@ lvalue(A) ::= NAME(B) PERIOD NAME(C). {
 lvalueList_nonEmpty(A) ::= lvalue(B). { A = B; }
 lvalueList_nonEmpty(A) ::= lvalueList_nonEmpty(B) COMMA lvalue(C). { A = commaConcat(B, C); }
 assign_stmt ::= lvalue(A) ASSIGN expr(B) SEMICOLON. {
-    ps->gen << A->data << " << " << B->data << std::endl;
+    ps->gen << A->data << " << (" << B->data << ")" << std::endl;
     delete A; delete B;
 }
 
