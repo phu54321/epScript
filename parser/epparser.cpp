@@ -1539,7 +1539,7 @@ static void yy_reduce(
       case 65: /* expr ::= UNIT LPAREN STRING RPAREN */
 #line 258 "parser\\epparser.lemon"
 {
-    yymsp[-1].minor.yy0->data = "GetUnitIndex(" + yymsp[-1].minor.yy0->data + ")";
+    yymsp[-1].minor.yy0->data = "EncodeUnit(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-1].minor.yy0);
 }
 #line 1546 "parser\\epparser.c"
@@ -1547,7 +1547,7 @@ static void yy_reduce(
       case 66: /* expr ::= SWITCH LPAREN STRING RPAREN */
 #line 263 "parser\\epparser.lemon"
 {
-    yymsp[-1].minor.yy0->data = "GetSwitchIndex(" + yymsp[-1].minor.yy0->data + ")";
+    yymsp[-1].minor.yy0->data = "EncodeSwitch(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-1].minor.yy0);
 }
 #line 1554 "parser\\epparser.c"

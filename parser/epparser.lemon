@@ -256,12 +256,12 @@ expr(A) ::= MAPSTRING LPAREN STRING(B) RPAREN. {
 }
 
 expr(A) ::= UNIT LPAREN STRING(B) RPAREN. {
-    B->data = "GetUnitIndex(" + B->data + ")";
+    B->data = "EncodeUnit(" + B->data + ")";
     A = mkTokenTemp(B);
 }
 
 expr(A) ::= SWITCH LPAREN STRING(B) RPAREN. {
-    B->data = "GetSwitchIndex(" + B->data + ")";
+    B->data = "EncodeSwitch(" + B->data + ")";
     A = mkTokenTemp(B);
 }
 
