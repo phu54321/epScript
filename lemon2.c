@@ -1170,7 +1170,7 @@ static int resolve_conflict(
     spy = apy->x.rp->precsym;
     if( spy==0 || spx->prec<0 || spy->prec<0 ){
       /* Not enough precedence information. */
-      apy->type = SRCONFLICT;
+      apy->type = SH_RESOLVED;
       // errcnt++;
     }else if( spx->prec>spy->prec ){    /* higher precedence wins */
       apy->type = RD_RESOLVED;
