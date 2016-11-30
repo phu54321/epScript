@@ -1515,7 +1515,7 @@ static void yy_reduce(
       case 62: /* expr ::= LSQBRACKET exprList RSQBRACKET */
 #line 243 "parser\\epparser.lemon"
 {
-    yymsp[-1].minor.yy0->data = "EUDArray(FlattenList[" + yymsp[-1].minor.yy0->data + "])";
+    yymsp[-1].minor.yy0->data = "EUDArray(FlattenList([" + yymsp[-1].minor.yy0->data + "]))";
     yygotominor.yy0 = mkTokenTemp(yymsp[-1].minor.yy0);
 }
 #line 1522 "parser\\epparser.c"

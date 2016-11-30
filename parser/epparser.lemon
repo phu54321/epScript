@@ -241,7 +241,7 @@ expr(A) ::= LPAREN expr(B) RPAREN. {
 }
 
 expr(A) ::= LSQBRACKET exprList(B) RSQBRACKET. {
-    B->data = "EUDArray(FlattenList[" + B->data + "])";
+    B->data = "EUDArray(FlattenList([" + B->data + "]))";
     A = mkTokenTemp(B);
 }
 
