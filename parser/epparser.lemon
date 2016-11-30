@@ -4,6 +4,7 @@
 #include <string>
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 #include "epparser.h"
 #include "generator/pygen.h"
 #include "generator/closure.h"
