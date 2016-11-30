@@ -8,6 +8,7 @@
 #include "epparser.h"
 #include "generator/pygen.h"
 #include "generator/closure.h"
+#include "parser.h"
 #include "tokenAdapter.h"
 #include "parserUtilities.h"
 
@@ -19,8 +20,8 @@ struct ParserStruct {
 int currentTokenizingLine;
 }
 
-%syntax_error {
-    errorOccured = true;
+%parse_failure {
+    throw_error(-1, "Unrecoverable error");
 }
 
 ////////
@@ -557,7 +558,7 @@ std::string ParseString(const std::string& code, bool addComment)
     if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
 
     tmpIndex = 1;
-    errorOccured = false;
+    resetParserErrorNum();
     while ((token = tok.getToken()) != nullptr) {
         if (currentTokenizingLine != tok.getCurrentLine()) {
             if(addComment) {
@@ -579,7 +580,10 @@ std::string ParseString(const std::string& code, bool addComment)
     Parse (pParser, 0, nullptr, &ps);
     ParseFree(pParser, free );
 
-    if(!errorOccured) return iwCollapse(ps.gen.str());
-    else throw std::runtime_error("Invalid syntax");
+    std::string ret = iwCollapse(ps.gen.str());
+    if(getParseErrorNum() > 0) {
+        ret += "\nraise RuntimeError('Compile error')\n";
+    }
+    return ret;
 }
 }

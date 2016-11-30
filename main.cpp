@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
             std::string code = getFile(ifname);
             std::string out = addStubCode(ParseString(code));
             std::ofstream of(ofname);
-            of << out << std::endl;
+            of << out;
             of.close();
             return 0;
         } catch(std::runtime_error e) {
@@ -81,7 +81,7 @@ int main(int argc, char** argv) {
                 std::string code = getFile(ifname);
                 std::string out = addStubCode(ParseString(code));
                 std::ofstream of(ofname);
-                of << out << std::endl;
+                of << out;
                 of.close();
                 succn++;
             } catch(std::runtime_error e) {

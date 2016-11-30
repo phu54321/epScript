@@ -23,13 +23,13 @@ TEST_CASE("Simple expression parsing") {
 
     SUBCASE("Error handling") {
         // Plain expression cannot appear in program-level
-                REQUIRE_THROWS_AS(ParseString("2;"), std::runtime_error);
+                CHECK((ParseString("2;"), getParseErrorNum() > 0));
     }
 
 
     SUBCASE("Variable assignment") {
-                REQUIRE(ParseString("var a;", false) == "a = EUDVariable()\n");
-                REQUIRE_THROWS_AS(ParseString("b = 2;"), std::runtime_error);
+                CHECK(ParseString("var a;", false) == "a = EUDVariable()\n");
+                CHECK((ParseString("b = 2;"), getParseErrorNum() > 0));
     }
 }
 

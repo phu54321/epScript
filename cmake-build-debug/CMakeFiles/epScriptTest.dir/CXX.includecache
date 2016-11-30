@@ -27,6 +27,8 @@ generator/pygen.h
 /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
 generator/closure.h
 /Users/whyask37/ClionProjects/epScript/parser/generator/closure.h
+parser.h
+/Users/whyask37/ClionProjects/epScript/parser/parser.h
 tokenAdapter.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.h
 parserUtilities.h

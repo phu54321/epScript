@@ -43,15 +43,12 @@ int daemonTurn(void) {
                         try {
                             std::string code = getFile(ifname);
                             out = addStubCode(ParseString(code));
+                            std::ofstream of(ofname);
+                            of << out.c_str();
+                            of.close();
                         } catch(std::runtime_error e) {
-                            printf("-- Error while parsing file \"%s\" : %s\n", ep->d_name, e.what());
-                            out = "raise RuntimeError('Compile error')";  // Stub
+                            printf("Error occured : %s\n", e.what());
                         }
-
-                        std::ofstream of(ofname);
-                        of << out.c_str() << std::endl;
-                        of.close();
-                        return 0;
                     }
                 }
             }

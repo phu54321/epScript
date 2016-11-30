@@ -13,7 +13,6 @@
 #include "generator/pygen.h"
 #include "generator/closure.h"
 
-extern bool errorOccured;
 extern int tmpIndex;
 extern PyGenerator* pGen;
 extern ClosureManager* closure;
@@ -31,7 +30,7 @@ Token* binaryMerge(Token* a, const std::string& opstr, Token* b);
 
 void commaListIter(std::string& s, std::function<void(std::string&)> func);
 void throw_error(int code, const std::string& message);
-
+int resetParserErrorNum();
 ////
 
 // trim from start
