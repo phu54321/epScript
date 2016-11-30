@@ -159,21 +159,10 @@ bodyStmtList ::= bodyStmtList error. {
 
 
 // Common expressions
-numList_nonEmpty(A) ::= NUMBER(B). {
-    A = B;
-}
-
-numList_nonEmpty(A) ::= numList_nonEmpty(B) COMMA NUMBER(C). {
-    A = new Token(B->data + ", " + C->data, C);
-    delete B; delete C;
-}
-
+numList_nonEmpty(A) ::= NUMBER(B). { A = B; }
+numList_nonEmpty(A) ::= numList_nonEmpty(B) COMMA NUMBER(C). { A = commaConcat(B, C); }
 nameList_nonEmpty(A) ::= NAME(B). { A = B; }
-nameList_nonEmpty(A) ::= nameList_nonEmpty(B) COMMA NAME(C). {
-    C->data = B->data + ", " + C->data;
-    delete B;
-    A = C;
-}
+nameList_nonEmpty(A) ::= nameList_nonEmpty(B) COMMA NAME(C). { A = commaConcat(B, C); }
 
 exprList_nonEmpty(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET RSQBRACKET. {
     C->data = "_SRET(" + B->data + ", [" + C->data + "])";
@@ -368,6 +357,7 @@ vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOL
 
 cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
     std::string& s = A->data;
+    int nameCount = std::count(s.begin(), s.end(), ',') + 1;
 
     // Register constants.
     commaListIter(s, [&](std::string& constname) {
@@ -375,22 +365,38 @@ cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. 
             throw_error(7719, ("Redeclaration of constant \'" + constname + "\'"));
         }
     });
-    ps->gen << s << " = List2Assignable([" << B->data << "])" << std::endl;
+    if(nameCount == 1) {
+        ps->gen << s << " = " << B->data << std::endl;
+    }
+    else {
+        ps->gen << s << " = List2Assignable([" << B->data << "])" << std::endl;
+    }
     delete A; delete B;
 }
 
 //
 
-assign_stmt ::= nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
-    if(A->data.find(',') == std::string::npos) {
-        ps->gen << A->data << " << " << B->data << std::endl;
-    }
-    else {
-        ps->gen << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
-    }
-    commaListIter(A->data, [&](std::string& varname) {
-        checkIsVariable(varname);
-    });
+lvalue(A) ::= NAME(B). {
+    checkIsVariable(B->data);
+    A = B;
+}
+
+lvalue(A) ::= NAME(B) PERIOD NAME(C). {
+    checkIsConstant(B->data);
+    C->data = "_FWARP(" + B->data + ", '" + C->data + "')";
+    A = mkTokenTemp(C);
+    delete B;
+}
+
+lvalueList_nonEmpty(A) ::= lvalue(B). { A = B; }
+lvalueList_nonEmpty(A) ::= lvalueList_nonEmpty(B) COMMA lvalue(C). { A = commaConcat(B, C); }
+assign_stmt ::= lvalue(A) ASSIGN expr(B) SEMICOLON. {
+    ps->gen << A->data << " << " << B->data << std::endl;
+    delete A; delete B;
+}
+
+assign_stmt ::= lvalueList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
+    ps->gen << "_SV([" << A->data << "], [" << B->data << "])" << std::endl;
     delete A; delete B;
 }
 

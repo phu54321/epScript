@@ -86,4 +86,10 @@ Token* binaryMerge(Token* a, const std::string& opstr, Token* b) {
     return mkTokenTemp(b);
 }
 
+Token* commaConcat(Token* a, Token* b) {
+    b->data = a->data + ", " + b->data;
+    delete a;
+    return b;
+}
+
 ////

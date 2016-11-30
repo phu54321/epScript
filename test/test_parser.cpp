@@ -41,6 +41,7 @@ TEST_CASE("Control block parsing") {
 
 TEST_CASE("Other parsing") {
     check("auxtest.eps", "auxtest.py");
+    check("method.eps", "method.py");
 }
 
 
