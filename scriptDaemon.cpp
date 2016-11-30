@@ -1,27 +1,28 @@
 #include <stdio.h>
-#include <io.h>
 #include <string>
 #include <sys/stat.h>
 #include <fstream>
 #include <unistd.h>
 #include <iostream>
+#include <dirent.h>
 #include "parser/parser.h"
+
 
 std::string getFile(const std::string& fname);
 
 int daemonTurn(void) {
-    _finddatai64_t c_file;
-    intptr_t hFile;
-    if ( (hFile = _findfirsti64("*.*", &c_file)) != -1L ) {
-        do {
-            if(c_file.name[0] == '.') continue; // Hidden or . or ..
-            if(c_file.attrib & _A_SUBDIR) {
-                chdir(c_file.name);
+    DIR* dp;
+    struct dirent* ep;
+
+    if ((dp = opendir("./")) != nullptr) {
+        while ((ep = readdir (dp)) != nullptr) {
+            if(ep->d_type == DT_DIR) {
+                chdir(ep->d_name);
                 daemonTurn();
                 chdir("..");
             }
             else {
-                std::string ifname = c_file.name;
+                std::string ifname = ep->d_name;
                 if(ifname.size() > 4 && ifname.substr(ifname.size() - 4) == ".eps") { // Possible script file
                     std::string ofname = ifname.substr(0, ifname.size() - 4) + ".py";
 
@@ -36,13 +37,13 @@ int daemonTurn(void) {
                     }
 
                     if(needUpdating) {
-                        printf("Updating file %s...\n", c_file.name);
+                        printf("Updating file %s...\n", ep->d_name);
                         std::string out;
                         try {
                             std::string code = getFile(ifname);
                             out = addStubCode(ParseString(code));
                         } catch(std::runtime_error e) {
-                            printf("-- Error while parsing file \"%s\" : %s\n", c_file.name, e.what());
+                            printf("-- Error while parsing file \"%s\" : %s\n", ep->d_name, e.what());
                             out = "raise RuntimeError('Compile error')";  // Stub
                         }
 
@@ -53,8 +54,8 @@ int daemonTurn(void) {
                     }
                 }
             }
-        } while(_findnexti64(hFile, &c_file) == 0);
-        _findclose(hFile);
+        } ;
+        closedir(dp);
     }
     return 0;
 }

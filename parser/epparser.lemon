@@ -52,22 +52,125 @@ int currentTokenizingLine;
 
 program ::= chunks.
 
+// Definition for chunks
+chunks ::= .
+chunks ::= chunks chunk.
+
+chunk ::= import_chunk.
+chunk ::= fdef_chunk.
+chunk ::= vdef_stmt.
+chunk ::= cdef_stmt.
+
+// Import_chunk
+import_chunk ::= FROM NAME(name) IMPORT nameList(B). {
+    ps->gen << "from " << name->data << " import " << B->data << std::endl;
+    commaListIter(B->data, [&](std::string varname) {
+        funcNamePreprocess(varname);
+        if(!ps->closure.defFunction(varname)) {
+            throw_error(B->line, 8118, ("Importing already-declared function " + varname));
+        }
+        else ps->gen << "from " << name->data << " import " << varname << std::endl;
+    });
+    delete name; delete B;
+}
+
+// Function declaration
+function_start(start) ::= FUNCTION NAME(name).  {
+    // Preprocess name
+    funcNamePreprocess(name->data);
+    if(!ps->closure.defFunction(name->data)) {
+        throw_error(name->line, 4495, "Duplicate function name " + name->data);
+    }
+    ps->closure.pushScope();
+    start = name;
+}
+
+function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
+    ps->gen << "@EUDFunc" << std::endl;
+    ps->gen << "def " << fname->data << "(" << args->data << "):" << std::endl;
+    ps->gen.indent();
+
+    // Register variables.
+    commaListIter(args->data, [&](std::string& varname) {
+        if(!ps->closure.defVariable(varname)) {
+            throw_error(args->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
+        }
+    });
+
+    tmpIndex = 1;
+    delete fname; delete args;
+}
+
+function_header ::= function_start(fname) LPAREN RPAREN. {
+    ps->gen << "@EUDFunc" << std::endl;
+    ps->gen << "def " << fname->data << "():" << std::endl;
+    ps->gen.indent();
+    tmpIndex = 1;
+    delete fname;
+}
+
+fdef_chunk ::= function_header stmt . {
+    ps->gen.unindent(true);
+    ps->closure.popScope();
+}
+
+
+// Statements
+stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "Error while parsing statement"); }
+stmt ::= bodyStmt.
+stmt ::= return_stmt.
+
+// (1) Specialization for empty bodyStmtList
+lbracket ::= LBRACKET. { ps->closure.pushScope(); }
+rbracket ::= RBRACKET. { ps->closure.popScope(); }
+
+stmt ::= lbracket RBRACKET. {
+    ps->gen << "pass" << std::endl;
+    ps->closure.popScope();
+}
+stmt ::= lbracket return_stmt rbracket.
+stmt ::= lbracket bodyStmtList rbracket.
+stmt ::= lbracket bodyStmtList return_stmt rbracket.
+stmt ::= lbracket error RBRACKET(A). {
+    throw_error(A->line, 6298, "Block not terminated properly.");
+    ps->closure.popScope();
+}
+
+bodyStmt ::= SEMICOLON.
+bodyStmt ::= vdef_stmt.
+bodyStmt ::= vdefAssign_stmt.
+bodyStmt ::= cdef_stmt.
+bodyStmt ::= assign_stmt.
+bodyStmt ::= funcexpr(A) SEMICOLON. { ps->gen << A->data << std::endl; }
+bodyStmt ::= actionStmt.
+bodyStmt ::= if_stmt.
+bodyStmt ::= while_stmt.
+bodyStmt ::= foreach_stmt.
+bodyStmt ::= continue_stmt.
+bodyStmt ::= break_stmt.
+
+// bodyStmtList should not contain empty list. See (1)
+bodyStmtList ::= bodyStmt.
+bodyStmtList ::= bodyStmtList bodyStmt.
+
+
+
+
+
 // Common expressions
-numList(A) ::= NUMBER(B) COMMA NUMBER(C). {
+numList_nonEmpty(A) ::= NUMBER(B) COMMA NUMBER(C). {
     A = new Token(B->data + ", " + C->data, C);
     delete B; delete C;
 }
-numList(A) ::= numList(B) COMMA NUMBER(C). {
+numList_nonEmpty(A) ::= numList_nonEmpty(B) COMMA NUMBER(C). {
     A = new Token(B->data + ", " + C->data, C);
     delete B; delete C;
 }
 
-nameListMulti(A) ::= NAME(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
-nameListMulti(A) ::= nameListMulti(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 nameList(A) ::= NAME(B). { A = B; }
-nameList(A) ::= nameListMulti(B). { A = B; }
+nameList(A) ::= nameList(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 
-exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList(C) RSQBRACKET RSQBRACKET. {
+exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET RSQBRACKET. {
     A = genTemp(C);
     ps->gen << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
     delete B; delete C;
@@ -272,25 +375,19 @@ cdef_stmt ::= CONST nameList(A) ASSIGN exprList(B) SEMICOLON. {
     delete A; delete B;
 }
 
-assign_stmt ::= NAME(A) ASSIGN expr(B) SEMICOLON. {
-    ps->gen << A->data << " << " << B->data << std::endl;
-    if(!ps->closure.getVariable(A->data)) {
-        throw_error(A->line, 103, ("Undeclared variable \'" + (A->data) + "\'"));
-        ps->closure.defVariable(A->data);
+assign_stmt ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
+    if(A->data.find(',') == std::string::npos) {
+        ps->gen << A->data << " << " << B->data << std::endl;
     }
-    delete A; delete B;
-}
-
-assignMulti_stmt ::= nameListMulti(A) ASSIGN exprList(B) SEMICOLON. {
-    ps->gen << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
-
+    else {
+        ps->gen << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
+    }
     commaListIter(A->data, [&](std::string& varname) {
         if(!ps->closure.defVariable(varname)) {
             throw_error(A->line, 103, ("Undeclared variable \'" + varname + "\'"));
             ps->closure.defVariable(varname);
         }
     });
-
     delete A; delete B;
 }
 
@@ -380,46 +477,6 @@ break_stmt ::= BREAK SEMICOLON. {
     ps->gen << "EUDBreak()" << std::endl;
 }
 
-// Function declaration
-function_start(start) ::= FUNCTION NAME(name).  {
-    // Preprocess name
-    funcNamePreprocess(name->data);
-    start = name;
-    if(!ps->closure.defFunction(name->data)) {
-        throw_error(name->line, 4495, "Duplicate function name " + name->data);
-    }
-    ps->closure.pushScope();
-}
-
-function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
-    ps->gen << "@EUDFunc" << std::endl;
-    ps->gen << "def " << fname->data << "(" << args->data << "):" << std::endl;
-    ps->gen.indent();
-
-    // Register variables.
-    const std::string& s = args->data;
-    commaListIter(args->data, [&](std::string& varname) {
-        if(!ps->closure.defVariable(varname)) {
-            throw_error(args->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
-        }
-    });
-
-    tmpIndex = 1;
-    delete fname; delete args;
-}
-
-function_header ::= function_start(fname) LPAREN RPAREN. {
-    ps->gen << "@EUDFunc" << std::endl;
-    ps->gen << "def " << fname->data << "():" << std::endl;
-    ps->gen.indent();
-    tmpIndex = 1;
-    delete fname;
-}
-
-fdef_chunk ::= function_header stmt . {
-    ps->gen.unindent(true);
-    ps->closure.popScope();
-}
 
 
 // returns
@@ -479,64 +536,9 @@ actionStmt ::= actions(X). {
 }
 
 
-// General statements
-stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "Error while parsing statement"); }
-
-
-bodyStmt ::= SEMICOLON.
-bodyStmt ::= vdef_stmt.
-bodyStmt ::= vdefAssign_stmt.
-bodyStmt ::= cdef_stmt.
-bodyStmt ::= assign_stmt.
-bodyStmt ::= assignMulti_stmt.
-bodyStmt ::= funcexpr(A) SEMICOLON. { ps->gen << A->data << std::endl; }
-bodyStmt ::= actionStmt.
-bodyStmt ::= if_stmt.
-bodyStmt ::= while_stmt.
-bodyStmt ::= foreach_stmt.
-bodyStmt ::= continue_stmt.
-bodyStmt ::= break_stmt.
-
-bodyStmtList ::= bodyStmt.
-bodyStmtList ::= bodyStmtList bodyStmt.
-
-lbracket ::= LBRACKET. { ps->closure.pushScope(); }
-rbracket ::= RBRACKET. { ps->closure.popScope(); }
-
-stmt ::= bodyStmt.
-stmt ::= return_stmt.
-stmt ::= lbracket RBRACKET. {
-    ps->gen << "pass" << std::endl;
-    ps->closure.popScope();
-}
-stmt ::= lbracket return_stmt rbracket.
-stmt ::= lbracket bodyStmtList rbracket.
-stmt ::= lbracket bodyStmtList return_stmt rbracket.
-stmt ::= lbracket error RBRACKET(A). {
-    throw_error(A->line, 6298, "Block not terminated properly.");
-    ps->closure.popScope();
-}
-
 // Program building block
 
-import_chunk ::= FROM NAME(name) IMPORT nameList(B). {
-    ps->gen << "from " << name->data << " import " << B->data << std::endl;
-    commaListIter(B->data, [&](std::string varname) {
-        funcNamePreprocess(varname);
-        if(!ps->closure.defFunction(varname)) {
-            throw_error(B->line, 8118, ("Importing already-declared function " + varname));
-        }
-        else ps->gen << "from " << name->data << " import " << varname << std::endl;
-    });
-    delete name; delete B;
-}
 
-chunk ::= import_chunk.
-chunk ::= fdef_chunk.
-chunk ::= vdef_stmt.
-chunk ::= cdef_stmt.
-chunks ::= .
-chunks ::= chunks chunk.
 
 %code {
 
