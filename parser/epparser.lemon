@@ -66,7 +66,7 @@ import_chunk ::= FROM NAME(name) IMPORT nameList_nonEmpty(B) SEMICOLON. {
     commaListIter(B->data, [&](std::string varname) {
         funcNamePreprocess(varname);
         if(!ps->closure.defFunction(varname)) {
-            throw_error(B->line, 8118, ("Importing already-declared function " + varname));
+            throw_error(8118, ("Importing already-declared function " + varname));
         }
         else ps->gen << "from " << name->data << " import " << varname << std::endl;
     });
@@ -78,7 +78,7 @@ function_start(start) ::= FUNCTION NAME(name).  {
     // Preprocess name
     funcNamePreprocess(name->data);
     if(!ps->closure.defFunction(name->data)) {
-        throw_error(name->line, 4495, "Duplicate function name " + name->data);
+        throw_error(4495, "Duplicate function name " + name->data);
     }
     ps->closure.pushScope();
     start = name;
@@ -92,7 +92,7 @@ function_header ::= function_start(fname) LPAREN nameList_nonEmpty(args) RPAREN.
     // Register variables.
     commaListIter(args->data, [&](std::string& varname) {
         if(!ps->closure.defVariable(varname)) {
-            throw_error(args->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
+            throw_error(196, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
 
@@ -115,7 +115,7 @@ fdef_chunk ::= function_header stmt . {
 
 
 // Statements
-stmt ::= error SEMICOLON(A). { throw_error(A->line, 6974, "Error while parsing statement"); }
+stmt ::= error SEMICOLON. { throw_error(6974, "Error while parsing statement"); }
 stmt ::= bodyStmt.
 stmt ::= return_stmt.
 
@@ -130,8 +130,8 @@ stmt ::= lbracket RBRACKET. {
 stmt ::= lbracket return_stmt rbracket.
 stmt ::= lbracket bodyStmtList rbracket.
 stmt ::= lbracket bodyStmtList return_stmt rbracket.
-stmt ::= lbracket error RBRACKET(A). {
-    throw_error(A->line, 6298, "Block not terminated properly.");
+stmt ::= lbracket error RBRACKET. {
+    throw_error(6298, "Block not terminated properly.");
     ps->closure.popScope();
 }
 
@@ -193,18 +193,12 @@ exprList(A) ::= exprList_nonEmpty(B). { A = B; }
 // Related to expressions
 expr(A) ::= NUMBER(B). { A = B; }
 expr(A) ::= NAME(B). {
-    if(!ps->closure.getConstant(B->data) && !ps->closure.getVariable(B->data)) {
-        throw_error(B->line, 103, ("Undeclared \'" + (B->data) + "\'"));
-        ps->closure.defVariable(B->data);
-    }
+    checkIsRValue(B->data);
     A = B;
 }
 
 expr(A)::= NAME(B) PERIOD NAME(C). {
-    if(!ps->closure.getConstant(B->data)) {
-        throw_error(B->line, 103, ("Undeclared constant \'" + (B->data) + "\'"));
-        ps->closure.defConstant(B->data);
-    }
+    checkIsConstant(B->data);
     B->data = B->data + "." + C->data;
     delete C;
     A = mkTokenTemp(B);
@@ -225,26 +219,13 @@ fArgs(A) ::= fArgs_nonEmpty(B). { A = B; }
 
 funcName(A) ::= NAME(name). {
     funcNamePreprocess(name->data);
-    if (!ps->closure.getFunction(name->data)) {
-        throw_error(name->line, 4449, ("Undefined function " + name->data));
-        ps->closure.defFunction(name->data);
-    }
+    checkIsFunction(name->data);
     A = name;
 }
+
 funcName(A) ::= NAME(objName) PERIOD NAME(mtdName). {
     // Preprocess name
-    if (!ps->closure.getConstant(objName->data)) {
-        if(ps->closure.defFunction(objName->data)) {
-            throw_error(objName->line, 8200, ("Undefined constant " + objName->data));
-        }
-        else if(ps->closure.getVariable(objName->data)) {
-            throw_error(objName->line, 8208, ("Normal variable cannot have methods : " + objName->data));
-        }
-        else {
-            throw_error(objName->line, 553, ("Calling method of non-constant : " + objName->data));
-        }
-    }
-
+    checkIsConstant(objName->data);
     mtdName->data = objName->data + "." + mtdName->data;
     delete objName;
     A = mkTokenTemp(mtdName);
@@ -344,7 +325,7 @@ vdef_stmt ::= VAR nameList_nonEmpty(A) SEMICOLON. {
     // Register variables.
     commaListIter(s, [&](std::string& varname) {
         if(!ps->closure.defVariable(varname)) {
-            throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
+            throw_error(196, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
 
@@ -365,7 +346,7 @@ vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOL
     // Register variables.
     commaListIter(s, [&](std::string& varname) {
         if(!ps->closure.defVariable(varname)) {
-            throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
+            throw_error(7998, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
 
@@ -386,12 +367,14 @@ cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. 
     // Register constants.
     commaListIter(s, [&](std::string& constname) {
         if(!ps->closure.defConstant(constname)) {
-            throw_error(A->line, 196, ("Redeclaration of constant \'" + constname + "\'"));
+            throw_error(7719, ("Redeclaration of constant \'" + constname + "\'"));
         }
     });
     ps->gen << s << " = List2Assignable([" << B->data << "])" << std::endl;
     delete A; delete B;
 }
+
+//
 
 assign_stmt ::= nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
     if(A->data.find(',') == std::string::npos) {
@@ -401,10 +384,7 @@ assign_stmt ::= nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
         ps->gen << "SetVariables([" << A->data << "], [" << B->data << "])" << std::endl;
     }
     commaListIter(A->data, [&](std::string& varname) {
-        if(!ps->closure.defVariable(varname)) {
-            throw_error(A->line, 103, ("Undeclared variable \'" + varname + "\'"));
-            ps->closure.defVariable(varname);
-        }
+        checkIsVariable(varname);
     });
     delete A; delete B;
 }
@@ -558,6 +538,7 @@ actionStmt ::= actions(X). {
 
 int PARSER_DEBUG = 0;
 PyGenerator* pGen;
+ClosureManager* closure;
 
 std::string ParseString(const std::string& code, bool addComment)
 {
@@ -567,6 +548,7 @@ std::string ParseString(const std::string& code, bool addComment)
     Token* token;
     currentTokenizingLine = 0;
     pGen = &ps.gen;
+    closure = &ps.closure;
 
     if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
 
@@ -587,7 +569,7 @@ std::string ParseString(const std::string& code, bool addComment)
 #endif
         }
         else {
-            throw_error(token->line, 8104, "Invalid token");
+            throw_error(8104, "Invalid token");
         }
     }
     Parse (pParser, 0, nullptr, &ps);

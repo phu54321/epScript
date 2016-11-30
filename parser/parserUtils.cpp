@@ -9,10 +9,12 @@
 #include "generator/eudplibGlobals.h"
 #include "parserUtilities.h"
 
+extern int currentTokenizingLine;
+
 bool errorOccured = false;
 
-void throw_error(int line, int code, const std::string& message) {
-    std::cerr << "[Error " << code << "] Line " << line << " : " << message << std::endl;
+void throw_error(int code, const std::string& message) {
+    std::cerr << "[Error " << code << "] Line " << currentTokenizingLine << " : " << message << std::endl;
     errorOccured = true;
 }
 

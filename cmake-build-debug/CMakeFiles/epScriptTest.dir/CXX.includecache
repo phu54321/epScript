@@ -95,6 +95,8 @@ tokenizer/tokenizer.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
 generator/pygen.h
 /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
+generator/closure.h
+/Users/whyask37/ClionProjects/epScript/parser/generator/closure.h
 
 /Users/whyask37/ClionProjects/epScript/parser/parserUtils.cpp
 string

@@ -20,12 +20,14 @@ CMakeFiles/epScriptTest.dir/parser/generator/pygen.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.cpp
  /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
 CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.o
+ /Users/whyask37/ClionProjects/epScript/parser/generator/closure.h
  /Users/whyask37/ClionProjects/epScript/parser/generator/eudplibGlobals.h
  /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
  /Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
  /Users/whyask37/ClionProjects/epScript/parser/parserUtils.cpp
  /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
 CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.o
+ /Users/whyask37/ClionProjects/epScript/parser/generator/closure.h
  /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
  /Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
  /Users/whyask37/ClionProjects/epScript/parser/parserUtilsTokens.cpp
