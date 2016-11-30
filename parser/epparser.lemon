@@ -331,12 +331,12 @@ while_stmt ::= while_header stmt. {
 
 // Foreach block
 foreach_header ::= FOR LPAREN nameList(names) COLON exprList(exprs) RPAREN. {
-    ps->gen << "for " << names->data << " in " << exprs->data << ":" << std::endl;
-    ps->gen.indent();
     ps->closure.pushScope();
     commaListIter(names->data, [&](std::string& s) {
         ps->closure.defVariable(s);
     });
+    ps->gen << "for " << names->data << " in " << exprs->data << ":" << std::endl;
+    ps->gen.indent();
 }
 
 foreach_stmt ::= foreach_header stmt. {
@@ -471,7 +471,7 @@ bodyStmt ::= foreach_stmt.
 bodyStmt ::= continue_stmt.
 bodyStmt ::= break_stmt.
 
-bodyStmtList ::= .
+bodyStmtList ::= bodyStmt.
 bodyStmtList ::= bodyStmtList bodyStmt.
 
 lbracket ::= LBRACKET. { ps->closure.pushScope(); }
@@ -479,6 +479,11 @@ rbracket ::= RBRACKET. { ps->closure.popScope(); }
 
 stmt ::= bodyStmt.
 stmt ::= return_stmt.
+stmt ::= lbracket RBRACKET. {
+    ps->gen << "pass" << std::endl;
+    ps->closure.popScope();
+}
+stmt ::= lbracket return_stmt rbracket.
 stmt ::= lbracket bodyStmtList rbracket.
 stmt ::= lbracket bodyStmtList return_stmt rbracket.
 stmt ::= lbracket error RBRACKET(A). {
