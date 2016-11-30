@@ -60,6 +60,7 @@ numList(A) ::= numList(B) COMMA NUMBER(C). {
     A = new Token(B->data + ", " + C->data, C);
     delete B; delete C;
 }
+
 nameListMulti(A) ::= NAME(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 nameListMulti(A) ::= nameListMulti(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 nameList(A) ::= NAME(B). { A = B; }
@@ -91,39 +92,53 @@ expr(A) ::= NAME(B). {
 }
 
 // Function calls
-fArgs(A) ::= expr(B). { A = B; }
-fArgs(A) ::= STRING(B). { A = B; }
-fArgs(A) ::= fArgs(B) COMMA fArgs(C). {
+fArgs(A) ::= . {
+    A = new Token(TOKEN_TEMP, "", -1);
+}
+
+fArgsAny(A) ::= expr(B). { A = B; }
+fArgsAny(A) ::= STRING(B). { A = B; }
+fArgsAny(A) ::= fArgsAny(B) COMMA fArgsAny(C). {
     B->data = B->data + ", " + C->data;
     B->type = TOKEN_TEMP;
     A = B;
+    delete C;
 }
 
-funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
-    // Preprocess name
+fArgs(A) ::= fArgsAny(B). { A = B; }
+
+funcName(A) ::= NAME(name). {
     funcNamePreprocess(name->data);
     if (!ps->closure.getFunction(name->data)) {
         throw_error(name->line, 4449, ("Undefined function " + name->data));
         ps->closure.defFunction(name->data);
     }
+    A = name;
+}
+funcName(A) ::= NAME(objName) PERIOD NAME(mtdName). {
+    // Preprocess name
+    if (!ps->closure.getConstant(objName->data)) {
+        if(ps->closure.defFunction(objName->data)) {
+            throw_error(objName->line, 8200, ("Undefined constant " + objName->data));
+        }
+        else if(ps->closure.getVariable(objName->data)) {
+            throw_error(objName->line, 8208, ("Normal variable cannot have methods : " + objName->data));
+        }
+        else {
+            throw_error(objName->line, 553, ("Calling method of non-constant : " + objName->data));
+        }
+    }
 
+    mtdName->data = objName->data + "." + mtdName->data;
+    delete objName;
+    A = mkTokenTemp(mtdName, ps->gen);
+}
+
+funcexpr(out) ::= funcName(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
+    // Preprocess name
     name->data += "(" + exprs->data + ")";
     out = mkTokenTemp(name, ps->gen);
 }
-
-
-funcexpr(out) ::= NAME(name) LPAREN RPAREN.  [FUNCCALL] {
-    // Preprocess name
-    funcNamePreprocess(name->data);
-    if (!ps->closure.getFunction(name->data)) {
-        throw_error(name->line, 4449, ("Undefined function " + name->data));
-        ps->closure.defFunction(name->data);
-    }
-
-    name->data += "()";
-    out = mkTokenTemp(name, ps->gen);
-}
-
 
 // Expressions
 expr(A) ::= funcexpr(B).  { A = B; }

@@ -38,4 +38,9 @@ TEST_CASE("Control block parsing") {
     check("ctrlstru/ctrlstru_foreach.eps", "ctrlstru/ctrlstru_foreach.py");
 }
 
+TEST_CASE("Other parsing") {
+    check("mthcall.eps", "mthcall.py");
+}
+
+
 TEST_SUITE_END();

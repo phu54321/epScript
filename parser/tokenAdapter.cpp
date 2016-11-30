@@ -64,6 +64,7 @@ int getConvertedType(int type) {
         case TOKEN_RBRACKET: return RBRACKET;
         case TOKEN_LSQBRACKET: return LSQBRACKET;
         case TOKEN_RSQBRACKET: return RSQBRACKET;
+        case TOKEN_PERIOD: return PERIOD;
         case TOKEN_COMMA: return COMMA;
         case TOKEN_COLON: return COLON;
         case TOKEN_SEMICOLON: return SEMICOLON;;
