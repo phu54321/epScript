@@ -13,11 +13,13 @@ std::string getFile(const std::string& fname);
 int daemonTurn(void) {
     DIR* dp;
     struct dirent* ep;
+    struct stat st;
 
     if ((dp = opendir("./")) != nullptr) {
         while ((ep = readdir (dp)) != nullptr) {
             if(ep->d_name[0] == '.') continue;
-            if(ep->d_type == DT_DIR) {
+            stat(ep->d_name, &st);
+            if(S_ISDIR(st.st_mode)) {
                 chdir(ep->d_name);
                 daemonTurn();
                 chdir("..");

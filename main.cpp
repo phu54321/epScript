@@ -11,6 +11,9 @@ extern bool PARSER_DEBUG;
 
 
 int usage() {
+#if defined(_WIN32) || defined(WIN32)
+    printf("Usage : epScript [-v]      // Only on windows\n");
+#endif
     printf("Usage : epScript [-v] daemon\n");
     printf("Usage : epScript [-v] [-o output] input\n");
     printf("Usage : epScript [-v] input1 input2 input3 .. inputN\n");
@@ -42,8 +45,13 @@ int main(int argc, char** argv) {
         }
     }
 
-    if(optind == argc) {  // No input file - Self daemon mode
+    if(optind == argc) {  // No input file
+#if defined(_WIN32) || defined(WIN32)
+        // use daemon mode in windows.
+        return runDaemon();
+#else
         return usage();
+#endif
     }
 
     else if(optind < argc - 1 && ofname != "") { // Multiple input files with -o

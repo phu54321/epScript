@@ -1,6 +1,7 @@
 #include "utils.h"
 #include <stdio.h>
 #include <vector>
+#include <stdexcept>
 
 std::string getFile(const std::string& fname) {
     FILE* fp = fopen(fname.c_str(), "r");
