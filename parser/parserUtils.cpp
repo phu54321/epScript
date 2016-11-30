@@ -7,6 +7,7 @@
 #include "tokenizer/tokenizer.h"
 #include "generator/pygen.h"
 #include "generator/eudplibGlobals.h"
+#include "parserUtilities.h"
 
 std::string getFile(const std::string& fname) {
     FILE* fp = fopen(fname.c_str(), "r");
@@ -29,6 +30,11 @@ std::string getFile(const std::string& fname) {
 }
 
 ////
+
+extern int currentTokenizingLine;
+Token* genEmpty() {
+    return new Token(TOKEN_TEMP, currentTokenizingLine);
+}
 
 void commaListIter(std::string& s, std::function<void(std::string&)> func) {
     bool isFirst = true;
@@ -94,10 +100,10 @@ Token* genTemp(Token* lineSrc) {
 
 const int LENGTH_LIMIT = 60;
 
-Token* mkTokenTemp(Token* a, PyGenerator& pGen) {
+Token* mkTokenTemp(Token* a) {
     if(a->data.size() > LENGTH_LIMIT) {
         Token* t = genTemp(a);
-        pGen << t->data << " = " << a->data << std::endl;
+        (*pGen) << t->data << " = " << a->data << std::endl;
         delete a;
         return t;
     }
@@ -107,10 +113,10 @@ Token* mkTokenTemp(Token* a, PyGenerator& pGen) {
     }
 }
 
-Token* binaryMerge(Token* a, const std::string& opstr, Token* b, PyGenerator& pGen) {
+Token* binaryMerge(Token* a, const std::string& opstr, Token* b) {
     b->data = a->data + (" " + opstr + " ") + b->data;
     delete a;
-    return mkTokenTemp(b, pGen);
+    return mkTokenTemp(b);
 }
 
 ////

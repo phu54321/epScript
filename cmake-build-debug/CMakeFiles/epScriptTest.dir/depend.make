@@ -21,6 +21,7 @@ CMakeFiles/epScriptTest.dir/parser/generator/pygen.cpp.o: ../parser/generator/py
 
 CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.o: ../parser/generator/eudplibGlobals.h
 CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.o: ../parser/generator/pygen.h
+CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.o: ../parser/parserUtilities.h
 CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.o: ../parser/parserUtils.cpp
 CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.o: ../parser/tokenizer/tokenizer.h
 

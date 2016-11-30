@@ -111,6 +111,8 @@ generator/pygen.h
 /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
 generator/eudplibGlobals.h
 /Users/whyask37/ClionProjects/epScript/parser/generator/eudplibGlobals.h
+parserUtilities.h
+/Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
 
 /Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.cpp
 tokenAdapter.h

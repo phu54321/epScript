@@ -29,15 +29,15 @@ State 1:
           bodyStmt ::= * foreach_stmt
           bodyStmt ::= * continue_stmt
           bodyStmt ::= * break_stmt
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
           funcName ::= * NAME
           funcName ::= * NAME PERIOD NAME
           funcexpr ::= * funcName LPAREN fArgs RPAREN
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          vdefAssign_stmt ::= * VAR nameList ASSIGN exprList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
-          assign_stmt ::= * nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
+          assign_stmt ::= * nameList_nonEmpty ASSIGN exprList SEMICOLON
           if_start ::= * IF
           if_header ::= * if_start LPAREN lexpr RPAREN
           if_block ::= * if_header stmt
@@ -48,7 +48,7 @@ State 1:
           while_start ::= * WHILE
           while_header ::= * while_start LPAREN lexpr RPAREN
           while_stmt ::= * while_header stmt
-          foreach_header ::= * FOR LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= * FOR LPAREN nameList_nonEmpty COLON exprList RPAREN
           foreach_stmt ::= * foreach_header stmt
           continue_stmt ::= * CONTINUE SEMICOLON
           break_stmt ::= * BREAK SEMICOLON
@@ -75,7 +75,7 @@ State 1:
                          error shift  140
                      vdef_stmt shift  210
                      cdef_stmt shift  208
-                      nameList shift  93
+             nameList_nonEmpty shift  93
                           stmt shift  149
                       bodyStmt shift  219
                    return_stmt shift  218
@@ -121,15 +121,15 @@ State 2:
           bodyStmt ::= * foreach_stmt
           bodyStmt ::= * continue_stmt
           bodyStmt ::= * break_stmt
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
           funcName ::= * NAME
           funcName ::= * NAME PERIOD NAME
           funcexpr ::= * funcName LPAREN fArgs RPAREN
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          vdefAssign_stmt ::= * VAR nameList ASSIGN exprList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
-          assign_stmt ::= * nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
+          assign_stmt ::= * nameList_nonEmpty ASSIGN exprList SEMICOLON
           if_start ::= * IF
           if_header ::= * if_start LPAREN lexpr RPAREN
           if_block ::= * if_header stmt
@@ -139,7 +139,7 @@ State 2:
           while_start ::= * WHILE
           while_header ::= * while_start LPAREN lexpr RPAREN
           while_stmt ::= * while_header stmt
-          foreach_header ::= * FOR LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= * FOR LPAREN nameList_nonEmpty COLON exprList RPAREN
           foreach_stmt ::= * foreach_header stmt
           foreach_stmt ::= foreach_header * stmt
           continue_stmt ::= * CONTINUE SEMICOLON
@@ -167,7 +167,7 @@ State 2:
                          error shift  140
                      vdef_stmt shift  210
                      cdef_stmt shift  208
-                      nameList shift  93
+             nameList_nonEmpty shift  93
                           stmt shift  157
                       bodyStmt shift  219
                    return_stmt shift  218
@@ -213,15 +213,15 @@ State 3:
           bodyStmt ::= * foreach_stmt
           bodyStmt ::= * continue_stmt
           bodyStmt ::= * break_stmt
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
           funcName ::= * NAME
           funcName ::= * NAME PERIOD NAME
           funcexpr ::= * funcName LPAREN fArgs RPAREN
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          vdefAssign_stmt ::= * VAR nameList ASSIGN exprList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
-          assign_stmt ::= * nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
+          assign_stmt ::= * nameList_nonEmpty ASSIGN exprList SEMICOLON
           if_start ::= * IF
           if_header ::= * if_start LPAREN lexpr RPAREN
           if_block ::= * if_header stmt
@@ -232,7 +232,7 @@ State 3:
           while_header ::= * while_start LPAREN lexpr RPAREN
           while_stmt ::= * while_header stmt
           while_stmt ::= while_header * stmt
-          foreach_header ::= * FOR LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= * FOR LPAREN nameList_nonEmpty COLON exprList RPAREN
           foreach_stmt ::= * foreach_header stmt
           continue_stmt ::= * CONTINUE SEMICOLON
           break_stmt ::= * BREAK SEMICOLON
@@ -259,7 +259,7 @@ State 3:
                          error shift  140
                      vdef_stmt shift  210
                      cdef_stmt shift  208
-                      nameList shift  93
+             nameList_nonEmpty shift  93
                           stmt shift  159
                       bodyStmt shift  219
                    return_stmt shift  218
@@ -305,15 +305,15 @@ State 4:
           bodyStmt ::= * foreach_stmt
           bodyStmt ::= * continue_stmt
           bodyStmt ::= * break_stmt
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
           funcName ::= * NAME
           funcName ::= * NAME PERIOD NAME
           funcexpr ::= * funcName LPAREN fArgs RPAREN
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          vdefAssign_stmt ::= * VAR nameList ASSIGN exprList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
-          assign_stmt ::= * nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
+          assign_stmt ::= * nameList_nonEmpty ASSIGN exprList SEMICOLON
           if_start ::= * IF
           if_header ::= * if_start LPAREN lexpr RPAREN
           if_block ::= * if_header stmt
@@ -324,7 +324,7 @@ State 4:
           while_start ::= * WHILE
           while_header ::= * while_start LPAREN lexpr RPAREN
           while_stmt ::= * while_header stmt
-          foreach_header ::= * FOR LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= * FOR LPAREN nameList_nonEmpty COLON exprList RPAREN
           foreach_stmt ::= * foreach_header stmt
           continue_stmt ::= * CONTINUE SEMICOLON
           break_stmt ::= * BREAK SEMICOLON
@@ -351,7 +351,7 @@ State 4:
                          error shift  140
                      vdef_stmt shift  210
                      cdef_stmt shift  208
-                      nameList shift  93
+             nameList_nonEmpty shift  93
                           stmt shift  162
                       bodyStmt shift  219
                    return_stmt shift  218
@@ -397,15 +397,15 @@ State 5:
           bodyStmt ::= * foreach_stmt
           bodyStmt ::= * continue_stmt
           bodyStmt ::= * break_stmt
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
           funcName ::= * NAME
           funcName ::= * NAME PERIOD NAME
           funcexpr ::= * funcName LPAREN fArgs RPAREN
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          vdefAssign_stmt ::= * VAR nameList ASSIGN exprList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
-          assign_stmt ::= * nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
+          assign_stmt ::= * nameList_nonEmpty ASSIGN exprList SEMICOLON
           if_start ::= * IF
           if_header ::= * if_start LPAREN lexpr RPAREN
           if_block ::= * if_header stmt
@@ -416,7 +416,7 @@ State 5:
           while_start ::= * WHILE
           while_header ::= * while_start LPAREN lexpr RPAREN
           while_stmt ::= * while_header stmt
-          foreach_header ::= * FOR LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= * FOR LPAREN nameList_nonEmpty COLON exprList RPAREN
           foreach_stmt ::= * foreach_header stmt
           continue_stmt ::= * CONTINUE SEMICOLON
           break_stmt ::= * BREAK SEMICOLON
@@ -443,7 +443,7 @@ State 5:
                          error shift  140
                      vdef_stmt shift  210
                      cdef_stmt shift  208
-                      nameList shift  93
+             nameList_nonEmpty shift  93
                           stmt shift  165
                       bodyStmt shift  219
                    return_stmt shift  218
@@ -490,15 +490,15 @@ State 6:
           bodyStmt ::= * foreach_stmt
           bodyStmt ::= * continue_stmt
           bodyStmt ::= * break_stmt
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
           funcName ::= * NAME
           funcName ::= * NAME PERIOD NAME
           funcexpr ::= * funcName LPAREN fArgs RPAREN
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          vdefAssign_stmt ::= * VAR nameList ASSIGN exprList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
-          assign_stmt ::= * nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
+          assign_stmt ::= * nameList_nonEmpty ASSIGN exprList SEMICOLON
           if_start ::= * IF
           if_header ::= * if_start LPAREN lexpr RPAREN
           if_block ::= * if_header stmt
@@ -508,7 +508,7 @@ State 6:
           while_start ::= * WHILE
           while_header ::= * while_start LPAREN lexpr RPAREN
           while_stmt ::= * while_header stmt
-          foreach_header ::= * FOR LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= * FOR LPAREN nameList_nonEmpty COLON exprList RPAREN
           foreach_stmt ::= * foreach_header stmt
           continue_stmt ::= * CONTINUE SEMICOLON
           break_stmt ::= * BREAK SEMICOLON
@@ -535,7 +535,7 @@ State 6:
                          error shift  140
                      vdef_stmt shift  210
                      cdef_stmt shift  208
-                      nameList shift  93
+             nameList_nonEmpty shift  93
                           stmt shift  221
                       bodyStmt shift  219
                    return_stmt shift  218
@@ -579,15 +579,15 @@ State 7:
           bodyStmt ::= * break_stmt
           bodyStmtList ::= * bodyStmt
           bodyStmtList ::= * bodyStmtList bodyStmt
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
           funcName ::= * NAME
           funcName ::= * NAME PERIOD NAME
           funcexpr ::= * funcName LPAREN fArgs RPAREN
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          vdefAssign_stmt ::= * VAR nameList ASSIGN exprList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
-          assign_stmt ::= * nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
+          assign_stmt ::= * nameList_nonEmpty ASSIGN exprList SEMICOLON
           if_start ::= * IF
           if_header ::= * if_start LPAREN lexpr RPAREN
           if_block ::= * if_header stmt
@@ -597,7 +597,7 @@ State 7:
           while_start ::= * WHILE
           while_header ::= * while_start LPAREN lexpr RPAREN
           while_stmt ::= * while_header stmt
-          foreach_header ::= * FOR LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= * FOR LPAREN nameList_nonEmpty COLON exprList RPAREN
           foreach_stmt ::= * foreach_header stmt
           continue_stmt ::= * CONTINUE SEMICOLON
           break_stmt ::= * BREAK SEMICOLON
@@ -624,7 +624,7 @@ State 7:
                          error shift  96
                      vdef_stmt shift  210
                      cdef_stmt shift  208
-                      nameList shift  93
+             nameList_nonEmpty shift  93
                       bodyStmt shift  147
                    return_stmt shift  58
                   bodyStmtList shift  8
@@ -664,15 +664,15 @@ State 8:
           bodyStmt ::= * continue_stmt
           bodyStmt ::= * break_stmt
           bodyStmtList ::= bodyStmtList * bodyStmt
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
           funcName ::= * NAME
           funcName ::= * NAME PERIOD NAME
           funcexpr ::= * funcName LPAREN fArgs RPAREN
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          vdefAssign_stmt ::= * VAR nameList ASSIGN exprList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
-          assign_stmt ::= * nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
+          assign_stmt ::= * nameList_nonEmpty ASSIGN exprList SEMICOLON
           if_start ::= * IF
           if_header ::= * if_start LPAREN lexpr RPAREN
           if_block ::= * if_header stmt
@@ -682,7 +682,7 @@ State 8:
           while_start ::= * WHILE
           while_header ::= * while_start LPAREN lexpr RPAREN
           while_stmt ::= * while_header stmt
-          foreach_header ::= * FOR LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= * FOR LPAREN nameList_nonEmpty COLON exprList RPAREN
           foreach_stmt ::= * foreach_header stmt
           continue_stmt ::= * CONTINUE SEMICOLON
           break_stmt ::= * BREAK SEMICOLON
@@ -708,7 +708,7 @@ State 8:
                     ACTIONNAME shift  99
                      vdef_stmt shift  210
                      cdef_stmt shift  208
-                      nameList shift  93
+             nameList_nonEmpty shift  93
                       bodyStmt shift  199
                    return_stmt shift  57
                       rbracket shift  213
@@ -738,13 +738,13 @@ State 9:
           chunk ::= * fdef_chunk
           chunk ::= * vdef_stmt
           chunk ::= * cdef_stmt
-          import_chunk ::= * FROM NAME IMPORT nameList
+          import_chunk ::= * FROM NAME IMPORT nameList_nonEmpty
           function_start ::= * FUNCTION NAME
-          function_header ::= * function_start LPAREN nameList RPAREN
+          function_header ::= * function_start LPAREN nameList_nonEmpty RPAREN
           function_header ::= * function_start LPAREN RPAREN
           fdef_chunk ::= * function_header stmt
-          vdef_stmt ::= * VAR nameList SEMICOLON
-          cdef_stmt ::= * CONST nameList ASSIGN exprList SEMICOLON
+          vdef_stmt ::= * VAR nameList_nonEmpty SEMICOLON
+          cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList SEMICOLON
 
                              $ reduce 0
                           FROM shift  146
@@ -1538,7 +1538,7 @@ State 23:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
-          foreach_header ::= FOR LPAREN nameList COLON * exprList RPAREN
+          foreach_header ::= FOR LPAREN nameList_nonEmpty COLON * exprList RPAREN
 
                           PLUS shift  36
                          MINUS shift  35
@@ -1587,7 +1587,7 @@ State 24:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
-          cdef_stmt ::= CONST nameList ASSIGN * exprList SEMICOLON
+          cdef_stmt ::= CONST nameList_nonEmpty ASSIGN * exprList SEMICOLON
 
                           PLUS shift  36
                          MINUS shift  35
@@ -1636,7 +1636,7 @@ State 25:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
-          vdefAssign_stmt ::= VAR nameList ASSIGN * exprList SEMICOLON
+          vdefAssign_stmt ::= VAR nameList_nonEmpty ASSIGN * exprList SEMICOLON
 
                           PLUS shift  36
                          MINUS shift  35
@@ -1734,7 +1734,7 @@ State 27:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
-          assign_stmt ::= nameList ASSIGN * exprList SEMICOLON
+          assign_stmt ::= nameList_nonEmpty ASSIGN * exprList SEMICOLON
 
                           PLUS shift  36
                          MINUS shift  35
@@ -2668,22 +2668,22 @@ State 48:
                      {default} reduce 96
 
 State 49:
-          function_header ::= function_start LPAREN * nameList RPAREN
+          function_header ::= function_start LPAREN * nameList_nonEmpty RPAREN
           function_header ::= function_start LPAREN * RPAREN
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
 
                           NAME shift  225
                         RPAREN shift  222
-                      nameList shift  95
+             nameList_nonEmpty shift  95
 
 State 50:
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
-          vdef_stmt ::= VAR * nameList SEMICOLON
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
+          vdef_stmt ::= VAR * nameList_nonEmpty SEMICOLON
 
                           NAME shift  225
-                      nameList shift  82
+             nameList_nonEmpty shift  82
 
 State 51:
           action ::= * ACTIONNAME LPAREN fArgs RPAREN SEMICOLON
@@ -2706,29 +2706,29 @@ State 52:
                      {default} reduce 112
 
 State 53:
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
-          foreach_header ::= FOR LPAREN * nameList COLON exprList RPAREN
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
+          foreach_header ::= FOR LPAREN * nameList_nonEmpty COLON exprList RPAREN
 
                           NAME shift  225
-                      nameList shift  85
+             nameList_nonEmpty shift  85
 
 State 54:
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
-          cdef_stmt ::= CONST * nameList ASSIGN exprList SEMICOLON
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
+          cdef_stmt ::= CONST * nameList_nonEmpty ASSIGN exprList SEMICOLON
 
                           NAME shift  225
-                      nameList shift  87
+             nameList_nonEmpty shift  87
 
 State 55:
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
-          vdef_stmt ::= VAR * nameList SEMICOLON
-          vdefAssign_stmt ::= VAR * nameList ASSIGN exprList SEMICOLON
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
+          vdef_stmt ::= VAR * nameList_nonEmpty SEMICOLON
+          vdefAssign_stmt ::= VAR * nameList_nonEmpty ASSIGN exprList SEMICOLON
 
                           NAME shift  225
-                      nameList shift  78
+             nameList_nonEmpty shift  78
 
 State 56:
           numList_nonEmpty ::= * NUMBER COMMA NUMBER
@@ -2754,12 +2754,12 @@ State 58:
                       rbracket shift  214
 
 State 59:
-          import_chunk ::= FROM NAME IMPORT * nameList
-          nameList ::= * NAME
-          nameList ::= * nameList COMMA NAME
+          import_chunk ::= FROM NAME IMPORT * nameList_nonEmpty
+          nameList_nonEmpty ::= * NAME
+          nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
 
                           NAME shift  225
-                      nameList shift  144
+             nameList_nonEmpty shift  144
 
 State 60:
           expr ::= expr * PLUS expr
@@ -3158,9 +3158,9 @@ State 77:
                         RPAREN shift  166
 
 State 78:
-          nameList ::= nameList * COMMA NAME
-          vdef_stmt ::= VAR nameList * SEMICOLON
-          vdefAssign_stmt ::= VAR nameList * ASSIGN exprList SEMICOLON
+          nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
+          vdef_stmt ::= VAR nameList_nonEmpty * SEMICOLON
+          vdefAssign_stmt ::= VAR nameList_nonEmpty * ASSIGN exprList SEMICOLON
 
                          COMMA shift  143
                         ASSIGN shift  25
@@ -3212,8 +3212,8 @@ State 81:
                         RPAREN shift  191
 
 State 82:
-          nameList ::= nameList * COMMA NAME
-          vdef_stmt ::= VAR nameList * SEMICOLON
+          nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
+          vdef_stmt ::= VAR nameList_nonEmpty * SEMICOLON
 
                          COMMA shift  143
                      SEMICOLON shift  170
@@ -3227,42 +3227,42 @@ State 83:
 
 State 84:
           exprList ::= exprList * COMMA exprList
-          foreach_header ::= FOR LPAREN nameList COLON exprList * RPAREN
+          foreach_header ::= FOR LPAREN nameList_nonEmpty COLON exprList * RPAREN
 
                          COMMA shift  26
                         RPAREN shift  158
 
 State 85:
-          nameList ::= nameList * COMMA NAME
-          foreach_header ::= FOR LPAREN nameList * COLON exprList RPAREN
+          nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
+          foreach_header ::= FOR LPAREN nameList_nonEmpty * COLON exprList RPAREN
 
                          COMMA shift  143
                          COLON shift  23
 
 State 86:
           exprList ::= exprList * COMMA exprList
-          cdef_stmt ::= CONST nameList ASSIGN exprList * SEMICOLON
+          cdef_stmt ::= CONST nameList_nonEmpty ASSIGN exprList * SEMICOLON
 
                          COMMA shift  26
                      SEMICOLON shift  168
 
 State 87:
-          nameList ::= nameList * COMMA NAME
-          cdef_stmt ::= CONST nameList * ASSIGN exprList SEMICOLON
+          nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
+          cdef_stmt ::= CONST nameList_nonEmpty * ASSIGN exprList SEMICOLON
 
                          COMMA shift  143
                         ASSIGN shift  24
 
 State 88:
           exprList ::= exprList * COMMA exprList
-          vdefAssign_stmt ::= VAR nameList ASSIGN exprList * SEMICOLON
+          vdefAssign_stmt ::= VAR nameList_nonEmpty ASSIGN exprList * SEMICOLON
 
                          COMMA shift  26
                      SEMICOLON shift  169
 
 State 89:
           exprList ::= exprList * COMMA exprList
-          assign_stmt ::= nameList ASSIGN exprList * SEMICOLON
+          assign_stmt ::= nameList_nonEmpty ASSIGN exprList * SEMICOLON
 
                          COMMA shift  26
                      SEMICOLON shift  171
@@ -3292,14 +3292,14 @@ State 92:
                     RSQBRACKET shift  134
 
 State 93:
-          nameList ::= nameList * COMMA NAME
-          assign_stmt ::= nameList * ASSIGN exprList SEMICOLON
+          nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
+          assign_stmt ::= nameList_nonEmpty * ASSIGN exprList SEMICOLON
 
                          COMMA shift  143
                         ASSIGN shift  27
 
 State 94:
-     (38) nameList ::= NAME *
+     (38) nameList_nonEmpty ::= NAME *
      (52) funcName ::= NAME *
           funcName ::= NAME * PERIOD NAME
 
@@ -3308,8 +3308,8 @@ State 94:
                      {default} reduce 38
 
 State 95:
-          function_header ::= function_start LPAREN nameList * RPAREN
-          nameList ::= nameList * COMMA NAME
+          function_header ::= function_start LPAREN nameList_nonEmpty * RPAREN
+          nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
 
                          COMMA shift  143
                         RPAREN shift  223
@@ -3345,7 +3345,7 @@ State 101:
                      SEMICOLON shift  156
 
 State 102:
-          foreach_header ::= FOR * LPAREN nameList COLON exprList RPAREN
+          foreach_header ::= FOR * LPAREN nameList_nonEmpty COLON exprList RPAREN
 
                         LPAREN shift  53
 
@@ -3558,7 +3558,7 @@ State 140:
                      SEMICOLON shift  220
 
 State 141:
-          function_header ::= function_start * LPAREN nameList RPAREN
+          function_header ::= function_start * LPAREN nameList_nonEmpty RPAREN
           function_header ::= function_start * LPAREN RPAREN
 
                         LPAREN shift  49
@@ -3569,24 +3569,24 @@ State 142:
                           NAME shift  224
 
 State 143:
-          nameList ::= nameList COMMA * NAME
+          nameList_nonEmpty ::= nameList_nonEmpty COMMA * NAME
 
                           NAME shift  226
 
 State 144:
-      (7) import_chunk ::= FROM NAME IMPORT nameList *
-          nameList ::= nameList * COMMA NAME
+      (7) import_chunk ::= FROM NAME IMPORT nameList_nonEmpty *
+          nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
 
                          COMMA shift  143
                      {default} reduce 7
 
 State 145:
-          import_chunk ::= FROM NAME * IMPORT nameList
+          import_chunk ::= FROM NAME * IMPORT nameList_nonEmpty
 
                         IMPORT shift  59
 
 State 146:
-          import_chunk ::= FROM * NAME IMPORT nameList
+          import_chunk ::= FROM * NAME IMPORT nameList_nonEmpty
 
                           NAME shift  145
 
@@ -3646,7 +3646,7 @@ State 157:
                      {default} reduce 102
 
 State 158:
-    (101) foreach_header ::= FOR LPAREN nameList COLON exprList RPAREN *
+    (101) foreach_header ::= FOR LPAREN nameList_nonEmpty COLON exprList RPAREN *
 
                      {default} reduce 101
 
@@ -3696,22 +3696,22 @@ State 167:
                      {default} reduce 89
 
 State 168:
-     (87) cdef_stmt ::= CONST nameList ASSIGN exprList SEMICOLON *
+     (87) cdef_stmt ::= CONST nameList_nonEmpty ASSIGN exprList SEMICOLON *
 
                      {default} reduce 87
 
 State 169:
-     (86) vdefAssign_stmt ::= VAR nameList ASSIGN exprList SEMICOLON *
+     (86) vdefAssign_stmt ::= VAR nameList_nonEmpty ASSIGN exprList SEMICOLON *
 
                      {default} reduce 86
 
 State 170:
-     (85) vdef_stmt ::= VAR nameList SEMICOLON *
+     (85) vdef_stmt ::= VAR nameList_nonEmpty SEMICOLON *
 
                      {default} reduce 85
 
 State 171:
-     (88) assign_stmt ::= nameList ASSIGN exprList SEMICOLON *
+     (88) assign_stmt ::= nameList_nonEmpty ASSIGN exprList SEMICOLON *
 
                      {default} reduce 88
 
@@ -4040,7 +4040,7 @@ State 222:
                      {default} reduce 10
 
 State 223:
-      (9) function_header ::= function_start LPAREN nameList RPAREN *
+      (9) function_header ::= function_start LPAREN nameList_nonEmpty RPAREN *
 
                      {default} reduce 9
 
@@ -4050,12 +4050,12 @@ State 224:
                      {default} reduce 8
 
 State 225:
-     (38) nameList ::= NAME *
+     (38) nameList_nonEmpty ::= NAME *
 
                      {default} reduce 38
 
 State 226:
-     (39) nameList ::= nameList COMMA NAME *
+     (39) nameList_nonEmpty ::= nameList_nonEmpty COMMA NAME *
 
                      {default} reduce 39
 
@@ -4152,7 +4152,7 @@ Symbols:
    63: fdef_chunk: FUNCTION
    64: vdef_stmt: VAR
    65: cdef_stmt: CONST
-   66: nameList: NAME
+   66: nameList_nonEmpty: NAME
    67: function_start: FUNCTION
    68: function_header: FUNCTION
    69: stmt: NAME SEMICOLON LBRACKET VAR CONST IF WHILE FOR CONTINUE BREAK RETURN ACTIONNAME

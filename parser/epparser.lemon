@@ -62,7 +62,7 @@ chunk ::= vdef_stmt.
 chunk ::= cdef_stmt.
 
 // Import_chunk
-import_chunk ::= FROM NAME(name) IMPORT nameList(B). {
+import_chunk ::= FROM NAME(name) IMPORT nameList_nonEmpty(B). {
     ps->gen << "from " << name->data << " import " << B->data << std::endl;
     commaListIter(B->data, [&](std::string varname) {
         funcNamePreprocess(varname);
@@ -85,7 +85,7 @@ function_start(start) ::= FUNCTION NAME(name).  {
     start = name;
 }
 
-function_header ::= function_start(fname) LPAREN nameList(args) RPAREN. {
+function_header ::= function_start(fname) LPAREN nameList_nonEmpty(args) RPAREN. {
     ps->gen << "@EUDFunc" << std::endl;
     ps->gen << "def " << fname->data << "(" << args->data << "):" << std::endl;
     ps->gen.indent();
@@ -159,16 +159,22 @@ bodyStmtList ::= bodyStmtList bodyStmt.
 
 // Common expressions
 numList_nonEmpty(A) ::= NUMBER(B) COMMA NUMBER(C). {
-    A = new Token(B->data + ", " + C->data, C);
-    delete B; delete C;
+    C->data = B->data + ", " + C->data;
+    delete B;
+    A = C;
 }
+
 numList_nonEmpty(A) ::= numList_nonEmpty(B) COMMA NUMBER(C). {
     A = new Token(B->data + ", " + C->data, C);
     delete B; delete C;
 }
 
-nameList(A) ::= NAME(B). { A = B; }
-nameList(A) ::= nameList(B) COMMA NAME(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+nameList_nonEmpty(A) ::= NAME(B). { A = B; }
+nameList_nonEmpty(A) ::= nameList_nonEmpty(B) COMMA NAME(C). {
+    C->data = B->data + ", " + C->data;
+    delete B;
+    A = C;
+}
 
 exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET RSQBRACKET. {
     A = genTemp(C);
@@ -202,14 +208,11 @@ expr(A)::= NAME(B) PERIOD NAME(C). {
     }
     B->data = B->data + "." + C->data;
     delete C;
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 // Function calls
-fArgs(A) ::= . {
-    A = new Token(TOKEN_TEMP, "", -1);
-}
-
+fArgs(A) ::= . { A = genEmpty(); }
 fArgsAny(A) ::= expr(B). { A = B; }
 fArgsAny(A) ::= STRING(B). { A = B; }
 fArgsAny(A) ::= fArgsAny(B) COMMA fArgsAny(C). {
@@ -245,13 +248,13 @@ funcName(A) ::= NAME(objName) PERIOD NAME(mtdName). {
 
     mtdName->data = objName->data + "." + mtdName->data;
     delete objName;
-    A = mkTokenTemp(mtdName, ps->gen);
+    A = mkTokenTemp(mtdName);
 }
 
 funcexpr(out) ::= funcName(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     // Preprocess name
     name->data += "(" + exprs->data + ")";
-    out = mkTokenTemp(name, ps->gen);
+    out = mkTokenTemp(name);
 }
 
 // Expressions
@@ -259,7 +262,7 @@ expr(A) ::= funcexpr(B).  { A = B; }
 
 expr(A) ::= LPAREN expr(B) RPAREN. {
     B->data = "(" + B->data + ")";
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 expr(A) ::= L2V LPAREN lexpr(B) RPAREN. {
@@ -269,35 +272,35 @@ expr(A) ::= L2V LPAREN lexpr(B) RPAREN. {
 
 expr(A) ::= MAPSTRING LPAREN STRING(B) RPAREN. {
     B->data = "GetStringIndex(" + B->data + ")";
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 expr(A) ::= UNIT LPAREN STRING(B) RPAREN. {
     B->data = "GetUnitIndex(" + B->data + ")";
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 expr(A) ::= SWITCH LPAREN STRING(B) RPAREN. {
     B->data = "GetSwitchIndex(" + B->data + ")";
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 expr(A) ::= LOCATION LPAREN STRING(B) RPAREN. {
     B->data = "GetLocationIndex(" + B->data + ")";
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 // Binary operators
-expr(A) ::= expr(B) PLUS        expr(C). { A = binaryMerge(B, "+",  C, ps->gen); }
-expr(A) ::= expr(B) MINUS       expr(C). { A = binaryMerge(B, "-",  C, ps->gen); }
-expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binaryMerge(B, "*",  C, ps->gen); }
-expr(A) ::= expr(B) DIVIDE      expr(C). { A = binaryMerge(B, "//", C, ps->gen); }
-expr(A) ::= expr(B) MOD         expr(C). { A = binaryMerge(B, "%",  C, ps->gen); }
-expr(A) ::= expr(B) LSHIFT      expr(C). { A = binaryMerge(B, "<<", C, ps->gen); }
-expr(A) ::= expr(B) RSHIFT      expr(C). { A = binaryMerge(B, ">>", C, ps->gen); }
-expr(A) ::= expr(B) BITAND      expr(C). { A = binaryMerge(B, "&",  C, ps->gen); }
-expr(A) ::= expr(B) BITOR       expr(C). { A = binaryMerge(B, "|",  C, ps->gen); }
-expr(A) ::= expr(B) BITXOR      expr(C). { A = binaryMerge(B, "^",  C, ps->gen); }
+expr(A) ::= expr(B) PLUS        expr(C). { A = binaryMerge(B, "+",  C); }
+expr(A) ::= expr(B) MINUS       expr(C). { A = binaryMerge(B, "-",  C); }
+expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binaryMerge(B, "*",  C); }
+expr(A) ::= expr(B) DIVIDE      expr(C). { A = binaryMerge(B, "//", C); }
+expr(A) ::= expr(B) MOD         expr(C). { A = binaryMerge(B, "%",  C); }
+expr(A) ::= expr(B) LSHIFT      expr(C). { A = binaryMerge(B, "<<", C); }
+expr(A) ::= expr(B) RSHIFT      expr(C). { A = binaryMerge(B, ">>", C); }
+expr(A) ::= expr(B) BITAND      expr(C). { A = binaryMerge(B, "&",  C); }
+expr(A) ::= expr(B) BITOR       expr(C). { A = binaryMerge(B, "|",  C); }
+expr(A) ::= expr(B) BITXOR      expr(C). { A = binaryMerge(B, "^",  C); }
 
 // Unary operators
 expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = +" << B->data << std::endl; delete B; }
@@ -306,28 +309,28 @@ expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " =
 
 
 // Logical expressions
-lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C, ps->gen); }
-lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C, ps->gen); }
-lexpr(A) ::= expr(B) LE expr(C).   { A = binaryMerge(B, "<=", C, ps->gen); }
-lexpr(A) ::= expr(B) LT expr(C).   { A = binaryMerge(B, "<",  C, ps->gen); }
-lexpr(A) ::= expr(B) GE expr(C).   { A = binaryMerge(B, ">=", C, ps->gen); }
-lexpr(A) ::= expr(B) GT expr(C).   { A = binaryMerge(B, ">" , C, ps->gen); }
+lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C); }
+lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C); }
+lexpr(A) ::= expr(B) LE expr(C).   { A = binaryMerge(B, "<=", C); }
+lexpr(A) ::= expr(B) LT expr(C).   { A = binaryMerge(B, "<",  C); }
+lexpr(A) ::= expr(B) GE expr(C).   { A = binaryMerge(B, ">=", C); }
+lexpr(A) ::= expr(B) GT expr(C).   { A = binaryMerge(B, ">" , C); }
 
 lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
     B->data = "[" + B->data + ", " + C->data + "]";
     delete C;
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
     B->data = "EUDOr([" + B->data + ", " + C->data + "])";
     delete C;
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 lexpr(A) ::= LNOT lexpr(B).  {
     B->data = "EUDNot([" + B->data + "])";
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
@@ -335,7 +338,7 @@ lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
 
 
 // Statements
-vdef_stmt ::= VAR nameList(A) SEMICOLON. {
+vdef_stmt ::= VAR nameList_nonEmpty(A) SEMICOLON. {
     std::string& s = A->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
 
@@ -349,7 +352,7 @@ vdef_stmt ::= VAR nameList(A) SEMICOLON. {
     delete A;
 }
 
-vdefAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
+vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList(B) SEMICOLON. {
     std::string& s = A->data;
 
     // Register variables.
@@ -362,7 +365,7 @@ vdefAssign_stmt ::= VAR nameList(A) ASSIGN exprList(B) SEMICOLON. {
     delete A; delete B;
 }
 
-cdef_stmt ::= CONST nameList(A) ASSIGN exprList(B) SEMICOLON. {
+cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList(B) SEMICOLON. {
     std::string& s = A->data;
 
     // Register constants.
@@ -375,7 +378,7 @@ cdef_stmt ::= CONST nameList(A) ASSIGN exprList(B) SEMICOLON. {
     delete A; delete B;
 }
 
-assign_stmt ::= nameList(A) ASSIGN exprList(B) SEMICOLON. {
+assign_stmt ::= nameList_nonEmpty(A) ASSIGN exprList(B) SEMICOLON. {
     if(A->data.find(',') == std::string::npos) {
         ps->gen << A->data << " << " << B->data << std::endl;
     }
@@ -453,7 +456,7 @@ while_stmt ::= while_header stmt. {
 }
 
 // Foreach block
-foreach_header ::= FOR LPAREN nameList(names) COLON exprList(exprs) RPAREN. {
+foreach_header ::= FOR LPAREN nameList_nonEmpty(names) COLON exprList(exprs) RPAREN. {
     ps->closure.pushScope();
     commaListIter(names->data, [&](std::string& s) {
         ps->closure.defVariable(s);
@@ -495,12 +498,12 @@ return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
 lexpr(A) ::= CONDITIONNAME(B) LPAREN fArgs(C) RPAREN. {
     B->data = B->data + "(" + C->data + ")";
     delete C;
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 lexpr(A) ::= CONDITIONNAME(B) LPAREN RPAREN. {
     B->data = B->data + "()";
-    A = mkTokenTemp(B, ps->gen);
+    A = mkTokenTemp(B);
 }
 
 action(X) ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN SEMICOLON. {
@@ -543,6 +546,7 @@ actionStmt ::= actions(X). {
 %code {
 
 int PARSER_DEBUG = 0;
+PyGenerator* pGen;
 
 std::string ParseString(const std::string& code, bool addComment)
 {
@@ -551,6 +555,7 @@ std::string ParseString(const std::string& code, bool addComment)
     ParserStruct ps;
     Token* token;
     currentTokenizingLine = 0;
+    pGen = &ps.gen;
 
     if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
 

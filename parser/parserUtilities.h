@@ -13,7 +13,13 @@
 
 extern bool errorOccured;
 extern int tmpIndex;
+extern PyGenerator* pGen;
+
+Token* genEmpty();
 Token* genTemp(Token* lineSrc);
+Token* mkTokenTemp(Token* a);
+Token* commaConcat(Token* a, Token* b);
+Token* binaryMerge(Token* a, const std::string& opstr, Token* b);
 
 void commaListIter(std::string& s, std::function<void(std::string&)> func);
 void throw_error(int line, int code, const std::string& message);
@@ -22,8 +28,6 @@ void throw_error(int line, int code, const std::string& message);
 
 // trim from start
 std::string trim(std::string s);
-Token* mkTokenTemp(Token* a, PyGenerator& pGen);
-Token* binaryMerge(Token* a, const std::string& opstr, Token* b, PyGenerator& pGen);
 
 std::string iwCollapse(const std::string& in);
 void funcNamePreprocess(std::string& s);
