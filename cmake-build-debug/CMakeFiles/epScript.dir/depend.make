@@ -23,12 +23,14 @@ CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.o: ../parser/generat
 CMakeFiles/epScript.dir/parser/generator/pygen.cpp.o: ../parser/generator/pygen.cpp
 CMakeFiles/epScript.dir/parser/generator/pygen.cpp.o: ../parser/generator/pygen.h
 
+CMakeFiles/epScript.dir/parser/parserUtils.cpp.o: ../parser/generator/closure.h
 CMakeFiles/epScript.dir/parser/parserUtils.cpp.o: ../parser/generator/eudplibGlobals.h
 CMakeFiles/epScript.dir/parser/parserUtils.cpp.o: ../parser/generator/pygen.h
 CMakeFiles/epScript.dir/parser/parserUtils.cpp.o: ../parser/parserUtilities.h
 CMakeFiles/epScript.dir/parser/parserUtils.cpp.o: ../parser/parserUtils.cpp
 CMakeFiles/epScript.dir/parser/parserUtils.cpp.o: ../parser/tokenizer/tokenizer.h
 
+CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.o: ../parser/generator/closure.h
 CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.o: ../parser/generator/pygen.h
 CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.o: ../parser/parserUtilities.h
 CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.o: ../parser/parserUtilsTokens.cpp

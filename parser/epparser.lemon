@@ -114,11 +114,12 @@ fdef_chunk ::= function_header stmt . {
 }
 
 
-// Statements
+/// Single-line statements
 stmt ::= error SEMICOLON. { throw_error(6974, "Error while parsing statement"); }
 stmt ::= bodyStmt.
 stmt ::= return_stmt.
 
+/// Block level statements
 // (1) Specialization for empty bodyStmtList
 lbracket ::= LBRACKET. { ps->closure.pushScope(); }
 rbracket ::= RBRACKET. { ps->closure.popScope(); }
@@ -151,6 +152,9 @@ bodyStmt ::= break_stmt.
 // bodyStmtList should not contain empty list. See (1)
 bodyStmtList ::= bodyStmt.
 bodyStmtList ::= bodyStmtList bodyStmt.
+bodyStmtList ::= bodyStmtList error. {
+    throw_error(8510, "Incomplete statement");
+}
 
 
 // Common expressions
