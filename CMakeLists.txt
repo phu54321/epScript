@@ -5,7 +5,6 @@ project(epScript)
 set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
 
 if (WIN32)
-    set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
             DEPENDS parser/epparser.lemon
@@ -27,6 +26,14 @@ else ()
             VERBATIM
     )
 
+endif()
+
+
+# Size optimization at release mode
+if (CMAKE_BUILD_TYPE EQUAL "Release")
+    message("release mode - size optimized")
+    set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -fno-rtti -OO")
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s -static-libgcc -static-libstdc++ -static")
 endif()
 
 set(CMAKE_CXX_STANDARD 11)
