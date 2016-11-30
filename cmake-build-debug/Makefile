@@ -313,6 +313,36 @@ parser/parserUtils.cpp.s:
 	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/parserUtils.cpp.s
 .PHONY : parser/parserUtils.cpp.s
 
+parser/parserUtilsTokens.o: parser/parserUtilsTokens.cpp.o
+
+.PHONY : parser/parserUtilsTokens.o
+
+# target to build an object file
+parser/parserUtilsTokens.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.o
+.PHONY : parser/parserUtilsTokens.cpp.o
+
+parser/parserUtilsTokens.i: parser/parserUtilsTokens.cpp.i
+
+.PHONY : parser/parserUtilsTokens.i
+
+# target to preprocess a source file
+parser/parserUtilsTokens.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.i
+.PHONY : parser/parserUtilsTokens.cpp.i
+
+parser/parserUtilsTokens.s: parser/parserUtilsTokens.cpp.s
+
+.PHONY : parser/parserUtilsTokens.s
+
+# target to generate assembly for a file
+parser/parserUtilsTokens.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.s
+.PHONY : parser/parserUtilsTokens.cpp.s
+
 parser/tokenAdapter.o: parser/tokenAdapter.cpp.o
 
 .PHONY : parser/tokenAdapter.o
@@ -631,6 +661,36 @@ test/testmain.cpp.s:
 	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/test/testmain.cpp.s
 .PHONY : test/testmain.cpp.s
 
+utils.o: utils.cpp.o
+
+.PHONY : utils.o
+
+# target to build an object file
+utils.cpp.o:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/utils.cpp.o
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/utils.cpp.o
+.PHONY : utils.cpp.o
+
+utils.i: utils.cpp.i
+
+.PHONY : utils.i
+
+# target to preprocess a source file
+utils.cpp.i:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/utils.cpp.i
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/utils.cpp.i
+.PHONY : utils.cpp.i
+
+utils.s: utils.cpp.s
+
+.PHONY : utils.s
+
+# target to generate assembly for a file
+utils.cpp.s:
+	$(MAKE) -f CMakeFiles/epScriptTest.dir/build.make CMakeFiles/epScriptTest.dir/utils.cpp.s
+	$(MAKE) -f CMakeFiles/epScript.dir/build.make CMakeFiles/epScript.dir/utils.cpp.s
+.PHONY : utils.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -659,6 +719,9 @@ help:
 	@echo "... parser/parserUtils.o"
 	@echo "... parser/parserUtils.i"
 	@echo "... parser/parserUtils.s"
+	@echo "... parser/parserUtilsTokens.o"
+	@echo "... parser/parserUtilsTokens.i"
+	@echo "... parser/parserUtilsTokens.s"
 	@echo "... parser/tokenAdapter.o"
 	@echo "... parser/tokenAdapter.i"
 	@echo "... parser/tokenAdapter.s"
@@ -692,6 +755,9 @@ help:
 	@echo "... test/testmain.o"
 	@echo "... test/testmain.i"
 	@echo "... test/testmain.s"
+	@echo "... utils.o"
+	@echo "... utils.i"
+	@echo "... utils.s"
 .PHONY : help
 
 

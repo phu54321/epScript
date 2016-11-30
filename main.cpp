@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "parser/parser.h"
+#include "utils.h"
 #include <unistd.h>
 
 #define VERSION "v0.2"
@@ -10,7 +11,7 @@ extern bool PARSER_DEBUG;
 
 
 int usage() {
-    printf("Usage : epScript [-v]\n");
+    printf("Usage : epScript [-v] daemon\n");
     printf("Usage : epScript [-v] [-o output] input\n");
     printf("Usage : epScript [-v] input1 input2 input3 .. inputN\n");
     return -1;
@@ -42,7 +43,7 @@ int main(int argc, char** argv) {
     }
 
     if(optind == argc) {  // No input file - Self daemon mode
-        return runDaemon();
+        return usage();
     }
 
     else if(optind < argc - 1 && ofname != "") { // Multiple input files with -o
@@ -51,6 +52,10 @@ int main(int argc, char** argv) {
 
     if(optind == argc - 1) {
         ifname = argv[optind];
+        if(ifname == "daemon") {
+            return runDaemon();
+        }
+
         if(ofname == "") ofname = ifname.substr(0, ifname.find_last_of('.')) + ".py";
         try {
             std::string code = getFile(ifname);

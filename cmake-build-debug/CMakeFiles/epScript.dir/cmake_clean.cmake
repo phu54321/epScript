@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/epScript.dir/scriptDaemon.cpp.o"
   "CMakeFiles/epScript.dir/parser/generator/closure.cpp.o"
   "CMakeFiles/epScript.dir/parser/parserUtils.cpp.o"
+  "CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.o"
+  "CMakeFiles/epScript.dir/utils.cpp.o"
   "CMakeFiles/epScript.dir/main.cpp.o"
   "epScript.pdb"
   "epScript"

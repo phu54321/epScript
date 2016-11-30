@@ -1,4 +1,5 @@
 #include "../parser/parser.h"
+#include "../utils.h"
 #include "doctest.hpp"
 #include <stdexcept>
 

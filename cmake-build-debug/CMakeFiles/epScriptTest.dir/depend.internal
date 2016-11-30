@@ -25,6 +25,11 @@ CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
  /Users/whyask37/ClionProjects/epScript/parser/parserUtils.cpp
  /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.o
+ /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
+ /Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
+ /Users/whyask37/ClionProjects/epScript/parser/parserUtilsTokens.cpp
+ /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
 CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/epparser.h
  /Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.cpp
@@ -57,6 +62,7 @@ CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/parser.h
  /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
  /Users/whyask37/ClionProjects/epScript/test/test_parser.cpp
+ /Users/whyask37/ClionProjects/epScript/utils.h
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o
  /Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
  /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
@@ -68,3 +74,6 @@ CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o
 CMakeFiles/epScriptTest.dir/test/testmain.cpp.o
  /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
  /Users/whyask37/ClionProjects/epScript/test/testmain.cpp
+CMakeFiles/epScriptTest.dir/utils.cpp.o
+ /Users/whyask37/ClionProjects/epScript/utils.cpp
+ /Users/whyask37/ClionProjects/epScript/utils.h

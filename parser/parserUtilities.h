@@ -10,6 +10,7 @@
 #include <functional>
 
 #include "tokenizer/tokenizer.h"
+#include "generator/pygen.h"
 
 extern bool errorOccured;
 extern int tmpIndex;
@@ -28,7 +29,6 @@ void throw_error(int line, int code, const std::string& message);
 
 // trim from start
 std::string trim(std::string s);
-
 std::string iwCollapse(const std::string& in);
 void funcNamePreprocess(std::string& s);
 std::string addStubCode(const std::string& s);

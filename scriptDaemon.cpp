@@ -16,6 +16,7 @@ int daemonTurn(void) {
 
     if ((dp = opendir("./")) != nullptr) {
         while ((ep = readdir (dp)) != nullptr) {
+            if(ep->d_name[0] == '.') continue;
             if(ep->d_type == DT_DIR) {
                 chdir(ep->d_name);
                 daemonTurn();

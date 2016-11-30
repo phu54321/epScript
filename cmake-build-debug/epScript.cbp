@@ -161,6 +161,10 @@
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
 		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/parserUtilsTokens.cpp">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.cpp">
 			<Option target="epScriptTest"/>
 			<Option target="epScript"/>
@@ -224,6 +228,14 @@
 		</Unit>
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/test/testmain.cpp">
 			<Option target="epScriptTest"/>
+		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/utils.cpp">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
+		</Unit>
+		<Unit filename="/Users/whyask37/ClionProjects/epScript/utils.h">
+			<Option target="epScriptTest"/>
+			<Option target="epScript"/>
 		</Unit>
 		<Unit filename="/Users/whyask37/ClionProjects/epScript/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

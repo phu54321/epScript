@@ -13,6 +13,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.o"
   "CMakeFiles/epScriptTest.dir/parser/generator/closure.cpp.o"
   "CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.o"
+  "CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.o"
+  "CMakeFiles/epScriptTest.dir/utils.cpp.o"
   "CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.o"
   "CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.o"
   "CMakeFiles/epScriptTest.dir/test/test_parser.cpp.o"

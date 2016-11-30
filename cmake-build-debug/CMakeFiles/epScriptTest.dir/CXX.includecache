@@ -93,6 +93,8 @@ functional
 -
 tokenizer/tokenizer.h
 /Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
+generator/pygen.h
+/Users/whyask37/ClionProjects/epScript/parser/generator/pygen.h
 
 /Users/whyask37/ClionProjects/epScript/parser/parserUtils.cpp
 string
@@ -113,6 +115,12 @@ generator/eudplibGlobals.h
 /Users/whyask37/ClionProjects/epScript/parser/generator/eudplibGlobals.h
 parserUtilities.h
 /Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
+
+/Users/whyask37/ClionProjects/epScript/parser/parserUtilsTokens.cpp
+parserUtilities.h
+/Users/whyask37/ClionProjects/epScript/parser/parserUtilities.h
+tokenizer/tokenizer.h
+/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.h
 
 /Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.cpp
 tokenAdapter.h
@@ -251,6 +259,8 @@ sys/sysctl.h
 /Users/whyask37/ClionProjects/epScript/test/test_parser.cpp
 ../parser/parser.h
 /Users/whyask37/ClionProjects/epScript/parser/parser.h
+../utils.h
+/Users/whyask37/ClionProjects/epScript/utils.h
 doctest.hpp
 /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
 stdexcept
@@ -277,4 +287,16 @@ doctest.hpp
 /Users/whyask37/ClionProjects/epScript/test/testmain.cpp
 doctest.hpp
 /Users/whyask37/ClionProjects/epScript/test/doctest.hpp
+
+/Users/whyask37/ClionProjects/epScript/utils.cpp
+utils.h
+/Users/whyask37/ClionProjects/epScript/utils.h
+stdio.h
+-
+vector
+-
+
+/Users/whyask37/ClionProjects/epScript/utils.h
+string
+-
 

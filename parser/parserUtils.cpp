@@ -9,32 +9,14 @@
 #include "generator/eudplibGlobals.h"
 #include "parserUtilities.h"
 
-std::string getFile(const std::string& fname) {
-    FILE* fp = fopen(fname.c_str(), "r");
-    if(fp == nullptr) {
-        throw std::runtime_error("Input file not found : " + fname);
-    }
+bool errorOccured = false;
 
-    fseek(fp, 0, SEEK_END);
-    size_t fsize = static_cast<size_t>(ftell(fp));
-    rewind(fp);
-
-    std::vector<char> fdata;
-    fdata.reserve(fsize);
-    while(1) {
-        char ch = static_cast<char>(fgetc(fp));
-        if(feof(fp)) break;
-        fdata.push_back(ch);
-    }
-    return std::string(fdata.begin(), fdata.end());
+void throw_error(int line, int code, const std::string& message) {
+    std::cerr << "[Error " << code << "] Line " << line << " : " << message << std::endl;
+    errorOccured = true;
 }
 
 ////
-
-extern int currentTokenizingLine;
-Token* genEmpty() {
-    return new Token(TOKEN_TEMP, currentTokenizingLine);
-}
 
 void commaListIter(std::string& s, std::function<void(std::string&)> func) {
     bool isFirst = true;
@@ -59,24 +41,19 @@ void funcNamePreprocess(std::string& s) {
     else s = "f_" + s;
 }
 
-bool errorOccured = false;
 
-void throw_error(int line, int code, const std::string& message) {
-    std::cerr << "[Error " << code << "] Line " << line << " : " << message << std::endl;
-    errorOccured = true;
-}
+////
 
-static inline std::string &ltrim(std::string &s) {
+
+std::string trim(std::string s) {
+    // ltrim
     size_t startpos = s.find_first_not_of(" \t");
     if (std::string::npos != startpos)
     {
         s = s.substr(startpos);
     }
-    return s;
-}
 
-// trim from end
-static inline std::string &rtrim(std::string& s) {
+    // rtrim
     size_t endpos = s.find_last_not_of(" \t");
     if (std::string::npos != endpos)
     {
@@ -85,41 +62,6 @@ static inline std::string &rtrim(std::string& s) {
     return s;
 }
 
-// trim from both ends
-std::string trim(std::string s) {
-    return ltrim(rtrim(s));
-}
-
-
-int tmpIndex = 0;
-Token* genTemp(Token* lineSrc) {
-    static char output[20] = "_t";
-    sprintf(output, "_t%d", tmpIndex++);
-    return new Token(output, lineSrc);
-}
-
-const int LENGTH_LIMIT = 60;
-
-Token* mkTokenTemp(Token* a) {
-    if(a->data.size() > LENGTH_LIMIT) {
-        Token* t = genTemp(a);
-        (*pGen) << t->data << " = " << a->data << std::endl;
-        delete a;
-        return t;
-    }
-    else {
-        a->type = TOKEN_TEMP;
-        return a;
-    }
-}
-
-Token* binaryMerge(Token* a, const std::string& opstr, Token* b) {
-    b->data = a->data + (" " + opstr + " ") + b->data;
-    delete a;
-    return mkTokenTemp(b);
-}
-
-////
 
 static std::regex iwCollapseRegex("\n( *)(_t\\d+) = (EUDWhile|EUDIf|EUDElseIf)\\(\\)\n\\1if \\2\\((.+)\\):");
 std::string iwCollapse(const std::string& in) {

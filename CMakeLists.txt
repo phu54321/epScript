@@ -34,7 +34,7 @@ set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokeni
         parser/tokenizer/tokChars.cpp parser/tokenizer/tokenizerImpl.cpp
         parser/tokenizer/tokIndent.cpp parser/generator/pygen.cpp parser/tokenAdapter.cpp
         parser/tokenizer/condact.cpp parser/generator/eudplibGlobals.cpp scriptDaemon.cpp parser/generator/closure.cpp
-        parser/generator/closure.h parser/parser.h parser/parserUtils.cpp)
+        parser/generator/closure.h parser/parser.h parser/parserUtils.cpp parser/parserUtilsTokens.cpp utils.cpp)
 set(TEST_SOURCE_FILES test/test_tokenizer.cpp test/test_pygen.cpp test/test_parser.cpp)
 
 add_executable(epScript ${SOURCE_FILES} main.cpp)
