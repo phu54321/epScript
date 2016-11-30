@@ -342,6 +342,66 @@ parser/parserUtilsTokens.cpp.s:
 	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.s
 .PHONY : parser/parserUtilsTokens.cpp.s
 
+parser/reservedWords/condact.obj: parser/reservedWords/condact.cpp.obj
+
+.PHONY : parser/reservedWords/condact.obj
+
+# target to build an object file
+parser/reservedWords/condact.cpp.obj:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj
+.PHONY : parser/reservedWords/condact.cpp.obj
+
+parser/reservedWords/condact.i: parser/reservedWords/condact.cpp.i
+
+.PHONY : parser/reservedWords/condact.i
+
+# target to preprocess a source file
+parser/reservedWords/condact.cpp.i:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.i
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.i
+.PHONY : parser/reservedWords/condact.cpp.i
+
+parser/reservedWords/condact.s: parser/reservedWords/condact.cpp.s
+
+.PHONY : parser/reservedWords/condact.s
+
+# target to generate assembly for a file
+parser/reservedWords/condact.cpp.s:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.s
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.s
+.PHONY : parser/reservedWords/condact.cpp.s
+
+parser/reservedWords/constparser.obj: parser/reservedWords/constparser.cpp.obj
+
+.PHONY : parser/reservedWords/constparser.obj
+
+# target to build an object file
+parser/reservedWords/constparser.cpp.obj:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj
+.PHONY : parser/reservedWords/constparser.cpp.obj
+
+parser/reservedWords/constparser.i: parser/reservedWords/constparser.cpp.i
+
+.PHONY : parser/reservedWords/constparser.i
+
+# target to preprocess a source file
+parser/reservedWords/constparser.cpp.i:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.i
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.i
+.PHONY : parser/reservedWords/constparser.cpp.i
+
+parser/reservedWords/constparser.s: parser/reservedWords/constparser.cpp.s
+
+.PHONY : parser/reservedWords/constparser.s
+
+# target to generate assembly for a file
+parser/reservedWords/constparser.cpp.s:
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.s
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.s
+.PHONY : parser/reservedWords/constparser.cpp.s
+
 parser/tokenAdapter.obj: parser/tokenAdapter.cpp.obj
 
 .PHONY : parser/tokenAdapter.obj
@@ -371,36 +431,6 @@ parser/tokenAdapter.cpp.s:
 	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.s
 	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.s
 .PHONY : parser/tokenAdapter.cpp.s
-
-parser/tokenizer/condact.obj: parser/tokenizer/condact.cpp.obj
-
-.PHONY : parser/tokenizer/condact.obj
-
-# target to build an object file
-parser/tokenizer/condact.cpp.obj:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj
-.PHONY : parser/tokenizer/condact.cpp.obj
-
-parser/tokenizer/condact.i: parser/tokenizer/condact.cpp.i
-
-.PHONY : parser/tokenizer/condact.i
-
-# target to preprocess a source file
-parser/tokenizer/condact.cpp.i:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.i
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.i
-.PHONY : parser/tokenizer/condact.cpp.i
-
-parser/tokenizer/condact.s: parser/tokenizer/condact.cpp.s
-
-.PHONY : parser/tokenizer/condact.s
-
-# target to generate assembly for a file
-parser/tokenizer/condact.cpp.s:
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.s
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.s
-.PHONY : parser/tokenizer/condact.cpp.s
 
 parser/tokenizer/tokChars.obj: parser/tokenizer/tokChars.cpp.obj
 
@@ -721,12 +751,15 @@ help:
 	@echo ... parser/parserUtilsTokens.obj
 	@echo ... parser/parserUtilsTokens.i
 	@echo ... parser/parserUtilsTokens.s
+	@echo ... parser/reservedWords/condact.obj
+	@echo ... parser/reservedWords/condact.i
+	@echo ... parser/reservedWords/condact.s
+	@echo ... parser/reservedWords/constparser.obj
+	@echo ... parser/reservedWords/constparser.i
+	@echo ... parser/reservedWords/constparser.s
 	@echo ... parser/tokenAdapter.obj
 	@echo ... parser/tokenAdapter.i
 	@echo ... parser/tokenAdapter.s
-	@echo ... parser/tokenizer/condact.obj
-	@echo ... parser/tokenizer/condact.i
-	@echo ... parser/tokenizer/condact.s
 	@echo ... parser/tokenizer/tokChars.obj
 	@echo ... parser/tokenizer/tokChars.i
 	@echo ... parser/tokenizer/tokChars.s

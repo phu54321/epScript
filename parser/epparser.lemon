@@ -188,6 +188,11 @@ exprList(A) ::= exprList_nonEmpty(B). { A = B; }
 
 // Related to expressions
 expr(A) ::= NUMBER(B). { A = B; }
+expr(A) ::= KILLS(B). {
+    B->data = "4";
+    A = B;
+}
+
 expr(A) ::= NAME(B). {
     checkIsRValue(B->data);
     A = B;
@@ -583,6 +588,12 @@ return_stmt ::= RETURN exprList(exprs). {
 // Trigger statements
 
 lexpr(A) ::= CONDITIONNAME(B) LPAREN fArgs(C) RPAREN. {
+    B->data = B->data + "(" + C->data + ")";
+    delete C;
+    A = mkTokenTemp(B);
+}
+
+lexpr(A) ::= KILLS(B) LPAREN fArgs(C) RPAREN. {
     B->data = B->data + "(" + C->data + ")";
     delete C;
     A = mkTokenTemp(B);

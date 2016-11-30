@@ -233,28 +233,28 @@ CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj.provides: CMakeFiles/epS
 CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj.provides.build: CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj
 
 
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj: ../parser/tokenizer/condact.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\parser\tokenizer\condact.cpp.obj -c C:\gitclones\epScript\parser\tokenizer\condact.cpp
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj: ../parser/reservedWords/condact.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\parser\reservedWords\condact.cpp.obj -c C:\gitclones\epScript\parser\reservedWords\condact.cpp
 
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.i"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\tokenizer\condact.cpp > CMakeFiles\epScriptTest.dir\parser\tokenizer\condact.cpp.i
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.i"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\reservedWords\condact.cpp > CMakeFiles\epScriptTest.dir\parser\reservedWords\condact.cpp.i
 
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.s"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\tokenizer\condact.cpp -o CMakeFiles\epScriptTest.dir\parser\tokenizer\condact.cpp.s
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.s"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\reservedWords\condact.cpp -o CMakeFiles\epScriptTest.dir\parser\reservedWords\condact.cpp.s
 
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.requires:
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj.requires:
 
-.PHONY : CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.requires
+.PHONY : CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj.requires
 
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.provides: CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.requires
-	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.provides.build
-.PHONY : CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.provides
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj.provides: CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj.provides.build
+.PHONY : CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj.provides
 
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.provides.build: CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj.provides.build: CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj
 
 
 CMakeFiles/epScriptTest.dir/parser/generator/eudplibGlobals.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
@@ -401,9 +401,33 @@ CMakeFiles/epScriptTest.dir/utils.cpp.obj.provides: CMakeFiles/epScriptTest.dir/
 CMakeFiles/epScriptTest.dir/utils.cpp.obj.provides.build: CMakeFiles/epScriptTest.dir/utils.cpp.obj
 
 
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj: ../parser/reservedWords/constparser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\parser\reservedWords\constparser.cpp.obj -c C:\gitclones\epScript\parser\reservedWords\constparser.cpp
+
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.i"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\reservedWords\constparser.cpp > CMakeFiles\epScriptTest.dir\parser\reservedWords\constparser.cpp.i
+
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.s"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\reservedWords\constparser.cpp -o CMakeFiles\epScriptTest.dir\parser\reservedWords\constparser.cpp.s
+
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj.requires:
+
+.PHONY : CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj.requires
+
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj.provides: CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\epScriptTest.dir\build.make CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj.provides.build
+.PHONY : CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj.provides
+
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj.provides.build: CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj
+
+
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj: ../test/test_tokenizer.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\test\test_tokenizer.cpp.obj -c C:\gitclones\epScript\test\test_tokenizer.cpp
 
 CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.i: cmake_force
@@ -427,7 +451,7 @@ CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj.provides.build: CMakeFil
 
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj: ../test/test_pygen.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\test\test_pygen.cpp.obj -c C:\gitclones\epScript\test\test_pygen.cpp
 
 CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.i: cmake_force
@@ -451,7 +475,7 @@ CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj.provides.build: CMakeFiles/e
 
 CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj: ../test/test_parser.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\test\test_parser.cpp.obj -c C:\gitclones\epScript\test\test_parser.cpp
 
 CMakeFiles/epScriptTest.dir/test/test_parser.cpp.i: cmake_force
@@ -475,7 +499,7 @@ CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj.provides.build: CMakeFiles/
 
 CMakeFiles/epScriptTest.dir/test/testmain.cpp.obj: CMakeFiles/epScriptTest.dir/flags.make
 CMakeFiles/epScriptTest.dir/test/testmain.cpp.obj: ../test/testmain.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/epScriptTest.dir/test/testmain.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/epScriptTest.dir/test/testmain.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScriptTest.dir\test\testmain.cpp.obj -c C:\gitclones\epScript\test\testmain.cpp
 
 CMakeFiles/epScriptTest.dir/test/testmain.cpp.i: cmake_force
@@ -506,13 +530,14 @@ epScriptTest_OBJECTS = \
 "CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/parser/generator/pygen.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj" \
-"CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj" \
+"CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/parser/generator/eudplibGlobals.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/parser/generator/closure.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/utils.cpp.obj" \
+"CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj" \
 "CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj" \
@@ -528,13 +553,14 @@ epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/generator/pygen.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj
-epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj
+epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/generator/eudplibGlobals.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/generator/closure.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/utils.cpp.obj
+epScriptTest.exe: CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj
@@ -543,7 +569,7 @@ epScriptTest.exe: CMakeFiles/epScriptTest.dir/build.make
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/linklibs.rsp
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/objects1.rsp
 epScriptTest.exe: CMakeFiles/epScriptTest.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Linking CXX executable epScriptTest.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Linking CXX executable epScriptTest.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\epScriptTest.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -558,13 +584,14 @@ CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/tokeniz
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/tokenizer/tokIndent.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/generator/pygen.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj.requires
-CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj.requires
+CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/generator/eudplibGlobals.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/scriptDaemon.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/generator/closure.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/parserUtils.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/utils.cpp.obj.requires
+CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_tokenizer.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_pygen.cpp.obj.requires
 CMakeFiles/epScriptTest.dir/requires: CMakeFiles/epScriptTest.dir/test/test_parser.cpp.obj.requires

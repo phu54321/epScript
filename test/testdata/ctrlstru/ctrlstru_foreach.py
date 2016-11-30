@@ -6,4 +6,4 @@ def f_x():
 
     x = EUDVariable()
     for x_1, y in B:
-        DoActions(SetDeaths(x_1, SetTo, y, 0))
+        DoActions(SetDeaths(x_1, 7, y, 0))

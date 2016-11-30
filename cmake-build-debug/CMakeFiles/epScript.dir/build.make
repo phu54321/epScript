@@ -233,28 +233,28 @@ CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj.provides: CMakeFiles/epScrip
 CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj
 
 
-CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj: CMakeFiles/epScript.dir/flags.make
-CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj: ../parser/tokenizer/condact.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\parser\tokenizer\condact.cpp.obj -c C:\gitclones\epScript\parser\tokenizer\condact.cpp
+CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj: ../parser/reservedWords/condact.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\parser\reservedWords\condact.cpp.obj -c C:\gitclones\epScript\parser\reservedWords\condact.cpp
 
-CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.i"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\tokenizer\condact.cpp > CMakeFiles\epScript.dir\parser\tokenizer\condact.cpp.i
+CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.i"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\reservedWords\condact.cpp > CMakeFiles\epScript.dir\parser\reservedWords\condact.cpp.i
 
-CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.s"
-	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\tokenizer\condact.cpp -o CMakeFiles\epScript.dir\parser\tokenizer\condact.cpp.s
+CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.s"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\reservedWords\condact.cpp -o CMakeFiles\epScript.dir\parser\reservedWords\condact.cpp.s
 
-CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.requires:
+CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj.requires:
 
-.PHONY : CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.requires
+.PHONY : CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj.requires
 
-CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.provides: CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.requires
-	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.provides.build
-.PHONY : CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.provides
+CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj.provides: CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj.provides
 
-CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj
+CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj
 
 
 CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj: CMakeFiles/epScript.dir/flags.make
@@ -401,9 +401,33 @@ CMakeFiles/epScript.dir/utils.cpp.obj.provides: CMakeFiles/epScript.dir/utils.cp
 CMakeFiles/epScript.dir/utils.cpp.obj.provides.build: CMakeFiles/epScript.dir/utils.cpp.obj
 
 
+CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj: CMakeFiles/epScript.dir/flags.make
+CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj: ../parser/reservedWords/constparser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\parser\reservedWords\constparser.cpp.obj -c C:\gitclones\epScript\parser\reservedWords\constparser.cpp
+
+CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.i"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\gitclones\epScript\parser\reservedWords\constparser.cpp > CMakeFiles\epScript.dir\parser\reservedWords\constparser.cpp.i
+
+CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.s"
+	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\gitclones\epScript\parser\reservedWords\constparser.cpp -o CMakeFiles\epScript.dir\parser\reservedWords\constparser.cpp.s
+
+CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj.requires:
+
+.PHONY : CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj.requires
+
+CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj.provides: CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\epScript.dir\build.make CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj.provides.build
+.PHONY : CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj.provides
+
+CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj.provides.build: CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj
+
+
 CMakeFiles/epScript.dir/main.cpp.obj: CMakeFiles/epScript.dir/flags.make
 CMakeFiles/epScript.dir/main.cpp.obj: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/epScript.dir/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/epScript.dir/main.cpp.obj"
 	C:\mingw-w64\i686-6.2.0-posix-dwarf-rt_v5-rev1\mingw32\bin\g++.exe   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\epScript.dir\main.cpp.obj -c C:\gitclones\epScript\main.cpp
 
 CMakeFiles/epScript.dir/main.cpp.i: cmake_force
@@ -434,13 +458,14 @@ epScript_OBJECTS = \
 "CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj" \
-"CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj" \
+"CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj" \
 "CMakeFiles/epScript.dir/scriptDaemon.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/parserUtils.cpp.obj" \
 "CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.obj" \
 "CMakeFiles/epScript.dir/utils.cpp.obj" \
+"CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj" \
 "CMakeFiles/epScript.dir/main.cpp.obj"
 
 # External object files for target epScript
@@ -453,19 +478,20 @@ epScript.exe: CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj
-epScript.exe: CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj
+epScript.exe: CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/scriptDaemon.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/parserUtils.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/utils.cpp.obj
+epScript.exe: CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/main.cpp.obj
 epScript.exe: CMakeFiles/epScript.dir/build.make
 epScript.exe: CMakeFiles/epScript.dir/linklibs.rsp
 epScript.exe: CMakeFiles/epScript.dir/objects1.rsp
 epScript.exe: CMakeFiles/epScript.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable epScript.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\gitclones\epScript\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Linking CXX executable epScript.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\epScript.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -480,13 +506,14 @@ CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer/token
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj.requires
-CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/tokenizer/condact.cpp.obj.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/scriptDaemon.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/parserUtils.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/utils.cpp.obj.requires
+CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj.requires
 CMakeFiles/epScript.dir/requires: CMakeFiles/epScript.dir/main.cpp.obj.requires
 
 .PHONY : CMakeFiles/epScript.dir/requires

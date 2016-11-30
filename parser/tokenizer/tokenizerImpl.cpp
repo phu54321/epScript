@@ -4,7 +4,8 @@
 
 #include "tokenizerImpl.h"
 #include "tokChars.h"
-#include "condAct.h"
+#include "../reservedWords/condAct.h"
+#include "../reservedWords/constparser.h"
 #include <string.h>
 #include <assert.h>
 
@@ -148,8 +149,12 @@ Token* TokenizerImpl::getToken() {
         if(identifier == "continue") return TK(TOKEN_CONTINUE);
         if(identifier == "return") return TK(TOKEN_RETURN);
 
+        if(identifier == "Kills") return TK(TOKEN_KILLS, identifier);
+
         if(isConditionName(identifier)) return TK(TOKEN_CONDITION, identifier);
         if(isActionName(identifier)) return TK(TOKEN_ACTION, identifier);
+        int c;
+        if((c = parseConstantName(identifier)) != -1) return TK(TOKEN_NUMBER, std::to_string(c));
 
         return TK(TOKEN_NAME, identifier);
     }

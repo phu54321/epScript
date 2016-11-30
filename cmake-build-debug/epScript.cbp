@@ -161,19 +161,27 @@
 			<Option target="epScript"/>
 			<Option target="epScriptTest"/>
 		</Unit>
+		<Unit filename="C:/gitclones/epScript/parser/reservedWords/condact.cpp">
+			<Option target="epScript"/>
+			<Option target="epScriptTest"/>
+		</Unit>
+		<Unit filename="C:/gitclones/epScript/parser/reservedWords/condact.h">
+			<Option target="epScript"/>
+			<Option target="epScriptTest"/>
+		</Unit>
+		<Unit filename="C:/gitclones/epScript/parser/reservedWords/constparser.cpp">
+			<Option target="epScript"/>
+			<Option target="epScriptTest"/>
+		</Unit>
+		<Unit filename="C:/gitclones/epScript/parser/reservedWords/constparser.h">
+			<Option target="epScript"/>
+			<Option target="epScriptTest"/>
+		</Unit>
 		<Unit filename="C:/gitclones/epScript/parser/tokenAdapter.cpp">
 			<Option target="epScript"/>
 			<Option target="epScriptTest"/>
 		</Unit>
 		<Unit filename="C:/gitclones/epScript/parser/tokenAdapter.h">
-			<Option target="epScript"/>
-			<Option target="epScriptTest"/>
-		</Unit>
-		<Unit filename="C:/gitclones/epScript/parser/tokenizer/condact.cpp">
-			<Option target="epScript"/>
-			<Option target="epScriptTest"/>
-		</Unit>
-		<Unit filename="C:/gitclones/epScript/parser/tokenizer/condact.h">
 			<Option target="epScript"/>
 			<Option target="epScriptTest"/>
 		</Unit>
