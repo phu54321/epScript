@@ -125,18 +125,19 @@ stmt ::= return_stmt SEMICOLON.
 lbracket ::= LBRACKET. { ps->closure.pushScope(); }
 rbracket ::= RBRACKET. { ps->closure.popScope(); }
 
-stmt ::= lbracket RBRACKET. {
+blockStmt ::= lbracket RBRACKET. {
     ps->gen << "pass" << std::endl;
     ps->closure.popScope();
 }
-stmt ::= lbracket return_stmt SEMICOLON rbracket.
-stmt ::= lbracket bodyStmtList rbracket.
-stmt ::= lbracket bodyStmtList return_stmt SEMICOLON rbracket.
-stmt ::= lbracket error RBRACKET. {
+blockStmt ::= lbracket return_stmt SEMICOLON rbracket.
+blockStmt ::= lbracket bodyStmtList rbracket.
+blockStmt ::= lbracket bodyStmtList return_stmt SEMICOLON rbracket.
+blockStmt ::= lbracket error RBRACKET. {
     throw_error(6298, "Block not terminated properly.");
     ps->closure.popScope();
 }
 
+bodyStmt ::= blockStmt.
 bodyStmt ::= SEMICOLON.
 bodyStmt ::= vdef_stmt SEMICOLON.
 bodyStmt ::= vdefAssign_stmt SEMICOLON.
