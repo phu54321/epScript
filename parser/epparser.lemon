@@ -92,6 +92,16 @@ expr(A) ::= NAME(B). {
     A = B;
 }
 
+expr(A)::= NAME(B) PERIOD NAME(C). {
+    if(!ps->closure.getConstant(B->data)) {
+        throw_error(B->line, 103, ("Undeclared constant \'" + (B->data) + "\'"));
+        ps->closure.defConstant(B->data);
+    }
+    B->data = B->data + "." + C->data;
+    delete C;
+    A = mkTokenTemp(B, ps->gen);
+}
+
 // Function calls
 fArgs(A) ::= . {
     A = new Token(TOKEN_TEMP, "", -1);

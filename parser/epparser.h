@@ -26,8 +26,8 @@
 #define NAME                            26
 #define LSQBRACKET                      27
 #define RSQBRACKET                      28
-#define STRING                          29
-#define PERIOD                          30
+#define PERIOD                          29
+#define STRING                          30
 #define LPAREN                          31
 #define RPAREN                          32
 #define FUNCCALL                        33
