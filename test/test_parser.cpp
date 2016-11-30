@@ -40,7 +40,7 @@ TEST_CASE("Control block parsing") {
 }
 
 TEST_CASE("Other parsing") {
-    check("mthcall.eps", "mthcall.py");
+    check("auxtest.eps", "auxtest.py");
 }
 
 

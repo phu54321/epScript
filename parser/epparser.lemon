@@ -62,8 +62,7 @@ chunk ::= vdef_stmt.
 chunk ::= cdef_stmt.
 
 // Import_chunk
-import_chunk ::= FROM NAME(name) IMPORT nameList_nonEmpty(B). {
-    ps->gen << "from " << name->data << " import " << B->data << std::endl;
+import_chunk ::= FROM NAME(name) IMPORT nameList_nonEmpty(B) SEMICOLON. {
     commaListIter(B->data, [&](std::string varname) {
         funcNamePreprocess(varname);
         if(!ps->closure.defFunction(varname)) {
@@ -171,15 +170,25 @@ nameList_nonEmpty(A) ::= nameList_nonEmpty(B) COMMA NAME(C). {
     A = C;
 }
 
-exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET RSQBRACKET. {
-    A = genTemp(C);
-    ps->gen << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
-    delete B; delete C;
+exprList_nonEmpty(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET RSQBRACKET. {
+    C->data = "_SRET(" + B->data + ", [" + C->data + "])";
+    delete B;
+    A = mkTokenTemp(C);
 }
 
 
-exprList(A) ::= expr(B). [COMMA] { A = B; }
-exprList(A) ::= exprList(B) COMMA exprList(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
+    C->data = B->data + "[" + C->data + "]";
+    delete B;
+    A = mkTokenTemp(C);
+}
+
+
+exprList_nonEmpty(A) ::= expr(B). [COMMA] { A = B; }
+exprList_nonEmpty(A) ::= exprList_nonEmpty(B) COMMA exprList_nonEmpty(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+
+exprList(A) ::= . { A = genEmpty(); }
+exprList(A) ::= exprList_nonEmpty(B). { A = B; }
 
 // Related to expressions
 expr(A) ::= NUMBER(B). { A = B; }
@@ -202,17 +211,17 @@ expr(A)::= NAME(B) PERIOD NAME(C). {
 }
 
 // Function calls
-fArgs(A) ::= . { A = genEmpty(); }
-fArgsAny(A) ::= expr(B). { A = B; }
-fArgsAny(A) ::= STRING(B). { A = B; }
-fArgsAny(A) ::= fArgsAny(B) COMMA fArgsAny(C). {
+fArgs_nonEmpty(A) ::= expr(B). { A = B; }
+fArgs_nonEmpty(A) ::= STRING(B). { A = B; }
+fArgs_nonEmpty(A) ::= fArgs_nonEmpty(B) COMMA fArgs_nonEmpty(C). {
     B->data = B->data + ", " + C->data;
     B->type = TOKEN_TEMP;
     A = B;
     delete C;
 }
 
-fArgs(A) ::= fArgsAny(B). { A = B; }
+fArgs(A) ::= . { A = genEmpty(); }
+fArgs(A) ::= fArgs_nonEmpty(B). { A = B; }
 
 funcName(A) ::= NAME(name). {
     funcNamePreprocess(name->data);
@@ -338,17 +347,20 @@ vdef_stmt ::= VAR nameList_nonEmpty(A) SEMICOLON. {
             throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
+
     if(varCount == 1) {
         ps->gen << s << " = EUDVariable()" << std::endl;
     }
     else {
         ps->gen << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
     }
+
     delete A;
 }
 
-vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList(B) SEMICOLON. {
+vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
     std::string& s = A->data;
+    int varCount = std::count(s.begin(), s.end(), ',') + 1;
 
     // Register variables.
     commaListIter(s, [&](std::string& varname) {
@@ -356,11 +368,19 @@ vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList(B) SEMICOLON. {
             throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
-    ps->gen << s << " = _MVAR([" << B->data << "])" << std::endl;
+
+    if(varCount == 1) {
+        ps->gen << s << " = EUDVariable()" << std::endl;
+        ps->gen << s << " << " << B->data << std::endl;
+    }
+    else {
+        ps->gen << s << " = _MVAR([" << B->data << "])" << std::endl;
+    }
+
     delete A; delete B;
 }
 
-cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList(B) SEMICOLON. {
+cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
     std::string& s = A->data;
 
     // Register constants.
@@ -373,7 +393,7 @@ cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList(B) SEMICOLON. {
     delete A; delete B;
 }
 
-assign_stmt ::= nameList_nonEmpty(A) ASSIGN exprList(B) SEMICOLON. {
+assign_stmt ::= nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
     if(A->data.find(',') == std::string::npos) {
         ps->gen << A->data << " << " << B->data << std::endl;
     }
@@ -451,7 +471,7 @@ while_stmt ::= while_header stmt. {
 }
 
 // Foreach block
-foreach_header ::= FOR LPAREN nameList_nonEmpty(names) COLON exprList(exprs) RPAREN. {
+foreach_header ::= FOR LPAREN nameList_nonEmpty(names) COLON exprList_nonEmpty(exprs) RPAREN. {
     ps->closure.pushScope();
     commaListIter(names->data, [&](std::string& s) {
         ps->closure.defVariable(s);
@@ -478,10 +498,6 @@ break_stmt ::= BREAK SEMICOLON. {
 
 
 // returns
-return_stmt ::= RETURN SEMICOLON. {
-    ps->gen << "EUDReturn()" << std::endl;
-}
-
 return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
     ps->gen << "EUDReturn(" << exprs->data << ")" << std::endl;
     delete exprs;

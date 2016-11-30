@@ -26,10 +26,10 @@
 #define NAME                            26
 #define FROM                            27
 #define IMPORT                          28
-#define FUNCTION                        29
-#define LPAREN                          30
-#define RPAREN                          31
-#define SEMICOLON                       32
+#define SEMICOLON                       29
+#define FUNCTION                        30
+#define LPAREN                          31
+#define RPAREN                          32
 #define LBRACKET                        33
 #define RBRACKET                        34
 #define LSQBRACKET                      35
