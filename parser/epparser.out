@@ -64,7 +64,7 @@ State 1:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -111,51 +111,51 @@ State 1:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
                       RBRACKET shift  280
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
+                    ACTIONNAME shift  140
                          error shift  260
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
                       bodyStmt shift  261
-                   return_stmt shift  190
+                   return_stmt shift  191
                       lbracket shift  2
                       rbracket shift  278
                      blockStmt shift  276
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -226,7 +226,7 @@ State 2:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -273,51 +273,51 @@ State 2:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
                       RBRACKET shift  281
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
-                         error shift  136
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
-                      bodyStmt shift  203
-                   return_stmt shift  191
+                    ACTIONNAME shift  140
+                         error shift  137
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
+                      bodyStmt shift  204
+                   return_stmt shift  192
                       lbracket shift  2
                      blockStmt shift  276
                   bodyStmtList shift  1
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -383,7 +383,7 @@ State 3:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -431,50 +431,50 @@ State 3:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
-                         error shift  193
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
-                          stmt shift  205
+                    ACTIONNAME shift  140
+                         error shift  194
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
+                          stmt shift  206
                       bodyStmt shift  284
-                   return_stmt shift  192
+                   return_stmt shift  193
                       lbracket shift  2
                      blockStmt shift  276
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -540,7 +540,7 @@ State 4:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -588,50 +588,50 @@ State 4:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
-                         error shift  193
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
-                          stmt shift  212
+                    ACTIONNAME shift  140
+                         error shift  194
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
+                          stmt shift  213
                       bodyStmt shift  284
-                   return_stmt shift  192
+                   return_stmt shift  193
                       lbracket shift  2
                      blockStmt shift  276
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -697,7 +697,7 @@ State 5:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -745,50 +745,50 @@ State 5:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
-                         error shift  193
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
-                          stmt shift  215
+                    ACTIONNAME shift  140
+                         error shift  194
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
+                          stmt shift  216
                       bodyStmt shift  284
-                   return_stmt shift  192
+                   return_stmt shift  193
                       lbracket shift  2
                      blockStmt shift  276
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -854,7 +854,7 @@ State 6:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -902,50 +902,50 @@ State 6:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
-                         error shift  193
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
-                          stmt shift  228
+                    ACTIONNAME shift  140
+                         error shift  194
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
+                          stmt shift  229
                       bodyStmt shift  284
-                   return_stmt shift  192
+                   return_stmt shift  193
                       lbracket shift  2
                      blockStmt shift  276
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -1011,7 +1011,7 @@ State 7:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -1059,50 +1059,50 @@ State 7:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
-                         error shift  193
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
-                          stmt shift  231
+                    ACTIONNAME shift  140
+                         error shift  194
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
+                          stmt shift  232
                       bodyStmt shift  284
-                   return_stmt shift  192
+                   return_stmt shift  193
                       lbracket shift  2
                      blockStmt shift  276
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -1168,7 +1168,7 @@ State 8:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -1216,50 +1216,50 @@ State 8:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
-                         error shift  193
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
-                          stmt shift  234
+                    ACTIONNAME shift  140
+                         error shift  194
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
+                          stmt shift  235
                       bodyStmt shift  284
-                   return_stmt shift  192
+                   return_stmt shift  193
                       lbracket shift  2
                      blockStmt shift  276
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -1326,7 +1326,7 @@ State 9:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -1373,50 +1373,50 @@ State 9:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                      SEMICOLON shift  275
                         LPAREN shift  68
                       LBRACKET shift  282
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                            IF shift  236
-                         WHILE shift  230
-                           FOR shift  144
-                       FOREACH shift  141
-                      CONTINUE shift  211
-                         BREAK shift  210
+                            IF shift  237
+                         WHILE shift  231
+                           FOR shift  145
+                       FOREACH shift  142
+                      CONTINUE shift  212
+                         BREAK shift  211
                         RETURN shift  19
-                    ACTIONNAME shift  139
-                         error shift  193
-                     vdef_stmt shift  189
-                     cdef_stmt shift  187
+                    ACTIONNAME shift  140
+                         error shift  194
+                     vdef_stmt shift  190
+                     cdef_stmt shift  188
                           stmt shift  286
                       bodyStmt shift  284
-                   return_stmt shift  192
+                   return_stmt shift  193
                       lbracket shift  2
                      blockStmt shift  276
-               vdefAssign_stmt shift  188
-                   assign_stmt shift  186
-                      funcexpr shift  133
+               vdefAssign_stmt shift  189
+                   assign_stmt shift  187
+                      funcexpr shift  134
                     actionStmt shift  268
                        if_stmt shift  267
                     while_stmt shift  266
                       for_stmt shift  265
                   foreach_stmt shift  264
-                 continue_stmt shift  181
-                    break_stmt shift  180
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-                      if_start shift  148
+                 continue_stmt shift  182
+                    break_stmt shift  181
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+                      if_start shift  149
                      if_header shift  8
                       if_block shift  36
-                   while_start shift  145
+                   while_start shift  146
                   while_header shift  6
                     for_opener shift  10
                    for_header1 shift  20
@@ -1459,7 +1459,7 @@ State 10:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -1488,25 +1488,25 @@ State 10:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                     vdef_stmt shift  226
-                     cdef_stmt shift  224
-               vdefAssign_stmt shift  225
-                   assign_stmt shift  223
-                      funcexpr shift  179
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-        for_init_stmt_nonEmpty shift  143
-                 for_init_stmt shift  142
+                     vdef_stmt shift  227
+                     cdef_stmt shift  225
+               vdefAssign_stmt shift  226
+                   assign_stmt shift  224
+                      funcexpr shift  180
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+        for_init_stmt_nonEmpty shift  144
+                 for_init_stmt shift  143
                      {default} reduce 129
 
 State 11:
@@ -1541,7 +1541,7 @@ State 11:
           vdefAssign_stmt ::= * VAR nameList_nonEmpty ASSIGN exprList_nonEmpty
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -1568,24 +1568,24 @@ State 11:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
                            VAR shift  77
                          CONST shift  75
-                     vdef_stmt shift  226
-                     cdef_stmt shift  224
-               vdefAssign_stmt shift  225
-                   assign_stmt shift  223
-                      funcexpr shift  179
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-        for_init_stmt_nonEmpty shift  222
+                     vdef_stmt shift  227
+                     cdef_stmt shift  225
+               vdefAssign_stmt shift  226
+                   assign_stmt shift  224
+                      funcexpr shift  180
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+        for_init_stmt_nonEmpty shift  223
 
 State 12:
       (0) program ::= chunks *
@@ -1603,16 +1603,16 @@ State 12:
           cdef_stmt ::= * CONST nameList_nonEmpty ASSIGN exprList_nonEmpty
 
                              $ reduce 0
-                          FROM shift  199
-                      FUNCTION shift  195
+                          FROM shift  200
+                      FUNCTION shift  196
                            VAR shift  71
                          CONST shift  75
                          chunk shift  296
-                  import_chunk shift  202
+                  import_chunk shift  203
                     fdef_chunk shift  294
-                     vdef_stmt shift  201
-                     cdef_stmt shift  200
-                function_start shift  194
+                     vdef_stmt shift  202
+                     cdef_stmt shift  201
+                function_start shift  195
                function_header shift  9
 
 State 13:
@@ -1644,7 +1644,7 @@ State 13:
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -1669,20 +1669,20 @@ State 13:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                         LPAREN shift  68
-                        RPAREN shift  216
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                   assign_stmt shift  219
-                      funcexpr shift  179
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-      for_action_stmt_nonEmpty shift  127
+                        RPAREN shift  217
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                   assign_stmt shift  220
+                      funcexpr shift  180
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+      for_action_stmt_nonEmpty shift  129
 
 State 14:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1713,7 +1713,7 @@ State 14:
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= * lvalue
           lvalueList_nonEmpty ::= * lvalueList_nonEmpty COMMA lvalue
@@ -1737,19 +1737,19 @@ State 14:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                   assign_stmt shift  219
-                      funcexpr shift  179
-                          expr shift  96
-                        lvalue shift  107
-           lvalueList_nonEmpty shift  128
-      for_action_stmt_nonEmpty shift  218
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                   assign_stmt shift  220
+                      funcexpr shift  180
+                          expr shift  97
+                        lvalue shift  109
+           lvalueList_nonEmpty shift  130
+      for_action_stmt_nonEmpty shift  219
 
 State 15:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1791,20 +1791,20 @@ State 15:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
                         RPAREN shift  244
                         RPAREN reduce 56  ** Parsing conflict **
                         STRING shift  256
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  103
-                fArgs_nonEmpty shift  176
-                         fArgs shift  160
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  104
+                fArgs_nonEmpty shift  177
+                         fArgs shift  161
 
 State 16:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -1845,18 +1845,18 @@ State 16:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
                         STRING shift  256
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  103
-                fArgs_nonEmpty shift  176
-                         fArgs shift  138
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  104
+                fArgs_nonEmpty shift  177
+                         fArgs shift  139
                      {default} reduce 56
 
 State 17:
@@ -1898,18 +1898,18 @@ State 17:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
                         STRING shift  256
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  103
-                fArgs_nonEmpty shift  176
-                         fArgs shift  159
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  104
+                fArgs_nonEmpty shift  177
+                         fArgs shift  160
                      {default} reduce 56
 
 State 18:
@@ -1951,18 +1951,18 @@ State 18:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
                         STRING shift  256
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  103
-                fArgs_nonEmpty shift  176
-                         fArgs shift  158
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  104
+                fArgs_nonEmpty shift  177
+                         fArgs shift  159
                      {default} reduce 56
 
 State 19:
@@ -2004,17 +2004,17 @@ State 19:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  156
-             exprList_nonEmpty shift  140
-                          expr shift  95
-                      exprList shift  209
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  157
+             exprList_nonEmpty shift  141
+                          expr shift  96
+                      exprList shift  210
                      {default} reduce 47
 
 State 20:
@@ -2064,17 +2064,17 @@ State 20:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
-                         lexpr shift  114
+                         lexpr shift  116
 
 State 21:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2123,17 +2123,17 @@ State 21:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
-                         lexpr shift  115
+                         lexpr shift  117
 
 State 22:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2182,17 +2182,17 @@ State 22:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
-                         lexpr shift  116
+                         lexpr shift  118
 
 State 23:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2241,17 +2241,17 @@ State 23:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
-                         lexpr shift  117
+                         lexpr shift  119
 
 State 24:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2302,15 +2302,15 @@ State 24:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
                          lexpr shift  246
 
@@ -2362,15 +2362,15 @@ State 25:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
                          lexpr shift  247
 
@@ -2421,17 +2421,17 @@ State 26:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
-                         lexpr shift  162
+                         lexpr shift  163
 
 State 27:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2480,15 +2480,15 @@ State 27:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
                          lexpr shift  248
 
@@ -2539,17 +2539,17 @@ State 28:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                 CONDITIONNAME shift  161
-                      funcexpr shift  179
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                 CONDITIONNAME shift  162
+                      funcexpr shift  180
                           expr shift  81
-                         lexpr shift  118
+                         lexpr shift  120
 
 State 29:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2588,16 +2588,16 @@ State 29:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
                         STRING shift  256
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  103
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  104
                 fArgs_nonEmpty shift  255
 
 State 30:
@@ -2637,16 +2637,16 @@ State 30:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  156
-             exprList_nonEmpty shift  125
-                          expr shift  95
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  157
+             exprList_nonEmpty shift  127
+                          expr shift  96
 
 State 31:
           exprList_nonEmpty ::= * funcexpr LSQBRACKET LSQBRACKET numList_nonEmpty RSQBRACKET RSQBRACKET
@@ -2685,16 +2685,16 @@ State 31:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  156
-             exprList_nonEmpty shift  149
-                          expr shift  95
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  157
+             exprList_nonEmpty shift  150
+                          expr shift  96
 
 State 32:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2725,7 +2725,7 @@ State 32:
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
           lvalue ::= * NAME
-          lvalue ::= * expr LSQBRACKET NAME RSQBRACKET
+          lvalue ::= * expr LSQBRACKET expr RSQBRACKET
           lvalue ::= * expr PERIOD NAME
           lvalueList_nonEmpty ::= lvalueList_nonEmpty COMMA * lvalue
 
@@ -2733,16 +2733,16 @@ State 32:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  104
+                          NAME shift  105
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  96
-                        lvalue shift  237
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  97
+                        lvalue shift  238
 
 State 33:
           exprList_nonEmpty ::= * funcexpr LSQBRACKET LSQBRACKET numList_nonEmpty RSQBRACKET RSQBRACKET
@@ -2781,16 +2781,16 @@ State 33:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  156
-             exprList_nonEmpty shift  150
-                          expr shift  95
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  157
+             exprList_nonEmpty shift  151
+                          expr shift  96
 
 State 34:
           exprList_nonEmpty ::= * funcexpr LSQBRACKET LSQBRACKET numList_nonEmpty RSQBRACKET RSQBRACKET
@@ -2829,16 +2829,16 @@ State 34:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  156
-             exprList_nonEmpty shift  238
-                          expr shift  95
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  157
+             exprList_nonEmpty shift  239
+                          expr shift  96
 
 State 35:
           exprList_nonEmpty ::= * funcexpr LSQBRACKET LSQBRACKET numList_nonEmpty RSQBRACKET RSQBRACKET
@@ -2877,16 +2877,16 @@ State 35:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  156
-             exprList_nonEmpty shift  151
-                          expr shift  95
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  157
+             exprList_nonEmpty shift  152
+                          expr shift  96
 
 State 36:
           elif_start ::= * ELSE IF
@@ -2896,9 +2896,9 @@ State 36:
     (117) if_stmt ::= if_block *
           if_stmt ::= if_block * else_header stmt
 
-                          ELSE shift  147
+                          ELSE shift  148
                           ELSE reduce 117 ** Parsing conflict **
-                    elif_start shift  146
+                    elif_start shift  147
                    elif_header shift  7
                    else_header shift  3
                      {default} reduce 117
@@ -2937,15 +2937,15 @@ State 37:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  84
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  85
 
 State 38:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -2981,15 +2981,15 @@ State 38:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  85
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  86
 
 State 39:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3025,15 +3025,15 @@ State 39:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  86
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  87
 
 State 40:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3069,15 +3069,15 @@ State 40:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  87
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  88
 
 State 41:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3113,15 +3113,15 @@ State 41:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  88
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  89
 
 State 42:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3157,15 +3157,15 @@ State 42:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  89
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  90
 
 State 43:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3201,15 +3201,15 @@ State 43:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  90
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  91
 
 State 44:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3245,15 +3245,15 @@ State 44:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  91
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  92
 
 State 45:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3289,15 +3289,15 @@ State 45:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  92
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  93
 
 State 46:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3333,15 +3333,15 @@ State 46:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  93
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  94
 
 State 47:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3377,15 +3377,15 @@ State 47:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  94
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  95
 
 State 48:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3416,21 +3416,21 @@ State 48:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
-          lvalue ::= expr LSQBRACKET * NAME RSQBRACKET
+          lvalue ::= expr LSQBRACKET * expr RSQBRACKET
 
                           PLUS shift  56
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  132
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  83
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  82
 
 State 49:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3466,15 +3466,15 @@ State 49:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  97
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  98
 
 State 50:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3510,15 +3510,15 @@ State 50:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  98
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  99
 
 State 51:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3554,15 +3554,15 @@ State 51:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  99
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  100
 
 State 52:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3598,15 +3598,15 @@ State 52:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  100
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  101
 
 State 53:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3642,15 +3642,15 @@ State 53:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  101
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  102
 
 State 54:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3686,15 +3686,15 @@ State 54:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  119
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  121
 
 State 55:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3730,15 +3730,15 @@ State 55:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  120
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  122
 
 State 56:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3774,15 +3774,15 @@ State 56:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  121
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  123
 
 State 57:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3818,15 +3818,15 @@ State 57:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  102
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  103
 
 State 58:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3862,15 +3862,15 @@ State 58:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  108
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  110
 
 State 59:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3906,15 +3906,15 @@ State 59:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  106
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  108
 
 State 60:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3950,15 +3950,15 @@ State 60:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  109
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  111
 
 State 61:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -3994,15 +3994,15 @@ State 61:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  110
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  112
 
 State 62:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4038,15 +4038,15 @@ State 62:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  111
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  113
 
 State 63:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4082,15 +4082,15 @@ State 63:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  122
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  124
 
 State 64:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4126,15 +4126,15 @@ State 64:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  123
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  125
 
 State 65:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4170,15 +4170,15 @@ State 65:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  124
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  126
 
 State 66:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4214,15 +4214,15 @@ State 66:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  112
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  114
 
 State 67:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4258,15 +4258,15 @@ State 67:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  113
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  115
 
 State 68:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4302,15 +4302,15 @@ State 68:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  82
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  83
 
 State 69:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4346,15 +4346,15 @@ State 69:
                          MINUS shift  55
                         BITNOT shift  54
                         NUMBER shift  259
-                          NAME shift  178
+                          NAME shift  179
                         LPAREN shift  68
-                           L2V shift  175
-                     MAPSTRING shift  174
-                          UNIT shift  171
-                        SWITCH shift  168
-                      LOCATION shift  165
-                      funcexpr shift  179
-                          expr shift  83
+                           L2V shift  176
+                     MAPSTRING shift  175
+                          UNIT shift  172
+                        SWITCH shift  169
+                      LOCATION shift  166
+                      funcexpr shift  180
+                          expr shift  84
 
 State 70:
           function_header ::= function_start LPAREN * nameList_nonEmpty RPAREN
@@ -4364,7 +4364,7 @@ State 70:
 
                           NAME shift  290
                         RPAREN shift  287
-             nameList_nonEmpty shift  134
+             nameList_nonEmpty shift  135
 
 State 71:
           nameList_nonEmpty ::= * NAME
@@ -4372,16 +4372,16 @@ State 71:
           vdef_stmt ::= VAR * nameList_nonEmpty
 
                           NAME shift  290
-             nameList_nonEmpty shift  135
+             nameList_nonEmpty shift  136
 
 State 72:
           action ::= * ACTIONNAME LPAREN fArgs RPAREN SEMICOLON
           actions ::= actions * action
     (149) actionStmt ::= actions *
 
-                    ACTIONNAME shift  139
+                    ACTIONNAME shift  140
                     ACTIONNAME reduce 149 ** Parsing conflict **
-                        action shift  206
+                        action shift  207
                      {default} reduce 149
 
 State 73:
@@ -4389,9 +4389,9 @@ State 73:
           actions ::= action * action
     (148) actionStmt ::= action *
 
-                    ACTIONNAME shift  139
+                    ACTIONNAME shift  140
                     ACTIONNAME reduce 148 ** Parsing conflict **
-                        action shift  207
+                        action shift  208
                      {default} reduce 148
 
 State 74:
@@ -4400,7 +4400,7 @@ State 74:
           foreach_header ::= foreach_opener * nameList_nonEmpty COLON exprList_nonEmpty RPAREN
 
                           NAME shift  290
-             nameList_nonEmpty shift  126
+             nameList_nonEmpty shift  128
 
 State 75:
           nameList_nonEmpty ::= * NAME
@@ -4408,7 +4408,7 @@ State 75:
           cdef_stmt ::= CONST * nameList_nonEmpty ASSIGN exprList_nonEmpty
 
                           NAME shift  290
-             nameList_nonEmpty shift  129
+             nameList_nonEmpty shift  131
 
 State 76:
           numList_nonEmpty ::= * NUMBER
@@ -4416,8 +4416,8 @@ State 76:
           exprList_nonEmpty ::= funcexpr LSQBRACKET LSQBRACKET * numList_nonEmpty RSQBRACKET RSQBRACKET
           expr ::= funcexpr LSQBRACKET LSQBRACKET * NUMBER RSQBRACKET RSQBRACKET
 
-                        NUMBER shift  154
-              numList_nonEmpty shift  130
+                        NUMBER shift  155
+              numList_nonEmpty shift  132
 
 State 77:
           nameList_nonEmpty ::= * NAME
@@ -4426,7 +4426,7 @@ State 77:
           vdefAssign_stmt ::= VAR * nameList_nonEmpty ASSIGN exprList_nonEmpty
 
                           NAME shift  290
-             nameList_nonEmpty shift  131
+             nameList_nonEmpty shift  133
 
 State 78:
           rbracket ::= * RBRACKET
@@ -4448,7 +4448,7 @@ State 80:
           nameList_nonEmpty ::= * nameList_nonEmpty COMMA NAME
 
                           NAME shift  290
-             nameList_nonEmpty shift  197
+             nameList_nonEmpty shift  198
 
 State 81:
           expr ::= expr * PERIOD NAME
@@ -4489,9 +4489,41 @@ State 81:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
 
 State 82:
+          expr ::= expr * PERIOD NAME
+          expr ::= expr * LSQBRACKET expr RSQBRACKET
+          expr ::= expr LSQBRACKET expr * RSQBRACKET
+          funcexpr ::= expr * LPAREN fArgs RPAREN
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+          lvalue ::= expr LSQBRACKET expr * RSQBRACKET
+
+                         BITOR shift  59
+                        BITXOR shift  58
+                        BITAND shift  60
+                        LSHIFT shift  62
+                        RSHIFT shift  61
+                          PLUS shift  67
+                         MINUS shift  66
+                        DIVIDE shift  64
+                      MULTIPLY shift  65
+                           MOD shift  63
+                        LPAREN shift  17
+                    LSQBRACKET shift  69
+                    RSQBRACKET shift  106
+                        PERIOD shift  178
+
+State 83:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4520,9 +4552,9 @@ State 82:
                         LPAREN shift  17
                         RPAREN shift  254
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
 
-State 83:
+State 84:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           expr ::= expr LSQBRACKET expr * RSQBRACKET
@@ -4551,9 +4583,9 @@ State 83:
                         LPAREN shift  17
                     LSQBRACKET shift  69
                     RSQBRACKET shift  257
-                        PERIOD shift  177
+                        PERIOD shift  178
 
-State 84:
+State 85:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4581,10 +4613,10 @@ State 84:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 109
 
-State 85:
+State 86:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4612,10 +4644,10 @@ State 85:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 108
 
-State 86:
+State 87:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4643,10 +4675,10 @@ State 86:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 107
 
-State 87:
+State 88:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4674,10 +4706,10 @@ State 87:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 106
 
-State 88:
+State 89:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4705,10 +4737,10 @@ State 88:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 105
 
-State 89:
+State 90:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4736,10 +4768,10 @@ State 89:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 104
 
-State 90:
+State 91:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4767,10 +4799,10 @@ State 90:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 103
 
-State 91:
+State 92:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4798,10 +4830,10 @@ State 91:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 102
 
-State 92:
+State 93:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4829,10 +4861,10 @@ State 92:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 101
 
-State 93:
+State 94:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4860,10 +4892,10 @@ State 93:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 100
 
-State 94:
+State 95:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4891,10 +4923,10 @@ State 94:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 98
 
-State 95:
+State 96:
      (45) exprList_nonEmpty ::= expr *
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
@@ -4922,10 +4954,10 @@ State 95:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 45
 
-State 96:
+State 97:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4939,7 +4971,7 @@ State 96:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-          lvalue ::= expr * LSQBRACKET NAME RSQBRACKET
+          lvalue ::= expr * LSQBRACKET expr RSQBRACKET
           lvalue ::= expr * PERIOD NAME
 
                          BITOR shift  59
@@ -4954,9 +4986,9 @@ State 96:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  48
-                        PERIOD shift  157
+                        PERIOD shift  158
 
-State 97:
+State 98:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -4984,10 +5016,10 @@ State 97:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 85
 
-State 98:
+State 99:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5015,10 +5047,10 @@ State 98:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 84
 
-State 99:
+State 100:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5046,10 +5078,10 @@ State 99:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 83
 
-State 100:
+State 101:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5077,10 +5109,10 @@ State 100:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 82
 
-State 101:
+State 102:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5108,10 +5140,10 @@ State 101:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 81
 
-State 102:
+State 103:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5139,10 +5171,10 @@ State 102:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 80
 
-State 103:
+State 104:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
      (53) fArgs_nonEmpty ::= expr *
@@ -5170,10 +5202,10 @@ State 103:
                            MOD shift  63
                         LPAREN shift  17
                     LSQBRACKET shift  69
-                        PERIOD shift  177
+                        PERIOD shift  178
                      {default} reduce 53
 
-State 104:
+State 105:
      (50) expr ::= NAME *
           funcexpr ::= NAME * LPAREN fArgs RPAREN
      (93) lvalue ::= NAME *
@@ -5194,7 +5226,25 @@ State 104:
                         PERIOD reduce 50
                      {default} reduce 93
 
-State 105:
+State 106:
+     (52) expr ::= expr LSQBRACKET expr RSQBRACKET *
+     (94) lvalue ::= expr LSQBRACKET expr RSQBRACKET *
+
+                        ASSIGN reduce 94
+                         COMMA reduce 94
+                          IADD reduce 94
+                          ISUB reduce 94
+                          IMUL reduce 94
+                          IDIV reduce 94
+                          IMOD reduce 94
+                          ILSH reduce 94
+                          IRSH reduce 94
+                          IBND reduce 94
+                          IBOR reduce 94
+                          IBXR reduce 94
+                     {default} reduce 52
+
+State 107:
      (51) expr ::= expr PERIOD NAME *
      (95) lvalue ::= expr PERIOD NAME *
 
@@ -5212,7 +5262,7 @@ State 105:
                           IBXR reduce 95
                      {default} reduce 51
 
-State 106:
+State 108:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5241,11 +5291,11 @@ State 106:
                         LPAREN reduce 75  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 75  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 75  ** Parsing conflict **
                      {default} reduce 75
 
-State 107:
+State 109:
      (96) lvalueList_nonEmpty ::= lvalue *
           assign_stmt ::= lvalue * ASSIGN expr
           assign_stmt ::= lvalue * IADD expr
@@ -5273,7 +5323,7 @@ State 107:
                           IBXR shift  37
                      {default} reduce 96
 
-State 108:
+State 110:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5301,11 +5351,11 @@ State 108:
                         LPAREN reduce 76  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 76  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 76  ** Parsing conflict **
                      {default} reduce 76
 
-State 109:
+State 111:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5332,11 +5382,11 @@ State 109:
                         LPAREN reduce 74  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 74  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 74  ** Parsing conflict **
                      {default} reduce 74
 
-State 110:
+State 112:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5361,11 +5411,11 @@ State 110:
                         LPAREN reduce 73  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 73  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 73  ** Parsing conflict **
                      {default} reduce 73
 
-State 111:
+State 113:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5390,11 +5440,11 @@ State 111:
                         LPAREN reduce 72  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 72  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 72  ** Parsing conflict **
                      {default} reduce 72
 
-State 112:
+State 114:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5417,11 +5467,11 @@ State 112:
                         LPAREN reduce 68  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 68  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 68  ** Parsing conflict **
                      {default} reduce 68
 
-State 113:
+State 115:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5444,47 +5494,47 @@ State 113:
                         LPAREN reduce 67  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 67  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 67  ** Parsing conflict **
                      {default} reduce 67
 
-State 114:
+State 116:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
           for_header2 ::= for_header1 lexpr * SEMICOLON
 
                            LOR shift  26
                           LAND shift  27
-                     SEMICOLON shift  220
+                     SEMICOLON shift  221
 
-State 115:
+State 117:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
           while_header ::= while_start LPAREN lexpr * RPAREN
 
                            LOR shift  26
                           LAND shift  27
-                        RPAREN shift  229
+                        RPAREN shift  230
 
-State 116:
+State 118:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
           elif_header ::= elif_start LPAREN lexpr * RPAREN
 
                            LOR shift  26
                           LAND shift  27
-                        RPAREN shift  232
+                        RPAREN shift  233
 
-State 117:
+State 119:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
           if_header ::= if_start LPAREN lexpr * RPAREN
 
                            LOR shift  26
                           LAND shift  27
-                        RPAREN shift  235
+                        RPAREN shift  236
 
-State 118:
+State 120:
           expr ::= L2V LPAREN lexpr * RPAREN
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
@@ -5493,7 +5543,7 @@ State 118:
                           LAND shift  27
                         RPAREN shift  249
 
-State 119:
+State 121:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5513,11 +5563,11 @@ State 119:
                         LPAREN reduce 79  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 79  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 79  ** Parsing conflict **
                      {default} reduce 79
 
-State 120:
+State 122:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5537,11 +5587,11 @@ State 120:
                         LPAREN reduce 78  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 78  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 78  ** Parsing conflict **
                      {default} reduce 78
 
-State 121:
+State 123:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5561,11 +5611,11 @@ State 121:
                         LPAREN reduce 77  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 77  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 77  ** Parsing conflict **
                      {default} reduce 77
 
-State 122:
+State 124:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5585,11 +5635,11 @@ State 122:
                         LPAREN reduce 71  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 71  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 71  ** Parsing conflict **
                      {default} reduce 71
 
-State 123:
+State 125:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5609,11 +5659,11 @@ State 123:
                         LPAREN reduce 70  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 70  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 70  ** Parsing conflict **
                      {default} reduce 70
 
-State 124:
+State 126:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5633,251 +5683,240 @@ State 124:
                         LPAREN reduce 69  ** Parsing conflict **
                     LSQBRACKET shift  69
                     LSQBRACKET reduce 69  ** Parsing conflict **
-                        PERIOD shift  177
+                        PERIOD shift  178
                         PERIOD reduce 69  ** Parsing conflict **
                      {default} reduce 69
 
-State 125:
+State 127:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
           foreach_header ::= foreach_opener nameList_nonEmpty COLON exprList_nonEmpty * RPAREN
 
                          COMMA shift  34
-                        RPAREN shift  213
+                        RPAREN shift  214
 
-State 126:
+State 128:
           nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
           foreach_header ::= foreach_opener nameList_nonEmpty * COLON exprList_nonEmpty RPAREN
 
-                         COMMA shift  196
+                         COMMA shift  197
                          COLON shift  30
 
-State 127:
+State 129:
           for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty * COMMA for_action_stmt_nonEmpty
           for_header ::= for_header2 for_action_stmt_nonEmpty * RPAREN
 
                          COMMA shift  14
-                        RPAREN shift  217
+                        RPAREN shift  218
 
-State 128:
+State 130:
           lvalueList_nonEmpty ::= lvalueList_nonEmpty * COMMA lvalue
           assign_stmt ::= lvalueList_nonEmpty * ASSIGN exprList_nonEmpty
 
                         ASSIGN shift  31
                          COMMA shift  32
 
-State 129:
+State 131:
           nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
           cdef_stmt ::= CONST nameList_nonEmpty * ASSIGN exprList_nonEmpty
 
                         ASSIGN shift  33
-                         COMMA shift  196
+                         COMMA shift  197
 
-State 130:
+State 132:
           numList_nonEmpty ::= numList_nonEmpty * COMMA NUMBER
           exprList_nonEmpty ::= funcexpr LSQBRACKET LSQBRACKET numList_nonEmpty * RSQBRACKET RSQBRACKET
 
-                         COMMA shift  153
-                    RSQBRACKET shift  152
+                         COMMA shift  154
+                    RSQBRACKET shift  153
 
-State 131:
+State 133:
           nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
      (90) vdef_stmt ::= VAR nameList_nonEmpty *
           vdefAssign_stmt ::= VAR nameList_nonEmpty * ASSIGN exprList_nonEmpty
 
                         ASSIGN shift  35
-                         COMMA shift  196
+                         COMMA shift  197
                          COMMA reduce 90  ** Parsing conflict **
                      {default} reduce 90
 
-State 132:
-     (50) expr ::= NAME *
-          funcexpr ::= NAME * LPAREN fArgs RPAREN
-          lvalue ::= expr LSQBRACKET NAME * RSQBRACKET
-
-                        LPAREN shift  18
-                        LPAREN reduce 50  ** Parsing conflict **
-                    RSQBRACKET shift  241
-                    RSQBRACKET reduce 50  ** Parsing conflict **
-                     {default} reduce 50
-
-State 133:
+State 134:
           bodyStmt ::= funcexpr * SEMICOLON
           expr ::= funcexpr * LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
      (60) expr ::= funcexpr *
 
                      SEMICOLON shift  270
-                    LSQBRACKET shift  185
+                    LSQBRACKET shift  186
                     LSQBRACKET reduce 60  ** Parsing conflict **
                      {default} reduce 60
 
-State 134:
+State 135:
           function_header ::= function_start LPAREN nameList_nonEmpty * RPAREN
           nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
 
-                         COMMA shift  196
+                         COMMA shift  197
                         RPAREN shift  288
 
-State 135:
+State 136:
           nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
      (90) vdef_stmt ::= VAR nameList_nonEmpty *
 
-                         COMMA shift  196
+                         COMMA shift  197
                      {default} reduce 90
 
-State 136:
+State 137:
           blockStmt ::= lbracket error * RBRACKET
 
-                      RBRACKET shift  204
-
-State 137:
-          action ::= ACTIONNAME LPAREN fArgs RPAREN * SEMICOLON
-
-                     SEMICOLON shift  208
+                      RBRACKET shift  205
 
 State 138:
-          action ::= ACTIONNAME LPAREN fArgs * RPAREN SEMICOLON
+          action ::= ACTIONNAME LPAREN fArgs RPAREN * SEMICOLON
 
-                        RPAREN shift  137
+                     SEMICOLON shift  209
 
 State 139:
+          action ::= ACTIONNAME LPAREN fArgs * RPAREN SEMICOLON
+
+                        RPAREN shift  138
+
+State 140:
           action ::= ACTIONNAME * LPAREN fArgs RPAREN SEMICOLON
 
                         LPAREN shift  16
 
-State 140:
+State 141:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
      (48) exprList ::= exprList_nonEmpty *
 
                          COMMA shift  34
                      {default} reduce 48
 
-State 141:
+State 142:
           foreach_opener ::= FOREACH * LPAREN
 
-                        LPAREN shift  214
-
-State 142:
-          for_header1 ::= for_opener for_init_stmt * SEMICOLON
-
-                     SEMICOLON shift  221
+                        LPAREN shift  215
 
 State 143:
+          for_header1 ::= for_opener for_init_stmt * SEMICOLON
+
+                     SEMICOLON shift  222
+
+State 144:
           for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty * COMMA for_init_stmt_nonEmpty
     (128) for_init_stmt ::= for_init_stmt_nonEmpty *
 
                          COMMA shift  11
                      {default} reduce 128
 
-State 144:
+State 145:
           for_opener ::= FOR * LPAREN
 
-                        LPAREN shift  227
+                        LPAREN shift  228
 
-State 145:
+State 146:
           while_header ::= while_start * LPAREN lexpr RPAREN
 
                         LPAREN shift  21
 
-State 146:
+State 147:
           elif_header ::= elif_start * LPAREN lexpr RPAREN
 
                         LPAREN shift  22
 
-State 147:
+State 148:
           elif_start ::= ELSE * IF
     (116) else_header ::= ELSE *
 
-                            IF shift  233
+                            IF shift  234
                             IF reduce 116 ** Parsing conflict **
                      {default} reduce 116
 
-State 148:
+State 149:
           if_header ::= if_start * LPAREN lexpr RPAREN
 
                         LPAREN shift  23
 
-State 149:
+State 150:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
      (99) assign_stmt ::= lvalueList_nonEmpty ASSIGN exprList_nonEmpty *
 
                          COMMA shift  34
                      {default} reduce 99
 
-State 150:
+State 151:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
      (92) cdef_stmt ::= CONST nameList_nonEmpty ASSIGN exprList_nonEmpty *
 
                          COMMA shift  34
                      {default} reduce 92
 
-State 151:
+State 152:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
      (91) vdefAssign_stmt ::= VAR nameList_nonEmpty ASSIGN exprList_nonEmpty *
 
                          COMMA shift  34
                      {default} reduce 91
 
-State 152:
+State 153:
           exprList_nonEmpty ::= funcexpr LSQBRACKET LSQBRACKET numList_nonEmpty RSQBRACKET * RSQBRACKET
 
-                    RSQBRACKET shift  239
-
-State 153:
-          numList_nonEmpty ::= numList_nonEmpty COMMA * NUMBER
-
-                        NUMBER shift  240
+                    RSQBRACKET shift  240
 
 State 154:
+          numList_nonEmpty ::= numList_nonEmpty COMMA * NUMBER
+
+                        NUMBER shift  241
+
+State 155:
      (39) numList_nonEmpty ::= NUMBER *
           expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER * RSQBRACKET RSQBRACKET
 
-                    RSQBRACKET shift  182
+                    RSQBRACKET shift  183
                     RSQBRACKET reduce 39  ** Parsing conflict **
                      {default} reduce 39
 
-State 155:
+State 156:
           exprList_nonEmpty ::= funcexpr LSQBRACKET * LSQBRACKET numList_nonEmpty RSQBRACKET RSQBRACKET
           expr ::= funcexpr LSQBRACKET * LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
 
                     LSQBRACKET shift  76
 
-State 156:
+State 157:
           exprList_nonEmpty ::= funcexpr * LSQBRACKET LSQBRACKET numList_nonEmpty RSQBRACKET RSQBRACKET
           expr ::= funcexpr * LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
      (60) expr ::= funcexpr *
 
-                    LSQBRACKET shift  155
+                    LSQBRACKET shift  156
                     LSQBRACKET reduce 60  ** Parsing conflict **
                      {default} reduce 60
 
-State 157:
+State 158:
           expr ::= expr PERIOD * NAME
           lvalue ::= expr PERIOD * NAME
 
-                          NAME shift  105
+                          NAME shift  107
 
-State 158:
+State 159:
           funcexpr ::= NAME LPAREN fArgs * RPAREN
 
                         RPAREN shift  242
 
-State 159:
+State 160:
           funcexpr ::= expr LPAREN fArgs * RPAREN
 
                         RPAREN shift  243
 
-State 160:
+State 161:
           lexpr ::= CONDITIONNAME LPAREN fArgs * RPAREN
 
                         RPAREN shift  245
 
-State 161:
+State 162:
           lexpr ::= CONDITIONNAME * LPAREN fArgs RPAREN
           lexpr ::= CONDITIONNAME * LPAREN RPAREN
 
                         LPAREN shift  15
 
-State 162:
+State 163:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
      (87) lexpr ::= lexpr LOR lexpr *
@@ -5885,84 +5924,84 @@ State 162:
                           LAND shift  27
                      {default} reduce 87
 
-State 163:
+State 164:
           expr ::= LOCATION LPAREN STRING * RPAREN
 
                         RPAREN shift  250
 
-State 164:
+State 165:
           expr ::= LOCATION LPAREN * STRING RPAREN
 
-                        STRING shift  163
-
-State 165:
-          expr ::= LOCATION * LPAREN STRING RPAREN
-
-                        LPAREN shift  164
+                        STRING shift  164
 
 State 166:
+          expr ::= LOCATION * LPAREN STRING RPAREN
+
+                        LPAREN shift  165
+
+State 167:
           expr ::= SWITCH LPAREN STRING * RPAREN
 
                         RPAREN shift  251
 
-State 167:
+State 168:
           expr ::= SWITCH LPAREN * STRING RPAREN
 
-                        STRING shift  166
-
-State 168:
-          expr ::= SWITCH * LPAREN STRING RPAREN
-
-                        LPAREN shift  167
+                        STRING shift  167
 
 State 169:
+          expr ::= SWITCH * LPAREN STRING RPAREN
+
+                        LPAREN shift  168
+
+State 170:
           expr ::= UNIT LPAREN STRING * RPAREN
 
                         RPAREN shift  252
 
-State 170:
+State 171:
           expr ::= UNIT LPAREN * STRING RPAREN
 
-                        STRING shift  169
-
-State 171:
-          expr ::= UNIT * LPAREN STRING RPAREN
-
-                        LPAREN shift  170
+                        STRING shift  170
 
 State 172:
+          expr ::= UNIT * LPAREN STRING RPAREN
+
+                        LPAREN shift  171
+
+State 173:
           expr ::= MAPSTRING LPAREN STRING * RPAREN
 
                         RPAREN shift  253
 
-State 173:
+State 174:
           expr ::= MAPSTRING LPAREN * STRING RPAREN
 
-                        STRING shift  172
-
-State 174:
-          expr ::= MAPSTRING * LPAREN STRING RPAREN
-
-                        LPAREN shift  173
+                        STRING shift  173
 
 State 175:
+          expr ::= MAPSTRING * LPAREN STRING RPAREN
+
+                        LPAREN shift  174
+
+State 176:
           expr ::= L2V * LPAREN lexpr RPAREN
 
                         LPAREN shift  28
 
-State 176:
+State 177:
           fArgs_nonEmpty ::= fArgs_nonEmpty * COMMA fArgs_nonEmpty
      (57) fArgs ::= fArgs_nonEmpty *
 
                          COMMA shift  29
                      {default} reduce 57
 
-State 177:
+State 178:
           expr ::= expr PERIOD * NAME
 
                           NAME shift  258
 
-State 178:
+State 179:
      (50) expr ::= NAME *
           funcexpr ::= NAME * LPAREN fArgs RPAREN
 
@@ -5970,329 +6009,324 @@ State 178:
                         LPAREN reduce 50  ** Parsing conflict **
                      {default} reduce 50
 
-State 179:
+State 180:
           expr ::= funcexpr * LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
      (60) expr ::= funcexpr *
 
-                    LSQBRACKET shift  185
+                    LSQBRACKET shift  186
                     LSQBRACKET reduce 60  ** Parsing conflict **
                      {default} reduce 60
 
-State 180:
+State 181:
           bodyStmt ::= break_stmt * SEMICOLON
 
                      SEMICOLON shift  262
 
-State 181:
+State 182:
           bodyStmt ::= continue_stmt * SEMICOLON
 
                      SEMICOLON shift  263
 
-State 182:
+State 183:
           expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET * RSQBRACKET
 
                     RSQBRACKET shift  269
 
-State 183:
+State 184:
           expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER * RSQBRACKET RSQBRACKET
 
-                    RSQBRACKET shift  182
-
-State 184:
-          expr ::= funcexpr LSQBRACKET LSQBRACKET * NUMBER RSQBRACKET RSQBRACKET
-
-                        NUMBER shift  183
+                    RSQBRACKET shift  183
 
 State 185:
-          expr ::= funcexpr LSQBRACKET * LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
+          expr ::= funcexpr LSQBRACKET LSQBRACKET * NUMBER RSQBRACKET RSQBRACKET
 
-                    LSQBRACKET shift  184
+                        NUMBER shift  184
 
 State 186:
+          expr ::= funcexpr LSQBRACKET * LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
+
+                    LSQBRACKET shift  185
+
+State 187:
           bodyStmt ::= assign_stmt * SEMICOLON
 
                      SEMICOLON shift  271
 
-State 187:
+State 188:
           bodyStmt ::= cdef_stmt * SEMICOLON
 
                      SEMICOLON shift  272
 
-State 188:
+State 189:
           bodyStmt ::= vdefAssign_stmt * SEMICOLON
 
                      SEMICOLON shift  273
 
-State 189:
+State 190:
           bodyStmt ::= vdef_stmt * SEMICOLON
 
                      SEMICOLON shift  274
 
-State 190:
+State 191:
           blockStmt ::= lbracket bodyStmtList return_stmt * SEMICOLON rbracket
 
                      SEMICOLON shift  78
 
-State 191:
+State 192:
           blockStmt ::= lbracket return_stmt * SEMICOLON rbracket
 
                      SEMICOLON shift  79
 
-State 192:
+State 193:
           stmt ::= return_stmt * SEMICOLON
 
                      SEMICOLON shift  283
 
-State 193:
+State 194:
           stmt ::= error * SEMICOLON
 
                      SEMICOLON shift  285
 
-State 194:
+State 195:
           function_header ::= function_start * LPAREN nameList_nonEmpty RPAREN
           function_header ::= function_start * LPAREN RPAREN
 
                         LPAREN shift  70
 
-State 195:
+State 196:
           function_start ::= FUNCTION * NAME
 
                           NAME shift  289
 
-State 196:
+State 197:
           nameList_nonEmpty ::= nameList_nonEmpty COMMA * NAME
 
                           NAME shift  291
 
-State 197:
+State 198:
       (7) import_chunk ::= FROM NAME IMPORT nameList_nonEmpty *
           nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
 
-                         COMMA shift  196
+                         COMMA shift  197
                      {default} reduce 7
 
-State 198:
+State 199:
           import_chunk ::= FROM NAME * IMPORT nameList_nonEmpty
 
                         IMPORT shift  80
 
-State 199:
+State 200:
           import_chunk ::= FROM * NAME IMPORT nameList_nonEmpty
 
-                          NAME shift  198
+                          NAME shift  199
 
-State 200:
+State 201:
           chunk ::= cdef_stmt * SEMICOLON
 
                      SEMICOLON shift  292
 
-State 201:
+State 202:
           chunk ::= vdef_stmt * SEMICOLON
 
                      SEMICOLON shift  293
 
-State 202:
+State 203:
           chunk ::= import_chunk * SEMICOLON
 
                      SEMICOLON shift  295
 
-State 203:
+State 204:
      (36) bodyStmtList ::= bodyStmt *
 
                      {default} reduce 36
 
-State 204:
+State 205:
      (21) blockStmt ::= lbracket error RBRACKET *
 
                      {default} reduce 21
 
-State 205:
+State 206:
     (118) if_stmt ::= if_block else_header stmt *
 
                      {default} reduce 118
 
-State 206:
+State 207:
     (147) actions ::= actions action *
 
                      {default} reduce 147
 
-State 207:
+State 208:
     (146) actions ::= action action *
 
                      {default} reduce 146
 
-State 208:
+State 209:
     (145) action ::= ACTIONNAME LPAREN fArgs RPAREN SEMICOLON *
 
                      {default} reduce 145
 
-State 209:
+State 210:
     (142) return_stmt ::= RETURN exprList *
 
                      {default} reduce 142
 
-State 210:
+State 211:
     (141) break_stmt ::= BREAK *
 
                      {default} reduce 141
 
-State 211:
+State 212:
     (140) continue_stmt ::= CONTINUE *
 
                      {default} reduce 140
 
-State 212:
+State 213:
     (139) foreach_stmt ::= foreach_header stmt *
 
                      {default} reduce 139
 
-State 213:
+State 214:
     (138) foreach_header ::= foreach_opener nameList_nonEmpty COLON exprList_nonEmpty RPAREN *
 
                      {default} reduce 138
 
-State 214:
+State 215:
     (137) foreach_opener ::= FOREACH LPAREN *
 
                      {default} reduce 137
 
-State 215:
+State 216:
     (136) for_stmt ::= for_header stmt *
 
                      {default} reduce 136
 
-State 216:
+State 217:
     (135) for_header ::= for_header2 RPAREN *
 
                      {default} reduce 135
 
-State 217:
+State 218:
     (134) for_header ::= for_header2 for_action_stmt_nonEmpty RPAREN *
 
                      {default} reduce 134
 
-State 218:
+State 219:
           for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty * COMMA for_action_stmt_nonEmpty
     (131) for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty COMMA for_action_stmt_nonEmpty *
 
                      {default} reduce 131
 
-State 219:
+State 220:
     (130) for_action_stmt_nonEmpty ::= assign_stmt *
 
                      {default} reduce 130
 
-State 220:
+State 221:
     (133) for_header2 ::= for_header1 lexpr SEMICOLON *
 
                      {default} reduce 133
 
-State 221:
+State 222:
     (132) for_header1 ::= for_opener for_init_stmt SEMICOLON *
 
                      {default} reduce 132
 
-State 222:
+State 223:
           for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty * COMMA for_init_stmt_nonEmpty
     (127) for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty COMMA for_init_stmt_nonEmpty *
 
                      {default} reduce 127
 
-State 223:
+State 224:
     (126) for_init_stmt_nonEmpty ::= assign_stmt *
 
                      {default} reduce 126
 
-State 224:
+State 225:
     (125) for_init_stmt_nonEmpty ::= cdef_stmt *
 
                      {default} reduce 125
 
-State 225:
+State 226:
     (124) for_init_stmt_nonEmpty ::= vdefAssign_stmt *
 
                      {default} reduce 124
 
-State 226:
+State 227:
     (123) for_init_stmt_nonEmpty ::= vdef_stmt *
 
                      {default} reduce 123
 
-State 227:
+State 228:
     (122) for_opener ::= FOR LPAREN *
 
                      {default} reduce 122
 
-State 228:
+State 229:
     (121) while_stmt ::= while_header stmt *
 
                      {default} reduce 121
 
-State 229:
+State 230:
     (120) while_header ::= while_start LPAREN lexpr RPAREN *
 
                      {default} reduce 120
 
-State 230:
+State 231:
     (119) while_start ::= WHILE *
 
                      {default} reduce 119
 
-State 231:
+State 232:
     (115) if_block ::= if_block elif_header stmt *
 
                      {default} reduce 115
 
-State 232:
+State 233:
     (114) elif_header ::= elif_start LPAREN lexpr RPAREN *
 
                      {default} reduce 114
 
-State 233:
+State 234:
     (113) elif_start ::= ELSE IF *
 
                      {default} reduce 113
 
-State 234:
+State 235:
     (112) if_block ::= if_header stmt *
 
                      {default} reduce 112
 
-State 235:
+State 236:
     (111) if_header ::= if_start LPAREN lexpr RPAREN *
 
                      {default} reduce 111
 
-State 236:
+State 237:
     (110) if_start ::= IF *
 
                      {default} reduce 110
 
-State 237:
+State 238:
      (97) lvalueList_nonEmpty ::= lvalueList_nonEmpty COMMA lvalue *
 
                      {default} reduce 97
 
-State 238:
+State 239:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
      (46) exprList_nonEmpty ::= exprList_nonEmpty COMMA exprList_nonEmpty *
 
                      {default} reduce 46
 
-State 239:
+State 240:
      (43) exprList_nonEmpty ::= funcexpr LSQBRACKET LSQBRACKET numList_nonEmpty RSQBRACKET RSQBRACKET *
 
                      {default} reduce 43
 
-State 240:
+State 241:
      (40) numList_nonEmpty ::= numList_nonEmpty COMMA NUMBER *
 
                      {default} reduce 40
-
-State 241:
-     (94) lvalue ::= expr LSQBRACKET NAME RSQBRACKET *
-
-                     {default} reduce 94
 
 State 242:
      (58) funcexpr ::= NAME LPAREN fArgs RPAREN *

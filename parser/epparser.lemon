@@ -79,7 +79,7 @@ function_start(start) ::= FUNCTION NAME(name).  {
     // Preprocess name
     funcNamePreprocess(name->data);
     if(!ps->closure.defFunction(name->data)) {
-        throw_error(4495, "Duplicate function name " + name->data);
+        throw_error(4495, "Duplicate function " + name->data);
     }
     ps->closure.pushScope();
     start = name;
@@ -381,7 +381,7 @@ lvalue(A) ::= NAME(B). {
     A = B;
 }
 
-lvalue(A) ::= expr(B) LSQBRACKET NAME(C) RSQBRACKET. {
+lvalue(A) ::= expr(B) LSQBRACKET expr(C) RSQBRACKET. {
     checkIsConstant(B->data);
     C->data = "_ARRW(" + B->data + ", " + C->data + ")";
     A = mkTokenTemp(C);
@@ -407,16 +407,19 @@ assign_stmt ::= lvalueList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
     delete A; delete B;
 }
 
-assign_stmt ::= lvalue(A) IADD expr(B). [ASSIGN] { ps->gen << A->data << " += "  << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) ISUB expr(B). [ASSIGN] { ps->gen << A->data << " -= "  << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) IMUL expr(B). [ASSIGN] { ps->gen << A->data << " *= "  << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) IDIV expr(B). [ASSIGN] { ps->gen << A->data << " //= " << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) IMOD expr(B). [ASSIGN] { ps->gen << A->data << " %= "  << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) ILSH expr(B). [ASSIGN] { ps->gen << A->data << " <<= " << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) IRSH expr(B). [ASSIGN] { ps->gen << A->data << " >>= " << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) IBND expr(B). [ASSIGN] { ps->gen << A->data << " &= "  << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) IBOR expr(B). [ASSIGN] { ps->gen << A->data << " |= "  << B->data << std::endl; delete A; delete B; }
-assign_stmt ::= lvalue(A) IBXR expr(B). [ASSIGN] { ps->gen << A->data << " ^= "  << B->data << std::endl; delete A; delete B; }
+// Never use something like "+=" here! They may corrupt python namespaces!
+// Assignment like += alters python namespaces (Makes thing local), so they should not be used
+// when accessing global variables. Here we just call plain inplace operator functions.
+assign_stmt ::= lvalue(A) IADD expr(B). [ASSIGN] { ps->gen << A->data << ".__iadd__("       << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) ISUB expr(B). [ASSIGN] { ps->gen << A->data << ".__isub__("       << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IMUL expr(B). [ASSIGN] { ps->gen << A->data << ".__imul__("       << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IDIV expr(B). [ASSIGN] { ps->gen << A->data << ".__ifloordiv__("  << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IMOD expr(B). [ASSIGN] { ps->gen << A->data << ".__imod__("       << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) ILSH expr(B). [ASSIGN] { ps->gen << A->data << ".__ilshift__("    << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IRSH expr(B). [ASSIGN] { ps->gen << A->data << ".__irshift__("    << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IBND expr(B). [ASSIGN] { ps->gen << A->data << ".__iand__("       << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IBOR expr(B). [ASSIGN] { ps->gen << A->data << ".__ior__("        << B->data << ")" << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IBXR expr(B). [ASSIGN] { ps->gen << A->data << ".__ixor__("       << B->data << ")" << std::endl; delete A; delete B; }
 
 // If~Else block
 if_start(A) ::= IF(B). {
