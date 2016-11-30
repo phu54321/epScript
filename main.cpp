@@ -4,7 +4,7 @@
 #include "parser/parser.h"
 #include <unistd.h>
 
-#define VERSION "v0.1a"
+#define VERSION "v0.1b"
 
 extern bool PARSER_DEBUG;
 

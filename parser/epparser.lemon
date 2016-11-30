@@ -84,7 +84,7 @@ exprList(A) ::= exprList(B) COMMA exprList(C). { A = new Token((B->data) + ", " 
 expr(A) ::= NUMBER(B). { A = B; }
 expr(A) ::= NAME(B). {
     if(!ps->closure.getConstant(B->data) && !ps->closure.getVariable(B->data)) {
-        throw_error(B->line, 103, ("Undeclared variable \'" + (B->data) + "\'"));
+        throw_error(B->line, 103, ("Undeclared \'" + (B->data) + "\'"));
         ps->closure.defVariable(B->data);
     }
     A = B;
@@ -511,7 +511,7 @@ chunks ::= chunks chunk.
 
 int PARSER_DEBUG = 0;
 
-std::string ParseString(const std::string& code)
+std::string ParseString(const std::string& code, bool addComment)
 {
     Tokenizer tok(code);
     void* pParser = ParseAlloc (malloc);
@@ -525,8 +525,10 @@ std::string ParseString(const std::string& code)
     errorOccured = false;
     while ((token = tok.getToken()) != nullptr) {
         if (currentTokenizingLine != tok.getCurrentLine()) {
-            currentTokenizingLine = tok.getCurrentLine();
-            ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
+            if(addComment) {
+                currentTokenizingLine = tok.getCurrentLine();
+                ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
+            }
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }
         if (tokenTypeConv(token)) {

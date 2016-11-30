@@ -4,6 +4,8 @@ project(epScript)
 
 set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
 
+set(CMAKE_EXE_LINKER_FLAGS "-static-libgcc -static-libstdc++ -static")
+
 if (WIN32)
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h

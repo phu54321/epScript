@@ -1108,7 +1108,7 @@ static void yy_reduce(
 #line 85 "parser\\epparser.lemon"
 {
     if(!ps->closure.getConstant(yymsp[0].minor.yy0->data) && !ps->closure.getVariable(yymsp[0].minor.yy0->data)) {
-        throw_error(yymsp[0].minor.yy0->line, 103, ("Undeclared variable \'" + (yymsp[0].minor.yy0->data) + "\'"));
+        throw_error(yymsp[0].minor.yy0->line, 103, ("Undeclared \'" + (yymsp[0].minor.yy0->data) + "\'"));
         ps->closure.defVariable(yymsp[0].minor.yy0->data);
     }
     yygotominor.yy0 = yymsp[0].minor.yy0;
@@ -1949,7 +1949,7 @@ void Parse(
 
 int PARSER_DEBUG = 0;
 
-std::string ParseString(const std::string& code)
+std::string ParseString(const std::string& code, bool addComment)
 {
     Tokenizer tok(code);
     void* pParser = ParseAlloc (malloc);
@@ -1963,8 +1963,10 @@ std::string ParseString(const std::string& code)
     errorOccured = false;
     while ((token = tok.getToken()) != nullptr) {
         if (currentTokenizingLine != tok.getCurrentLine()) {
-            currentTokenizingLine = tok.getCurrentLine();
-            ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
+            if(addComment) {
+                currentTokenizingLine = tok.getCurrentLine();
+                ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
+            }
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }
         if (tokenTypeConv(token)) {
@@ -1983,4 +1985,4 @@ std::string ParseString(const std::string& code)
     if(!errorOccured) return iwCollapse(ps.gen.str());
     else throw std::runtime_error("Invalid syntax");
 }
-#line 1987 "parser\\epparser.c"
+#line 1989 "parser\\epparser.c"

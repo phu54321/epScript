@@ -1,27 +1,14 @@
 #include "../parser/parser.h"
 #include "doctest.hpp"
-#include <string>
-#include <cstdio>
-#include <regex>
+#include <stdexcept>
 
 static std::string get_testdata(std::string dataname) {
     dataname = "../test/testdata/" + dataname;
     return getFile(dataname);
 }
 
-std::regex commentLine("^ *#.+\n");
-std::regex commentLineML("\n *#.+");
-std::string uncommentString(std::string&& data) {
-    std::string s = std::regex_replace(data, commentLine, "");
-    return std::regex_replace(s, commentLineML, "");
-}
 
-std::regex crlf("\r\n");
-std::string unCRLF(const std::string& in) {
-    return std::regex_replace(in, crlf, "\n");
-}
-
-#define check(infile, outfile) CHECK(uncommentString(ParseString(get_testdata(infile))) == unCRLF(get_testdata(outfile)))
+#define check(infile, outfile) CHECK_EQ(ParseString(get_testdata(infile), false), get_testdata(outfile))
 
 TEST_SUITE("Parser tests");
 
@@ -40,7 +27,7 @@ TEST_CASE("Simple expression parsing") {
 
 
     SUBCASE("Variable assignment") {
-                REQUIRE(uncommentString(ParseString("var a;")) == "a = EUDCreateVariables(1)\n");
+                REQUIRE(ParseString("var a;", false) == "a = EUDCreateVariables(1)\n");
                 REQUIRE_THROWS_AS(ParseString("b = 2;"), std::runtime_error);
     }
 }
@@ -48,6 +35,7 @@ TEST_CASE("Simple expression parsing") {
 TEST_CASE("Control block parsing") {
     check("ctrlstru/ctrlstru_if.eps", "ctrlstru/ctrlstru_if.py");
     check("ctrlstru/ctrlstru_while.eps", "ctrlstru/ctrlstru_while.py");
+    check("ctrlstru/ctrlstru_foreach.eps", "ctrlstru/ctrlstru_foreach.py");
 }
 
 TEST_SUITE_END();
