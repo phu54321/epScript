@@ -65,6 +65,14 @@ Token* TokenizerImpl::getToken() {
             while(*cursor != '\n') cursor++;
             continue;
         }
+
+        // Skip multiline comments
+        else if (cursor[0] == '/' && cursor[1] == '*') {
+            cursor += 2;
+            while(*cursor != EOF && !(cursor[0] == '*' && cursor[1] == '/')) cursor++;
+            if(*cursor != EOF) cursor += 2;
+            continue;
+        }
         break;
     } while(true);
 
