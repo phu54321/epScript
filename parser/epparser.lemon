@@ -154,14 +154,9 @@ bodyStmtList ::= bodyStmt.
 bodyStmtList ::= bodyStmtList bodyStmt.
 
 
-
-
-
 // Common expressions
-numList_nonEmpty(A) ::= NUMBER(B) COMMA NUMBER(C). {
-    C->data = B->data + ", " + C->data;
-    delete B;
-    A = C;
+numList_nonEmpty(A) ::= NUMBER(B). {
+    A = B;
 }
 
 numList_nonEmpty(A) ::= numList_nonEmpty(B) COMMA NUMBER(C). {
@@ -182,11 +177,6 @@ exprList(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET
     delete B; delete C;
 }
 
-expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
-    A = genTemp(C);
-    ps->gen << A->data << " = _SRET(" << B->data << ", [" << C->data << "])" << std::endl;
-    delete B; delete C;
-}
 
 exprList(A) ::= expr(B). [COMMA] { A = B; }
 exprList(A) ::= exprList(B) COMMA exprList(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
@@ -348,7 +338,12 @@ vdef_stmt ::= VAR nameList_nonEmpty(A) SEMICOLON. {
             throw_error(A->line, 196, ("Redeclaration of variable \'" + varname + "\'"));
         }
     });
-    ps->gen << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
+    if(varCount == 1) {
+        ps->gen << s << " = EUDVariable()" << std::endl;
+    }
+    else {
+        ps->gen << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
+    }
     delete A;
 }
 

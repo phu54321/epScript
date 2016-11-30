@@ -28,7 +28,7 @@ TEST_CASE("Simple expression parsing") {
 
 
     SUBCASE("Variable assignment") {
-                REQUIRE(ParseString("var a;", false) == "a = EUDCreateVariables(1)\n");
+                REQUIRE(ParseString("var a;", false) == "a = EUDVariable()\n");
                 REQUIRE_THROWS_AS(ParseString("b = 2;"), std::runtime_error);
     }
 }

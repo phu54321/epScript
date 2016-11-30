@@ -4,6 +4,6 @@ def f_x():
     for x in A:
         pass
 
-    x = EUDCreateVariables(1)
+    x = EUDVariable()
     for x_1, y in B:
         DoActions(SetDeaths(x_1, SetTo, y, 0))
