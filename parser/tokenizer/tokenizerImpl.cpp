@@ -179,6 +179,18 @@ Token* TokenizerImpl::getToken() {
     MATCHSTR("$S", TOKEN_SWITCHNAME);
     MATCHSTR("$T", TOKEN_MAPSTRING);
 
+    // Inplace operators
+    MATCHSTR("+=", TOKEN_IADD);
+    MATCHSTR("-=", TOKEN_ISUB);
+    MATCHSTR("*=", TOKEN_IMUL);
+    MATCHSTR("/=", TOKEN_IDIV);
+    MATCHSTR("%=", TOKEN_IMOD);
+    MATCHSTR("<<=", TOKEN_ILSHIFT);
+    MATCHSTR(">>=", TOKEN_IRSHIFT);
+    MATCHSTR("&=", TOKEN_IBITAND);
+    MATCHSTR("^=", TOKEN_IBITXOR);
+    MATCHSTR("|=", TOKEN_IBITOR);
+
     // Operators
     MATCHSTR("&&", TOKEN_LAND);
     MATCHSTR("||", TOKEN_LOR);

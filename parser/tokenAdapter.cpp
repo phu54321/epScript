@@ -34,9 +34,20 @@ int getConvertedType(int type) {
         case TOKEN_MAPSTRING: return MAPSTRING;
         case TOKEN_SWITCHNAME: return SWITCH;
 
-        // Operators
+        // Assign operators
         case TOKEN_ASSIGN: return ASSIGN;
+        case TOKEN_IADD: return IADD;
+        case TOKEN_ISUB: return ISUB;
+        case TOKEN_IMUL: return IMUL;
+        case TOKEN_IDIV: return IDIV;
+        case TOKEN_IMOD: return IMOD;
+        case TOKEN_ILSHIFT: return ILSH;
+        case TOKEN_IRSHIFT: return IRSH;
+        case TOKEN_IBITAND: return IBND;
+        case TOKEN_IBITOR: return IBOR;
+        case TOKEN_IBITXOR: return IBXR;
 
+        // Operators
         case TOKEN_PLUS: return PLUS;
         case TOKEN_MINUS: return MINUS;
         case TOKEN_MULTIPLY: return MULTIPLY;

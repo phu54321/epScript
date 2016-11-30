@@ -42,6 +42,16 @@ enum TokenType {
     TOKEN_SWITCHNAME,
 
     // Operators
+    TOKEN_IADD,
+    TOKEN_ISUB,
+    TOKEN_IMUL,
+    TOKEN_IDIV,
+    TOKEN_IMOD,
+    TOKEN_ILSHIFT,
+    TOKEN_IRSHIFT,
+    TOKEN_IBITAND,
+    TOKEN_IBITOR,
+    TOKEN_IBITXOR,
     TOKEN_ASSIGN,
 
     TOKEN_PLUS,

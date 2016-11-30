@@ -218,20 +218,15 @@ fArgs_nonEmpty(A) ::= fArgs_nonEmpty(B) COMMA fArgs_nonEmpty(C). {
 fArgs(A) ::= . { A = genEmpty(); }
 fArgs(A) ::= fArgs_nonEmpty(B). { A = B; }
 
-funcName(A) ::= NAME(name). {
+funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
+    // Preprocess name
     funcNamePreprocess(name->data);
     checkIsFunction(name->data);
-    A = name;
+    name->data += "(" + exprs->data + ")";
+    out = mkTokenTemp(name);
 }
 
-funcName(A) ::= expr(objName) PERIOD NAME(mtdName). {
-    // Preprocess name
-    mtdName->data = objName->data + "." + mtdName->data;
-    delete objName;
-    A = mkTokenTemp(mtdName);
-}
-
-funcexpr(out) ::= funcName(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
+funcexpr(out) ::= expr(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     // Preprocess name
     name->data += "(" + exprs->data + ")";
     out = mkTokenTemp(name);
@@ -380,8 +375,7 @@ cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
     delete A; delete B;
 }
 
-//
-
+// Assign operators
 lvalue(A) ::= NAME(B). {
     checkIsVariable(B->data);
     A = B;
@@ -412,6 +406,17 @@ assign_stmt ::= lvalueList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
     ps->gen << "_SV([" << A->data << "], [" << B->data << "])" << std::endl;
     delete A; delete B;
 }
+
+assign_stmt ::= lvalue(A) IADD expr(B). [ASSIGN] { ps->gen << A->data << " += "  << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) ISUB expr(B). [ASSIGN] { ps->gen << A->data << " -= "  << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IMUL expr(B). [ASSIGN] { ps->gen << A->data << " *= "  << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IDIV expr(B). [ASSIGN] { ps->gen << A->data << " //= " << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IMOD expr(B). [ASSIGN] { ps->gen << A->data << " %= "  << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) ILSH expr(B). [ASSIGN] { ps->gen << A->data << " <<= " << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IRSH expr(B). [ASSIGN] { ps->gen << A->data << " >>= " << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IBND expr(B). [ASSIGN] { ps->gen << A->data << " &= "  << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IBOR expr(B). [ASSIGN] { ps->gen << A->data << " |= "  << B->data << std::endl; delete A; delete B; }
+assign_stmt ::= lvalue(A) IBXR expr(B). [ASSIGN] { ps->gen << A->data << " ^= "  << B->data << std::endl; delete A; delete B; }
 
 // If~Else block
 if_start(A) ::= IF(B). {
