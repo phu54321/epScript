@@ -23,6 +23,7 @@ enum TokenType {
     TOKEN_IF,
     TOKEN_ELSE,
     TOKEN_FOR,
+    TOKEN_FOREACH,
     TOKEN_WHILE,
     TOKEN_BREAK,
     TOKEN_CONTINUE,

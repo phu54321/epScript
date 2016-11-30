@@ -134,6 +134,7 @@ Token* TokenizerImpl::getToken() {
         if(identifier == "if") return TK(TOKEN_IF);
         if(identifier == "else") return TK(TOKEN_ELSE);
         if(identifier == "for") return TK(TOKEN_FOR);
+        if(identifier == "foreach") return TK(TOKEN_FOREACH);
         if(identifier == "while") return TK(TOKEN_WHILE);
         if(identifier == "break") return TK(TOKEN_BREAK);
         if(identifier == "continue") return TK(TOKEN_CONTINUE);

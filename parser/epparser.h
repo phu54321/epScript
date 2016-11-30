@@ -1,5 +1,5 @@
-#define COMMA                            1
-#define ASSIGN                           2
+#define ASSIGN                           1
+#define COMMA                            2
 #define LOR                              3
 #define LAND                             4
 #define LNOT                             5
@@ -24,9 +24,9 @@
 #define BITNOT                          24
 #define NUMBER                          25
 #define NAME                            26
-#define FROM                            27
-#define IMPORT                          28
-#define SEMICOLON                       29
+#define SEMICOLON                       27
+#define FROM                            28
+#define IMPORT                          29
 #define FUNCTION                        30
 #define LPAREN                          31
 #define RPAREN                          32
@@ -48,9 +48,10 @@
 #define ELSE                            48
 #define WHILE                           49
 #define FOR                             50
-#define COLON                           51
-#define CONTINUE                        52
-#define BREAK                           53
-#define RETURN                          54
-#define CONDITIONNAME                   55
-#define ACTIONNAME                      56
+#define FOREACH                         51
+#define COLON                           52
+#define CONTINUE                        53
+#define BREAK                           54
+#define RETURN                          55
+#define CONDITIONNAME                   56
+#define ACTIONNAME                      57

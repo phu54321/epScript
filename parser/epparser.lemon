@@ -32,8 +32,8 @@ int currentTokenizingLine;
 
 // Precedence table
 
-%left COMMA.
 %left ASSIGN.
+%left COMMA.
 
 %left LOR.
 %left LAND.
@@ -57,13 +57,13 @@ program ::= chunks.
 chunks ::= .
 chunks ::= chunks chunk.
 
-chunk ::= import_chunk.
+chunk ::= import_chunk SEMICOLON.
 chunk ::= fdef_chunk.
-chunk ::= vdef_stmt.
-chunk ::= cdef_stmt.
+chunk ::= vdef_stmt SEMICOLON.
+chunk ::= cdef_stmt SEMICOLON.
 
 // Import_chunk
-import_chunk ::= FROM NAME(name) IMPORT nameList_nonEmpty(B) SEMICOLON. {
+import_chunk ::= FROM NAME(name) IMPORT nameList_nonEmpty(B). {
     commaListIter(B->data, [&](std::string varname) {
         funcNamePreprocess(varname);
         if(!ps->closure.defFunction(varname)) {
@@ -118,7 +118,7 @@ fdef_chunk ::= function_header stmt . {
 /// Single-line statements
 stmt ::= error SEMICOLON. { throw_error(6974, "Error while parsing statement"); }
 stmt ::= bodyStmt.
-stmt ::= return_stmt.
+stmt ::= return_stmt SEMICOLON.
 
 /// Block level statements
 // (1) Specialization for empty bodyStmtList
@@ -129,26 +129,27 @@ stmt ::= lbracket RBRACKET. {
     ps->gen << "pass" << std::endl;
     ps->closure.popScope();
 }
-stmt ::= lbracket return_stmt rbracket.
+stmt ::= lbracket return_stmt SEMICOLON rbracket.
 stmt ::= lbracket bodyStmtList rbracket.
-stmt ::= lbracket bodyStmtList return_stmt rbracket.
+stmt ::= lbracket bodyStmtList return_stmt SEMICOLON rbracket.
 stmt ::= lbracket error RBRACKET. {
     throw_error(6298, "Block not terminated properly.");
     ps->closure.popScope();
 }
 
 bodyStmt ::= SEMICOLON.
-bodyStmt ::= vdef_stmt.
-bodyStmt ::= vdefAssign_stmt.
-bodyStmt ::= cdef_stmt.
-bodyStmt ::= assign_stmt.
+bodyStmt ::= vdef_stmt SEMICOLON.
+bodyStmt ::= vdefAssign_stmt SEMICOLON.
+bodyStmt ::= cdef_stmt SEMICOLON.
+bodyStmt ::= assign_stmt SEMICOLON.
 bodyStmt ::= funcexpr(A) SEMICOLON. { ps->gen << A->data << std::endl; }
-bodyStmt ::= actionStmt.
+bodyStmt ::= actionStmt.  // Should not have semicolons
 bodyStmt ::= if_stmt.
 bodyStmt ::= while_stmt.
+bodyStmt ::= for_stmt.
 bodyStmt ::= foreach_stmt.
-bodyStmt ::= continue_stmt.
-bodyStmt ::= break_stmt.
+bodyStmt ::= continue_stmt SEMICOLON.
+bodyStmt ::= break_stmt SEMICOLON.
 
 // bodyStmtList should not contain empty list. See (1)
 bodyStmtList ::= bodyStmt.
@@ -319,7 +320,7 @@ lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
 
 
 // Statements
-vdef_stmt ::= VAR nameList_nonEmpty(A) SEMICOLON. {
+vdef_stmt ::= VAR nameList_nonEmpty(A). {
     std::string& s = A->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
 
@@ -340,7 +341,7 @@ vdef_stmt ::= VAR nameList_nonEmpty(A) SEMICOLON. {
     delete A;
 }
 
-vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
+vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
     std::string& s = A->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
 
@@ -362,7 +363,7 @@ vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOL
     delete A; delete B;
 }
 
-cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
+cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
     std::string& s = A->data;
     int nameCount = std::count(s.begin(), s.end(), ',') + 1;
 
@@ -404,12 +405,12 @@ lvalue(A) ::= NAME(B) PERIOD NAME(C). {
 
 lvalueList_nonEmpty(A) ::= lvalue(B). { A = B; }
 lvalueList_nonEmpty(A) ::= lvalueList_nonEmpty(B) COMMA lvalue(C). { A = commaConcat(B, C); }
-assign_stmt ::= lvalue(A) ASSIGN expr(B) SEMICOLON. {
+assign_stmt ::= lvalue(A) ASSIGN expr(B). {
     ps->gen << A->data << " << (" << B->data << ")" << std::endl;
     delete A; delete B;
 }
 
-assign_stmt ::= lvalueList_nonEmpty(A) ASSIGN exprList_nonEmpty(B) SEMICOLON. {
+assign_stmt ::= lvalueList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
     ps->gen << "_SV([" << A->data << "], [" << B->data << "])" << std::endl;
     delete A; delete B;
 }
@@ -475,9 +476,67 @@ while_stmt ::= while_header stmt. {
     ps->gen << "EUDEndWhile()" << std::endl;
 }
 
-// Foreach block
-foreach_header ::= FOR LPAREN nameList_nonEmpty(names) COLON exprList_nonEmpty(exprs) RPAREN. {
+/// FOR/FOREACH
+for_opener ::= FOR LPAREN. {
     ps->closure.pushScope();
+}
+
+// C-style for block
+for_init_stmt_nonEmpty ::= vdef_stmt.
+for_init_stmt_nonEmpty ::= vdefAssign_stmt.
+for_init_stmt_nonEmpty ::= cdef_stmt.
+for_init_stmt_nonEmpty ::= assign_stmt.
+for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty COMMA for_init_stmt_nonEmpty.
+for_init_stmt ::= for_init_stmt_nonEmpty.
+for_init_stmt ::= .
+
+for_action_stmt_nonEmpty ::= assign_stmt.
+for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty COMMA for_action_stmt_nonEmpty.
+
+for_header1(A) ::= for_opener for_init_stmt SEMICOLON(B). {
+    // opening for lexpr
+    A = genTemp(B);
+    ps->gen << A->data << " = EUDWhile()" << std::endl;
+    delete B;
+}
+
+for_header2(X)::= for_header1(A) lexpr(B) SEMICOLON. {
+    ps->gen << "if " << A->data << "(" << B->data << "):" << std::endl;
+    ps->gen.indent();
+    delete A; delete B;
+
+    // Opening for assign_statement
+    X = genTemp(B);
+    ps->gen << "def " << X->data <<"():" << std::endl;
+    ps->gen.indent();
+}
+
+for_header(X) ::= for_header2(A) for_action_stmt_nonEmpty RPAREN. {
+    X = A;
+    ps->gen.unindent(false);
+}
+
+for_header(X) ::= for_header2(A) RPAREN. {
+    X = A;
+    ps->gen << "pass" << std::endl;
+    ps->gen.unindent(false);
+}
+
+for_stmt ::= for_header(X) stmt. {
+    ps->gen << X->data << "()" << std::endl;
+    ps->gen.unindent(false);
+    ps->gen << "EUDEndWhile()" << std::endl;
+    ps->closure.popScope();
+}
+
+
+
+// Foreach block
+foreach_opener ::= FOREACH LPAREN. {
+    ps->closure.pushScope();
+}
+
+foreach_header ::= foreach_opener nameList_nonEmpty(names) COLON exprList_nonEmpty(exprs) RPAREN. {
     commaListIter(names->data, [&](std::string& s) {
         ps->closure.defVariable(s);
     });
@@ -491,19 +550,20 @@ foreach_stmt ::= foreach_header stmt. {
 }
 
 
+
 // Loop exits
-continue_stmt ::= CONTINUE SEMICOLON. {
+continue_stmt ::= CONTINUE. {
     ps->gen << "EUDContinue()" << std::endl;
 }
 
-break_stmt ::= BREAK SEMICOLON. {
+break_stmt ::= BREAK. {
     ps->gen << "EUDBreak()" << std::endl;
 }
 
 
 
 // returns
-return_stmt ::= RETURN exprList(exprs) SEMICOLON. {
+return_stmt ::= RETURN exprList(exprs). {
     ps->gen << "EUDReturn(" << exprs->data << ")" << std::endl;
     delete exprs;
 }

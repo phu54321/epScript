@@ -16,6 +16,7 @@ int getConvertedType(int type) {
         case TOKEN_IF: return IF;
         case TOKEN_ELSE: return ELSE;
         case TOKEN_FOR: return FOR;
+        case TOKEN_FOREACH: return FOREACH;
         case TOKEN_WHILE: return WHILE;
         case TOKEN_BREAK: return BREAK;
         case TOKEN_CONTINUE: return CONTINUE;
