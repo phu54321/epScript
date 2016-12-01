@@ -7,8 +7,8 @@
 int getConvertedType(int type) {
     switch(type) {
         // Keywords
-        case TOKEN_FROM: return FROM;
         case TOKEN_IMPORT: return IMPORT;
+        case TOKEN_AS: return AS;
         case TOKEN_VAR: return VAR;
         case TOKEN_CONST: return CONST;
         case TOKEN_FUNCTION: return FUNCTION;

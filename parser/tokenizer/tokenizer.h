@@ -14,8 +14,8 @@ enum TokenType {
     TOKEN_TEMP,
 
     // Keywords
-    TOKEN_FROM,
     TOKEN_IMPORT,
+    TOKEN_AS,
     TOKEN_VAR,
     TOKEN_CONST,
     TOKEN_FUNCTION,

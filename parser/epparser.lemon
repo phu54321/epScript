@@ -63,15 +63,21 @@ chunk ::= vdef_stmt SEMICOLON.
 chunk ::= cdef_stmt SEMICOLON.
 
 // Import_chunk
-import_chunk ::= FROM NAME(name) IMPORT nameList_nonEmpty(B). {
-    commaListIter(B->data, [&](std::string varname) {
-        funcNamePreprocess(varname);
-        if(!ps->closure.defFunction(varname)) {
-            throw_error(8118, ("Importing already-declared function " + varname));
-        }
-        else ps->gen << "from " << name->data << " import " << varname << std::endl;
-    });
-    delete name; delete B;
+
+import_chunk ::= IMPORT NAME(A) AS NAME(B). {
+    if(!ps->closure.defModule(B->data)) {
+        throw_error(6754, "Importing already-declared module " + B->data);
+    }
+    ps->gen << "import " << A->data << " as " << B->data << std::endl;
+    delete A; delete B;
+}
+
+import_chunk ::= IMPORT NAME(A). {
+    if(!ps->closure.defModule(A->data)) {
+        throw_error(6754, "Importing already-declared module " + A->data);
+    }
+    ps->gen << "import " << A->data << std::endl;
+    delete A;
 }
 
 // Function declaration
@@ -232,6 +238,18 @@ funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
 }
 
 funcexpr(out) ::= expr(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
+    // If calling function imported from another module, add f_ prefix to function name.
+    std::string& nameStr = name->data;
+    if(std::count(nameStr.begin(), nameStr.end(), '.') == 1) {
+        size_t p = nameStr.find('.');
+        std::string moduleName = nameStr.substr(0, p);
+        if (closure->isModule(moduleName)) {
+            std::string funcName = nameStr.substr(p + 1);
+            funcNamePreprocess(funcName);
+            name->data = moduleName + '.' + funcName;
+        }
+    }
+
     // Preprocess name
     name->data += "(" + exprs->data + ")";
     out = mkTokenTemp(name);

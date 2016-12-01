@@ -25,8 +25,8 @@
 #define NUMBER                          25
 #define NAME                            26
 #define SEMICOLON                       27
-#define FROM                            28
-#define IMPORT                          29
+#define IMPORT                          28
+#define AS                              29
 #define FUNCTION                        30
 #define LPAREN                          31
 #define RPAREN                          32

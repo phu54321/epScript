@@ -134,8 +134,8 @@ Token* TokenizerImpl::getToken() {
         while(isNameBodyChar(*(++cursor)));
         std::string identifier(idfStart, cursor - idfStart);
 
-        if(identifier == "from") return TK(TOKEN_FROM);
         if(identifier == "import") return TK(TOKEN_IMPORT);
+        if(identifier == "as") return TK(TOKEN_AS);
         if(identifier == "var") return TK(TOKEN_VAR);
         if(identifier == "const") return TK(TOKEN_CONST);
         if(identifier == "function") return TK(TOKEN_FUNCTION);
