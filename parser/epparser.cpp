@@ -1634,52 +1634,52 @@ static void yy_reduce(
         break;
       case 72: /* expr ::= expr PLUS expr */
 #line 304 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "+",  yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "+",  yymsp[0].minor.yy0); }
 #line 1639 "parser\\epparser.c"
         break;
       case 73: /* expr ::= expr MINUS expr */
 #line 305 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "-",  yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "-",  yymsp[0].minor.yy0); }
 #line 1644 "parser\\epparser.c"
         break;
       case 74: /* expr ::= expr MULTIPLY expr */
 #line 306 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "*",  yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "*",  yymsp[0].minor.yy0); }
 #line 1649 "parser\\epparser.c"
         break;
       case 75: /* expr ::= expr DIVIDE expr */
 #line 307 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "//", yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "//", yymsp[0].minor.yy0); }
 #line 1654 "parser\\epparser.c"
         break;
       case 76: /* expr ::= expr MOD expr */
 #line 308 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "%",  yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "%",  yymsp[0].minor.yy0); }
 #line 1659 "parser\\epparser.c"
         break;
       case 77: /* expr ::= expr LSHIFT expr */
 #line 309 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "<<", yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "<<", yymsp[0].minor.yy0); }
 #line 1664 "parser\\epparser.c"
         break;
       case 78: /* expr ::= expr RSHIFT expr */
 #line 310 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, ">>", yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, ">>", yymsp[0].minor.yy0); }
 #line 1669 "parser\\epparser.c"
         break;
       case 79: /* expr ::= expr BITAND expr */
 #line 311 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "&",  yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "&",  yymsp[0].minor.yy0); }
 #line 1674 "parser\\epparser.c"
         break;
       case 80: /* expr ::= expr BITOR expr */
 #line 312 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "|",  yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "|",  yymsp[0].minor.yy0); }
 #line 1679 "parser\\epparser.c"
         break;
       case 81: /* expr ::= expr BITXOR expr */
 #line 313 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "^",  yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "^",  yymsp[0].minor.yy0); }
 #line 1684 "parser\\epparser.c"
         break;
       case 82: /* expr ::= PLUS expr */
@@ -1699,32 +1699,32 @@ static void yy_reduce(
         break;
       case 85: /* lexpr ::= expr EQ expr */
 #line 322 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "==", yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "==", yymsp[0].minor.yy0); }
 #line 1704 "parser\\epparser.c"
         break;
       case 86: /* lexpr ::= expr NE expr */
 #line 323 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "!=", yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "!=", yymsp[0].minor.yy0); }
 #line 1709 "parser\\epparser.c"
         break;
       case 87: /* lexpr ::= expr LE expr */
 #line 324 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "<=", yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "<=", yymsp[0].minor.yy0); }
 #line 1714 "parser\\epparser.c"
         break;
       case 88: /* lexpr ::= expr LT expr */
 #line 325 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, "<",  yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, "<",  yymsp[0].minor.yy0); }
 #line 1719 "parser\\epparser.c"
         break;
       case 89: /* lexpr ::= expr GE expr */
 #line 326 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, ">=", yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, ">=", yymsp[0].minor.yy0); }
 #line 1724 "parser\\epparser.c"
         break;
       case 90: /* lexpr ::= expr GT expr */
 #line 327 "parser\\epparser.lemon"
-{ yygotominor.yy0 = binaryMerge(yymsp[-2].minor.yy0, ">" , yymsp[0].minor.yy0); }
+{ yygotominor.yy0 = binopConcat(yymsp[-2].minor.yy0, ">" , yymsp[0].minor.yy0); }
 #line 1729 "parser\\epparser.c"
         break;
       case 91: /* lexpr ::= lexpr LAND lexpr */

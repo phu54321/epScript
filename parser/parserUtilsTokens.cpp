@@ -80,7 +80,7 @@ Token* mkTokenTemp(Token* a) {
     }
 }
 
-Token* binaryMerge(Token* a, const std::string& opstr, Token* b) {
+Token* binopConcat(Token* a, const std::string& opstr, Token* b) {
     b->data = a->data + (" " + opstr + " ") + b->data;
     delete a;
     return mkTokenTemp(b);

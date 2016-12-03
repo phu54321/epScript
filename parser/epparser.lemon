@@ -301,16 +301,16 @@ expr(A) ::= LOCATION LPAREN STRING(B) RPAREN. {
 }
 
 // Binary operators
-expr(A) ::= expr(B) PLUS        expr(C). { A = binaryMerge(B, "+",  C); }
-expr(A) ::= expr(B) MINUS       expr(C). { A = binaryMerge(B, "-",  C); }
-expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binaryMerge(B, "*",  C); }
-expr(A) ::= expr(B) DIVIDE      expr(C). { A = binaryMerge(B, "//", C); }
-expr(A) ::= expr(B) MOD         expr(C). { A = binaryMerge(B, "%",  C); }
-expr(A) ::= expr(B) LSHIFT      expr(C). { A = binaryMerge(B, "<<", C); }
-expr(A) ::= expr(B) RSHIFT      expr(C). { A = binaryMerge(B, ">>", C); }
-expr(A) ::= expr(B) BITAND      expr(C). { A = binaryMerge(B, "&",  C); }
-expr(A) ::= expr(B) BITOR       expr(C). { A = binaryMerge(B, "|",  C); }
-expr(A) ::= expr(B) BITXOR      expr(C). { A = binaryMerge(B, "^",  C); }
+expr(A) ::= expr(B) PLUS        expr(C). { A = binopConcat(B, "+",  C); }
+expr(A) ::= expr(B) MINUS       expr(C). { A = binopConcat(B, "-",  C); }
+expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binopConcat(B, "*",  C); }
+expr(A) ::= expr(B) DIVIDE      expr(C). { A = binopConcat(B, "//", C); }
+expr(A) ::= expr(B) MOD         expr(C). { A = binopConcat(B, "%",  C); }
+expr(A) ::= expr(B) LSHIFT      expr(C). { A = binopConcat(B, "<<", C); }
+expr(A) ::= expr(B) RSHIFT      expr(C). { A = binopConcat(B, ">>", C); }
+expr(A) ::= expr(B) BITAND      expr(C). { A = binopConcat(B, "&",  C); }
+expr(A) ::= expr(B) BITOR       expr(C). { A = binopConcat(B, "|",  C); }
+expr(A) ::= expr(B) BITXOR      expr(C). { A = binopConcat(B, "^",  C); }
 
 // Unary operators
 expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = +" << B->data << std::endl; delete B; }
@@ -319,12 +319,12 @@ expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " =
 
 
 // Logical expressions
-lexpr(A) ::= expr(B) EQ expr(C).   { A = binaryMerge(B, "==", C); }
-lexpr(A) ::= expr(B) NE expr(C).   { A = binaryMerge(B, "!=", C); }
-lexpr(A) ::= expr(B) LE expr(C).   { A = binaryMerge(B, "<=", C); }
-lexpr(A) ::= expr(B) LT expr(C).   { A = binaryMerge(B, "<",  C); }
-lexpr(A) ::= expr(B) GE expr(C).   { A = binaryMerge(B, ">=", C); }
-lexpr(A) ::= expr(B) GT expr(C).   { A = binaryMerge(B, ">" , C); }
+lexpr(A) ::= expr(B) EQ expr(C).   { A = binopConcat(B, "==", C); }
+lexpr(A) ::= expr(B) NE expr(C).   { A = binopConcat(B, "!=", C); }
+lexpr(A) ::= expr(B) LE expr(C).   { A = binopConcat(B, "<=", C); }
+lexpr(A) ::= expr(B) LT expr(C).   { A = binopConcat(B, "<",  C); }
+lexpr(A) ::= expr(B) GE expr(C).   { A = binopConcat(B, ">=", C); }
+lexpr(A) ::= expr(B) GT expr(C).   { A = binopConcat(B, ">" , C); }
 
 lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
     B->data = "[" + B->data + ", " + C->data + "]";

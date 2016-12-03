@@ -1,4 +1,4 @@
-from xt import f_a
+import a1
 @EUDFunc
 def f_x():
     A = 1

@@ -26,10 +26,10 @@ Token* genEmpty();
 Token* genTemp(Token* lineSrc);
 Token* mkTokenTemp(Token* a);
 Token* commaConcat(Token* a, Token* b);
-Token* binaryMerge(Token* a, const std::string& opstr, Token* b);
+Token* binopConcat(Token* a, const std::string& opstr, Token* b);
 
 void commaListIter(std::string& s, std::function<void(std::string&)> func);
-void throw_error(int code, const std::string& message);
+void throw_error(int code, const std::string& message, int line = -1);
 int resetParserErrorNum();
 ////
 

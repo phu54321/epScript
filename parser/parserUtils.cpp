@@ -4,7 +4,6 @@
 #include <regex>
 #include <iostream>
 
-#include "tokenizer/tokenizer.h"
 #include "generator/pygen.h"
 #include "generator/eudplibGlobals.h"
 #include "parserUtilities.h"
@@ -13,10 +12,11 @@ extern int currentTokenizingLine;
 
 int errorn = 0;
 
-void throw_error(int code, const std::string& message) {
+void throw_error(int code, const std::string& message, int line) {
+    if (line == -1) line = currentTokenizingLine;
     if (errorn < 100) {
-        std::cerr << "[Error " << code << "] Line " << currentTokenizingLine << " : " << message << std::endl;
-        (*pGen) << "# [Error " << code << "] Line " << currentTokenizingLine << " : " << message << std::endl;
+        std::cerr << "[Error " << code << "] Line " << line << " : " << message << std::endl;
+        (*pGen) << "# [Error " << code << "] Line " << line << " : " << message << std::endl;
         if (++errorn == 100) {
             std::cerr << " - More than 100 errors occured. Stop printing errors" << std::endl;
         }
