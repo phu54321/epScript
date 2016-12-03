@@ -3,46 +3,46 @@
 
 extern int currentTokenizingLine;
 
-void checkIsConstant(std::string& objName) {
+void checkIsConstant(std::string& objName, int line) {
     if (!closure->getConstant(objName)) {
         if(closure->defConstant(objName)) {
-            throw_error(8200, ("Undefined constant " + objName));
+            throw_error(8200, ("Undefined constant " + objName), line);
         }
         else {
-            throw_error(553, ("Not a constant : " + objName));
+            throw_error(553, ("Not a constant : " + objName), line);
         }
     }
 }
 
-void checkIsVariable(std::string& objName) {
+void checkIsVariable(std::string& objName, int line) {
     if (!closure->getVariable(objName)) {
         if(closure->defVariable(objName)) {
-            throw_error(9571, ("Undefined variable " + objName));
+            throw_error(9571, ("Undefined variable " + objName), line);
         }
         else {
-            throw_error(7364, ("Not a variable : " + objName));
+            throw_error(7364, ("Not a variable : " + objName), line);
         }
     }
 }
 
-void checkIsFunction(std::string& objName) {
+void checkIsFunction(std::string& objName, int line) {
     if (!closure->getFunction(objName)) {
         if(closure->defFunction(objName)) {
-            throw_error(7041, ("Undefined function " + objName));
+            throw_error(7041, ("Undefined function " + objName), line);
         }
         else {
-            throw_error(3967, ("Not a function : " + objName));
+            throw_error(3967, ("Not a function : " + objName), line);
         }
     }
 }
 
-void checkIsRValue(std::string& objName) {
+void checkIsRValue(std::string& objName, int line) {
     if (!closure->getVariable(objName) && !closure->getConstant(objName)) {
         if(closure->defVariable(objName)) {
-            throw_error(9571, ("Undefined rvalue " + objName + " : assuming as variable"));
+            throw_error(9571, ("Undefined rvalue " + objName + " : assuming as variable"), line);
         }
         else {
-            throw_error(7364, ("Not an rvalue : " + objName));
+            throw_error(7364, ("Not an rvalue : " + objName), line);
         }
     }
 }

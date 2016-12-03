@@ -17,10 +17,10 @@ extern int tmpIndex;
 extern PyGenerator* pGen;
 extern ClosureManager* closure;
 
-void checkIsConstant(std::string& name);
-void checkIsVariable(std::string& name);
-void checkIsFunction(std::string& name);
-void checkIsRValue(std::string& name);
+void checkIsConstant(std::string& name, int line);
+void checkIsVariable(std::string& name, int line);
+void checkIsFunction(std::string& name, int line);
+void checkIsRValue(std::string& name, int line);
 
 Token* genEmpty();
 Token* genTemp(Token* lineSrc);

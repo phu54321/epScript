@@ -33,13 +33,16 @@ CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.obj: ../parser/parserUt
 CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.obj: ../parser/parserUtilsTokens.cpp
 CMakeFiles/epScriptTest.dir/parser/parserUtilsTokens.cpp.obj: ../parser/tokenizer/tokenizer.h
 
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj: ../parser/reservedWords/condAct.h
+CMakeFiles/epScriptTest.dir/parser/reservedWords/condact.cpp.obj: ../parser/reservedWords/condact.cpp
+
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj: ../parser/reservedWords/constparser.cpp
+CMakeFiles/epScriptTest.dir/parser/reservedWords/constparser.cpp.obj: ../parser/reservedWords/constparser.h
+
 CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj: ../parser/epparser.h
 CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj: ../parser/tokenAdapter.cpp
 CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj: ../parser/tokenAdapter.h
 CMakeFiles/epScriptTest.dir/parser/tokenAdapter.cpp.obj: ../parser/tokenizer/tokenizer.h
-
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj: ../parser/tokenizer/condAct.h
-CMakeFiles/epScriptTest.dir/parser/tokenizer/condact.cpp.obj: ../parser/tokenizer/condact.cpp
 
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.obj: ../parser/tokenizer/tokChars.cpp
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokChars.cpp.obj: ../parser/tokenizer/tokChars.h
@@ -52,7 +55,8 @@ CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizer.cpp.obj: ../parser/tokeni
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizer.cpp.obj: ../parser/tokenizer/tokenizer.h
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizer.cpp.obj: ../parser/tokenizer/tokenizerImpl.h
 
-CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/tokenizer/condAct.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/reservedWords/condAct.h
+CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/reservedWords/constparser.h
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/tokenizer/tokChars.h
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/tokenizer/tokenizer.h
 CMakeFiles/epScriptTest.dir/parser/tokenizer/tokenizerImpl.cpp.obj: ../parser/tokenizer/tokenizerImpl.cpp
