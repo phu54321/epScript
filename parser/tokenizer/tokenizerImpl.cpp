@@ -70,7 +70,10 @@ Token* TokenizerImpl::getToken() {
         // Skip multiline comments
         else if (cursor[0] == '/' && cursor[1] == '*') {
             cursor += 2;
-            while(*cursor != EOF && !(cursor[0] == '*' && cursor[1] == '/')) cursor++;
+            while(*cursor != EOF && !(cursor[0] == '*' && cursor[1] == '/')) {
+                if(*cursor == '\n') line++;
+                cursor++;
+            }
             if(*cursor != EOF) cursor += 2;
             continue;
         }
@@ -132,12 +135,16 @@ Token* TokenizerImpl::getToken() {
         return TK(TOKEN_STRING, std::string(buffer.data(), buffer.size()));
     }
 
-
     // Identifiers
     if(isNameLeadChar(*cursor)) {
         const char* idfStart = cursor;
         while(isNameBodyChar(*(++cursor)));
         std::string identifier(idfStart, cursor - idfStart);
+
+        if(identifier == "$U") return TK(TOKEN_UNITNAME);
+        if(identifier == "$L") return TK(TOKEN_LOCNAME);
+        if(identifier == "$S") return TK(TOKEN_SWITCHNAME);
+        if(identifier == "$T") return TK(TOKEN_MAPSTRING);
 
         if(identifier == "import") return TK(TOKEN_IMPORT);
         if(identifier == "as") return TK(TOKEN_AS);
@@ -190,12 +197,6 @@ Token* TokenizerImpl::getToken() {
             return TK(TOKEN_NUMBER, std::string(numberStart, cursor - numberStart));
         }
     }
-
-    // Mapdata getter
-    MATCHSTR("$U", TOKEN_UNITNAME);
-    MATCHSTR("$L", TOKEN_LOCNAME);
-    MATCHSTR("$S", TOKEN_SWITCHNAME);
-    MATCHSTR("$T", TOKEN_MAPSTRING);
 
     // Inplace operators
     MATCHSTR("+=", TOKEN_IADD);
