@@ -28,6 +28,10 @@ int daemonTurn(void) {
                 std::string ifname = ep->d_name;
                 if(ifname.size() > 4 && ifname.substr(ifname.size() - 4) == ".eps") { // Possible script file
                     std::string ofname = ifname.substr(0, ifname.size() - 4) + ".py";
+                    auto dirs = ofname.find_last_of("\\/");
+                    if(dirs != std::string::npos) ofname = ofname.substr(0, dirs) + "/_" + ofname.substr(dirs + 1);
+                    else ofname = "_" + ofname;
+
 
                     // Check if update is needed
                     bool needUpdating = false;

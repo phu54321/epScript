@@ -64,7 +64,15 @@ int main(int argc, char** argv) {
             return runDaemon();
         }
 
-        if(ofname == "") ofname = ifname.substr(0, ifname.find_last_of('.')) + ".py";
+        if(ofname == "") {
+            // Change extension
+            ofname = ifname.substr(0, ifname.find_last_of('.')) + ".py";
+
+            // Add _ prefix
+            auto dirs = ofname.find_last_of("\\/");
+            if(dirs != std::string::npos) ofname = ofname.substr(0, dirs) + "/_" + ofname.substr(dirs + 1);
+            else ofname = "_" + ofname;
+        }
         try {
             std::string code = getFile(ifname);
             std::string out = addStubCode(ParseString(code));

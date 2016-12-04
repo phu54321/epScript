@@ -93,7 +93,7 @@ const char* stubCode =
         "   return List2Assignable([v[k] for k in klist])\n"
         "\n"
         "def _SV(dL, sL):\n"
-        "   [d << s for d, s in zip(FlattenList(dL), flattenList(sL))]\n"
+        "   [d << s for d, s in zip(FlattenList(dL), FlattenList(sL))]\n"
         "\n"
         "class _ATTW:\n"
         "   def __init__(self, obj, attrName):\n"
