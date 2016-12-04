@@ -20,6 +20,8 @@ struct ParserStruct {
 };
 
 int currentTokenizingLine;
+bool functionCalledInMultipleActions;
+
 }
 
 %parse_failure {
@@ -250,6 +252,8 @@ fArgs(A) ::= . { A = genEmpty(); }
 fArgs(A) ::= fArgs_nonEmpty(B). { A = B; }
 
 funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
+    functionCalledInMultipleActions = true;
+
     // Preprocess name
     funcNamePreprocess(name->data);
     checkIsFunction(name->data, name->line);
@@ -258,6 +262,8 @@ funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
 }
 
 funcexpr(out) ::= expr(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
+    functionCalledInMultipleActions = true;
+
     // If calling function imported from another module, add f_ prefix to function name.
     static std::regex prefixedFuncNameRegex("^[a-z][_a-zA-Z0-9]*");
     std::string& nameStr = name->data;
@@ -679,15 +685,41 @@ action(X) ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN SEMICOLON. {
 }
 
 actions(A) ::= action(B) action(C). {
-    A = B;
-    B->data += ",\n" + C->data;
-    delete C;
+    if(functionCalledInMultipleActions) {
+        ps->gen << "DoActions([" << std::endl;
+        ps->gen.indent();
+        ps->gen << B->data << std::endl;
+        ps->gen.unindent(false);
+        ps->gen << "])" << std::endl;
+
+        delete B;
+        A = C;
+    }
+    else {
+        C->data = B->data + ",\n" + C->data;
+        A = C;
+        delete B;
+    }
+    functionCalledInMultipleActions = false;
 }
 
 actions(A) ::= actions(B) action(C). {
-    A = B;
-    B->data += ",\n" + C->data;
-    delete C;
+    if(functionCalledInMultipleActions) {
+        ps->gen << "DoActions([" << std::endl;
+        ps->gen.indent();
+        ps->gen << B->data << std::endl;
+        ps->gen.unindent(false);
+        ps->gen << "])" << std::endl;
+
+        delete B;
+        A = C;
+    }
+    else {
+        C->data = B->data + ",\n" + C->data;
+        A = C;
+        delete B;
+    }
+    functionCalledInMultipleActions = false;
 }
 
 actionStmt ::= action(X). {
@@ -724,6 +756,7 @@ std::string ParseString(const std::string& code, bool addComment)
     currentTokenizingLine = 0;
     pGen = &ps.gen;
     closure = &ps.closure;
+    functionCalledInMultipleActions = false;
 
     if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
 
