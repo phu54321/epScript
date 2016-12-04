@@ -613,6 +613,7 @@ for_header(X) ::= for_header2(A) RPAREN. {
 }
 
 for_stmt ::= for_header(X) stmt. {
+    ps->gen << "EUDSetContinuePoint()" << std::endl;
     ps->gen << X->data << "()" << std::endl;
     ps->gen.unindent(false);
     ps->gen << "EUDEndWhile()" << std::endl;
