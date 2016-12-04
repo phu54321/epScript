@@ -84,21 +84,26 @@ Token* TokenizerImpl::getToken() {
     }
 
     // String
-    if(*cursor == '\"' || (cursor[0] == 'b' && cursor[1] == '\"')) {
+    char stringOpener = '\0';
+    bool isBinaryString = false;
+    if(*cursor == '\"' || *cursor == '\'') {
+        stringOpener = *cursor;
+        cursor++;
+    }
+    else if(cursor[0] == 'b' && (cursor[1] == '\"' || cursor[1] == '\'')) {
+        stringOpener = cursor[1];
+        isBinaryString = true;
+        cursor += 2;
+    }
+    if(stringOpener) {
         std::vector<char> buffer;  // String to hold escaped content.
         buffer.reserve(200);
 
-        if(*cursor == '\"') {  // Str
-            buffer.push_back('\"');
-            cursor++;
-        }
-        else {  // Bytes
-            buffer.push_back('b');
-            buffer.push_back('\"');
-            cursor += 2;
-        }
+        if(isBinaryString) buffer.push_back('b');
 
-        while(*cursor != '\"') {
+        buffer.push_back(stringOpener);
+
+        while(*cursor != stringOpener) {
             if(*cursor == '\n' || *cursor == EOF) { // Line end during string - Invalid token
                 // We don't skip newlines We need to count lines using them.
                 // Return invalid token message
@@ -123,7 +128,7 @@ Token* TokenizerImpl::getToken() {
             }
         }
         cursor++;
-        buffer.push_back('\"');
+        buffer.push_back(stringOpener);
         return TK(TOKEN_STRING, std::string(buffer.data(), buffer.size()));
     }
 
