@@ -320,16 +320,19 @@ expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " =
 
 
 // Logical expressions
+lexpr(A) ::= expr(B). { A = B; }
+lexpr(A) ::= LPAREN lexpr(B) RPAREN.    {
+    B->data = "(" + B->data + ")";
+    A = mkTokenTemp(B);
+}
+
 lexpr(A) ::= expr(B) EQ expr(C).   { A = binopConcat(B, "==", C); }
 lexpr(A) ::= expr(B) NE expr(C).   { A = binopConcat(B, "!=", C); }
 lexpr(A) ::= expr(B) LE expr(C).   { A = binopConcat(B, "<=", C); }
 lexpr(A) ::= expr(B) LT expr(C).   { A = binopConcat(B, "<",  C); }
 lexpr(A) ::= expr(B) GE expr(C).   { A = binopConcat(B, ">=", C); }
 lexpr(A) ::= expr(B) GT expr(C).   { A = binopConcat(B, ">" , C); }
-lexpr(A) ::= LPAREN lexpr(B) RPAREN.    {
-    B->data = "(" + B->data + ")";
-    A = mkTokenTemp(B);
-}
+
 
 lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
     B->data = "[" + B->data + ", " + C->data + "]";
@@ -487,6 +490,7 @@ if_start(A) ::= IF(B). {
     A = genTemp(B);
     ps->gen << A->data << " = EUDIf()" << std::endl;
 }
+
 if_header ::= if_start(A) LPAREN lexpr(B) RPAREN. {
     ps->gen << "if " << A->data << "(" << B->data << "):" << std::endl;
     ps->gen.indent();

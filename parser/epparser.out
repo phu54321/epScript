@@ -1519,7 +1519,7 @@ State 10:
           for_init_stmt_nonEmpty ::= * assign_stmt
           for_init_stmt_nonEmpty ::= * for_init_stmt_nonEmpty COMMA for_init_stmt_nonEmpty
           for_init_stmt ::= * for_init_stmt_nonEmpty
-    (136) for_init_stmt ::= *
+    (137) for_init_stmt ::= *
           for_header1 ::= for_opener * for_init_stmt SEMICOLON
 
                           PLUS shift  61
@@ -1547,7 +1547,7 @@ State 10:
            lvalueList_nonEmpty shift  136
         for_init_stmt_nonEmpty shift  149
                  for_init_stmt shift  148
-                     {default} reduce 136
+                     {default} reduce 137
 
 State 11:
       (0) program ::= chunks *
@@ -2245,13 +2245,14 @@ State 22:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= * LNOT lexpr
@@ -2310,13 +2311,14 @@ State 23:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= * LNOT lexpr
@@ -2375,13 +2377,14 @@ State 24:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= * LNOT lexpr
@@ -2440,13 +2443,14 @@ State 25:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= * LNOT lexpr
@@ -2505,13 +2509,14 @@ State 26:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= * LNOT lexpr
@@ -2572,13 +2577,14 @@ State 27:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= * LNOT lexpr
@@ -2638,13 +2644,14 @@ State 28:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= lexpr LOR * lexpr
@@ -2703,13 +2710,14 @@ State 29:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= lexpr LAND * lexpr
           lexpr ::= * lexpr LOR lexpr
@@ -2769,14 +2777,15 @@ State 30:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
+          lexpr ::= LPAREN * lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
-          lexpr ::= LPAREN * lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= * LNOT lexpr
@@ -2835,13 +2844,14 @@ State 31:
           expr ::= * PLUS expr
           expr ::= * MINUS expr
           expr ::= * BITNOT expr
+          lexpr ::= * expr
+          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * expr EQ expr
           lexpr ::= * expr NE expr
           lexpr ::= * expr LE expr
           lexpr ::= * expr LT expr
           lexpr ::= * expr GE expr
           lexpr ::= * expr GT expr
-          lexpr ::= * LPAREN lexpr RPAREN
           lexpr ::= * lexpr LAND lexpr
           lexpr ::= * lexpr LOR lexpr
           lexpr ::= * LNOT lexpr
@@ -3291,14 +3301,14 @@ State 40:
           elif_header ::= * elif_start LPAREN lexpr RPAREN
           if_block ::= if_block * elif_header stmt
           else_header ::= * ELSE
-    (124) if_stmt ::= if_block *
+    (125) if_stmt ::= if_block *
           if_stmt ::= if_block * else_header stmt
 
                           ELSE shift  153
                     elif_start shift  152
                    elif_header shift  7
                    else_header shift  3
-                     {default} reduce 124
+                     {default} reduce 125
 
 State 41:
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
@@ -4907,20 +4917,20 @@ State 75:
 State 76:
           action ::= * ACTIONNAME LPAREN fArgs RPAREN SEMICOLON
           actions ::= actions * action
-    (157) actionStmt ::= actions *
+    (158) actionStmt ::= actions *
 
                     ACTIONNAME shift  146
                         action shift  217
-                     {default} reduce 157
+                     {default} reduce 158
 
 State 77:
           action ::= * ACTIONNAME LPAREN fArgs RPAREN SEMICOLON
           actions ::= action * action
-    (156) actionStmt ::= action *
+    (157) actionStmt ::= action *
 
                     ACTIONNAME shift  146
                         action shift  218
-                     {default} reduce 156
+                     {default} reduce 157
 
 State 78:
           nameList_nonEmpty ::= * NAME
@@ -4985,6 +4995,7 @@ State 84:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
+     (85) lexpr ::= expr *
           lexpr ::= expr * EQ expr
           lexpr ::= expr * NE expr
           lexpr ::= expr * LE expr
@@ -5012,6 +5023,7 @@ State 84:
                         RPAREN shift  267
                     LSQBRACKET shift  73
                         PERIOD shift  187
+                     {default} reduce 85
 
 State 85:
           expr ::= expr * PERIOD NAME
@@ -5027,6 +5039,7 @@ State 85:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
+     (85) lexpr ::= expr *
           lexpr ::= expr * EQ expr
           lexpr ::= expr * NE expr
           lexpr ::= expr * LE expr
@@ -5053,6 +5066,7 @@ State 85:
                         LPAREN shift  18
                     LSQBRACKET shift  73
                         PERIOD shift  187
+                     {default} reduce 85
 
 State 86:
           expr ::= expr * PERIOD NAME
@@ -5162,7 +5176,38 @@ State 89:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (116) assign_stmt ::= lvalue IBXR expr *
+    (117) assign_stmt ::= lvalue IBXR expr *
+
+                         BITOR shift  63
+                        BITXOR shift  62
+                        BITAND shift  64
+                        LSHIFT shift  66
+                        RSHIFT shift  65
+                          PLUS shift  71
+                         MINUS shift  70
+                        DIVIDE shift  68
+                      MULTIPLY shift  69
+                           MOD shift  67
+                        LPAREN shift  18
+                    LSQBRACKET shift  73
+                        PERIOD shift  187
+                     {default} reduce 117
+
+State 90:
+          expr ::= expr * PERIOD NAME
+          expr ::= expr * LSQBRACKET expr RSQBRACKET
+          funcexpr ::= expr * LPAREN fArgs RPAREN
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+    (116) assign_stmt ::= lvalue IBOR expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5179,7 +5224,7 @@ State 89:
                         PERIOD shift  187
                      {default} reduce 116
 
-State 90:
+State 91:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5193,7 +5238,7 @@ State 90:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (115) assign_stmt ::= lvalue IBOR expr *
+    (115) assign_stmt ::= lvalue IBND expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5210,7 +5255,7 @@ State 90:
                         PERIOD shift  187
                      {default} reduce 115
 
-State 91:
+State 92:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5224,7 +5269,7 @@ State 91:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (114) assign_stmt ::= lvalue IBND expr *
+    (114) assign_stmt ::= lvalue IRSH expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5241,7 +5286,7 @@ State 91:
                         PERIOD shift  187
                      {default} reduce 114
 
-State 92:
+State 93:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5255,7 +5300,7 @@ State 92:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (113) assign_stmt ::= lvalue IRSH expr *
+    (113) assign_stmt ::= lvalue ILSH expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5272,7 +5317,7 @@ State 92:
                         PERIOD shift  187
                      {default} reduce 113
 
-State 93:
+State 94:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5286,7 +5331,7 @@ State 93:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (112) assign_stmt ::= lvalue ILSH expr *
+    (112) assign_stmt ::= lvalue IMOD expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5303,7 +5348,7 @@ State 93:
                         PERIOD shift  187
                      {default} reduce 112
 
-State 94:
+State 95:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5317,7 +5362,7 @@ State 94:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (111) assign_stmt ::= lvalue IMOD expr *
+    (111) assign_stmt ::= lvalue IDIV expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5334,7 +5379,7 @@ State 94:
                         PERIOD shift  187
                      {default} reduce 111
 
-State 95:
+State 96:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5348,7 +5393,7 @@ State 95:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (110) assign_stmt ::= lvalue IDIV expr *
+    (110) assign_stmt ::= lvalue IMUL expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5365,7 +5410,7 @@ State 95:
                         PERIOD shift  187
                      {default} reduce 110
 
-State 96:
+State 97:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5379,7 +5424,7 @@ State 96:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (109) assign_stmt ::= lvalue IMUL expr *
+    (109) assign_stmt ::= lvalue ISUB expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5396,7 +5441,7 @@ State 96:
                         PERIOD shift  187
                      {default} reduce 109
 
-State 97:
+State 98:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5410,7 +5455,7 @@ State 97:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (108) assign_stmt ::= lvalue ISUB expr *
+    (108) assign_stmt ::= lvalue IADD expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5427,37 +5472,6 @@ State 97:
                         PERIOD shift  187
                      {default} reduce 108
 
-State 98:
-          expr ::= expr * PERIOD NAME
-          expr ::= expr * LSQBRACKET expr RSQBRACKET
-          funcexpr ::= expr * LPAREN fArgs RPAREN
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
-    (107) assign_stmt ::= lvalue IADD expr *
-
-                         BITOR shift  63
-                        BITXOR shift  62
-                        BITAND shift  64
-                        LSHIFT shift  66
-                        RSHIFT shift  65
-                          PLUS shift  71
-                         MINUS shift  70
-                        DIVIDE shift  68
-                      MULTIPLY shift  69
-                           MOD shift  67
-                        LPAREN shift  18
-                    LSQBRACKET shift  73
-                        PERIOD shift  187
-                     {default} reduce 107
-
 State 99:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
@@ -5472,7 +5486,7 @@ State 99:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-    (105) assign_stmt ::= lvalue ASSIGN expr *
+    (106) assign_stmt ::= lvalue ASSIGN expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5487,7 +5501,7 @@ State 99:
                         LPAREN shift  18
                     LSQBRACKET shift  73
                         PERIOD shift  187
-                     {default} reduce 105
+                     {default} reduce 106
 
 State 100:
           expr ::= expr * PERIOD NAME
@@ -5534,7 +5548,69 @@ State 101:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-     (90) lexpr ::= expr GT expr *
+     (92) lexpr ::= expr GT expr *
+
+                         BITOR shift  63
+                        BITXOR shift  62
+                        BITAND shift  64
+                        LSHIFT shift  66
+                        RSHIFT shift  65
+                          PLUS shift  71
+                         MINUS shift  70
+                        DIVIDE shift  68
+                      MULTIPLY shift  69
+                           MOD shift  67
+                        LPAREN shift  18
+                    LSQBRACKET shift  73
+                        PERIOD shift  187
+                     {default} reduce 92
+
+State 102:
+          expr ::= expr * PERIOD NAME
+          expr ::= expr * LSQBRACKET expr RSQBRACKET
+          funcexpr ::= expr * LPAREN fArgs RPAREN
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+     (91) lexpr ::= expr GE expr *
+
+                         BITOR shift  63
+                        BITXOR shift  62
+                        BITAND shift  64
+                        LSHIFT shift  66
+                        RSHIFT shift  65
+                          PLUS shift  71
+                         MINUS shift  70
+                        DIVIDE shift  68
+                      MULTIPLY shift  69
+                           MOD shift  67
+                        LPAREN shift  18
+                    LSQBRACKET shift  73
+                        PERIOD shift  187
+                     {default} reduce 91
+
+State 103:
+          expr ::= expr * PERIOD NAME
+          expr ::= expr * LSQBRACKET expr RSQBRACKET
+          funcexpr ::= expr * LPAREN fArgs RPAREN
+          expr ::= expr * PLUS expr
+          expr ::= expr * MINUS expr
+          expr ::= expr * MULTIPLY expr
+          expr ::= expr * DIVIDE expr
+          expr ::= expr * MOD expr
+          expr ::= expr * LSHIFT expr
+          expr ::= expr * RSHIFT expr
+          expr ::= expr * BITAND expr
+          expr ::= expr * BITOR expr
+          expr ::= expr * BITXOR expr
+     (90) lexpr ::= expr LT expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5551,7 +5627,7 @@ State 101:
                         PERIOD shift  187
                      {default} reduce 90
 
-State 102:
+State 104:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5565,7 +5641,7 @@ State 102:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-     (89) lexpr ::= expr GE expr *
+     (89) lexpr ::= expr LE expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5582,7 +5658,7 @@ State 102:
                         PERIOD shift  187
                      {default} reduce 89
 
-State 103:
+State 105:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5596,7 +5672,7 @@ State 103:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-     (88) lexpr ::= expr LT expr *
+     (88) lexpr ::= expr NE expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5613,7 +5689,7 @@ State 103:
                         PERIOD shift  187
                      {default} reduce 88
 
-State 104:
+State 106:
           expr ::= expr * PERIOD NAME
           expr ::= expr * LSQBRACKET expr RSQBRACKET
           funcexpr ::= expr * LPAREN fArgs RPAREN
@@ -5627,7 +5703,7 @@ State 104:
           expr ::= expr * BITAND expr
           expr ::= expr * BITOR expr
           expr ::= expr * BITXOR expr
-     (87) lexpr ::= expr LE expr *
+     (87) lexpr ::= expr EQ expr *
 
                          BITOR shift  63
                         BITXOR shift  62
@@ -5643,68 +5719,6 @@ State 104:
                     LSQBRACKET shift  73
                         PERIOD shift  187
                      {default} reduce 87
-
-State 105:
-          expr ::= expr * PERIOD NAME
-          expr ::= expr * LSQBRACKET expr RSQBRACKET
-          funcexpr ::= expr * LPAREN fArgs RPAREN
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
-     (86) lexpr ::= expr NE expr *
-
-                         BITOR shift  63
-                        BITXOR shift  62
-                        BITAND shift  64
-                        LSHIFT shift  66
-                        RSHIFT shift  65
-                          PLUS shift  71
-                         MINUS shift  70
-                        DIVIDE shift  68
-                      MULTIPLY shift  69
-                           MOD shift  67
-                        LPAREN shift  18
-                    LSQBRACKET shift  73
-                        PERIOD shift  187
-                     {default} reduce 86
-
-State 106:
-          expr ::= expr * PERIOD NAME
-          expr ::= expr * LSQBRACKET expr RSQBRACKET
-          funcexpr ::= expr * LPAREN fArgs RPAREN
-          expr ::= expr * PLUS expr
-          expr ::= expr * MINUS expr
-          expr ::= expr * MULTIPLY expr
-          expr ::= expr * DIVIDE expr
-          expr ::= expr * MOD expr
-          expr ::= expr * LSHIFT expr
-          expr ::= expr * RSHIFT expr
-          expr ::= expr * BITAND expr
-          expr ::= expr * BITOR expr
-          expr ::= expr * BITXOR expr
-     (85) lexpr ::= expr EQ expr *
-
-                         BITOR shift  63
-                        BITXOR shift  62
-                        BITAND shift  64
-                        LSHIFT shift  66
-                        RSHIFT shift  65
-                          PLUS shift  71
-                         MINUS shift  70
-                        DIVIDE shift  68
-                      MULTIPLY shift  69
-                           MOD shift  67
-                        LPAREN shift  18
-                    LSQBRACKET shift  73
-                        PERIOD shift  187
-                     {default} reduce 85
 
 State 107:
      (48) exprList_nonEmpty ::= expr *
@@ -5771,7 +5785,7 @@ State 108:
 State 109:
      (54) expr ::= NAME *
           funcexpr ::= NAME * LPAREN fArgs RPAREN
-    (100) lvalue ::= NAME *
+    (101) lvalue ::= NAME *
 
                          BITOR reduce 54
                         BITXOR reduce 54
@@ -5786,29 +5800,11 @@ State 109:
                         LPAREN shift  19
                     LSQBRACKET reduce 54
                         PERIOD reduce 54
-                     {default} reduce 100
+                     {default} reduce 101
 
 State 110:
      (56) expr ::= expr LSQBRACKET expr RSQBRACKET *
-    (101) lvalue ::= expr LSQBRACKET expr RSQBRACKET *
-
-                        ASSIGN reduce 101
-                         COMMA reduce 101
-                          IADD reduce 101
-                          ISUB reduce 101
-                          IMUL reduce 101
-                          IDIV reduce 101
-                          IMOD reduce 101
-                          ILSH reduce 101
-                          IRSH reduce 101
-                          IBND reduce 101
-                          IBOR reduce 101
-                          IBXR reduce 101
-                     {default} reduce 56
-
-State 111:
-     (55) expr ::= expr PERIOD NAME *
-    (102) lvalue ::= expr PERIOD NAME *
+    (102) lvalue ::= expr LSQBRACKET expr RSQBRACKET *
 
                         ASSIGN reduce 102
                          COMMA reduce 102
@@ -5822,6 +5818,24 @@ State 111:
                           IBND reduce 102
                           IBOR reduce 102
                           IBXR reduce 102
+                     {default} reduce 56
+
+State 111:
+     (55) expr ::= expr PERIOD NAME *
+    (103) lvalue ::= expr PERIOD NAME *
+
+                        ASSIGN reduce 103
+                         COMMA reduce 103
+                          IADD reduce 103
+                          ISUB reduce 103
+                          IMUL reduce 103
+                          IDIV reduce 103
+                          IMOD reduce 103
+                          ILSH reduce 103
+                          IRSH reduce 103
+                          IBND reduce 103
+                          IBOR reduce 103
+                          IBXR reduce 103
                      {default} reduce 55
 
 State 112:
@@ -5855,7 +5869,7 @@ State 112:
                      {default} reduce 80
 
 State 113:
-    (103) lvalueList_nonEmpty ::= lvalue *
+    (104) lvalueList_nonEmpty ::= lvalue *
           assign_stmt ::= lvalue * ASSIGN expr
           assign_stmt ::= lvalue * IADD expr
           assign_stmt ::= lvalue * ISUB expr
@@ -5879,7 +5893,7 @@ State 113:
                           IBND shift  43
                           IBOR shift  42
                           IBXR shift  41
-                     {default} reduce 103
+                     {default} reduce 104
 
 State 114:
           expr ::= expr * PERIOD NAME
@@ -6220,12 +6234,12 @@ State 131:
 
 State 132:
           nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
-     (96) vdef_stmt ::= VAR nameList_nonEmpty *
+     (97) vdef_stmt ::= VAR nameList_nonEmpty *
           vdefAssign_global_stmt ::= VAR nameList_nonEmpty * ASSIGN exprList_nonEmpty
 
                         ASSIGN shift  33
                          COMMA shift  204
-                     {default} reduce 96
+                     {default} reduce 97
 
 State 133:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
@@ -6264,12 +6278,12 @@ State 137:
 
 State 138:
           nameList_nonEmpty ::= nameList_nonEmpty * COMMA NAME
-     (96) vdef_stmt ::= VAR nameList_nonEmpty *
+     (97) vdef_stmt ::= VAR nameList_nonEmpty *
           vdefAssign_stmt ::= VAR nameList_nonEmpty * ASSIGN exprList_nonEmpty
 
                         ASSIGN shift  38
                          COMMA shift  204
-                     {default} reduce 96
+                     {default} reduce 97
 
 State 139:
           numList_nonEmpty ::= numList_nonEmpty * COMMA NUMBER
@@ -6296,10 +6310,10 @@ State 141:
 
 State 142:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
-     (98) vdefAssign_global_stmt ::= VAR nameList_nonEmpty ASSIGN exprList_nonEmpty *
+     (99) vdefAssign_global_stmt ::= VAR nameList_nonEmpty ASSIGN exprList_nonEmpty *
 
                          COMMA shift  39
-                     {default} reduce 98
+                     {default} reduce 99
 
 State 143:
           blockStmt ::= lbracket error * RBRACKET
@@ -6333,10 +6347,10 @@ State 148:
 
 State 149:
           for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty * COMMA for_init_stmt_nonEmpty
-    (135) for_init_stmt ::= for_init_stmt_nonEmpty *
+    (136) for_init_stmt ::= for_init_stmt_nonEmpty *
 
                          COMMA shift  12
-                     {default} reduce 135
+                     {default} reduce 136
 
 State 150:
           for_opener ::= FOR * LPAREN
@@ -6355,10 +6369,10 @@ State 152:
 
 State 153:
           elif_start ::= ELSE * IF
-    (123) else_header ::= ELSE *
+    (124) else_header ::= ELSE *
 
                             IF shift  244
-                     {default} reduce 123
+                     {default} reduce 124
 
 State 154:
           if_header ::= if_start * LPAREN lexpr RPAREN
@@ -6367,24 +6381,24 @@ State 154:
 
 State 155:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
-    (106) assign_stmt ::= lvalueList_nonEmpty ASSIGN exprList_nonEmpty *
+    (107) assign_stmt ::= lvalueList_nonEmpty ASSIGN exprList_nonEmpty *
 
                          COMMA shift  39
-                     {default} reduce 106
+                     {default} reduce 107
 
 State 156:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
-     (99) cdef_stmt ::= CONST nameList_nonEmpty ASSIGN exprList_nonEmpty *
+    (100) cdef_stmt ::= CONST nameList_nonEmpty ASSIGN exprList_nonEmpty *
 
                          COMMA shift  39
-                     {default} reduce 99
+                     {default} reduce 100
 
 State 157:
           exprList_nonEmpty ::= exprList_nonEmpty * COMMA exprList_nonEmpty
-     (97) vdefAssign_stmt ::= VAR nameList_nonEmpty ASSIGN exprList_nonEmpty *
+     (98) vdefAssign_stmt ::= VAR nameList_nonEmpty ASSIGN exprList_nonEmpty *
 
                          COMMA shift  39
-                     {default} reduce 97
+                     {default} reduce 98
 
 State 158:
           expr ::= expr PERIOD * NAME
@@ -6421,10 +6435,10 @@ State 163:
 State 164:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
-     (93) lexpr ::= lexpr LOR lexpr *
+     (94) lexpr ::= lexpr LOR lexpr *
 
                           LAND shift  29
-                     {default} reduce 93
+                     {default} reduce 94
 
 State 165:
           lexpr ::= KILLS LPAREN fArgs * RPAREN
@@ -6702,171 +6716,171 @@ State 215:
                      {default} reduce 24
 
 State 216:
-    (125) if_stmt ::= if_block else_header stmt *
-
-                     {default} reduce 125
-
-State 217:
-    (155) actions ::= actions action *
-
-                     {default} reduce 155
-
-State 218:
-    (154) actions ::= action action *
-
-                     {default} reduce 154
-
-State 219:
-    (153) action ::= ACTIONNAME LPAREN fArgs RPAREN SEMICOLON *
-
-                     {default} reduce 153
-
-State 220:
-    (149) return_stmt ::= RETURN exprList *
-
-                     {default} reduce 149
-
-State 221:
-    (148) break_stmt ::= BREAK *
-
-                     {default} reduce 148
-
-State 222:
-    (147) continue_stmt ::= CONTINUE *
-
-                     {default} reduce 147
-
-State 223:
-    (146) foreach_stmt ::= foreach_header stmt *
-
-                     {default} reduce 146
-
-State 224:
-    (145) foreach_header ::= foreach_opener nameList_nonEmpty COLON exprList_nonEmpty RPAREN *
-
-                     {default} reduce 145
-
-State 225:
-    (144) foreach_opener ::= FOREACH LPAREN *
-
-                     {default} reduce 144
-
-State 226:
-    (143) for_stmt ::= for_header stmt *
-
-                     {default} reduce 143
-
-State 227:
-    (142) for_header ::= for_header2 RPAREN *
-
-                     {default} reduce 142
-
-State 228:
-    (141) for_header ::= for_header2 for_action_stmt_nonEmpty RPAREN *
-
-                     {default} reduce 141
-
-State 229:
-          for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty * COMMA for_action_stmt_nonEmpty
-    (138) for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty COMMA for_action_stmt_nonEmpty *
-
-                     {default} reduce 138
-
-State 230:
-    (137) for_action_stmt_nonEmpty ::= assign_stmt *
-
-                     {default} reduce 137
-
-State 231:
-    (140) for_header2 ::= for_header1 lexpr SEMICOLON *
-
-                     {default} reduce 140
-
-State 232:
-    (139) for_header1 ::= for_opener for_init_stmt SEMICOLON *
-
-                     {default} reduce 139
-
-State 233:
-          for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty * COMMA for_init_stmt_nonEmpty
-    (134) for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty COMMA for_init_stmt_nonEmpty *
-
-                     {default} reduce 134
-
-State 234:
-    (133) for_init_stmt_nonEmpty ::= assign_stmt *
-
-                     {default} reduce 133
-
-State 235:
-    (132) for_init_stmt_nonEmpty ::= cdef_stmt *
-
-                     {default} reduce 132
-
-State 236:
-    (131) for_init_stmt_nonEmpty ::= vdefAssign_stmt *
-
-                     {default} reduce 131
-
-State 237:
-    (130) for_init_stmt_nonEmpty ::= vdef_stmt *
-
-                     {default} reduce 130
-
-State 238:
-    (129) for_opener ::= FOR LPAREN *
-
-                     {default} reduce 129
-
-State 239:
-    (128) while_stmt ::= while_header stmt *
-
-                     {default} reduce 128
-
-State 240:
-    (127) while_header ::= while_start LPAREN lexpr RPAREN *
-
-                     {default} reduce 127
-
-State 241:
-    (126) while_start ::= WHILE *
+    (126) if_stmt ::= if_block else_header stmt *
 
                      {default} reduce 126
 
+State 217:
+    (156) actions ::= actions action *
+
+                     {default} reduce 156
+
+State 218:
+    (155) actions ::= action action *
+
+                     {default} reduce 155
+
+State 219:
+    (154) action ::= ACTIONNAME LPAREN fArgs RPAREN SEMICOLON *
+
+                     {default} reduce 154
+
+State 220:
+    (150) return_stmt ::= RETURN exprList *
+
+                     {default} reduce 150
+
+State 221:
+    (149) break_stmt ::= BREAK *
+
+                     {default} reduce 149
+
+State 222:
+    (148) continue_stmt ::= CONTINUE *
+
+                     {default} reduce 148
+
+State 223:
+    (147) foreach_stmt ::= foreach_header stmt *
+
+                     {default} reduce 147
+
+State 224:
+    (146) foreach_header ::= foreach_opener nameList_nonEmpty COLON exprList_nonEmpty RPAREN *
+
+                     {default} reduce 146
+
+State 225:
+    (145) foreach_opener ::= FOREACH LPAREN *
+
+                     {default} reduce 145
+
+State 226:
+    (144) for_stmt ::= for_header stmt *
+
+                     {default} reduce 144
+
+State 227:
+    (143) for_header ::= for_header2 RPAREN *
+
+                     {default} reduce 143
+
+State 228:
+    (142) for_header ::= for_header2 for_action_stmt_nonEmpty RPAREN *
+
+                     {default} reduce 142
+
+State 229:
+          for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty * COMMA for_action_stmt_nonEmpty
+    (139) for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty COMMA for_action_stmt_nonEmpty *
+
+                     {default} reduce 139
+
+State 230:
+    (138) for_action_stmt_nonEmpty ::= assign_stmt *
+
+                     {default} reduce 138
+
+State 231:
+    (141) for_header2 ::= for_header1 lexpr SEMICOLON *
+
+                     {default} reduce 141
+
+State 232:
+    (140) for_header1 ::= for_opener for_init_stmt SEMICOLON *
+
+                     {default} reduce 140
+
+State 233:
+          for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty * COMMA for_init_stmt_nonEmpty
+    (135) for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty COMMA for_init_stmt_nonEmpty *
+
+                     {default} reduce 135
+
+State 234:
+    (134) for_init_stmt_nonEmpty ::= assign_stmt *
+
+                     {default} reduce 134
+
+State 235:
+    (133) for_init_stmt_nonEmpty ::= cdef_stmt *
+
+                     {default} reduce 133
+
+State 236:
+    (132) for_init_stmt_nonEmpty ::= vdefAssign_stmt *
+
+                     {default} reduce 132
+
+State 237:
+    (131) for_init_stmt_nonEmpty ::= vdef_stmt *
+
+                     {default} reduce 131
+
+State 238:
+    (130) for_opener ::= FOR LPAREN *
+
+                     {default} reduce 130
+
+State 239:
+    (129) while_stmt ::= while_header stmt *
+
+                     {default} reduce 129
+
+State 240:
+    (128) while_header ::= while_start LPAREN lexpr RPAREN *
+
+                     {default} reduce 128
+
+State 241:
+    (127) while_start ::= WHILE *
+
+                     {default} reduce 127
+
 State 242:
-    (122) if_block ::= if_block elif_header stmt *
+    (123) if_block ::= if_block elif_header stmt *
+
+                     {default} reduce 123
+
+State 243:
+    (122) elif_header ::= elif_start LPAREN lexpr RPAREN *
 
                      {default} reduce 122
 
-State 243:
-    (121) elif_header ::= elif_start LPAREN lexpr RPAREN *
+State 244:
+    (121) elif_start ::= ELSE IF *
 
                      {default} reduce 121
 
-State 244:
-    (120) elif_start ::= ELSE IF *
+State 245:
+    (120) if_block ::= if_header stmt *
 
                      {default} reduce 120
 
-State 245:
-    (119) if_block ::= if_header stmt *
+State 246:
+    (119) if_header ::= if_start LPAREN lexpr RPAREN *
 
                      {default} reduce 119
 
-State 246:
-    (118) if_header ::= if_start LPAREN lexpr RPAREN *
+State 247:
+    (118) if_start ::= IF *
 
                      {default} reduce 118
 
-State 247:
-    (117) if_start ::= IF *
-
-                     {default} reduce 117
-
 State 248:
-    (104) lvalueList_nonEmpty ::= lvalueList_nonEmpty COMMA lvalue *
+    (105) lvalueList_nonEmpty ::= lvalueList_nonEmpty COMMA lvalue *
 
-                     {default} reduce 104
+                     {default} reduce 105
 
 State 249:
      (62) funcexpr ::= NAME LPAREN fArgs RPAREN *
@@ -6889,46 +6903,46 @@ State 252:
                      {default} reduce 67
 
 State 253:
-    (152) lexpr ::= CONDITIONNAME LPAREN RPAREN *
+    (153) lexpr ::= CONDITIONNAME LPAREN RPAREN *
 
-                     {default} reduce 152
+                     {default} reduce 153
 
 State 254:
-    (150) lexpr ::= CONDITIONNAME LPAREN fArgs RPAREN *
+    (151) lexpr ::= CONDITIONNAME LPAREN fArgs RPAREN *
 
-                     {default} reduce 150
+                     {default} reduce 151
 
 State 255:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
-     (94) lexpr ::= LNOT lexpr *
-     (95) lexpr ::= LNOT LNOT lexpr *
+     (95) lexpr ::= LNOT lexpr *
+     (96) lexpr ::= LNOT LNOT lexpr *
 
-                     {default} reduce 95
+                     {default} reduce 96
 
 State 256:
           lexpr ::= lexpr * LAND lexpr
           lexpr ::= lexpr * LOR lexpr
-     (94) lexpr ::= LNOT lexpr *
+     (95) lexpr ::= LNOT lexpr *
 
-                     {default} reduce 94
+                     {default} reduce 95
 
 State 257:
           lexpr ::= lexpr * LAND lexpr
-     (92) lexpr ::= lexpr LAND lexpr *
+     (93) lexpr ::= lexpr LAND lexpr *
           lexpr ::= lexpr * LOR lexpr
 
-                     {default} reduce 92
+                     {default} reduce 93
 
 State 258:
-     (91) lexpr ::= LPAREN lexpr RPAREN *
+     (86) lexpr ::= LPAREN lexpr RPAREN *
 
-                     {default} reduce 91
+                     {default} reduce 86
 
 State 259:
-    (151) lexpr ::= KILLS LPAREN fArgs RPAREN *
+    (152) lexpr ::= KILLS LPAREN fArgs RPAREN *
 
-                     {default} reduce 151
+                     {default} reduce 152
 
 State 260:
      (71) expr ::= LOCATION LPAREN STRING RPAREN *
