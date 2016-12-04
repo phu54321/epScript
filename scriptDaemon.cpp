@@ -7,6 +7,9 @@
 #include <dirent.h>
 #include "parser/parser.h"
 
+#ifdef _WIN32
+#include <windows.h>
+#endif
 
 std::string getFile(const std::string& fname);
 
@@ -52,6 +55,13 @@ int daemonTurn(void) {
                             std::ofstream of(ofname);
                             of << out.c_str();
                             of.close();
+#ifdef _WIN32
+                            if(getParseErrorNum() != 0) {
+                                printf("See debugging info\n");
+                                SetActiveWindow(GetConsoleWindow());
+                                MessageBeep(MB_ICONHAND);
+                            }
+#endif
                         } catch(std::runtime_error e) {
                             printf("Error occured : %s\n", e.what());
                         }

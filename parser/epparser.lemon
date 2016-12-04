@@ -146,6 +146,7 @@ blockStmt ::= lbracket bodyStmtList rbracket.
 blockStmt ::= lbracket bodyStmtList return_stmt SEMICOLON rbracket.
 blockStmt ::= lbracket error RBRACKET(X). {
     throw_error(6298, "Block not terminated properly.", X->line);
+    ps->gen << "pass" << std::endl;
     ps->closure.popScope();
     delete X;
 }
@@ -166,6 +167,11 @@ bodyStmt ::= continue_stmt SEMICOLON.
 bodyStmt ::= break_stmt SEMICOLON.
 
 // bodyStmtList should not contain empty list. See (1)
+bodyStmtList ::= error. {
+    throw_error(8510, "Incomplete statement");
+    ps->gen << "pass" << std::endl;
+}
+
 bodyStmtList ::= bodyStmt.
 bodyStmtList ::= bodyStmtList bodyStmt.
 bodyStmtList ::= bodyStmtList error. {
@@ -226,11 +232,18 @@ expr(A)::= expr(B) LSQBRACKET expr(C) RSQBRACKET. {
 // Function calls
 fArgs_nonEmpty(A) ::= expr(B). { A = B; }
 fArgs_nonEmpty(A) ::= STRING(B). { A = B; }
+fArgs_nonEmpty(A) ::= NAME(B) ASSIGN expr(C). {  // Keyword argument
+    C->data = B->data + "=" + C->data;
+    C->type = TOKEN_TEMP;
+    A = C;
+    delete B;
+}
+
 fArgs_nonEmpty(A) ::= fArgs_nonEmpty(B) COMMA fArgs_nonEmpty(C). {
-    B->data = B->data + ", " + C->data;
-    B->type = TOKEN_TEMP;
-    A = B;
-    delete C;
+    C->data = B->data + ", " + C->data;
+    C->type = TOKEN_TEMP;
+    A = C;
+    delete B;
 }
 
 fArgs(A) ::= . { A = genEmpty(); }

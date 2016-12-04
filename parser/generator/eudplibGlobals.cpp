@@ -86,7 +86,7 @@ std::unordered_set<std::string> builtinConstSet = {
         "Patrol", "Player1", "Player10", "Player11", "Player12", "Player2",
         "Player3", "Player4", "Player5", "Player6", "Player7", "Player8",
         "Player9", "Random", "Razings", "Set", "SetTo", "Subtract", "Toggle",
-        "Total", "Units", "UnitsAndBuildings", "Kills"
+        "Total", "Units", "UnitsAndBuildings", "Kills", "True", "False"
 };
 
 bool isBuiltinFunc(const std::string& name) {
