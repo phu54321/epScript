@@ -73,19 +73,26 @@ chunk ::= blockStmt. {
 
 // Import_chunk
 
-import_chunk ::= IMPORT NAME(A) AS NAME(B). {
+dottedName(A) ::= NAME(B). { A = B; }
+dottedName(A) ::= dottedName(B) PERIOD NAME(C). {
+    C->data = B->data + "." + C->data;
+    delete B;
+    A = C;
+}
+
+import_chunk ::= IMPORT dottedName(A) AS NAME(B). {
     if(!ps->closure.defModule(B->data)) {
         throw_error(6754, "Importing already-declared module " + B->data, B->line);
     }
-    ps->gen << "import _" << A->data << " as " << B->data << std::endl;
+    ps->gen << "import " << impPathProcess(A->data) << " as " << B->data << std::endl;
     delete A; delete B;
 }
 
-import_chunk ::= IMPORT NAME(A). {
+import_chunk ::= IMPORT dottedName(A). {
     if(!ps->closure.defModule(A->data)) {
         throw_error(6754, "Importing already-declared module " + A->data, A->line);
     }
-    ps->gen << "import _" << A->data << " as " << A->data << std::endl;
+    ps->gen << "import " << impPathProcess(A->data) << " as " << A->data << std::endl;
     delete A;
 }
 

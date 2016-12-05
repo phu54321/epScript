@@ -58,6 +58,19 @@ void funcNamePreprocess(std::string& s) {
     else s = "f_" + s;
 }
 
+std::string impPathProcess(const std::string& s) {
+    auto lastDot = s.find_last_of('.');
+    std::string path, modname;
+    if(lastDot == std::string::npos) modname = s;
+    else {
+        path = s.substr(0, lastDot + 1);
+        modname = s.substr(lastDot + 1);
+    }
+    if(strncmp(modname.c_str(), "_", 1) != 0) {
+        modname = "_" + modname;
+    }
+    return path + modname;
+}
 
 ////
 
