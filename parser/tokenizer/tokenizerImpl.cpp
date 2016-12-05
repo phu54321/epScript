@@ -199,6 +199,8 @@ Token* TokenizerImpl::getToken() {
     }
 
     // Inplace operators
+    MATCHSTR("++", TOKEN_INC);
+    MATCHSTR("--", TOKEN_DEC);
     MATCHSTR("+=", TOKEN_IADD);
     MATCHSTR("-=", TOKEN_ISUB);
     MATCHSTR("*=", TOKEN_IMUL);

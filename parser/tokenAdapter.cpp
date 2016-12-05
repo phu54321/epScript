@@ -37,6 +37,8 @@ int getConvertedType(int type) {
 
         // Assign operators
         case TOKEN_ASSIGN: return ASSIGN;
+        case TOKEN_INC: return INC;
+        case TOKEN_DEC: return DEC;
         case TOKEN_IADD: return IADD;
         case TOKEN_ISUB: return ISUB;
         case TOKEN_IMUL: return IMUL;

@@ -494,6 +494,10 @@ assign_stmt ::= lvalueList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
 // Never use something like "+=" here! They may corrupt python namespaces!
 // Assignment like += alters python namespaces (Makes thing local), so they should not be used
 // when accessing global variables. Here we just call plain inplace operator functions.
+assign_stmt ::= INC expr(A). [ASSIGN] { ps->gen << A->data << ".__iadd__(1)" << std::endl; delete A; }
+assign_stmt ::= expr(A) INC. [ASSIGN] { ps->gen << A->data << ".__iadd__(1)" << std::endl; delete A; }
+assign_stmt ::= DEC expr(A). [ASSIGN] { ps->gen << A->data << ".__isub__(1)" << std::endl; delete A; }
+assign_stmt ::= expr(A) DEC. [ASSIGN] { ps->gen << A->data << ".__isub__(1)" << std::endl; delete A; }
 assign_stmt ::= lvalue(A) IADD expr(B). [ASSIGN] { ps->gen << A->data << ".__iadd__("       << B->data << ")" << std::endl; delete A; delete B; }
 assign_stmt ::= lvalue(A) ISUB expr(B). [ASSIGN] { ps->gen << A->data << ".__isub__("       << B->data << ")" << std::endl; delete A; delete B; }
 assign_stmt ::= lvalue(A) IMUL expr(B). [ASSIGN] { ps->gen << A->data << ".__imul__("       << B->data << ")" << std::endl; delete A; delete B; }
