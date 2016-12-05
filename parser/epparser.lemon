@@ -89,10 +89,11 @@ import_chunk ::= IMPORT dottedName(A) AS NAME(B). {
 }
 
 import_chunk ::= IMPORT dottedName(A). {
-    if(!ps->closure.defModule(A->data)) {
-        throw_error(6754, "Importing already-declared module " + A->data, A->line);
+    std::string modname = impPathGetModule(A->data);
+    if(!ps->closure.defModule(modname)) {
+        throw_error(6754, "Importing already-declared module " + modname, A->line);
     }
-    ps->gen << "import " << impPathProcess(A->data) << " as " << A->data << std::endl;
+    ps->gen << "import " << impPathProcess(A->data) << " as " << modname << std::endl;
     delete A;
 }
 
@@ -367,6 +368,7 @@ lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
     A = mkTokenTemp(B);
 }
 
+// OR operation is very costly, so we make some deliberate choice!
 lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
     B->data = "EUDOr(" + B->data + ", " + C->data + ")";
     delete C;

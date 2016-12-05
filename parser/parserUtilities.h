@@ -38,6 +38,8 @@ std::string trim(std::string s);
 std::string iwCollapse(const std::string& in);
 void funcNamePreprocess(std::string& s);
 std::string impPathProcess(const std::string& s);
+std::string impPathGetModule(const std::string& s);
+
 std::string addStubCode(const std::string& s);
 
 #endif //EPSCRIPT_PARSERUTILITIES_H

@@ -72,6 +72,15 @@ std::string impPathProcess(const std::string& s) {
     else return path + "_epspy." + modname;
 }
 
+std::string impPathGetModule(const std::string& s) {
+    auto lastDot = s.find_last_of('.');
+    std::string modname;
+    if(lastDot == std::string::npos) modname = s;
+    else modname = s.substr(lastDot + 1);
+    if(strncmp(modname.c_str(), "py_", 3) == 0) return modname.substr(3);
+    else return modname;
+}
+
 ////
 
 
