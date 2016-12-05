@@ -92,4 +92,15 @@ Token* commaConcat(Token* a, Token* b) {
     return b;
 }
 
+std::string flatListGetter(const Token* t, TokenType astType) {
+    if(t->type == astType) {
+        return (
+                flatListGetter(t->subToken[0], astType) +
+                ", " +
+                flatListGetter(t->subToken[1], astType)
+        );
+    }
+    else return t->data;
+}
+
 ////

@@ -363,16 +363,26 @@ lexpr(A) ::= expr(B) GT expr(C).   { A = binopConcat(B, ">" , C); }
 
 
 lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
-    B->data = "[" + B->data + ", " + C->data + "]";
-    delete C;
-    A = mkTokenTemp(B);
+    A = genEmpty();
+    A->line = C->line;
+
+    // Generate data!
+    A->type = TOKEN_AST_LEXPR_AND;
+    A->subToken[0] = B;
+    A->subToken[1] = C;
+    A->data = "[" + flatListGetter(A, TOKEN_AST_LEXPR_AND) + "]";
 }
 
 // OR operation is very costly, so we make some deliberate choice!
 lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
-    B->data = "EUDOr(" + B->data + ", " + C->data + ")";
-    delete C;
-    A = mkTokenTemp(B);
+    A = genEmpty();
+    A->line = C->line;
+
+    // Generate data!
+    A->type = TOKEN_AST_LEXPR_OR;
+    A->subToken[0] = B;
+    A->subToken[1] = C;
+    A->data = "EUDOr(" + flatListGetter(A, TOKEN_AST_LEXPR_OR) + ")";
 }
 
 lexpr(A) ::= LNOT lexpr(B).  {

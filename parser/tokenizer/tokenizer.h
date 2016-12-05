@@ -13,6 +13,10 @@ enum TokenType {
     TOKEN_INVALID,
     TOKEN_TEMP,
 
+    // AST construct
+    TOKEN_AST_LEXPR_OR,
+    TOKEN_AST_LEXPR_AND,
+
     // Keywords
     TOKEN_IMPORT,
     TOKEN_AS,
@@ -91,6 +95,8 @@ enum TokenType {
     TOKEN_SEMICOLON,
 };
 
+const int MAX_SUBTOKEN_NUM = 5;
+
 struct Token {
     Token(const std::string& data, Token* lineSrc)
             : type(TOKEN_TEMP), data(data), line(lineSrc->line) {}
@@ -98,9 +104,13 @@ struct Token {
             : type(type), line(line) {}
     Token(TokenType type, const std::string& data, int line)
             : type(type), data(data), line(line) {}
+    ~Token() {
+        for(Token* st : subToken) delete st;
+    }
     int type;
     std::string data;
     int line;
+    Token* subToken[MAX_SUBTOKEN_NUM] = {nullptr,};
 };
 
 

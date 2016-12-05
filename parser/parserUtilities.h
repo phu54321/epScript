@@ -27,6 +27,7 @@ Token* genTemp(Token* lineSrc);
 Token* mkTokenTemp(Token* a);
 Token* commaConcat(Token* a, Token* b);
 Token* binopConcat(Token* a, const std::string& opstr, Token* b);
+std::string flatListGetter(const Token* t, TokenType astType);
 
 void commaListIter(std::string& s, std::function<void(std::string&)> func);
 void throw_error(int code, const std::string& message, int line = -1);
@@ -39,7 +40,6 @@ std::string iwCollapse(const std::string& in);
 void funcNamePreprocess(std::string& s);
 std::string impPathProcess(const std::string& s);
 std::string impPathGetModule(const std::string& s);
-
 std::string addStubCode(const std::string& s);
 
 #endif //EPSCRIPT_PARSERUTILITIES_H

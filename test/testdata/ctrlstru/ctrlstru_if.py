@@ -1,7 +1,10 @@
 @EUDFunc
 def f_x():
-    if EUDIf()(EUDOr([1 == 2, [2 + 3 == 5, 7 == 8]])):
+    if EUDIf()(EUDOr(1 == 2, [2 + 3 == 5, 7 == 8])):
         EUDReturn(3)
+    EUDEndIf()
+    if EUDIf()(EUDOr(Always(), Never(), Always())):
+        EUDReturn(5)
     EUDEndIf()
 
 @EUDFunc
