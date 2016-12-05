@@ -298,7 +298,7 @@ expr(A) ::= LSQBRACKET exprList(B) RSQBRACKET. {
 
 expr(A) ::= L2V LPAREN lexpr(B) RPAREN. {
     B->data = "_L2V(" + B->data + ")";
-    A = genTemp(B);
+    A = mkTokenTemp(B);
 }
 
 expr(A) ::= MAPSTRING LPAREN STRING(B) RPAREN. {
@@ -334,9 +334,9 @@ expr(A) ::= expr(B) BITOR       expr(C). { A = binopConcat(B, "|",  C); }
 expr(A) ::= expr(B) BITXOR      expr(C). { A = binopConcat(B, "^",  C); }
 
 // Unary operators
-expr(A) ::= PLUS    expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = +" << B->data << std::endl; delete B; }
-expr(A) ::= MINUS   expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = -" << B->data << std::endl; delete B; }
-expr(A) ::= BITNOT  expr(B). [UNARY] { A = genTemp(B); ps->gen << A->data << " = ~" << B->data << std::endl; delete B; }
+expr(A) ::= PLUS    expr(B). [UNARY] { B->data = "+" + B->data; A = mkTokenTemp(B); }
+expr(A) ::= MINUS   expr(B). [UNARY] { B->data = "-" + B->data; A = mkTokenTemp(B); }
+expr(A) ::= BITNOT  expr(B). [UNARY] { B->data = "~" + B->data; A = mkTokenTemp(B); }
 
 
 // Logical expressions
@@ -361,7 +361,7 @@ lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
 }
 
 lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
-    B->data = "EUDOr([" + B->data + ", " + C->data + "])";
+    B->data = "EUDOr(" + B->data + ", " + C->data + ")";
     delete C;
     A = mkTokenTemp(B);
 }
@@ -728,12 +728,16 @@ actions(A) ::= actions(B) action(C). {
     functionCalledInMultipleActions = false;
 }
 
-actionStmt ::= action(X). {
+actionStmt_start ::= . {
+    functionCalledInMultipleActions = false;
+}
+
+actionStmt ::= actionStmt_start action(X). {
     ps->gen << "DoActions(" << X->data << ")" << std::endl;
     delete X;
 }
 
-actionStmt ::= actions(X). {
+actionStmt ::= actionStmt_start actions(X). {
     ps->gen << "DoActions([" << std::endl;
     ps->gen.indent();
     ps->gen << X->data << std::endl;
