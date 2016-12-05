@@ -59,6 +59,8 @@ void funcNamePreprocess(std::string& s) {
 }
 
 std::string impPathProcess(const std::string& s) {
+    // Escape! Import python module
+
     auto lastDot = s.find_last_of('.');
     std::string path, modname;
     if(lastDot == std::string::npos) modname = s;
@@ -66,10 +68,8 @@ std::string impPathProcess(const std::string& s) {
         path = s.substr(0, lastDot + 1);
         modname = s.substr(lastDot + 1);
     }
-    if(strncmp(modname.c_str(), "_", 1) != 0) {
-        modname = "_" + modname;
-    }
-    return path + modname;
+    if(strncmp(modname.c_str(), "py_", 3) == 0) return path + modname.substr(3);
+    else return path + "_epspy." + modname;
 }
 
 ////

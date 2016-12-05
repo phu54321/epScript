@@ -70,8 +70,14 @@ int main(int argc, char** argv) {
 
             // Add _ prefix
             auto dirs = ofname.find_last_of("\\/");
-            if(dirs != std::string::npos) ofname = ofname.substr(0, dirs) + "/_" + ofname.substr(dirs + 1);
-            else ofname = "_" + ofname;
+            if(dirs != std::string::npos) {
+                mkdir((ofname.substr(0, dirs) + "/_epspy/").c_str());
+                ofname = ofname.substr(0, dirs) + "/_epspy/" + ofname.substr(dirs + 1);
+            }
+            else {
+                mkdir("_epspy");
+                ofname = "_epspy/" + ofname;
+            }
         }
         try {
             std::string code = getFile(ifname);

@@ -30,11 +30,7 @@ int daemonTurn(void) {
             else {
                 std::string ifname = ep->d_name;
                 if(ifname.size() > 4 && ifname.substr(ifname.size() - 4) == ".eps") { // Possible script file
-                    std::string ofname = ifname.substr(0, ifname.size() - 4) + ".py";
-                    auto dirs = ofname.find_last_of("\\/");
-                    if(dirs != std::string::npos) ofname = ofname.substr(0, dirs) + "/_" + ofname.substr(dirs + 1);
-                    else ofname = "_" + ofname;
-
+                    std::string ofname = "_epspy/" + ifname.substr(0, ifname.size() - 4) + ".py";
 
                     // Check if update is needed
                     bool needUpdating = false;
@@ -52,6 +48,7 @@ int daemonTurn(void) {
                         try {
                             std::string code = getFile(ifname);
                             out = addStubCode(ParseString(code));
+                            mkdir("_epspy");
                             std::ofstream of(ofname);
                             of << out.c_str();
                             of.close();
