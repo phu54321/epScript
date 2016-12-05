@@ -11,6 +11,7 @@
 #include <windows.h>
 #endif
 
+bool forceUpdate = false;
 std::string getFile(const std::string& fname);
 
 int daemonTurn(void) {
@@ -34,7 +35,8 @@ int daemonTurn(void) {
 
                     // Check if update is needed
                     bool needUpdating = false;
-                    if(access(ofname.c_str(), F_OK) == -1) needUpdating = true;
+                    if(forceUpdate) needUpdating = true;
+                    else if(access(ofname.c_str(), F_OK) == -1) needUpdating = true;
                     else {
                         struct stat istat, ostat;
                         stat(ifname.c_str(), &istat);
@@ -73,9 +75,11 @@ int daemonTurn(void) {
 
 int runDaemon(void) {
     printf("Using daemon mode...\n");
+    forceUpdate = true;
     while(1) {
         daemonTurn();
         sleep(1);
+        forceUpdate = false;
     }
     return 0;
 }
