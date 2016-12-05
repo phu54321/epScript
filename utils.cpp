@@ -20,6 +20,8 @@ std::string getFile(const std::string& fname) {
         if(feof(fp)) break;
         fdata.push_back(ch);
     }
+
+    fclose(fp);
     return std::string(fdata.begin(), fdata.end());
 }
 
