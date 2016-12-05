@@ -35,6 +35,7 @@ int resetParserErrorNum();
 ////
 
 // trim from start
+void writeNegatableCondition(Token* csOpener, Token* lexpr);
 std::string trim(std::string s);
 std::string iwCollapse(const std::string& in);
 void funcNamePreprocess(std::string& s);

@@ -386,12 +386,19 @@ lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
 }
 
 lexpr(A) ::= LNOT lexpr(B).  {
-    B->data = "EUDNot([" + B->data + "])";
-    A = mkTokenTemp(B);
+    if(B->type == TOKEN_AST_LEXPR_NOT) {
+        A = B->subToken[0];
+        B->subToken[0] = nullptr;
+        delete B;
+    }
+    else {
+        A = genEmpty();
+        A->line = B->line;
+        A->type = TOKEN_AST_LEXPR_NOT;
+        A->data = "EUDNot([" + B->data + "])";
+        A->subToken[0] = B;
+    }
 }
-
-lexpr(A) ::= LNOT LNOT lexpr(B).  [DOUBLE_LNOT] { A = B; }
-
 
 
 // Statements
@@ -535,7 +542,7 @@ if_start(A) ::= IF(B). {
 }
 
 if_header ::= if_start(A) LPAREN lexpr(B) RPAREN. {
-    ps->gen << "if " << A->data << "(" << B->data << "):" << std::endl;
+    writeNegatableCondition(A, B);
     ps->gen.indent();
     delete A; delete B;
 }
@@ -549,8 +556,9 @@ elif_start(A) ::= ELSE IF(B). {
 }
 
 elif_header ::= elif_start(A) LPAREN lexpr(B) RPAREN. {
-    ps->gen << "if " << A->data << "(" << B->data <<"):" << std::endl;
+    writeNegatableCondition(A, B);
     ps->gen.indent();
+    delete A; delete B;
 }
 
 if_block ::= if_block elif_header stmt.
@@ -580,7 +588,7 @@ while_start(A) ::= WHILE(B). {
 }
 
 while_header ::= while_start(A) LPAREN lexpr(B) RPAREN. {
-    ps->gen << "if " << A->data << "(" << B->data << "):" << std::endl;
+    writeNegatableCondition(A, B);
     ps->gen.indent();
     delete A; delete B;
 }
@@ -615,7 +623,7 @@ for_header1(A) ::= for_opener for_init_stmt SEMICOLON(B). {
 }
 
 for_header2(X)::= for_header1(A) lexpr(B) SEMICOLON. {
-    ps->gen << "if " << A->data << "(" << B->data << "):" << std::endl;
+    writeNegatableCondition(A, B);
     ps->gen.indent();
     delete A; delete B;
 

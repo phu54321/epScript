@@ -35,6 +35,16 @@ int getParseErrorNum() {
 
 ////
 
+void writeNegatableCondition(Token* csOpener, Token* lexpr) {
+    if(lexpr->type == TOKEN_AST_LEXPR_NOT) {
+        (*pGen) << "if " << csOpener->data << "(" << lexpr->subToken[0]->data << ", neg=True):" << std::endl;
+    }
+    else {
+        (*pGen) << "if " << csOpener->data << "(" << lexpr->data << "):" << std::endl;
+    }
+}
+
+
 void commaListIter(std::string& s, std::function<void(std::string&)> func) {
     bool isFirst = true;
     std::string out;

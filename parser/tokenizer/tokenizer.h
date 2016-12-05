@@ -16,6 +16,7 @@ enum TokenType {
     // AST construct
     TOKEN_AST_LEXPR_OR,
     TOKEN_AST_LEXPR_AND,
+    TOKEN_AST_LEXPR_NOT,
 
     // Keywords
     TOKEN_IMPORT,

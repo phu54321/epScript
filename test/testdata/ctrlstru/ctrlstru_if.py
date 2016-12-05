@@ -6,13 +6,13 @@ def f_x():
     if EUDIf()(EUDOr(Always(), Never(), Always())):
         EUDReturn(5)
     EUDEndIf()
-
-@EUDFunc
-def f_y():
     if EUDIf()(1 == 2):
         EUDReturn(3)
     if EUDElseIf()(4 == 5):
         EUDReturn(6)
     if EUDElse()():
         EUDReturn(7)
+    EUDEndIf()
+    if EUDIf()(Always(), neg=True):
+        EUDReturn(1)
     EUDEndIf()
