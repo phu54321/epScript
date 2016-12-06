@@ -81,19 +81,28 @@ dottedName(A) ::= dottedName(B) PERIOD NAME(C). {
 }
 
 import_chunk ::= IMPORT dottedName(A) AS NAME(B). {
+    std::string impPath, impModname;
+    impPathProcess(A->data, impPath, impModname);
+
     if(!ps->closure.defModule(B->data)) {
         throw_error(6754, "Importing already-declared module " + B->data, B->line);
     }
-    ps->gen << "import " << impPathProcess(A->data) << " as " << B->data << std::endl;
+
+    if(!impPath.empty()) ps->gen << "from " << impPath << " ";
+    ps->gen << "import " << impModname << " as " << B->data << std::endl;
     delete A; delete B;
 }
 
 import_chunk ::= IMPORT dottedName(A). {
-    std::string modname = impPathGetModule(A->data);
-    if(!ps->closure.defModule(modname)) {
-        throw_error(6754, "Importing already-declared module " + modname, A->line);
+    std::string impPath, impModname;
+    impPathProcess(A->data, impPath, impModname);
+
+    if(!ps->closure.defModule(impModname)) {
+        throw_error(6754, "Importing already-declared module " + impModname, A->line);
     }
-    ps->gen << "import " << impPathProcess(A->data) << " as " << modname << std::endl;
+
+    if(!impPath.empty()) ps->gen << "from " << impPath << " ";
+    ps->gen << "import " << impModname << std::endl;
     delete A;
 }
 
