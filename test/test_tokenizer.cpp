@@ -99,6 +99,35 @@ TEST_CASE("Tokenizing numbers") {
             REQUIRE(tok.getToken() == nullptr);
 }
 
+
+TEST_CASE("Tokenizing strings") {
+    std::string test_input("\"test\\n\"\'test\'\'test\\\ntest2\'");
+    Tokenizer tok(test_input);
+            REQUIRE(tok.getToken()->data == "\"test\\n\"");
+            REQUIRE(tok.getToken()->data == "\'test\'");
+            REQUIRE(tok.getToken()->data == "\'testtest2\'");
+            REQUIRE(tok.getToken() == nullptr);
+}
+
+auto k =
+"DisplayText('\\\n"
+"<13><03>===========================\\n\\\n"
+"<13><04><< Game over >>\\n\\\n"
+"<13><05>Defeat();\\n\\\n"
+"<13><03>===========================\\n\\\n"
+"')";
+
+TEST_CASE("Tokenizing strings") {
+    std::string test_input(k);
+    Tokenizer tok(test_input);
+            REQUIRE(tok.getToken()->data == "DisplayText");
+            REQUIRE(tok.getToken()->data == "(");
+            REQUIRE(tok.getToken()->data == "'<13><03>===========================\\n<13><04><< Game over >>\\n<13><05>Defeat();\\n<13><03>===========================\\n'");
+            REQUIRE(tok.getToken()->data == ")");
+            REQUIRE(tok.getToken() == nullptr);
+}
+
+
 TEST_CASE("Brackets") {
     std::string test_input(
             "a { \n"

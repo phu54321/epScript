@@ -86,11 +86,11 @@ ClosureManagerImpl::~ClosureManagerImpl() {}
 
 
 bool ClosureManagerImpl::defFunction(std::string &name) {
-    return defTableValue(name, TABLE_FUNC);
+    return defTableValue(name, TABLE_CONST | TABLE_FUNC);
 }
 
 bool ClosureManagerImpl::declareFunction(std::string &name){
-    return defTableValue(name, TABLE_FUNC | TABLE_DECLONLY);
+    return defTableValue(name, TABLE_CONST | TABLE_FUNC | TABLE_DECLONLY);
 }
 
 bool ClosureManagerImpl::defVariable(std::string &name) {

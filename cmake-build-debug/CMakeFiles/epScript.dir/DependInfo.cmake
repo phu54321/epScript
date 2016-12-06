@@ -4,24 +4,24 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "C:/gitclones/epScript/main.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/main.cpp.obj"
-  "C:/gitclones/epScript/parser/epparser.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/epparser.cpp.obj"
-  "C:/gitclones/epScript/parser/generator/closure.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/closure.cpp.obj"
-  "C:/gitclones/epScript/parser/generator/eudplibGlobals.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.obj"
-  "C:/gitclones/epScript/parser/generator/pygen.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/pygen.cpp.obj"
-  "C:/gitclones/epScript/parser/parserUtils.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/parserUtils.cpp.obj"
-  "C:/gitclones/epScript/parser/parserUtilsTokens.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.obj"
-  "C:/gitclones/epScript/parser/reservedWords/condact.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.obj"
-  "C:/gitclones/epScript/parser/reservedWords/constparser.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.obj"
-  "C:/gitclones/epScript/parser/tokenAdapter.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.obj"
-  "C:/gitclones/epScript/parser/tokenizer/tokChars.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.obj"
-  "C:/gitclones/epScript/parser/tokenizer/tokIndent.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.obj"
-  "C:/gitclones/epScript/parser/tokenizer/tokenizer.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokenizer.cpp.obj"
-  "C:/gitclones/epScript/parser/tokenizer/tokenizerImpl.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.obj"
-  "C:/gitclones/epScript/scriptDaemon.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/scriptDaemon.cpp.obj"
-  "C:/gitclones/epScript/utils.cpp" "C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir/utils.cpp.obj"
+  "/Users/whyask37/ClionProjects/epScript/main.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/main.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/epparser.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/epparser.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/generator/closure.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/closure.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/generator/eudplibGlobals.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/eudplibGlobals.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/generator/pygen.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/generator/pygen.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/parserUtils.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/parserUtils.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/parserUtilsTokens.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/parserUtilsTokens.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/reservedWords/condact.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/reservedWords/condact.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/reservedWords/constparser.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/reservedWords/constparser.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenAdapter.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenAdapter.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokChars.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokChars.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokIndent.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokIndent.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizer.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokenizer.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/parser/tokenizer/tokenizerImpl.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/parser/tokenizer/tokenizerImpl.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/scriptDaemon.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/scriptDaemon.cpp.o"
+  "/Users/whyask37/ClionProjects/epScript/utils.cpp" "/Users/whyask37/ClionProjects/epScript/cmake-build-debug/CMakeFiles/epScript.dir/utils.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
@@ -29,7 +29,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
 
 # Pairs of files generated by the same build rule.
 set(CMAKE_MULTIPLE_OUTPUT_PAIRS
-  "C:/gitclones/epScript/parser/epparser.h" "C:/gitclones/epScript/parser/epparser.cpp"
+  "/Users/whyask37/ClionProjects/epScript/parser/epparser.h" "/Users/whyask37/ClionProjects/epScript/parser/epparser.cpp"
   )
 
 

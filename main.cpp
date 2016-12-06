@@ -4,6 +4,8 @@
 #include "parser/parser.h"
 #include "utils.h"
 #include <unistd.h>
+#include <sys/stat.h>
+#include <dirent.h>
 
 #define VERSION "v0.2"
 
@@ -71,11 +73,11 @@ int main(int argc, char** argv) {
             // Add _ prefix
             auto dirs = ofname.find_last_of("\\/");
             if(dirs != std::string::npos) {
-                mkdir((ofname.substr(0, dirs) + "/_epspy/").c_str());
+                mkdir((ofname.substr(0, dirs) + "/_epspy/").c_str(), 0777);
                 ofname = ofname.substr(0, dirs) + "/_epspy/" + ofname.substr(dirs + 1);
             }
             else {
-                mkdir("_epspy");
+                mkdir("_epspy", 0777);
                 ofname = "_epspy/" + ofname;
             }
         }
