@@ -63,14 +63,14 @@ void commaListIter(std::string& s, std::function<void(std::string&)> func) {
 }
 
 void funcNamePreprocess(std::string& s) {
-    if(isBuiltinFunc(s)) return;  // Some builtin function don't have f_ prefixes. (b2i4) Pass them as-is
-    if(s[0] == '_' || ('A' <= s[0] && s[0] <= 'Z')) return;  // Name starts with uppercase -> Don't modify
+    if(strncmp(s.c_str(), "py_", 3) == 0) return; // Builtin function?
+    else if(isBuiltinFunc(s)) return;  // Some builtin function don't have f_ prefixes. (b2i4) Pass them as-is
+    else if(s[0] == '_' || ('A' <= s[0] && s[0] <= 'Z')) return;  // Name starts with uppercase -> Don't modify
     else s = "f_" + s;
 }
 
 void impPathProcess(const std::string& s, std::string& impPath, std::string& impModname) {
-    // Escape! Import python module
-
+    // Preprocess python module.
     auto lastDot = s.find_last_of('.');
     std::string path, modname;
     if(lastDot == std::string::npos) {
@@ -89,15 +89,6 @@ void impPathProcess(const std::string& s, std::string& impPath, std::string& imp
         else impPath = path + "._epspy";
         impModname = modname;
     }
-}
-
-std::string impPathGetModule(const std::string& s) {
-    auto lastDot = s.find_last_of('.');
-    std::string modname;
-    if(lastDot == std::string::npos) modname = s;
-    else modname = s.substr(lastDot + 1);
-    if(strncmp(modname.c_str(), "py_", 3) == 0) return modname.substr(3);
-    else return modname;
 }
 
 ////

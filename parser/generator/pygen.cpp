@@ -7,19 +7,31 @@
 
 class PyGeneratorBuf : public std::streambuf {
 public:
-    PyGeneratorBuf() : lineStart(false), justUnindented(false), currentIndent(0) {}
+    PyGeneratorBuf() : lineStart(false), justIndented(false), justUnindented(false), currentIndent(0) {}
     ~PyGeneratorBuf() {}
 
     std::string str() { return os.str(); }
     void indent() {
         currentIndent += 4;
+        justIndented = true;
+        justUnindented = false;
     }
     void unindent(bool issueNewline) {
         if(currentIndent == 0) {
             throw std::logic_error("Not enough closures");
         }
+        else if(justIndented) {
+            // Indented with no content. Add pass.
+            for(int i = 0 ; i < currentIndent ; i++) {
+                os.put(' ');
+            }
+            os << "pass\n";
+        }
         currentIndent -= 4;
-        if(issueNewline) justUnindented = true;
+
+        if(issueNewline && !justUnindented) os.put('\n');
+        justIndented = false;
+        justUnindented = true;
     }
 
     virtual int overflow (int c) {
@@ -29,15 +41,15 @@ public:
 
         // Indent at the start of the line
         if (lineStart) {
-            if(justUnindented) {
-                os.put('\n');
-                justUnindented = false;
-            }
             // Sequential linebreaks -> don't indent empty line
             if(ch == '\n') {
                 os.put(ch);
                 return ch;
             }
+
+            // Comment line -> Don't count as new line after indenting
+            else if(ch == '#');
+            else justIndented = false;
 
             // Indent line
             for(int i = 0 ; i < currentIndent ; i++) {
@@ -51,6 +63,8 @@ public:
         if (ch == '\n') {
             lineStart = true;
         }
+
+        justUnindented = false;
         return ch;
     }
 
@@ -58,6 +72,7 @@ private:
     std::ostringstream os;
     int currentIndent;
     bool lineStart;
+    bool justIndented;
     bool justUnindented;
 };
 
@@ -72,7 +87,13 @@ PyGenerator::~PyGenerator() {
 }
 
 std::string PyGenerator::str() {
-    return pbuf->str();
+    std::string str = pbuf->str();
+    if(str.size() > 2) {
+        if(str[str.size() - 1] == '\n' && str[str.size() - 2] == '\n') {
+            str = str.substr(0, str.size() - 1);
+        }
+    }
+    return str;
 }
 
 void PyGenerator::indent() {

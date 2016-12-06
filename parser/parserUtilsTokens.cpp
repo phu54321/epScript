@@ -4,6 +4,12 @@
 extern int currentTokenizingLine;
 
 void checkIsConstant(std::string& objName, int line) {
+    // Python function should pass through.
+    if(strncmp(objName.c_str(), "py_", 3) == 0) {
+        objName = objName.substr(3);
+        return;
+    }
+
     if (!closure->getConstant(objName)) {
         if(closure->defConstant(objName)) {
             throw_error(8200, ("Undefined constant " + objName), line);
@@ -15,6 +21,12 @@ void checkIsConstant(std::string& objName, int line) {
 }
 
 void checkIsVariable(std::string& objName, int line) {
+    // Python function should pass through.
+    if(strncmp(objName.c_str(), "py_", 3) == 0) {
+        objName = objName.substr(3);
+        return;
+    }
+
     if (!closure->getVariable(objName)) {
         if(closure->defVariable(objName)) {
             throw_error(9571, ("Undefined variable " + objName), line);
@@ -26,6 +38,12 @@ void checkIsVariable(std::string& objName, int line) {
 }
 
 void checkIsFunction(std::string& objName, int line) {
+    // Python function should pass through.
+    if(strncmp(objName.c_str(), "py_", 3) == 0) {
+        objName = objName.substr(3);
+        return;
+    }
+
     if (!closure->getFunction(objName)) {
         if(closure->defFunction(objName)) {
             throw_error(7041, ("Undefined function " + objName), line);
