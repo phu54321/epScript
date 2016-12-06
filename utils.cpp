@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 std::string getFile(const std::string& fname) {
-    FILE* fp = fopen(fname.c_str(), "r");
+    FILE* fp = fopen(fname.c_str(), "rb");
     if(fp == nullptr) {
         throw std::runtime_error("Input file not found : " + fname);
     }
@@ -18,6 +18,7 @@ std::string getFile(const std::string& fname) {
     while(1) {
         char ch = static_cast<char>(fgetc(fp));
         if(feof(fp)) break;
+        if(ch == '\r') continue;
         fdata.push_back(ch);
     }
 
