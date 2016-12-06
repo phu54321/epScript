@@ -156,7 +156,6 @@ lbracket ::= LBRACKET. { ps->closure.pushScope(); }
 rbracket ::= RBRACKET. { ps->closure.popScope(); }
 
 blockStmt ::= lbracket RBRACKET. {
-    ps->gen << "pass" << std::endl;
     ps->closure.popScope();
 }
 blockStmt ::= lbracket return_stmt SEMICOLON rbracket.
@@ -164,7 +163,6 @@ blockStmt ::= lbracket bodyStmtList rbracket.
 blockStmt ::= lbracket bodyStmtList return_stmt SEMICOLON rbracket.
 blockStmt ::= lbracket error RBRACKET(X). {
     throw_error(6298, "Block not terminated properly.", X->line);
-    ps->gen << "pass" << std::endl;
     ps->closure.popScope();
     delete X;
 }
@@ -187,7 +185,6 @@ bodyStmt ::= break_stmt SEMICOLON.
 // bodyStmtList should not contain empty list. See (1)
 bodyStmtList ::= error. {
     throw_error(8510, "Incomplete statement");
-    ps->gen << "pass" << std::endl;
 }
 
 bodyStmtList ::= bodyStmt.
@@ -623,6 +620,8 @@ for_init_stmt ::= .
 
 for_action_stmt_nonEmpty ::= assign_stmt.
 for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty COMMA for_action_stmt_nonEmpty.
+for_action_stmt ::= .
+for_action_stmt ::= for_action_stmt_nonEmpty.
 
 for_header1(A) ::= for_opener for_init_stmt SEMICOLON(B). {
     // opening for lexpr
@@ -642,14 +641,8 @@ for_header2(X)::= for_header1(A) lexpr(B) SEMICOLON. {
     ps->gen.indent();
 }
 
-for_header(X) ::= for_header2(A) for_action_stmt_nonEmpty RPAREN. {
+for_header(X) ::= for_header2(A) for_action_stmt RPAREN. {
     X = A;
-    ps->gen.unindent(false);
-}
-
-for_header(X) ::= for_header2(A) RPAREN. {
-    X = A;
-    ps->gen << "pass" << std::endl;
     ps->gen.unindent(false);
 }
 
