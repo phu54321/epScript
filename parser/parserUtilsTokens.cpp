@@ -1,5 +1,6 @@
 #include "parserUtilities.h"
 #include "tokenizer/tokenizer.h"
+#include <string.h>
 
 extern int currentTokenizingLine;
 

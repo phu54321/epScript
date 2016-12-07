@@ -341,7 +341,11 @@ expr(A) ::= expr(B) MINUS       expr(C). { A = binopConcat(B, "-",  C); }
 expr(A) ::= expr(B) MULTIPLY    expr(C). { A = binopConcat(B, "*",  C); }
 expr(A) ::= expr(B) DIVIDE      expr(C). { A = binopConcat(B, "//", C); }
 expr(A) ::= expr(B) MOD         expr(C). { A = binopConcat(B, "%",  C); }
-expr(A) ::= expr(B) LSHIFT      expr(C). { A = binopConcat(B, "<<", C); }
+expr(A) ::= expr(B) LSHIFT      expr(C). {
+    C->data = "_LSH(" + B->data + "," + C->data + ")";
+    delete B;
+    A = mkTokenTemp(C);
+}
 expr(A) ::= expr(B) RSHIFT      expr(C). { A = binopConcat(B, ">>", C); }
 expr(A) ::= expr(B) BITAND      expr(C). { A = binopConcat(B, "&",  C); }
 expr(A) ::= expr(B) BITOR       expr(C). { A = binopConcat(B, "|",  C); }

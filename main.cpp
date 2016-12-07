@@ -12,6 +12,12 @@
 extern bool PARSER_DEBUG;
 
 
+#ifdef _WIN32
+static void mkdir(const char* str, int mode) {
+    mkdir(str);
+}
+#endif
+
 int usage() {
 #if defined(_WIN32) || defined(WIN32)
     printf("Usage : epScript [-v]      // Only on windows\n");

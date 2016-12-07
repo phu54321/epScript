@@ -50,7 +50,11 @@ int daemonTurn(void) {
                         try {
                             std::string code = getFile(ifname);
                             out = addStubCode(ParseString(code));
+#ifdef _WIN32
+                            mkdir("_epspy");
+#else
                             mkdir("_epspy", 0777);
+#endif
                             std::ofstream of(ofname);
                             of << out.c_str();
                             of.close();

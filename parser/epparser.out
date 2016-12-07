@@ -1908,7 +1908,6 @@ State 15:
                           NAME shift  147
                         LPAREN shift  63
                         RPAREN shift  266
-                        RPAREN reduce 66  ** Parsing conflict **
                     LSQBRACKET shift  21
                          KILLS shift  284
                         STRING shift  277
@@ -3279,7 +3278,6 @@ State 39:
           if_stmt ::= if_block * else_header stmt
 
                           ELSE shift  163
-                          ELSE reduce 134 ** Parsing conflict **
                     elif_start shift  162
                    elif_header shift  7
                    else_header shift  3
@@ -5053,7 +5051,6 @@ State 79:
     (169) actionStmt ::= actionStmt_start actions *
 
                     ACTIONNAME shift  154
-                    ACTIONNAME reduce 169 ** Parsing conflict **
                         action shift  229
                      {default} reduce 169
 
@@ -5063,7 +5060,6 @@ State 80:
     (168) actionStmt ::= actionStmt_start action *
 
                     ACTIONNAME shift  154
-                    ACTIONNAME reduce 168 ** Parsing conflict **
                         action shift  230
                      {default} reduce 168
 
@@ -5166,7 +5162,6 @@ State 88:
                         PERIOD shift  197
                         LPAREN shift  18
                         RPAREN shift  281
-                        RPAREN reduce 91  ** Parsing conflict **
                     LSQBRACKET shift  74
                      {default} reduce 91
 
@@ -6063,7 +6058,6 @@ State 117:
                         ASSIGN reduce 106
                          COMMA reduce 106
                         LPAREN shift  19
-                        LPAREN reduce 59  ** Parsing conflict **
                           IADD reduce 106
                           ISUB reduce 106
                           IMUL reduce 106
@@ -6138,11 +6132,8 @@ State 120:
                       MULTIPLY shift  71
                            MOD shift  69
                         PERIOD shift  197
-                        PERIOD reduce 86  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 86  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 86  ** Parsing conflict **
                      {default} reduce 86
 
 State 121:
@@ -6160,7 +6151,6 @@ State 121:
           assign_stmt ::= lvalue * IBXR expr
 
                         ASSIGN shift  52
-                        ASSIGN reduce 109 ** Parsing conflict **
                           IADD shift  51
                           ISUB shift  50
                           IMUL shift  49
@@ -6198,11 +6188,8 @@ State 122:
                       MULTIPLY shift  71
                            MOD shift  69
                         PERIOD shift  197
-                        PERIOD reduce 87  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 87  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 87  ** Parsing conflict **
                      {default} reduce 87
 
 State 123:
@@ -6229,11 +6216,8 @@ State 123:
                       MULTIPLY shift  71
                            MOD shift  69
                         PERIOD shift  197
-                        PERIOD reduce 85  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 85  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 85  ** Parsing conflict **
                      {default} reduce 85
 
 State 124:
@@ -6258,11 +6242,8 @@ State 124:
                       MULTIPLY shift  71
                            MOD shift  69
                         PERIOD shift  197
-                        PERIOD reduce 84  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 84  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 84  ** Parsing conflict **
                      {default} reduce 84
 
 State 125:
@@ -6287,11 +6268,8 @@ State 125:
                       MULTIPLY shift  71
                            MOD shift  69
                         PERIOD shift  197
-                        PERIOD reduce 83  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 83  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 83  ** Parsing conflict **
                      {default} reduce 83
 
 State 126:
@@ -6314,11 +6292,8 @@ State 126:
                       MULTIPLY shift  71
                            MOD shift  69
                         PERIOD shift  197
-                        PERIOD reduce 79  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 79  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 79  ** Parsing conflict **
                      {default} reduce 79
 
 State 127:
@@ -6341,11 +6316,8 @@ State 127:
                       MULTIPLY shift  71
                            MOD shift  69
                         PERIOD shift  197
-                        PERIOD reduce 78  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 78  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 78  ** Parsing conflict **
                      {default} reduce 78
 
 State 128:
@@ -6419,11 +6391,8 @@ State 134:
      (90) expr ::= BITNOT expr *
 
                         PERIOD shift  197
-                        PERIOD reduce 90  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 90  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 90  ** Parsing conflict **
                      {default} reduce 90
 
 State 135:
@@ -6443,11 +6412,8 @@ State 135:
      (89) expr ::= MINUS expr *
 
                         PERIOD shift  197
-                        PERIOD reduce 89  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 89  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 89  ** Parsing conflict **
                      {default} reduce 89
 
 State 136:
@@ -6467,11 +6433,8 @@ State 136:
      (88) expr ::= PLUS expr *
 
                         PERIOD shift  197
-                        PERIOD reduce 88  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 88  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 88  ** Parsing conflict **
                      {default} reduce 88
 
 State 137:
@@ -6491,11 +6454,8 @@ State 137:
           expr ::= expr * BITXOR expr
 
                         PERIOD shift  197
-                        PERIOD reduce 82  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 82  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 82  ** Parsing conflict **
                      {default} reduce 82
 
 State 138:
@@ -6515,11 +6475,8 @@ State 138:
           expr ::= expr * BITXOR expr
 
                         PERIOD shift  197
-                        PERIOD reduce 81  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 81  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 81  ** Parsing conflict **
                      {default} reduce 81
 
 State 139:
@@ -6539,11 +6496,8 @@ State 139:
           expr ::= expr * BITXOR expr
 
                         PERIOD shift  197
-                        PERIOD reduce 80  ** Parsing conflict **
                         LPAREN shift  18
-                        LPAREN reduce 80  ** Parsing conflict **
                     LSQBRACKET shift  74
-                    LSQBRACKET reduce 80  ** Parsing conflict **
                      {default} reduce 80
 
 State 140:
@@ -6590,7 +6544,6 @@ State 145:
 
                         ASSIGN shift  37
                          COMMA shift  214
-                         COMMA reduce 102 ** Parsing conflict **
                      {default} reduce 102
 
 State 146:
@@ -6607,7 +6560,6 @@ State 147:
 
                         ASSIGN shift  75
                         LPAREN shift  19
-                        LPAREN reduce 59  ** Parsing conflict **
                      {default} reduce 59
 
 State 148:
@@ -6617,7 +6569,6 @@ State 148:
 
                      SEMICOLON shift  296
                     LSQBRACKET shift  205
-                    LSQBRACKET reduce 70  ** Parsing conflict **
                      {default} reduce 70
 
 State 149:
@@ -6641,7 +6592,6 @@ State 151:
      (41) bodyStmtList ::= error *
 
                       RBRACKET shift  227
-                      RBRACKET reduce 41  ** Parsing conflict **
                      {default} reduce 41
 
 State 152:
@@ -6708,7 +6658,6 @@ State 163:
     (133) else_header ::= ELSE *
 
                             IF shift  255
-                            IF reduce 133 ** Parsing conflict **
                      {default} reduce 133
 
 State 164:
@@ -6854,7 +6803,6 @@ State 189:
           lexpr ::= KILLS * LPAREN fArgs RPAREN
 
                         LPAREN shift  17
-                        LPAREN reduce 58  ** Parsing conflict **
                      {default} reduce 58
 
 State 190:
@@ -6884,7 +6832,6 @@ State 194:
           expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER * RSQBRACKET RSQBRACKET
 
                     RSQBRACKET shift  202
-                    RSQBRACKET reduce 45  ** Parsing conflict **
                      {default} reduce 45
 
 State 195:
@@ -6899,7 +6846,6 @@ State 196:
      (70) expr ::= funcexpr *
 
                     LSQBRACKET shift  195
-                    LSQBRACKET reduce 70  ** Parsing conflict **
                      {default} reduce 70
 
 State 197:
@@ -6912,7 +6858,6 @@ State 198:
           funcexpr ::= NAME * LPAREN fArgs RPAREN
 
                         LPAREN shift  19
-                        LPAREN reduce 59  ** Parsing conflict **
                      {default} reduce 59
 
 State 199:
@@ -6920,7 +6865,6 @@ State 199:
      (70) expr ::= funcexpr *
 
                     LSQBRACKET shift  205
-                    LSQBRACKET reduce 70  ** Parsing conflict **
                      {default} reduce 70
 
 State 200:
@@ -7010,7 +6954,6 @@ State 216:
           fdecl_chunk ::= FUNCTION NAME LPAREN nameList RPAREN * SEMICOLON
 
                      SEMICOLON shift  315
-                     SEMICOLON reduce 14  ** Parsing conflict **
                      {default} reduce 14
 
 State 217:
