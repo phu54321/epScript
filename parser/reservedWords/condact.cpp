@@ -10,7 +10,7 @@ const char* conditionList[] = {
 
 const char* actionList[] = {
         "Victory", "Defeat", "PreserveTrigger", "Wait", "PauseGame", "UnpauseGame",
-        "Transmission", "PlayWAV", "DisplayText", "CenterView",
+        "Transmission", "PlayWAV", "DisplayText", "DisplayTextExt", "CenterView",
         "CreateUnitWithProperties", "SetMissionObjectives", "SetSwitch",
         "SetCountdownTimer", "RunAIScript", "RunAIScriptAt", "LeaderBoardControl",
         "LeaderBoardControlAt", "LeaderBoardResources", "LeaderBoardKills",

@@ -39,6 +39,9 @@ void writeNegatableCondition(Token* csOpener, Token* lexpr) {
     if(lexpr->type == TOKEN_AST_LEXPR_NOT) {
         (*pGen) << "if " << csOpener->data << "(" << lexpr->subToken[0]->data << ", neg=True):" << std::endl;
     }
+    else if(lexpr->type == TOKEN_AST_LEXPR_NE) {
+        (*pGen) << "if " << csOpener->data << "(" << lexpr->subToken[0]->data << " == " << lexpr->subToken[1]->data << ", neg=True):" << std::endl;
+    }
     else {
         (*pGen) << "if " << csOpener->data << "(" << lexpr->data << "):" << std::endl;
     }

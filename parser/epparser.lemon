@@ -378,7 +378,16 @@ lexpr(A) ::= LPAREN lexpr(B) RPAREN.    {
 }
 
 lexpr(A) ::= expr(B) EQ expr(C).   { A = binopConcat(B, "==", C); }
-lexpr(A) ::= expr(B) NE expr(C).   { A = binopConcat(B, "!=", C); }
+lexpr(A) ::= expr(B) NE expr(C).   {
+    A = genEmpty();
+    A->line = C->line;
+
+    A->type = TOKEN_AST_LEXPR_NE;
+    A->subToken[0] = B;
+    A->subToken[1] = C;
+    A->data = B->data + " != " + C->data;
+}
+
 lexpr(A) ::= expr(B) LE expr(C).   { A = binopConcat(B, "<=", C); }
 lexpr(A) ::= expr(B) LT expr(C).   { A = binopConcat(B, "<",  C); }
 lexpr(A) ::= expr(B) GE expr(C).   { A = binopConcat(B, ">=", C); }
