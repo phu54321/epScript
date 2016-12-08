@@ -20,7 +20,11 @@ struct ParserStruct {
 };
 
 int currentTokenizingLine;
+std::string currentFunction;
+std::string currentModule;
 bool functionCalledInMultipleActions;
+bool PARSER_DEBUG = false;
+bool MAP_DEBUG = false;
 
 }
 
@@ -119,6 +123,11 @@ fdef_header ::= FUNCTION NAME(name) LPAREN nameList(args) RPAREN. {
     ps->gen.indent();
 
     ps->closure.pushScope();
+    currentFunction = name->data;
+
+    if(MAP_DEBUG) {
+         ps->gen << "MDBG_PUSHF(\'" << currentFunction << "\', \'" << currentModule << "\')" << std::endl;
+    }
 
     // Register variables.
     commaListIter(args->data, [&](std::string& varname) {
@@ -133,8 +142,12 @@ fdef_header ::= FUNCTION NAME(name) LPAREN nameList(args) RPAREN. {
 }
 
 fdef_chunk ::= fdef_header stmt . {
+    if(MAP_DEBUG){
+        ps->gen << "MDBG_POPF()" << std::endl;
+    }
     ps->gen.unindent(true);
     ps->closure.popScope();
+    currentFunction = "";
 }
 
 fdecl_chunk  ::= FUNCTION NAME(name) LPAREN nameList RPAREN SEMICOLON. {
@@ -693,6 +706,9 @@ break_stmt ::= BREAK. {
 
 // returns
 return_stmt ::= RETURN exprList(exprs). {
+    if(MAP_DEBUG){
+        ps->gen << "MDBG_POPF()" << std::endl;
+    }
     ps->gen << "EUDReturn(" << exprs->data << ")" << std::endl;
     delete exprs;
 }
@@ -786,12 +802,21 @@ actionStmt ::= actionStmt_start actions(X). {
 
 %code {
 
-int PARSER_DEBUG = 0;
 PyGenerator* pGen;
 ClosureManager* closure;
 
-std::string ParseString(const std::string& code, bool addComment)
+std::string ParseString(const std::string& fname, const std::string& code, bool addComment)
 {
+    // Module name from fname
+    // last \/ ~ first .
+    auto lpos = fname.find_last_of("\\/");
+    if(lpos == std::string::npos) lpos = 0;
+    else lpos++;
+    auto rpos = fname.find_first_of(".", lpos);
+    if(rpos == std::string::npos) rpos = fname.size();
+    currentModule = fname.substr(lpos, rpos - lpos);
+
+    // Main code
     Tokenizer tok(code);
     void* pParser = ParseAlloc (malloc);
     ParserStruct ps;
@@ -802,6 +827,36 @@ std::string ParseString(const std::string& code, bool addComment)
     functionCalledInMultipleActions = false;
 
     if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
+    if(MAP_DEBUG) {
+        ps.gen <<
+            "try:\n"
+            "   MDBG_LOG = GetEUDNamespace()['MDBG_LOG']\n"
+            "   MDBG_PUSHF = GetEUDNamespace()['MDBG_PUSHF']\n"
+            "   MDBG_POPF = GetEUDNamespace()['MDBG_POPF']\n"
+            "except KeyError:\n"
+            "    mdbg_dbepd = EPD(Db(b'0123456789ABCDEFFEDCBA9876543210' + bytes(32 * 2048)))\n"
+            "    mdbg_dbc = EUDVariable()\n"
+            "    \n"
+            "    @EUDRegistered\n"
+            "    def MDBG_LOG(line):\n"
+            "        lIdf = b2i4(u2b('%4d' % line))\n"
+            "        DoActions(SetMemoryEPD(mdbg_dbepd + 3 + mdbg_dbc, SetTo, lIdf))\n"
+            "    \n"
+            "    \n"
+            "    @EUDRegistered\n"
+            "    def MDBG_PUSHF(f_name, m_name):\n"
+            "        global mdbg_dbc\n"
+            "        data = ((u2b(m_name) + bytes(12))[:12] + b'   0' + (u2b(f_name) + bytes(16))[:16])\n"
+            "        mdbg_dbc += 8\n"
+            "        DoActions([SetMemoryEPD(mdbg_dbepd + i + mdbg_dbc, SetTo, b2i4(data, i * 4)) for i in range(8)])\n"
+            "    \n"
+            "    @EUDRegistered\n"
+            "    def MDBG_POPF():\n"
+            "        global mdbg_dbc\n"
+            "        DoActions([SetMemoryEPD(mdbg_dbepd + i + mdbg_dbc, SetTo, 0) for i in range(8)])\n"
+            "        mdbg_dbc -= 8\n"
+            "\n";
+    }
 
     tmpIndex = 1;
     resetParserErrorNum();
@@ -810,6 +865,9 @@ std::string ParseString(const std::string& code, bool addComment)
             if(addComment) {
                 currentTokenizingLine = tok.getCurrentLine();
                 ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
+                if(MAP_DEBUG && !currentFunction.empty()) {
+                    ps.gen << "MDBG_LOG(" << currentTokenizingLine << ")" << std::endl;
+                }
             }
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }

@@ -49,7 +49,7 @@ int daemonTurn(void) {
                         std::string out;
                         try {
                             std::string code = getFile(ifname);
-                            out = addStubCode(ParseString(code));
+                            out = addStubCode(ParseString(ep->d_name, code));
 #ifdef _WIN32
                             mkdir("_epspy");
 #else
