@@ -21,7 +21,27 @@ int daemonTurn(void) {
 
     if ((dp = opendir("./")) != nullptr) {
         while ((ep = readdir (dp)) != nullptr) {
-            if(ep->d_name[0] == '.') continue;
+            // Remove deleted file's compliciation.
+            if(strcmp(ep->d_name, "_epspy") == 0) {
+                DIR* scriptDir = opendir("_epspy/");
+                if(scriptDir != nullptr) {
+                    while((ep = readdir(scriptDir)) != nullptr) {
+                        std::string s = ep->d_name;
+                        if(s.size() >= 3 && s.substr(s.size() - 3) == ".py") {  // Compiled script
+                            std::string sourceName = s.substr(0, s.size() - 3) + ".eps";
+                            if(access(sourceName.c_str(), F_OK) == -1) {  // Source file does not exist.
+                                // Remove this file.
+                                printf("Removed file %s\n", ep->d_name);
+                                unlink(("_epspy/" + s).c_str());
+                            }
+                        }
+                    }
+                }
+
+                // ep has been invalidated by the inner loop, so we MUST continue here.
+                continue;
+            }
+            else if(ep->d_name[0] == '.') continue;
             stat(ep->d_name, &st);
             if(S_ISDIR(st.st_mode)) {
                 chdir(ep->d_name);
