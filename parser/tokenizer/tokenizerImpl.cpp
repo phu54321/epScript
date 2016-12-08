@@ -116,6 +116,7 @@ Token* TokenizerImpl::getToken() {
                 cursor++;
                 if(*cursor == '\n') {
                     cursor++;
+                    line++;
                 }
 
                     // No special procesing is required. Python will take care of that.
