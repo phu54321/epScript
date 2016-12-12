@@ -1777,7 +1777,7 @@ static void yy_reduce(
     yygotominor.yy0 = genEmpty();
     yygotominor.yy0->line = yymsp[0].minor.yy0->line;
 
-    yygotominor.yy0->type = TOKEN_AST_LEXPR_NE;
+    yygotominor.yy0->type = TOKEN_NE;
     yygotominor.yy0->subToken[0] = yymsp[-2].minor.yy0;
     yygotominor.yy0->subToken[1] = yymsp[0].minor.yy0;
     yygotominor.yy0->data = yymsp[-2].minor.yy0->data + " != " + yymsp[0].minor.yy0->data;
@@ -1811,10 +1811,10 @@ static void yy_reduce(
     yygotominor.yy0->line = yymsp[0].minor.yy0->line;
 
     // Generate data!
-    yygotominor.yy0->type = TOKEN_AST_LEXPR_AND;
+    yygotominor.yy0->type = TOKEN_LAND;
     yygotominor.yy0->subToken[0] = yymsp[-2].minor.yy0;
     yygotominor.yy0->subToken[1] = yymsp[0].minor.yy0;
-    yygotominor.yy0->data = "[" + flatListGetter(yygotominor.yy0, TOKEN_AST_LEXPR_AND) + "]";
+    yygotominor.yy0->data = "[" + flatListGetter(yygotominor.yy0, TOKEN_LAND) + "]";
 }
 #line 1820 "parser\\epparser.c"
         break;
@@ -1825,17 +1825,17 @@ static void yy_reduce(
     yygotominor.yy0->line = yymsp[0].minor.yy0->line;
 
     // Generate data!
-    yygotominor.yy0->type = TOKEN_AST_LEXPR_OR;
+    yygotominor.yy0->type = TOKEN_LOR;
     yygotominor.yy0->subToken[0] = yymsp[-2].minor.yy0;
     yygotominor.yy0->subToken[1] = yymsp[0].minor.yy0;
-    yygotominor.yy0->data = "EUDOr(" + flatListGetter(yygotominor.yy0, TOKEN_AST_LEXPR_OR) + ")";
+    yygotominor.yy0->data = "EUDOr(" + flatListGetter(yygotominor.yy0, TOKEN_LOR) + ")";
 }
 #line 1834 "parser\\epparser.c"
         break;
       case 101: /* lexpr ::= LNOT lexpr */
 #line 420 "parser\\epparser.lemon"
 {
-    if(yymsp[0].minor.yy0->type == TOKEN_AST_LEXPR_NOT) {
+    if(yymsp[0].minor.yy0->type == TOKEN_LNOT) {
         yygotominor.yy0 = yymsp[0].minor.yy0->subToken[0];
         yymsp[0].minor.yy0->subToken[0] = nullptr;
         delete yymsp[0].minor.yy0;
@@ -1843,7 +1843,7 @@ static void yy_reduce(
     else {
         yygotominor.yy0 = genEmpty();
         yygotominor.yy0->line = yymsp[0].minor.yy0->line;
-        yygotominor.yy0->type = TOKEN_AST_LEXPR_NOT;
+        yygotominor.yy0->type = TOKEN_LNOT;
         yygotominor.yy0->data = "EUDNot([" + yymsp[0].minor.yy0->data + "])";
         yygotominor.yy0->subToken[0] = yymsp[0].minor.yy0;
     }

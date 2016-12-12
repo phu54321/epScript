@@ -382,7 +382,7 @@ lexpr(A) ::= expr(B) NE expr(C).   {
     A = genEmpty();
     A->line = C->line;
 
-    A->type = TOKEN_AST_LEXPR_NE;
+    A->type = TOKEN_NE;
     A->subToken[0] = B;
     A->subToken[1] = C;
     A->data = B->data + " != " + C->data;
@@ -399,10 +399,10 @@ lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
     A->line = C->line;
 
     // Generate data!
-    A->type = TOKEN_AST_LEXPR_AND;
+    A->type = TOKEN_LAND;
     A->subToken[0] = B;
     A->subToken[1] = C;
-    A->data = "[" + flatListGetter(A, TOKEN_AST_LEXPR_AND) + "]";
+    A->data = "[" + flatListGetter(A, TOKEN_LAND) + "]";
 }
 
 // OR operation is very costly, so we make some deliberate choice!
@@ -411,14 +411,14 @@ lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
     A->line = C->line;
 
     // Generate data!
-    A->type = TOKEN_AST_LEXPR_OR;
+    A->type = TOKEN_LOR;
     A->subToken[0] = B;
     A->subToken[1] = C;
-    A->data = "EUDOr(" + flatListGetter(A, TOKEN_AST_LEXPR_OR) + ")";
+    A->data = "EUDOr(" + flatListGetter(A, TOKEN_LOR) + ")";
 }
 
 lexpr(A) ::= LNOT lexpr(B).  {
-    if(B->type == TOKEN_AST_LEXPR_NOT) {
+    if(B->type == TOKEN_LNOT) {
         A = B->subToken[0];
         B->subToken[0] = nullptr;
         delete B;
@@ -426,7 +426,7 @@ lexpr(A) ::= LNOT lexpr(B).  {
     else {
         A = genEmpty();
         A->line = B->line;
-        A->type = TOKEN_AST_LEXPR_NOT;
+        A->type = TOKEN_LNOT;
         A->data = "EUDNot([" + B->data + "])";
         A->subToken[0] = B;
     }

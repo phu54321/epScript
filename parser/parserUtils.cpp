@@ -36,10 +36,10 @@ int getParseErrorNum() {
 ////
 
 void writeNegatableCondition(Token* csOpener, Token* lexpr) {
-    if(lexpr->type == TOKEN_AST_LEXPR_NOT) {
+    if(lexpr->type == TOKEN_LNOT) {
         (*pGen) << "if " << csOpener->data << "(" << lexpr->subToken[0]->data << ", neg=True):" << std::endl;
     }
-    else if(lexpr->type == TOKEN_AST_LEXPR_NE) {
+    else if(lexpr->type == TOKEN_NE) {
         (*pGen) << "if " << csOpener->data << "(" << lexpr->subToken[0]->data << " == " << lexpr->subToken[1]->data << ", neg=True):" << std::endl;
     }
     else {
