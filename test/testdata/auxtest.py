@@ -1,7 +1,3 @@
-from _epspy import a1
-from test._epspy import a2
-import a3
-from test import a4
 @EUDFunc
 def f_x():
     A = 1
