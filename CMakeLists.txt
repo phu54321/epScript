@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.6)
-
 project(epScript)
 
 set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
@@ -28,12 +27,9 @@ else ()
 
 endif()
 
-
 # Size optimization at release mode
-if (CMAKE_BUILD_TYPE EQUAL "Release")
+if (CMAKE_BUILD_TYPE MATCHES "Release")
     message("release mode - size optimized")
-    set(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -fno-rtti -OO")
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -s -static-libgcc -static-libstdc++ -static")
 endif()
 
 set(CMAKE_CXX_STANDARD 11)
@@ -45,5 +41,11 @@ set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokeni
 set(TEST_SOURCE_FILES test/test_tokenizer.cpp test/test_pygen.cpp test/test_parser.cpp)
 
 add_executable(epScript ${SOURCE_FILES} main.cpp)
-add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
 set_target_properties(epScript PROPERTIES COMPILE_FLAGS "-DDOCTEST_CONFIG_DISABLE")
+target_link_libraries(epScript -static)
+
+add_library(epScriptLib SHARED ${SOURCE_FILES} libmain.cpp)
+set_target_properties(epScriptLib PROPERTIES COMPILE_FLAGS "-DDOCTEST_CONFIG_DISABLE")
+target_link_libraries(epScriptLib -static)
+
+add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
