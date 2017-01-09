@@ -20,16 +20,18 @@ static void mkdir(const char* str, int mode) {
 #endif
 
 int usage() {
-#if defined(_WIN32) || defined(WIN32)
-    printf("Usage : epScript [-v]      // Only on windows\n");
-#endif
-    printf("Usage : epScript [-v] daemon\n");
-    printf("Usage : epScript [-v] [-o output] input\n");
-    printf("Usage : epScript [-v] input1 input2 input3 .. inputN\n");
+    printf(
+            "Basic options\n"
+                    "  epScript DIRNAME : Run epScript inside directory as daemon mode.\n"
+                    "  epScript [-o output] INPUT : Run epScript for input file.\n"
+                    "  epScript INPUT1 INPUT2 INPUT3 ... : Run epScript for multiple files.\n"
+                    "Additional options\n"
+                    "  -v : Verbose compile. Print debugging informations.\n"
+                    "  -d : Debug compile. Map will have debugging informations.\n");
     return -1;
 }
 
-int runDaemon(void);
+int runDaemon(const std::string& dirname);
 
 int main(int argc, char** argv) {
     printf("epScript " VERSION " - eudplib script compiler\n");
@@ -59,12 +61,7 @@ int main(int argc, char** argv) {
     }
 
     if(optind == argc) {  // No input file
-#if defined(_WIN32) || defined(WIN32)
-        // use daemon mode in windows.
-        return runDaemon();
-#else
         return usage();
-#endif
     }
 
     else if(optind < argc - 1 && ofname != "") { // Multiple input files with -o
@@ -73,8 +70,12 @@ int main(int argc, char** argv) {
 
     if(optind == argc - 1) {
         ifname = argv[optind];
-        if (ifname == "daemon") {
-            return runDaemon();
+
+        // Run daemon if file is directory
+        struct stat st;
+        stat(argv[optind], &st);
+        if(S_ISDIR(st.st_mode)) {
+            return runDaemon(ifname);
         }
 
         if (ofname == "") {

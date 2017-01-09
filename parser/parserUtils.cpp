@@ -9,6 +9,7 @@
 #include "parserUtilities.h"
 
 extern int currentTokenizingLine;
+bool NO_EPSPY = false;
 
 int errorn = 0;
 
@@ -88,8 +89,14 @@ void impPathProcess(const std::string& s, std::string& impPath, std::string& imp
         impModname = modname.substr(3);
     }
     else {
-        if(path.empty()) impPath = "_epspy";
-        else impPath = path + "._epspy";
+        if(NO_EPSPY) {
+            if (path.empty()) impPath = ".";
+            else impPath = path;
+        }
+        else {
+            if (path.empty()) impPath = "_epspy";
+            else impPath = path + "._epspy";
+        }
         impModname = modname;
     }
 }

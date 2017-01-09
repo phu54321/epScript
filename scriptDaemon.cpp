@@ -97,11 +97,17 @@ int daemonTurn(void) {
     return 0;
 }
 
-int runDaemon(void) {
+int runDaemon(const std::string& dirname) {
     printf("Using daemon mode...\n");
     forceUpdate = true;
+
+    char currentDirectory[1024];
+    getcwd(currentDirectory, 1024);
+
     while(1) {
+        chdir(dirname.c_str());
         daemonTurn();
+        chdir(currentDirectory);
         sleep(1);
         forceUpdate = false;
     }

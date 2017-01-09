@@ -42,6 +42,7 @@ void checkBlock(const std::string &input, const std::string &desiredOutput) {
             CHECK(output == desiredOutput);
 }
 
+extern bool NO_EPSPY;
 
 #define check(infile, outfile) CHECK_EQ(ParseString("test", get_testdata(infile), false), get_testdata(outfile))
 
@@ -120,23 +121,19 @@ TEST_CASE("Import parsing") {
             CHECK(ParseString("test", "import test.py_a1;", false) == "from test import a1\n");
 }
 
-TEST_CASE("ETC") {
-    SUBCASE("Function prefixing") {
-        CHECK(ParseString("test", ""
-                "import A;"
-                "const B = 1;"
-                "function x() {"
-                "    B();"
-                "    A.B();"
-                "    B.x();"
-                "    C.x();"))
-    }
-}
-
 TEST_CASE("Other parsing") {
     check("auxtest.eps", "auxtest.py");
     check("method.eps", "method.py");
 }
 
+
+TEST_CASE("Import parsing with NO_EPSPY") {
+    NO_EPSPY = true;
+            CHECK(ParseString("test", "import a1;", false) == "from . import a1\n");
+            CHECK(ParseString("test", "import test.a1;", false) == "from test import a1\n");
+            CHECK(ParseString("test", "import py_a1;", false) == "import a1\n");
+            CHECK(ParseString("test", "import test.py_a1;", false) == "from test import a1\n");
+    NO_EPSPY = false;
+}
 
 TEST_SUITE_END();
