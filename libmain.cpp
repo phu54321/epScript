@@ -5,15 +5,28 @@
 #include "utils.h"
 #include "parser/parser.h"
 #include <stdexcept>
+#include <string.h>
+#include <vector>
 
 extern bool NO_EPSPY;
 
 extern "C" {
 const char *EPS_EXPORT compileString(
         const char *modname,
-        const char *code
+        const char *rawcode
 ) {
     NO_EPSPY = true;
+
+    // Remove \r from code
+    std::vector<char> cleanCode;
+    cleanCode.reserve(strlen(rawcode) + 1);
+    const char* p = rawcode;
+    while(*p) {
+        if(*p != '\r') cleanCode.push_back(*p);
+        p++;
+    }
+    std::string code(cleanCode.begin(), cleanCode.end());
+
     try {
         auto parsed = ParseString(modname, code);
         parsed = addStubCode(parsed);

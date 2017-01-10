@@ -90,8 +90,7 @@ void impPathProcess(const std::string& s, std::string& impPath, std::string& imp
     }
     else {
         if(NO_EPSPY) {
-            if (path.empty()) impPath = ".";
-            else impPath = path;
+            impPath = path;
         }
         else {
             if (path.empty()) impPath = "_epspy";
