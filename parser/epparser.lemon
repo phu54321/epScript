@@ -488,12 +488,8 @@ vdefAssign_global_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B).
         }
     });
 
-    if(varCount == 1) {
-        ps->gen << s << " = EUDVariable(" << B->data << ")" << std::endl;
-    }
-    else {
-        ps->gen << s << " = [EUDVariable(v) for v in FlattenList([" << B->data << "])]" << std::endl;
-    }
+    ps->gen << s << " = [EUDVariable() for _ in range(" << varCount << ")]" << std::endl;
+    ps->gen << "_IGVA(" << s << ", lambda: [" << B->data << "])" << std::endl;
 
     delete A; delete B;
 }

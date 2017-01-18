@@ -129,7 +129,7 @@ TEST_CASE("Other parsing") {
 
 TEST_CASE("Import parsing with NO_EPSPY") {
     NO_EPSPY = true;
-            CHECK(ParseString("test", "import a1;", false) == "from . import a1\n");
+            CHECK(ParseString("test", "import a1;", false) == "import a1\n");
             CHECK(ParseString("test", "import test.a1;", false) == "from test import a1\n");
             CHECK(ParseString("test", "import py_a1;", false) == "import a1\n");
             CHECK(ParseString("test", "import test.py_a1;", false) == "from test import a1\n");
