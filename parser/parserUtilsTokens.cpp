@@ -72,8 +72,6 @@ void checkIsRValue(std::string& objName, int line) {
 
 ////
 
-const int LENGTH_LIMIT = 60;
-
 Token* genEmpty() {
     return new Token(TOKEN_TEMP, currentTokenizingLine);
 }
@@ -87,16 +85,8 @@ Token* genTemp(Token* lineSrc) {
 }
 
 Token* mkTokenTemp(Token* a) {
-    if(a->data.size() > LENGTH_LIMIT) {
-        Token* t = genTemp(a);
-        (*pGen) << t->data << " = " << a->data << std::endl;
-        delete a;
-        return t;
-    }
-    else {
-        a->type = TOKEN_TEMP;
-        return a;
-    }
+    a->type = TOKEN_TEMP;
+    return a;
 }
 
 Token* binopConcat(Token* a, const std::string& opstr, Token* b) {
