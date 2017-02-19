@@ -1,5 +1,6 @@
-a = [EUDVariable() for _ in range(1)]
+a = EUDCreateVariables(1)
 _IGVA(a, lambda: [1])
+b = _CGFW(lambda: [2], 1)[0]
 @EUDFunc
 def f_x():
     A = 1

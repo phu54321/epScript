@@ -75,7 +75,7 @@ std::unordered_set<std::string> builtinFuncSet = {
         "f_rand", "f_randomize", "f_repmovsd_epd", "f_setcurpl", "f_simpleprint",
         "f_sqrt", "f_srand", "f_strcmp", "f_strcpy", "f_unpatchall", "f_wread",
         "f_wwrite", "find_data_file", "hptr", "i2b1", "i2b2", "i2b4", "isStrict",
-        "onPluginStart", "selftype", "setStrict", "u2b", "unProxy",
+        "onPluginStart", "selftype", "setStrict", "u2b", "unProxy"
 };
 
 std::unordered_set<std::string> builtinConstSet = {
@@ -88,7 +88,7 @@ std::unordered_set<std::string> builtinConstSet = {
         "Patrol", "Player1", "Player10", "Player11", "Player12", "Player2",
         "Player3", "Player4", "Player5", "Player6", "Player7", "Player8",
         "Player9", "Random", "Razings", "Set", "SetTo", "Subtract", "Toggle",
-        "Total", "Units", "UnitsAndBuildings", "Kills", "True", "False"
+        "Total", "Units", "UnitsAndBuildings", "Kills", "True", "False", "settings"
 };
 
 bool isBuiltinFunc(const std::string& name) {
