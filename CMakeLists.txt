@@ -30,6 +30,9 @@ endif()
 # Size optimization at release mode
 if (CMAKE_BUILD_TYPE MATCHES "Release")
     message("release mode - size optimized")
+else()
+    message("debug mode - symbol added")
+    set(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O0 -g -ggdb")
 endif()
 
 set(CMAKE_CXX_STANDARD 11)
