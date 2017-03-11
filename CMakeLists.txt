@@ -46,6 +46,8 @@ target_link_libraries(epScript -static)
 
 add_library(epScriptLib SHARED ${SOURCE_FILES} libmain.cpp)
 set_target_properties(epScriptLib PROPERTIES COMPILE_FLAGS "-DDOCTEST_CONFIG_DISABLE")
-target_link_libraries(epScriptLib -static)
+if (WIN32)
+    target_link_libraries(epScriptLib -static)
+endif()
 
 add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
