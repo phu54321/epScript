@@ -11,6 +11,8 @@
 #include <string.h>
 #include <vector>
 
+extern bool NO_EPSPY;
+
 std::string get_testdata(std::string dataname);
 void checkBlock(const std::string &input, const std::string &desiredOutput);
 std::string unindentString(const std::string& data);

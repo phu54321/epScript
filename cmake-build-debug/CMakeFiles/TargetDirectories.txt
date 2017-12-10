@@ -1,4 +1,0 @@
-C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScript.dir
-C:/gitclones/epScript/cmake-build-debug/CMakeFiles/epScriptTest.dir
-C:/gitclones/epScript/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/gitclones/epScript/cmake-build-debug/CMakeFiles/rebuild_cache.dir
