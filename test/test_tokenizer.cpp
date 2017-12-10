@@ -38,13 +38,14 @@ TEST_CASE("Tokenizing brackets") {
 
 
 TEST_CASE("Tokenizing names") {
-    std::string test_input("forvar test var for function if else while break continue v1");
+    std::string test_input("forvar test var for function object if else while break continue v1");
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->data == "forvar");  // forvar
             REQUIRE(tok.getToken()->data == "test");  // test
             REQUIRE(tok.getToken()->type == TOKEN_VAR);  // var
             REQUIRE(tok.getToken()->type == TOKEN_FOR);  // for
             REQUIRE(tok.getToken()->type == TOKEN_FUNCTION);  // function
+            REQUIRE(tok.getToken()->type == TOKEN_OBJECT);  // object
             REQUIRE(tok.getToken()->type == TOKEN_IF);  // if
             REQUIRE(tok.getToken()->type == TOKEN_ELSE);  // else
             REQUIRE(tok.getToken()->type == TOKEN_WHILE);  // while

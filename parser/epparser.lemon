@@ -310,6 +310,10 @@ funcexpr(out) ::= expr(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     out = mkTokenTemp(name);
 }
 
+
+// Objects
+
+
 // Expressions
 expr(A) ::= funcexpr(B).  { A = B; }
 
