@@ -15,7 +15,7 @@
 #include "parserUtilities.h"
 
 struct ParserStruct {
-    PyGenerator gen;
+   PyGenerator gen;
     ClosureManager closure;
 };
 
@@ -157,6 +157,17 @@ fdecl_chunk  ::= FUNCTION NAME(name) LPAREN nameList RPAREN SEMICOLON. {
     if(!ps->closure.declareFunction(name->data)) {
         throw_error(72461, "Declaring function with non-function name " + name->data, name->line);
     }
+}
+
+
+/// Object declaration
+
+object_chunk  ::= OBJECT NAME(name) LBRACKET RBRACKET. {
+    ps->gen << "class " << name->data << "(EUDStruct):\n";
+    ps->gen.indent();
+    ps->gen << "_fields_ = [\n";
+    ps->gen << "]";
+    ps->gen.unindent(true);
 }
 
 /// Single-line statements
