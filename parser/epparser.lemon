@@ -166,8 +166,13 @@ object_chunk  ::= OBJECT NAME(name) LBRACKET RBRACKET. {
     ps->gen << "class " << name->data << "(EUDStruct):\n";
     ps->gen.indent();
     ps->gen << "_fields_ = [\n";
-    ps->gen << "]";
+    ps->gen << "]\n";
     ps->gen.unindent(true);
+
+    funcNamePreprocess(name->data);
+    if(!ps->closure.declareFunction(name->data)) {
+        throw_error(72461, "Declaring function with non-function name " + name->data, name->line);
+    }
 }
 
 /// Single-line statements
