@@ -7,5 +7,5 @@
 TEST_SUITE("Object tests");
 
 TEST_CASE("Import parsing") {
-    // check("object/object_empty.eps", "object/object_empty.py");
+    check("object/object_empty.eps", "object/object_empty.py");
 }
