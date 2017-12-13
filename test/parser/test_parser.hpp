@@ -6,7 +6,7 @@
 
 #include "../../parser/parser.h"
 #include "../../utils.h"
-#include "../doctest.hpp"
+#include "../catch.hpp"
 #include <stdexcept>
 #include <string.h>
 #include <vector>
@@ -16,4 +16,4 @@ extern bool NO_EPSPY;
 std::string get_testdata(std::string dataname);
 void checkBlock(const std::string &input, const std::string &desiredOutput);
 std::string unindentString(const std::string& data);
-#define check(infile, outfile) CHECK_EQ(ParseString("test", get_testdata(infile), false), get_testdata(outfile))
+#define check(infile, outfile) CHECK(ParseString("test", get_testdata(infile), false) == get_testdata(outfile))

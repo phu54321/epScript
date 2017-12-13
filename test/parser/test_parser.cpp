@@ -1,6 +1,6 @@
 #include "../../parser/parser.h"
 #include "../../utils.h"
-#include "../doctest.hpp"
+#include "../catch.hpp"
 #include <stdexcept>
 #include <string.h>
 #include <vector>

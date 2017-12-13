@@ -4,11 +4,7 @@
 
 #include "test_parser.hpp"
 
-TEST_SUITE("Object tests");
-
 TEST_CASE("Simple object parsing") {
     check("object/object_empty.eps", "object/object_empty.py");
     check("object/object_members.eps", "object/object_members.py");
 }
-
-TEST_SUITE_END();
