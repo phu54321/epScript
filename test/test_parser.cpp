@@ -1,6 +1,6 @@
 #include "../parser/parser.h"
 #include "../utils.h"
-#include "doctest.hpp"
+#include "catch.hpp"
 #include <stdexcept>
 #include <string.h>
 #include <vector>
@@ -44,9 +44,7 @@ void checkBlock(const std::string &input, const std::string &desiredOutput) {
 
 extern bool NO_EPSPY;
 
-#define check(infile, outfile) CHECK_EQ(ParseString("test", get_testdata(infile), false), get_testdata(outfile))
-
-TEST_SUITE("Parser tests");
+#define check(infile, outfile) CHECK(ParseString("test", get_testdata(infile), false) == get_testdata(outfile))
 
 TEST_CASE("test tool test") {
     CHECK(unindentString("    asdf\n    zxcv\n") == "asdf\nzxcv\n");
@@ -54,20 +52,20 @@ TEST_CASE("test tool test") {
 }
 
 TEST_CASE("Simple expression parsing") {
-    SUBCASE("Simple arithmetic") {
+    SECTION("Simple arithmetic") {
         checkBlock("return 1 + 2;", "EUDReturn(1 + 2)\n");
         checkBlock("return 1 * 2;", "EUDReturn(1 * 2)\n");
         checkBlock("return 1 + 2 * 3;", "EUDReturn(1 + 2 * 3)\n");
         checkBlock("return dwread_epd(0);", "EUDReturn(f_dwread_epd(0))\n");
     }
 
-    SUBCASE("Error handling") {
+    SECTION("Error handling") {
         // Plain expression cannot appear in program-level
                 CHECK((ParseString("test", "2;"), getParseErrorNum() > 0));
     }
 
 
-    SUBCASE("Global variable management") {
+    SECTION("Global variable management") {
         // Variable declaration is allowed
                 CHECK(ParseString("test", "var a;", false) == "a = EUDVariable()\n");
         // Cannot assign varable on global scope
@@ -135,5 +133,3 @@ TEST_CASE("Import parsing with NO_EPSPY") {
             CHECK(ParseString("test", "import test.py_a1;", false) == "from test import a1\n");
     NO_EPSPY = false;
 }
-
-TEST_SUITE_END();
