@@ -1,8 +1,7 @@
 #include "../parser/tokenizer/tokenizer.h"
 #include <sstream>
-#include "doctest.hpp"
+#include "catch.hpp"
 
-TEST_SUITE("Basic tokenization");
 TEST_CASE("Tokenizing arithmetic operators") {
     std::string test_input("+-*/");
     Tokenizer tok(test_input);
@@ -118,7 +117,7 @@ auto k =
 "<13><03>===========================\\n\\\n"
 "')";
 
-TEST_CASE("Tokenizing strings") {
+TEST_CASE("SCMDraft2 text tokenizing") {
     std::string test_input(k);
     Tokenizer tok(test_input);
             REQUIRE(tok.getToken()->data == "DisplayText");
@@ -158,6 +157,3 @@ TEST_CASE("Brackets") {
             REQUIRE(tok.getToken()->data == "g");
             REQUIRE(tok.getToken() == nullptr);
 }
-
-TEST_SUITE_END();
-

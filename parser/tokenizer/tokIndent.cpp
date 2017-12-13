@@ -3,7 +3,7 @@
 //
 
 #include "tokIndent.h"
-#include "../../test/doctest.hpp"
+#include "../../test/catch.hpp"
 #include <stdexcept>
 
 TokIndent::TokIndent() : currentIndent(0) {

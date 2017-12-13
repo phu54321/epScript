@@ -1,2 +1,2 @@
-#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
-#include "doctest.hpp"
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"

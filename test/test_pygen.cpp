@@ -1,9 +1,7 @@
 #include "../parser/generator/pygen.h"
 #include <sstream>
 #include <iostream>
-#include "doctest.hpp"
-
-TEST_SUITE("Pygen tests");
+#include "catch.hpp"
 
 TEST_CASE("String output") {
     PyGenerator pgen;
@@ -26,5 +24,4 @@ TEST_CASE("String output") {
             REQUIRE(pgen.str() == "1+1\n    2\n        3\n\n4\n    # comment\n    pass\n");
 }
 
-TEST_SUITE_END();
 
