@@ -10,6 +10,7 @@
 #include <memory>
 
 enum TokenType {
+    // Internally used by parser
     TOKEN_INVALID,
     TOKEN_TEMP,
 

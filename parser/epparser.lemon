@@ -162,17 +162,46 @@ fdecl_chunk  ::= FUNCTION NAME(name) LPAREN nameList RPAREN SEMICOLON. {
 
 /// Object declaration
 
-object_chunk  ::= OBJECT NAME(name) LBRACKET RBRACKET. {
+object_header(A) ::= OBJECT(X) NAME(name) LBRACKET. {
     ps->gen << "class " << name->data << "(EUDStruct):\n";
     ps->gen.indent();
-    ps->gen << "_fields_ = [\n";
-    ps->gen << "]\n";
-    ps->gen.unindent(true);
 
     funcNamePreprocess(name->data);
     if(!ps->closure.declareFunction(name->data)) {
         throw_error(72461, "Declaring function with non-function name " + name->data, name->line);
     }
+    ps->closure.pushScope();
+
+    A = X;
+    A->data = name->data;  // Add object name
+    delete name;
+}
+
+object_body(A) ::= object_header(B). {
+    A = B;
+}
+
+object_body(A) ::= object_body(B) VAR nameList_nonEmpty(varList) SEMICOLON. {
+    A = B;
+    A->line = varList->line;
+    A->data += ", " + varList->data;
+    delete varList;
+}
+
+object_chunk  ::= object_body(A) RBRACKET. {
+    ps->gen << "_fields_ = [";
+    bool isFirst = true;
+    commaListIter(A->data, [&](std::string& varname) {
+        if (isFirst) {
+            isFirst = false;
+            return;
+        }
+        ps->gen << "'" << varname << "', ";
+    });
+    ps->gen << "]\n";
+    ps->gen.unindent(true);
+    ps->closure.popScope();
+    delete A;
 }
 
 /// Single-line statements
