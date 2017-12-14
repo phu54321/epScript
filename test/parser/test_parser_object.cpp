@@ -5,6 +5,6 @@
 #include "test_parser.hpp"
 
 TEST_CASE("Simple object parsing") {
-    check("object/object_empty.eps", "object/object_empty.py");
-    check("object/object_members.eps", "object/object_members.py");
+    check_file("object/object_empty.eps", "object/object_empty.py");
+    check_file("object/object_members.eps", "object/object_members.py");
 }

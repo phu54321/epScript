@@ -25,7 +25,7 @@ TEST_CASE("Simple expression parsing") {
 
             SECTION("Global variable management") {
         // Variable declaration is allowed
-                CHECK(ParseString("test", "var a;", false) == "a = EUDVariable()\n");
+                check_string("var a;", "a = EUDVariable()\n");
         // Cannot assign varable on global scope
                 CHECK((ParseString("test", "var b; b = 2;"), getParseErrorNum() > 0));
     }
@@ -67,7 +67,7 @@ TEST_CASE("Control block parsing") {
                     "EUDEndWhile()\n"
     );
 
-    check("ctrlstru/ctrlstru_foreach.eps", "ctrlstru/ctrlstru_foreach.py");
+    check_file("ctrlstru/ctrlstru_foreach.eps", "ctrlstru/ctrlstru_foreach.py");
 }
 
 TEST_CASE("Import parsing") {
@@ -78,8 +78,8 @@ TEST_CASE("Import parsing") {
 }
 
 TEST_CASE("Other parsing") {
-    check("auxtest.eps", "auxtest.py");
-    check("method.eps", "method.py");
+    check_file("auxtest.eps", "auxtest.py");
+    check_file("method.eps", "method.py");
 }
 
 
