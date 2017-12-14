@@ -18,4 +18,11 @@ TEST_CASE("Simple object parsing") {
                 "class X(EUDStruct):\n    _fields_ = ['x', 'y', ]\n"
         );
     }
+
+    SECTION("Method") {
+        check_string(
+                "object X { function x() { return 0; } }",
+                "class X(EUDStruct):\n    @EUDMethod\n    def x(self):\n        EUDReturn(0)\n\n    _fields_ = []\n"
+        );
+    }
 }

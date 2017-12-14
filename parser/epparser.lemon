@@ -188,6 +188,59 @@ object_body(A) ::= object_body(B) VAR nameList_nonEmpty(varList) SEMICOLON. {
     delete varList;
 }
 
+method_header(H) ::= FUNCTION NAME(name) LPAREN nameList(args) RPAREN. {
+    // Method can't be called directly, so we shouldn't have to register it to closure.
+    // duplicate method names should be checked at python-compile time.
+
+    ps->gen << "@EUDMethod" << std::endl;
+
+    ps->closure.pushScope();
+    // Register variables.
+    std::string self = "self";  // This may be modified...?
+    if(!ps->closure.defConstant(self)) {
+        throw_error(196, ("Redeclaration of variable \'self\'"), args->line);
+    }
+    commaListIter(args->data, [&](std::string& varname) {
+        if(!ps->closure.defVariable(varname)) {
+            throw_error(196, ("Redeclaration of variable \'" + varname + "\'"), args->line);
+        }
+    });
+
+    // Add default argument 'self'
+    if (args->data.size() != 0) {
+        ps->gen << "def " << name->data << "(" << self << ", " << args->data << "):" << std::endl;
+    } else {
+        ps->gen << "def " << name->data << "(" << self << "):" << std::endl;
+    }
+    ps->gen.indent();
+
+    currentFunction = name->data;
+
+    if(MAP_DEBUG) {
+         ps->gen << "MDBG_PUSHF(\'" << currentFunction << "\', \'" << currentModule << "\')" << std::endl;
+    }
+
+    tmpIndex = 1;
+    delete args;
+    H = mkTokenTemp(name);
+}
+
+method_chunk(C) ::= method_header(H) stmt . {
+    if(MAP_DEBUG){
+        ps->gen << "MDBG_POPF()" << std::endl;
+    }
+    ps->gen.unindent(true);
+    ps->closure.popScope();
+    currentFunction = "";
+    C = H;
+}
+
+object_body(A) ::= object_body(B) method_chunk(C) . {
+    A = B;
+    A->line = C->line;
+    delete C;
+}
+
 object_chunk  ::= object_body(A) RBRACKET. {
     ps->gen << "_fields_ = [";
     bool isFirst = true;
