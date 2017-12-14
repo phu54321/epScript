@@ -9,8 +9,13 @@
 #include <vector>
 
 extern bool NO_EPSPY;
+extern bool MAP_DEBUG;
 
 extern "C" {
+void EPS_EXPORT setDebugMode(int set) {
+    MAP_DEBUG = set != 0;
+}
+
 const char *EPS_EXPORT compileString(
         const char *modname,
         const char *rawcode
