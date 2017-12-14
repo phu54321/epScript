@@ -2,16 +2,16 @@
 #include "../../utils.h"
 #include "../catch.hpp"
 #include <stdexcept>
+#include <algorithm>
 #include <string.h>
 #include <vector>
-#include "test_parser.hpp"
+#include "test_base.hpp"
 
 
 std::string get_testdata(std::string dataname) {
     dataname = "../test/testdata/" + dataname;
     return getFile(dataname);
 }
-
 
 std::string unindentString(const std::string& data) {
     std::vector<char> sbuf;

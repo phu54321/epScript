@@ -2,7 +2,7 @@
 // Created by phu54321 on 2017-12-10.
 //
 
-#include "test_parser.hpp"
+#include "test_base.hpp"
 
 TEST_CASE("Simple object parsing") {
     SECTION("Empty object definition & initialization") {
@@ -41,8 +41,7 @@ TEST_CASE("Simple object parsing") {
                     "    def length_sq(this):\n"
                     "        EUDReturn(this.x * this.x + this.y * this.y)\n"
                     "\n"
-                    "    _fields_ = ['x', 'y', ]\n"
-                    ""
+                    "    _fields_ = ['x', 'y', ]"
         );
     }
 }

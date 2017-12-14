@@ -2,7 +2,7 @@
 // Created by phu54321 on 2017-12-10.
 //
 
-#include "test_parser.hpp"
+#include "test_base.hpp"
 
 TEST_CASE("test tool test") {
             CHECK(unindentString("    asdf\n    zxcv\n") == "asdf\nzxcv\n");
@@ -67,7 +67,31 @@ TEST_CASE("Control block parsing") {
                     "EUDEndWhile()\n"
     );
 
-    check_file("ctrlstru/ctrlstru_foreach.eps", "ctrlstru/ctrlstru_foreach.py");
+    // forEach
+    check_string(
+        "function x() {\n"
+                "    const A, B = 1, 1;\n"
+                "    foreach (x : A) {\n"
+                "    }\n"
+                "\n"
+                "    var x;  // Check non-duplicate variable\n"
+                "\n"
+                "    foreach (x, y : B) {\n"
+                "        SetDeaths(x, SetTo, y, 0);\n"
+                "    }\n"
+                "}",
+
+        "@EUDFunc\n"
+                "def f_x():\n"
+                "    A, B = List2Assignable([1, 1])\n"
+                "    for x in A:\n"
+                "        pass\n"
+                "\n"
+                "    x = EUDVariable()\n"
+                "    for x_1, y in B:\n"
+                "        DoActions(SetDeaths(x_1, SetTo, y, 0))"
+
+    );
 }
 
 TEST_CASE("Import parsing") {
@@ -78,8 +102,55 @@ TEST_CASE("Import parsing") {
 }
 
 TEST_CASE("Other parsing") {
-    check_file("auxtest.eps", "auxtest.py");
-    check_file("method.eps", "method.py");
+    SECTION("Auxillary") {
+        check_string(
+        "var a = 1;\n"
+                "const b = 2;\n"
+                "\n"
+                "function x() {\n"
+                "    const A = 1;\n"
+                "    A.B();  // Should not have f_A prefix\n"
+                "    dwread();  // Should have f_ prefix\n"
+                "\n"
+                "    var a = dwread()[[5]];\n"
+                "    a = A[5];\n"
+                "    A[a] = 7;\n"
+                "}",
+
+        "a = EUDCreateVariables(1)\n"
+                "_IGVA(a, lambda: [1])\n"
+                "b = _CGFW(lambda: [2], 1)[0]\n"
+                "@EUDFunc\n"
+                "def f_x():\n"
+                "    A = 1\n"
+                "    A.B()\n"
+                "    f_dwread()\n"
+                "    a_1 = EUDVariable()\n"
+                "    a_1 << (f_dwread()[5])\n"
+                "    a_1 << (A[5])\n"
+                "    _ARRW(A, a_1) << (7)\n"
+        );
+    }
+
+    SECTION("Object methods") {
+        check_string(
+                "function f(A) {\n"
+                        "    const B = EUDByteReader();\n"
+                        "    B.seekepd(A);\n"
+                        "    A = B.k;\n"
+                        "    B.k = 1;\n"
+                        "    A, B.k = 3;\n"
+                        "}",
+
+                "@EUDFunc\n"
+                        "def f_f(A):\n"
+                        "    B = EUDByteReader()\n"
+                        "    B.seekepd(A)\n"
+                        "    A << (B.k)\n"
+                        "    _ATTW(B, 'k') << (1)\n"
+                        "    _SV([A, _ATTW(B, 'k')], [3])\n"
+        );
+    }
 }
 
 

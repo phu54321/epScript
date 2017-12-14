@@ -105,14 +105,14 @@ void impPathProcess(const std::string& s, std::string& impPath, std::string& imp
 
 std::string trim(std::string s) {
     // ltrim
-    size_t startpos = s.find_first_not_of(" \t");
+    size_t startpos = s.find_first_not_of(" \n\t");
     if (std::string::npos != startpos)
     {
         s = s.substr(startpos);
     }
 
     // rtrim
-    size_t endpos = s.find_last_not_of(" \t");
+    size_t endpos = s.find_last_not_of(" \n\t");
     if (std::string::npos != endpos)
     {
         s = s.substr(0, endpos + 1);

@@ -7,8 +7,6 @@
 #include <sys/stat.h>
 #include <dirent.h>
 
-#define VERSION "v0.2"
-
 extern bool PARSER_DEBUG;
 extern bool MAP_DEBUG;
 

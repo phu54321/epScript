@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.6)
 project(epScript)
 
+set(EPSCRIPT_VERSION 1.2.0)
+
 set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
 
 if (WIN32)
@@ -35,19 +37,20 @@ endif()
 set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokenizer.cpp
         parser/tokenizer/tokChars.cpp parser/tokenizer/tokenizerImpl.cpp
-        parser/tokenizer/tokIndent.cpp parser/generator/pygen.cpp parser/tokenAdapter.cpp
+        parser/generator/pygen.cpp parser/tokenAdapter.cpp
         parser/reservedWords/condact.cpp parser/generator/eudplibGlobals.cpp scriptDaemon.cpp parser/generator/closure.cpp
         parser/generator/closure.h parser/parser.h parser/parserUtils.cpp parser/parserUtilsTokens.cpp utils.cpp parser/reservedWords/constparser.cpp parser/reservedWords/constparser.h)
-set(TEST_SOURCE_FILES test/test_tokenizer.cpp test/test_pygen.cpp test/parser/test_parser.cpp test/parser/test_parser_object.cpp test/parser/test_parser.hpp test/parser/test_parser_basic.cpp)
+set(TEST_SOURCE_FILES test/test_tokenizer.cpp test/test_pygen.cpp test/parser/test_base.cpp test/parser/test_parser_object.cpp test/parser/test_base.hpp test/parser/test_parser_basic.cpp)
 
 add_executable(epScript ${SOURCE_FILES} main.cpp)
+add_definitions(-DVERSION="${EPSCRIPT_VERSION}")
 set_target_properties(epScript PROPERTIES COMPILE_FLAGS "-DDOCTEST_CONFIG_DISABLE")
 target_link_libraries(epScript -static)
 
 add_library(epScriptLib SHARED ${SOURCE_FILES} libmain.cpp)
 set_target_properties(epScriptLib PROPERTIES
         COMPILE_FLAGS "-DDOCTEST_CONFIG_DISABLE"
-        VERSION 1.2.0
+        VERSION ${EPSCRIPT_VERSION}
         )
 target_link_libraries(epScriptLib -static)
 
