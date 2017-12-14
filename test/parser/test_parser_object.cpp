@@ -22,7 +22,27 @@ TEST_CASE("Simple object parsing") {
     SECTION("Method") {
         check_string(
                 "object X { function x() { return 0; } }",
-                "class X(EUDStruct):\n    @EUDMethod\n    def x(self):\n        EUDReturn(0)\n\n    _fields_ = []\n"
+                "class X(EUDStruct):\n    @EUDMethod\n    def x(this):\n        EUDReturn(0)\n\n    _fields_ = []\n"
+        );
+    }
+
+    SECTION("Method & variable mix") {
+        check_string(
+            "object V2 {\n"
+            "    var x;\n"
+            "    function length_sq() {\n"
+            "        return this.x * this.x + this.y * this.y;\n"
+            "    }\n"
+            "    var y;\n"
+            "}",
+
+            "class V2(EUDStruct):\n"
+                    "    @EUDMethod\n"
+                    "    def length_sq(this):\n"
+                    "        EUDReturn(this.x * this.x + this.y * this.y)\n"
+                    "\n"
+                    "    _fields_ = ['x', 'y', ]\n"
+                    ""
         );
     }
 }

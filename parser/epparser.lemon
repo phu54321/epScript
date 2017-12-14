@@ -168,7 +168,7 @@ object_header(A) ::= OBJECT(X) NAME(name) LBRACKET. {
 
     funcNamePreprocess(name->data);
     if(!ps->closure.declareFunction(name->data)) {
-        throw_error(72461, "Declaring function with non-function name " + name->data, name->line);
+        throw_error(8228, "Declaring object with non-function name " + name->data, name->line);
     }
     ps->closure.pushScope();
 
@@ -196,21 +196,21 @@ method_header(H) ::= FUNCTION NAME(name) LPAREN nameList(args) RPAREN. {
 
     ps->closure.pushScope();
     // Register variables.
-    std::string self = "self";  // This may be modified...?
-    if(!ps->closure.defConstant(self)) {
-        throw_error(196, ("Redeclaration of variable \'self\'"), args->line);
+    std::string _this = "this";  // This may be modified...?
+    if(!ps->closure.defConstant(_this)) {
+        throw_error(656, ("Redeclaration of variable \'this\'"), args->line);
     }
     commaListIter(args->data, [&](std::string& varname) {
         if(!ps->closure.defVariable(varname)) {
-            throw_error(196, ("Redeclaration of variable \'" + varname + "\'"), args->line);
+            throw_error(2656, ("Redeclaration of variable \'" + varname + "\'"), args->line);
         }
     });
 
     // Add default argument 'self'
     if (args->data.size() != 0) {
-        ps->gen << "def " << name->data << "(" << self << ", " << args->data << "):" << std::endl;
+        ps->gen << "def " << name->data << "(" << _this << ", " << args->data << "):" << std::endl;
     } else {
-        ps->gen << "def " << name->data << "(" << self << "):" << std::endl;
+        ps->gen << "def " << name->data << "(" << _this << "):" << std::endl;
     }
     ps->gen.indent();
 

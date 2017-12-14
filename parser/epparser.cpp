@@ -1530,7 +1530,7 @@ static void yy_reduce(
 
     funcNamePreprocess(yymsp[-1].minor.yy0->data);
     if(!ps->closure.declareFunction(yymsp[-1].minor.yy0->data)) {
-        throw_error(72461, "Declaring function with non-function yymsp[-1].minor.yy0 " + yymsp[-1].minor.yy0->data, yymsp[-1].minor.yy0->line);
+        throw_error(8228, "Declaring object with non-function yymsp[-1].minor.yy0 " + yymsp[-1].minor.yy0->data, yymsp[-1].minor.yy0->line);
     }
     ps->closure.pushScope();
 
@@ -1567,21 +1567,21 @@ static void yy_reduce(
 
     ps->closure.pushScope();
     // Register variables.
-    std::string self = "self";  // This may be modified...?
-    if(!ps->closure.defConstant(self)) {
-        throw_error(196, ("Redeclaration of variable \'self\'"), yymsp[-1].minor.yy0->line);
+    std::string _this = "this";  // This may be modified...?
+    if(!ps->closure.defConstant(_this)) {
+        throw_error(656, ("Redeclaration of variable \'this\'"), yymsp[-1].minor.yy0->line);
     }
     commaListIter(yymsp[-1].minor.yy0->data, [&](std::string& varname) {
         if(!ps->closure.defVariable(varname)) {
-            throw_error(196, ("Redeclaration of variable \'" + varname + "\'"), yymsp[-1].minor.yy0->line);
+            throw_error(2656, ("Redeclaration of variable \'" + varname + "\'"), yymsp[-1].minor.yy0->line);
         }
     });
 
     // Add default argument 'self'
     if (yymsp[-1].minor.yy0->data.size() != 0) {
-        ps->gen << "def " << yymsp[-3].minor.yy0->data << "(" << self << ", " << yymsp[-1].minor.yy0->data << "):" << std::endl;
+        ps->gen << "def " << yymsp[-3].minor.yy0->data << "(" << _this << ", " << yymsp[-1].minor.yy0->data << "):" << std::endl;
     } else {
-        ps->gen << "def " << yymsp[-3].minor.yy0->data << "(" << self << "):" << std::endl;
+        ps->gen << "def " << yymsp[-3].minor.yy0->data << "(" << _this << "):" << std::endl;
     }
     ps->gen.indent();
 
