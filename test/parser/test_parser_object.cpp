@@ -4,7 +4,7 @@
 
 #include "test_base.hpp"
 
-TEST_CASE("Simple object parsing") {
+TEST_CASE("Object definition") {
     SECTION("Empty object definition & initialization") {
         check_string(
                 "object X {} const t = X();",
@@ -42,6 +42,28 @@ TEST_CASE("Simple object parsing") {
                     "        EUDReturn(this.x * this.x + this.y * this.y)\n"
                     "\n"
                     "    _fields_ = ['x', 'y', ]"
+        );
+    }
+}
+
+TEST_CASE("Using objects") {
+    SECTION("Object methods") {
+        check_string(
+                "function f(A) {\n"
+                        "    const B = EUDByteReader();\n"
+                        "    B.seekepd(A);\n"
+                        "    A = B.k;\n"
+                        "    B.k = 1;\n"
+                        "    A, B.k = 3;\n"
+                        "}",
+
+                "@EUDFunc\n"
+                        "def f_f(A):\n"
+                        "    B = EUDByteReader()\n"
+                        "    B.seekepd(A)\n"
+                        "    A << (B.k)\n"
+                        "    _ATTW(B, 'k') << (1)\n"
+                        "    _SV([A, _ATTW(B, 'k')], [3])\n"
         );
     }
 }
