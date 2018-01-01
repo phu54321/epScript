@@ -241,7 +241,7 @@ object_body(A) ::= object_body(B) method_chunk(C) . {
     delete C;
 }
 
-object_chunk  ::= object_body(A) RBRACKET. {
+object_chunk  ::= object_body(A) RBRACKET SEMICOLON. {
     ps->gen << "_fields_ = [";
     bool isFirst = true;
     commaListIter(A->data, [&](std::string& varname) {
