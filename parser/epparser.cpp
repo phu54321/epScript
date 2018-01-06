@@ -2083,7 +2083,7 @@ static void yy_reduce(
     });
 
     ps->gen << s << " = EUDCreateVariables(" << varCount << ")" << std::endl;
-    ps->gen << "_IGVA(" << s << ", lambda: [" << yymsp[0].minor.yy0->data << "])" << std::endl;
+    ps->gen << "_IGVA([" << s << "], lambda: [" << yymsp[0].minor.yy0->data << "])" << std::endl;
 
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
