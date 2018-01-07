@@ -2,8 +2,10 @@ cmake_minimum_required(VERSION 3.6)
 project(epScript)
 
 set(EPSCRIPT_VERSION 1.2.0)
-set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
-set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
+if (WIN32)
+    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
+endif()
 
 set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
 
@@ -54,6 +56,8 @@ set_target_properties(epScriptLib PROPERTIES
         COMPILE_FLAGS "-DDOCTEST_CONFIG_DISABLE"
         VERSION ${EPSCRIPT_VERSION}
         )
-target_link_libraries(epScriptLib -static)
+if (WIN32)
+    target_link_libraries(epScriptLib -static)
+endif()
 
 add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
