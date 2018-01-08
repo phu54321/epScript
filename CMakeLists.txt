@@ -43,8 +43,14 @@ set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokeni
         parser/tokenizer/tokChars.cpp parser/tokenizer/tokenizerImpl.cpp
         parser/generator/pygen.cpp parser/tokenAdapter.cpp
         parser/reservedWords/condact.cpp parser/generator/eudplibGlobals.cpp scriptDaemon.cpp parser/generator/closure.cpp
-        parser/generator/closure.h parser/parser.h parser/parserUtils.cpp parser/parserUtilsTokens.cpp utils.cpp parser/reservedWords/constparser.cpp parser/reservedWords/constparser.h)
-set(TEST_SOURCE_FILES test/test_tokenizer.cpp test/test_pygen.cpp test/parser/test_base.cpp test/parser/test_parser_object.cpp test/parser/test_base.hpp test/parser/test_parser_basic.cpp test/parser/test_parser_globalv.cpp)
+        parser/generator/closure.h parser/parser.h parser/parserUtils.cpp parser/parserUtilsTokens.cpp utils.cpp
+        parser/reservedWords/constparser.cpp parser/reservedWords/constparser.h)
+
+set(TEST_SOURCE_FILES
+        test/test_tokenizer.cpp test/test_pygen.cpp test/parser/test_base.cpp
+        test/parser/test_parser_basic.cpp  test/parser/test_parser_complex.cpp test/parser/test_parser_ctrlstru.cpp
+        test/parser/test_parser_globalv.cpp test/parser/test_parser_import.cpp test/parser/test_parser_noepspy.cpp
+        test/parser/test_parser_object.cpp)
 
 add_executable(epScript ${SOURCE_FILES} main.cpp)
 add_definitions(-DVERSION="${EPSCRIPT_VERSION}")
