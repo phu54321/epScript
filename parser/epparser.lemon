@@ -42,6 +42,7 @@ bool MAP_DEBUG = false;
 // Precedence table
 
 %left ASSIGN.
+%right QMARK.
 %left COMMA.
 
 %left LOR.
@@ -455,6 +456,18 @@ expr(A) ::= LOCATION LPAREN STRING(B) RPAREN. {
     A = mkTokenTemp(B);
 }
 
+// Ternary operators
+expr(A) ::= lexpr(L) QMARK expr(B) COLON expr(C). [QMARK] {
+    std::stringstream ss;
+    ss << "EUDTernary";
+    applyNegativeOptimization(ss, L);
+    ss << "(" << B->data << ")(" << C->data << ")";
+    C->data = ss.str();
+    delete L;
+    delete B;
+    A = mkTokenTemp(C);
+}
+
 // Binary operators
 expr(A) ::= expr(B) PLUS        expr(C). { A = binopConcat(B, "+",  C); }
 expr(A) ::= expr(B) MINUS       expr(C). { A = binopConcat(B, "-",  C); }
@@ -478,7 +491,6 @@ expr(A) ::= BITNOT  expr(B). [UNARY] { B->data = "~" + B->data; A = mkTokenTemp(
 
 
 // Logical expressions
-lexpr(A) ::= expr(B). { A = B; }
 lexpr(A) ::= LPAREN lexpr(B) RPAREN.    {
     B->data = "(" + B->data + ")";
     A = mkTokenTemp(B);
