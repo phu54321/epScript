@@ -37,15 +37,21 @@ int getParseErrorNum() {
 
 ////
 
-void writeNegatableCondition(Token* csOpener, Token* lexpr) {
+void writeCsOpener(std::ostream& os, const Token* csOpener, const Token* lexpr) {
+    os << "if " << csOpener->data;
+    applyNegativeOptimization(os, lexpr);
+    os << ":" << std::endl;
+}
+
+void applyNegativeOptimization(std::ostream& os, const Token *lexpr) {
     if(lexpr->type == TOKEN_LNOT) {
-        (*pGen) << "if " << csOpener->data << "(" << lexpr->subToken[0]->data << ", neg=True):" << std::endl;
+        os << "(" << lexpr->subToken[0]->data << ", neg=True)";
     }
     else if(lexpr->type == TOKEN_NE) {
-        (*pGen) << "if " << csOpener->data << "(" << lexpr->subToken[0]->data << " == " << lexpr->subToken[1]->data << ", neg=True):" << std::endl;
+        os << "(" << lexpr->subToken[0]->data << " == " << lexpr->subToken[1]->data << ", neg=True)";
     }
     else {
-        (*pGen) << "if " << csOpener->data << "(" << lexpr->data << "):" << std::endl;
+        os << "(" << lexpr->data << ")";
     }
 }
 

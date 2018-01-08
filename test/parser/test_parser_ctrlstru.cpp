@@ -10,7 +10,7 @@ TEST_CASE("Control block parsing") {
         checkBlock(
                 "if(1 == 2 || 2 + 3 == 5 && 7 == 8) return 3;",
 
-                "if EUDIf()(EUDOr(1 == 2, [2 + 3 == 5, 7 == 8])):\n"
+                "if EUDIf()(EUDSCOr()(1 == 2)(EUDSCAnd()(2 + 3 == 5)(7 == 8)())()):\n"
                         "    EUDReturn(3)\n"
                         "EUDEndIf()\n"
         );

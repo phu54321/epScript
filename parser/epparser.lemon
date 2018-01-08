@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <assert.h>
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <sstream>
 #include <algorithm>
@@ -508,7 +509,12 @@ lexpr(A) ::= lexpr(B) LAND lexpr(C).  {
     A->type = TOKEN_LAND;
     A->subToken[0] = B;
     A->subToken[1] = C;
-    A->data = "[" + flatListGetter(A, TOKEN_LAND) + "]";
+
+    std::stringstream ss;
+    ss << "EUDSCAnd()";
+    shortCircuitCondListGetter(ss, A, TOKEN_LAND);
+    ss << "()";
+    A->data = ss.str();
 }
 
 // OR operation is very costly, so we make some deliberate choice!
@@ -520,7 +526,12 @@ lexpr(A) ::= lexpr(B) LOR lexpr(C).  {
     A->type = TOKEN_LOR;
     A->subToken[0] = B;
     A->subToken[1] = C;
-    A->data = "EUDOr(" + flatListGetter(A, TOKEN_LOR) + ")";
+
+    std::stringstream ss;
+    ss << "EUDSCOr()";
+    shortCircuitCondListGetter(ss, A, TOKEN_LOR);
+    ss << "()";
+    A->data = ss.str();
 }
 
 lexpr(A) ::= LNOT lexpr(B).  {
@@ -533,7 +544,7 @@ lexpr(A) ::= LNOT lexpr(B).  {
         A = genEmpty();
         A->line = B->line;
         A->type = TOKEN_LNOT;
-        A->data = "EUDNot([" + B->data + "])";
+        A->data = "EUDNot(" + B->data + ")";
         A->subToken[0] = B;
     }
 }
@@ -695,7 +706,7 @@ if_start(A) ::= IF(B). {
 }
 
 if_header ::= if_start(A) LPAREN lexpr(B) RPAREN. {
-    writeNegatableCondition(A, B);
+    writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
 }
@@ -709,7 +720,7 @@ elif_start(A) ::= ELSE IF(B). {
 }
 
 elif_header ::= elif_start(A) LPAREN lexpr(B) RPAREN. {
-    writeNegatableCondition(A, B);
+    writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
 }
@@ -741,7 +752,7 @@ while_start(A) ::= WHILE(B). {
 }
 
 while_header ::= while_start(A) LPAREN lexpr(B) RPAREN. {
-    writeNegatableCondition(A, B);
+    writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
 }
@@ -778,7 +789,7 @@ for_header1(A) ::= for_opener for_init_stmt SEMICOLON(B). {
 }
 
 for_header2(X)::= for_header1(A) lexpr(B) SEMICOLON. {
-    writeNegatableCondition(A, B);
+    writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
 

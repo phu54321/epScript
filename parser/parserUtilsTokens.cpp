@@ -101,15 +101,14 @@ Token* commaConcat(Token* a, Token* b) {
     return b;
 }
 
-std::string flatListGetter(const Token* t, TokenType astType) {
+void shortCircuitCondListGetter(std::ostream& os, const Token* t, TokenType astType) {
     if(t->type == astType) {
-        return (
-                flatListGetter(t->subToken[0], astType) +
-                ", " +
-                flatListGetter(t->subToken[1], astType)
-        );
+        shortCircuitCondListGetter(os, t->subToken[0], astType);
+        shortCircuitCondListGetter(os, t->subToken[1], astType);
     }
-    else return t->data;
+    else {
+        applyNegativeOptimization(os, t);
+    }
 }
 
 ////
