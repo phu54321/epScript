@@ -2187,7 +2187,7 @@ static void yy_reduce(
         ps->gen << s << " = _CGFW(lambda: [" << yymsp[0].minor.yy0->data << "], 1)[0]" << std::endl;
     }
     else {
-        ps->gen << s << " = List2Assignable(_CGFW(lambda: [" << yymsp[0].minor.yy0->data << "], nameCount))" << std::endl;
+        ps->gen << s << " = List2Assignable(_CGFW(lambda: [" << yymsp[0].minor.yy0->data << "], " << nameCount << "))" << std::endl;
     }
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }

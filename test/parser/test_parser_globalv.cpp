@@ -11,4 +11,10 @@ TEST_CASE("Multiple variable") {
             "a, b = EUDCreateVariables(2)\n"
                     "_IGVA([a, b], lambda: [1, 2])\n"
     );
+
+    check_string(
+            "const a, b = 1, 2;",
+
+            "a, b = List2Assignable(_CGFW(lambda: [1, 2], 2))"
+    );
 }
