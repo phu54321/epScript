@@ -2,6 +2,6 @@
 #define EPSCRIPT_EUDPLIBGLOBALS_H
 
 #include <string>
-bool isBuiltinConst(const std::string& name);
+bool isBuiltinConst(std::string& name);
 
 #endif //EPSCRIPT_EUDPLIBGLOBALS_H

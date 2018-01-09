@@ -90,6 +90,18 @@ std::unordered_set<std::string> builtinConstSet = {
         "u2b", "unProxy",
 };
 
-bool isBuiltinConst(const std::string& name) {
-    return builtinConstSet.find(name) != builtinConstSet.end();
+bool isBuiltinConst(std::string& name) {
+    if(name == "True" || name == "true") {
+        name = "True";
+        return true;
+    }
+
+    else if(name == "False" || name == "false") {
+        name = "False";
+        return true;
+    }
+
+    else {
+        return builtinConstSet.find(name) != builtinConstSet.end();
+    }
 }

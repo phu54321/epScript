@@ -1,0 +1,12 @@
+//
+// Created by phu54321 on 2018-01-10.
+//
+
+#include "test_base.hpp"
+
+TEST_CASE("False should be accepted") {
+    checkBlock("return True;", "EUDReturn(True)\n");
+    checkBlock("return true;", "EUDReturn(True)\n");
+    checkBlock("return False;", "EUDReturn(False)\n");
+    checkBlock("return false;", "EUDReturn(False)\n");
+}

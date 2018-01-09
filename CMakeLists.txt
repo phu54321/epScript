@@ -50,7 +50,7 @@ set(TEST_SOURCE_FILES
         test/test_tokenizer.cpp test/test_pygen.cpp test/parser/test_base.cpp
         test/parser/test_parser_basic.cpp  test/parser/test_parser_complex.cpp test/parser/test_parser_ctrlstru.cpp
         test/parser/test_parser_globalv.cpp test/parser/test_parser_import.cpp test/parser/test_parser_noepspy.cpp
-        test/parser/test_parser_object.cpp test/parser/test_parser_ternary.cpp)
+        test/parser/test_parser_object.cpp test/parser/test_parser_ternary.cpp test/parser/test_parser_truefalse.cpp)
 
 add_executable(epScript ${SOURCE_FILES} main.cpp)
 add_definitions(-DVERSION="${EPSCRIPT_VERSION}")
