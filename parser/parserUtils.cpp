@@ -75,7 +75,7 @@ void commaListIter(std::string& s, std::function<void(std::string&)> func) {
 
 void funcNamePreprocess(std::string& s) {
     if(strncmp(s.c_str(), "py_", 3) == 0) return; // Builtin function?
-    else if(isBuiltinFunc(s)) return;  // Some builtin function don't have f_ prefixes. (b2i4) Pass them as-is
+    else if(isBuiltinConst(s)) return;  // Some builtin function don't have f_ prefixes. (b2i4) Pass them as-is
     else if(s[0] == '_' || ('A' <= s[0] && s[0] <= 'Z')) return;  // Name starts with uppercase -> Don't modify
     else s = "f_" + s;
 }

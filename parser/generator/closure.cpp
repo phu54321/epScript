@@ -106,8 +106,8 @@ bool ClosureManagerImpl::defModule(std::string &name) {
 }
 
 bool ClosureManagerImpl::getFunction(std::string& name) const {
-    return getTableValue(name, TABLE_FUNC, [](std::string& name) {
-        return isBuiltinFunc(name);
+    return getTableValue(name, TABLE_FUNC | TABLE_CONST, [](std::string& name) {
+        return isBuiltinConst(name);
     });
 }
 
