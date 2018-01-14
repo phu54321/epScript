@@ -3,8 +3,8 @@ project(epScript)
 
 set(EPSCRIPT_VERSION 1.2.1)
 if (WIN32)
-#     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
-#     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
+    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
 endif()
 
 set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
