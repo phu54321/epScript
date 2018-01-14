@@ -12,7 +12,7 @@ std::string getFile(const std::string& fname);
 #if defined(epScriptLib_EXPORTS)
 #define  EPS_EXPORT __declspec(dllexport)
 #else
-#define  EPS_EXPORT __declspec(dllimport)
+#define  EPS_EXPORT
 #endif
 #else
 #define EPS_EXPORT
