@@ -41,17 +41,16 @@ bool MAP_DEBUG = false;
 
 // Precedence table
 
+%nonassoc IFX.
+%nonassoc ELSE.
+
 %left ASSIGN.
 %right QMARK.
 %left COMMA.
-
 %left LOR.
 %left LAND.
 %right LNOT.
-%right DOUBLE_LNOT.  // Faster optimization for double lnot
-
 %nonassoc EQ LE LT GE GT NE.
-
 %left BITOR.
 %left BITXOR.
 %left BITAND.
@@ -59,7 +58,8 @@ bool MAP_DEBUG = false;
 %left PLUS MINUS.
 %left DIVIDE MULTIPLY MOD.
 %right UNARY BITNOT.
-%nonassoc NUMBER NAME.
+%left LPAREN LSQBRACKET PERIOD.
+
 
 program ::= chunks.
 
@@ -316,14 +316,14 @@ nameList_nonEmpty(A) ::= nameList_nonEmpty(B) COMMA NAME(C). { A = commaConcat(B
 nameList(A)::= . { A = genEmpty(); }
 nameList(A) ::= nameList_nonEmpty(B). { A = B; }
 
-exprList_nonEmpty(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET RSQBRACKET. {
+exprList_nonEmpty(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET RSQBRACKET. [SUBSCRIPT] {
     C->data = "_SRET(" + B->data + ", [" + C->data + "])";
     delete B;
     A = mkTokenTemp(C);
 }
 
 
-expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
+expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. [SUBSCRIPT] {
     C->data = B->data + "[" + C->data + "]";
     delete B;
     A = mkTokenTemp(C);
@@ -331,7 +331,7 @@ expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. {
 
 
 exprList_nonEmpty(A) ::= expr(B). [COMMA] { A = B; }
-exprList_nonEmpty(A) ::= exprList_nonEmpty(B) COMMA exprList_nonEmpty(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+exprList_nonEmpty(A) ::= exprList_nonEmpty(B) COMMA expr(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
 
 exprList(A) ::= . { A = genEmpty(); }
 exprList(A) ::= exprList_nonEmpty(B). { A = B; }
@@ -348,13 +348,13 @@ expr(A) ::= NAME(B). {
     A = B;
 }
 
-expr(A)::= expr(B) PERIOD NAME(C). {
+expr(A)::= expr(B) PERIOD NAME(C). [MEMBER] {
     B->data = B->data + "." + C->data;
     delete C;
     A = mkTokenTemp(B);
 }
 
-expr(A)::= expr(B) LSQBRACKET expr(C) RSQBRACKET. {
+expr(A)::= expr(B) LSQBRACKET expr(C) RSQBRACKET. [SUBSCRIPT] {
     B->data = B->data + "[" + C->data + "]";
     delete C;
     A = mkTokenTemp(B);
@@ -426,7 +426,7 @@ expr(A) ::= LPAREN expr(B) RPAREN. {
 commaSkippable ::= COMMA.
 commaSkippable ::= .
 
-expr(A) ::= LSQBRACKET exprList(B) commaSkippable RSQBRACKET. {
+expr(A) ::= LSQBRACKET exprList_nonEmpty(B) commaSkippable RSQBRACKET. {
     B->data = "_ARR(FlattenList([" + B->data + "]))";
     A = mkTokenTemp(B);
 }
@@ -662,14 +662,14 @@ lvalue(A) ::= NAME(B). {
     A = B;
 }
 
-lvalue(A) ::= expr(B) LSQBRACKET expr(C) RSQBRACKET. {
+lvalue(A) ::= expr(B) LSQBRACKET expr(C) RSQBRACKET. [SUBSCRIPT] {
     checkIsConstant(B->data, B->line);
     C->data = "_ARRW(" + B->data + ", " + C->data + ")";
     A = mkTokenTemp(C);
     delete B;
 }
 
-lvalue(A) ::= expr(B) PERIOD NAME(C). {
+lvalue(A) ::= expr(B) PERIOD NAME(C). [MEMBER] {
     checkIsConstant(B->data, B->line);
     C->data = "_ATTW(" + B->data + ", '" + C->data + "')";
     A = mkTokenTemp(C);
@@ -678,6 +678,7 @@ lvalue(A) ::= expr(B) PERIOD NAME(C). {
 
 lvalueList_nonEmpty(A) ::= lvalue(B). { A = B; }
 lvalueList_nonEmpty(A) ::= lvalueList_nonEmpty(B) COMMA lvalue(C). { A = commaConcat(B, C); }
+
 assign_stmt ::= lvalue(A) ASSIGN expr(B). {
     ps->gen << A->data << " << (" << B->data << ")" << std::endl;
     delete A; delete B;
@@ -740,12 +741,12 @@ else_header ::= ELSE. {
     ps->gen.indent();
 }
 
-if_stmt ::= if_block. {
+if_stmt ::= if_block. [IFX] {
     ps->gen.unindent(false);
     ps->gen << "EUDEndIf()" << std::endl;
 }
 
-if_stmt ::= if_block else_header stmt. {
+if_stmt ::= if_block else_header stmt. [ELSE] {
     ps->gen.unindent(false);
     ps->gen << "EUDEndIf()" << std::endl;
 }
@@ -876,77 +877,13 @@ expr(A) ::= KILLS(B) LPAREN fArgs(C) RPAREN. {
     A = mkTokenTemp(B);
 }
 
-expr(A) ::= CONDITIONNAME(B) LPAREN RPAREN. {
-    B->data = B->data + "()";
-    A = mkTokenTemp(B);
-}
-
-action(X) ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN SEMICOLON. {
-    X = genTemp(A);
-    X->data =  A->data + "(" + B->data + ")";
+actionStmt ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN SEMICOLON. {
+    ps->gen << "DoActions(" << A->data << "(" << B->data << "))" << std::endl;
     delete A; delete B;
-}
-
-actions(A) ::= action(B) action(C). {
-    if(functionCalledInMultipleActions) {
-        ps->gen << "DoActions([" << std::endl;
-        ps->gen.indent();
-        ps->gen << B->data << std::endl;
-        ps->gen.unindent(false);
-        ps->gen << "])" << std::endl;
-
-        delete B;
-        A = C;
-    }
-    else {
-        C->data = B->data + ",\n" + C->data;
-        A = C;
-        delete B;
-    }
-    functionCalledInMultipleActions = false;
-}
-
-actions(A) ::= actions(B) action(C). {
-    if(functionCalledInMultipleActions) {
-        ps->gen << "DoActions([" << std::endl;
-        ps->gen.indent();
-        ps->gen << B->data << std::endl;
-        ps->gen.unindent(false);
-        ps->gen << "])" << std::endl;
-
-        delete B;
-        A = C;
-    }
-    else {
-        C->data = B->data + ",\n" + C->data;
-        A = C;
-        delete B;
-    }
-    functionCalledInMultipleActions = false;
-}
-
-actionStmt_start ::= . {
-    functionCalledInMultipleActions = false;
-}
-
-actionStmt ::= actionStmt_start action(X). {
-    ps->gen << "DoActions(" << X->data << ")" << std::endl;
-    delete X;
-}
-
-actionStmt ::= actionStmt_start actions(X). {
-    ps->gen << "DoActions([" << std::endl;
-    ps->gen.indent();
-    ps->gen << X->data << std::endl;
-    ps->gen.unindent(false);
-    ps->gen << "])" << std::endl;
-    delete X;
 }
 
 
 // Program building block
-
-
 
 %code {
 
@@ -963,6 +900,10 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
     auto rpos = fname.find_first_of(".", lpos);
     if(rpos == std::string::npos) rpos = fname.size();
     currentModule = fname.substr(lpos, rpos - lpos);
+
+#ifndef NDEBUG
+    if(PARSER_DEBUG) ParseTrace(stdout, "--");
+#endif
 
     // Main code
     Tokenizer tok(code);
@@ -1021,9 +962,6 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
         }
         if (tokenTypeConv(token)) {
             Parse (pParser, token->type, token, &ps);
-#ifndef NDEBUG
-            if(PARSER_DEBUG) ParseTrace(stdout, "--");
-#endif
         }
         else {
             throw_error(8104, "Invalid token");
@@ -1036,6 +974,11 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
     if(getParseErrorNum() > 0) {
         ret += "\nraise RuntimeError('Compile error')\n";
     }
+
+#ifndef NDEBUG
+    if(PARSER_DEBUG) ParseTrace(NULL, "--");
+#endif
+
     return ret;
 }
 }

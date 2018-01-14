@@ -12,8 +12,8 @@ set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
 if (WIN32)
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
-            DEPENDS parser/epparser.lemon
-            COMMAND ./lemon2 parser\\epparser.lemon
+            DEPENDS ./lemon2.exe parser/epparser.lemon
+            COMMAND ./lemon2 -p -c parser\\epparser.lemon
             COMMAND copy parser\\epparser.c parser\\epparser.cpp
             COMMAND del parser\\epparser.c
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -23,7 +23,7 @@ if (WIN32)
 else ()
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
-            DEPENDS parser/epparser.lemon
+            DEPENDS ./lemon2 parser/epparser.lemon
             COMMAND ./lemon2 parser/epparser.lemon
             COMMAND rm -f parser/epparser.cpp
             COMMAND mv parser/epparser.c parser/epparser.cpp
@@ -47,7 +47,7 @@ set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokeni
         parser/reservedWords/constparser.cpp parser/reservedWords/constparser.h)
 
 set(TEST_SOURCE_FILES
-        test/test_tokenizer.cpp test/test_pygen.cpp test/parser/test_base.cpp
+        test/test_tokenizer.cpp test/test_pygen.cpp test/parser/test_base.cpp test/parser/test_parser_arraydecl.cpp
         test/parser/test_parser_basic.cpp  test/parser/test_parser_complex.cpp test/parser/test_parser_ctrlstru.cpp
         test/parser/test_parser_globalv.cpp test/parser/test_parser_import.cpp test/parser/test_parser_noepspy.cpp
         test/parser/test_parser_object.cpp test/parser/test_parser_ternary.cpp test/parser/test_parser_truefalse.cpp)

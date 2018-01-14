@@ -1163,15 +1163,13 @@ static int resolve_conflict(
   assert( apx->sp==apy->sp );  /* Otherwise there would be no conflict */
   if( apx->type==SHIFT && apy->type==SHIFT ){
     apy->type = SSCONFLICT;
-    errcnt++;
   }
   if( apx->type==SHIFT && apy->type==REDUCE ){
     spx = apx->sp;
     spy = apy->x.rp->precsym;
     if( spy==0 || spx->prec<0 || spy->prec<0 ){
       /* Not enough precedence information. */
-      apy->type = SH_RESOLVED;
-      // errcnt++;
+      apy->type = RD_RESOLVED;  // Resolve to shift
     }else if( spx->prec>spy->prec ){    /* higher precedence wins */
       apy->type = RD_RESOLVED;
     }else if( spx->prec<spy->prec ){
