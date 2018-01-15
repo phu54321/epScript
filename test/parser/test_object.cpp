@@ -46,6 +46,49 @@ TEST_CASE("Object definition") {
     }
 }
 
+TEST_CASE("Typed methods") {
+    SECTION("Typed parameter") {
+        check_string(
+                "object X { function x(a: EUDArray) { return 0; } };",
+                "class X(EUDStruct):\n"
+                        "    @EUDTypedMethod([EUDArray])\n"
+                        "    def x(this, a):\n"
+                        "        EUDReturn(0)\n\n"
+                        "    _fields_ = []\n"
+        );
+
+        check_string(
+                "object X { function x(a: EUDArray, b) { return 0; } };",
+                "class X(EUDStruct):\n"
+                        "    @EUDTypedMethod([EUDArray, None])\n"
+                        "    def x(this, a, b):\n"
+                        "        EUDReturn(0)\n\n"
+                        "    _fields_ = []\n"
+        );
+    }
+
+    SECTION("Typed return value") {
+        check_string(
+                "object X { function x(a: EUDArray): EUDArray { return 0; } };",
+                "class X(EUDStruct):\n"
+                        "    @EUDTypedMethod([EUDArray], [EUDArray])\n"
+                        "    def x(this, a):\n"
+                        "        EUDReturn(0)\n\n"
+                        "    _fields_ = []\n"
+        );
+
+        check_string(
+                "object X { function x(): EUDArray { return 0; } };",
+                "class X(EUDStruct):\n"
+                        "    @EUDTypedMethod([], [EUDArray])\n"
+                        "    def x(this):\n"
+                        "        EUDReturn(0)\n\n"
+                        "    _fields_ = []\n"
+        );
+    }
+}
+
+
 TEST_CASE("Using objects") {
     SECTION("Object methods") {
         check_string(

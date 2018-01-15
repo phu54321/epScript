@@ -29,6 +29,7 @@ Token* commaConcat(Token* a, Token* b);
 Token* binopConcat(Token* a, const std::string& opstr, Token* b);
 void shortCircuitCondListGetter(std::ostream& os, const Token* t, TokenType astType);
 
+void subTokenListIter(const Token* listRoot, std::function<void(const Token*)> func);
 void commaListIter(std::string& s, std::function<void(std::string&)> func);
 void writeStringList(std::ostream& os, const std::vector<std::string>& slist);
 void throw_error(int code, const std::string& message, int line = -1);

@@ -133,10 +133,8 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_retty
     std::string argname;
     std::vector<std::string> argnames, types;
     bool isTypedFunction = !!rets;
-    auto cursor = args;
 
-    while(cursor != nullptr) {
-        auto typedNameToken = cursor->subToken[0];
+    subTokenListIter(args, [&](const Token* typedNameToken) {
         auto argnameToken = typedNameToken->subToken[0];
         auto typeToken = typedNameToken->subToken[1];
         std::string argname = argnameToken->data;
@@ -156,9 +154,9 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_retty
             argnames.push_back(argname);
             types.push_back(typeToken->data);
         }
-        cursor = cursor->subToken[1];
-    }
+    });
 
+    // Add decorator header
     if (!isTypedFunction) ps->gen << "@EUDFunc" << std::endl;
     else {
         ps->gen << "@EUDTypedFunc([";
@@ -166,6 +164,7 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_retty
         if(!rets) ps->gen << "])" << std::endl;
         else ps->gen << "], [" << rets->data << "])" << std::endl;
     }
+
     // Write argument names
     ps->gen << "def " << name->data << "(";
     writeStringList(ps->gen, argnames);
@@ -228,29 +227,59 @@ object_body(A) ::= object_body(B) VAR nameList_nonEmpty(varList) SEMICOLON. {
     delete varList;
 }
 
-method_header(H) ::= FUNCTION NAME(name) LPAREN nameList(args) RPAREN. {
+method_header(H) ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_rettypes(rets). {
     // Method can't be called directly, so we shouldn't have to register it to closure.
     // duplicate method names should be checked at python-compile time.
 
-    ps->gen << "@EUDMethod" << std::endl;
-
     ps->closure.pushScope();
+
     // Register variables.
     std::string _this = "this";  // This may be modified...?
     if(!ps->closure.defConstant(_this)) {
         throw_error(656, ("Redeclaration of variable \'this\'"), args->line);
     }
-    commaListIter(args->data, [&](std::string& varname) {
-        if(!ps->closure.defVariable(varname)) {
-            throw_error(2656, ("Redeclaration of variable \'" + varname + "\'"), args->line);
+
+    std::string argname;
+    std::vector<std::string> argnames, types;
+    bool isTypedFunction = !!rets;
+    subTokenListIter(args, [&](const Token* typedNameToken) {
+        auto argnameToken = typedNameToken->subToken[0];
+        auto typeToken = typedNameToken->subToken[1];
+        std::string argname = argnameToken->data;
+
+        if(typeToken == nullptr) {
+            if(!ps->closure.defVariable(argname)) {
+                throw_error(2656, ("Redeclaration of variable \'" + argname + "\'"), args->line);
+            }
+            argnames.push_back(argname);
+            types.push_back("None");
+        }
+        else {
+            isTypedFunction = true;
+            if(!ps->closure.defConstant(argname)) {
+                throw_error(9788, ("Redeclaration of typed constant \'" + argname + "\'"), args->line);
+            }
+            argnames.push_back(argname);
+            types.push_back(typeToken->data);
         }
     });
 
+    // Add decorator header
+    if (!isTypedFunction) ps->gen << "@EUDMethod" << std::endl;
+    else {
+        ps->gen << "@EUDTypedMethod([";
+        writeStringList(ps->gen, types);
+        if(!rets) ps->gen << "])" << std::endl;
+        else ps->gen << "], [" << rets->data << "])" << std::endl;
+    }
+
     // Add default argument 'self'
-    if (args->data.size() != 0) {
-        ps->gen << "def " << name->data << "(" << _this << ", " << args->data << "):" << std::endl;
-    } else {
-        ps->gen << "def " << name->data << "(" << _this << "):" << std::endl;
+    ps->gen << "def " << name->data << "(" << _this;
+    if (argnames.empty()) ps->gen << "):" << std::endl;
+    else {
+        ps->gen << ", ";
+        writeStringList(ps->gen, argnames);
+        ps->gen << "):" << std::endl;
     }
     ps->gen.indent();
 
@@ -262,6 +291,7 @@ method_header(H) ::= FUNCTION NAME(name) LPAREN nameList(args) RPAREN. {
 
     tmpIndex = 1;
     delete args;
+    delete rets;
     H = mkTokenTemp(name);
 }
 
@@ -381,8 +411,6 @@ typedNameList(A) ::= typedNameList_nonEmpty(B). { A = B; }
 
 nameList_nonEmpty(A) ::= NAME(B). { A = B; }
 nameList_nonEmpty(A) ::= nameList_nonEmpty(B) COMMA NAME(C). { A = commaConcat(B, C); }
-nameList(A)::= . { A = genEmpty(); }
-nameList(A) ::= nameList_nonEmpty(B). { A = B; }
 
 exprList_nonEmpty(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET numList_nonEmpty(C) RSQBRACKET RSQBRACKET. [SUBSCRIPT] {
     C->data = "_SRET(" + B->data + ", [" + C->data + "])";

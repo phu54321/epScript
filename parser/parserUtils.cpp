@@ -56,6 +56,14 @@ void applyNegativeOptimization(std::ostream& os, const Token *lexpr) {
 }
 
 
+void subTokenListIter(const Token* listRoot, std::function<void(const Token*)> func) {
+    while(listRoot) {
+        func(listRoot->subToken[0]);
+        listRoot = listRoot->subToken[1];
+    }
+}
+
+
 void commaListIter(std::string& s, std::function<void(std::string&)> func) {
     if (s.empty()) return;
 

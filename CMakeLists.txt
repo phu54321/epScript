@@ -33,11 +33,6 @@ else ()
 
 endif()
 
-# Size optimization at release mode
-if (CMAKE_BUILD_TYPE MATCHES "Release")
-    message("release mode - size optimized")
-endif()
-
 set(CMAKE_CXX_STANDARD 11)
 set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokenizer.cpp
         parser/tokenizer/tokChars.cpp parser/tokenizer/tokenizerImpl.cpp
@@ -60,7 +55,10 @@ add_library(epScriptLib SHARED ${SOURCE_FILES} libmain.cpp)
 add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
 add_executable(epScriptProfile ${SOURCE_FILES} libmain.cpp test/stresstest.cpp)
 
-if (WIN32)
-    target_link_libraries(epScript -static)
-    target_link_libraries(epScriptLib -static)
+if (CMAKE_BUILD_TYPE MATCHES "Release")
+    message("release mode - static linked")
+    if (WIN32)
+        target_link_libraries(epScript -static)
+        target_link_libraries(epScriptLib -static)
+    endif()
 endif()
