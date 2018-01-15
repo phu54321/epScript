@@ -50,7 +50,7 @@ set(TEST_SOURCE_FILES
         test/test_tokenizer.cpp test/test_pygen.cpp test/test_base.cpp test/parser/test_arraydecl.cpp
         test/parser/test_complex.cpp test/parser/test_ctrlstru.cpp
         test/parser/test_globalv.cpp test/parser/test_import.cpp test/parser/test_noepspy.cpp
-        test/parser/test_object.cpp test/parser/test_ternary.cpp test/parser/test_truefalse.cpp
+        test/parser/test_object.cpp test/parser/test_ternary.cpp test/parser/test_pyliteral.cpp
         test/parser/test_expression.cpp test/test_testtool.cpp test/parser/test_function.cpp)
 
 add_definitions(-DVERSION="${EPSCRIPT_VERSION}")

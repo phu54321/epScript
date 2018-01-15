@@ -22,5 +22,54 @@ TEST_CASE("Function parsing") {
                         "    pass\n"
         );
     }
+
+    SECTION("Typed returned function parsing") {
+        SECTION("Only parameter types") {
+            check_string(
+                    "function x(a: EUDArray) {}",
+                    "@EUDTypedFunc([EUDArray])\n"
+                            "def f_x(a):\n"
+                            "    pass\n"
+            );
+        }
+
+        SECTION("Only return types") {
+            check_string(
+                    "function x(a): EUDArray {}",
+                    "@EUDTypedFunc([None], [EUDArray])\n"
+                            "def f_x(a):\n"
+                            "    pass\n"
+            );
+        }
+
+
+        SECTION("Parameter and return types") {
+            check_string(
+                    "function x(a: EUDArray): EUDArray {}",
+                    "@EUDTypedFunc([EUDArray], [EUDArray])\n"
+                            "def f_x(a):\n"
+                            "    pass\n"
+            );
+        }
+
+        SECTION("Mixed parameter types.") {
+            check_string(
+                    "function x(a: EUDArray, b, c: EUDByteReader) {}",
+                    "@EUDTypedFunc([EUDArray, None, EUDByteReader])\n"
+                            "def f_x(a, b, c):\n"
+                            "    pass\n"
+            );
+        }
+
+        SECTION("Multiple return types") {
+            check_string(
+                    "function x(): None, EUDArray {}",
+                    "@EUDTypedFunc([], [None, EUDArray])\n"
+                            "def f_x():\n"
+                            "    pass\n"
+            );
+        }
+
+    }
 }
 

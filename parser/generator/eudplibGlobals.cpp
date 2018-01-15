@@ -100,6 +100,7 @@ bool isBuiltinConst(std::string& name) {
         name = "False";
         return true;
     }
+    else if (name == "None") return true;
 
     else {
         return builtinConstSet.find(name) != builtinConstSet.end();

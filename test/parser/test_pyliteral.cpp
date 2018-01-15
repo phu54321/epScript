@@ -4,9 +4,10 @@
 
 #include "../test_base.hpp"
 
-TEST_CASE("False should be accepted") {
+TEST_CASE("True, False, and None should be accepted") {
     checkBlock("return True;", "EUDReturn(True)\n");
     checkBlock("return true;", "EUDReturn(True)\n");
     checkBlock("return False;", "EUDReturn(False)\n");
     checkBlock("return false;", "EUDReturn(False)\n");
+    checkBlock("return None;", "EUDReturn(None)\n");
 }

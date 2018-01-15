@@ -113,8 +113,11 @@ import_chunk ::= IMPORT dottedName(A). {
     delete A;
 }
 
+fdef_rettypes(A) ::= . { A = nullptr; }
+fdef_rettypes(A) ::= COLON exprList_nonEmpty(B). { A = B; }
+
 // Function declaration
-fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN. {
+fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_rettypes(rets). {
     // Preprocess name
     funcNamePreprocess(name->data);
     if(!ps->closure.defFunction(name->data)) {
@@ -129,7 +132,7 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN. {
     // we store varname in odd loops and define variables on even loops.
     std::string argname;
     std::vector<std::string> argnames, types;
-    bool isTypedFunction = false;
+    bool isTypedFunction = !!rets;
     auto cursor = args;
 
     while(cursor != nullptr) {
@@ -160,7 +163,8 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN. {
     else {
         ps->gen << "@EUDTypedFunc([";
         writeStringList(ps->gen, types);
-        ps->gen << "])" << std::endl;
+        if(!rets) ps->gen << "])" << std::endl;
+        else ps->gen << "], [" << rets->data << "])" << std::endl;
     }
     // Write argument names
     ps->gen << "def " << name->data << "(";
@@ -175,6 +179,7 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN. {
     tmpIndex = 1;
     delete name;
     delete args;
+    delete rets;
 }
 
 fdef_chunk ::= fdef_header stmt . {
