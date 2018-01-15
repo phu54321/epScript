@@ -5,10 +5,22 @@
 #include "../test_base.hpp"
 
 TEST_CASE("Function parsing") {
-    check_string(
-            "function x(l) {}",
-            "@EUDFunc\n"
-                    "def f_x(l):\n"
-                    "    pass\n"
-    );
+    SECTION("Untyped function") {
+        check_string(
+                "function x(l) {}",
+                "@EUDFunc\n"
+                        "def f_x(l):\n"
+                        "    pass\n"
+        );
+    }
+
+    SECTION("Typed Function parsing") {
+        check_string(
+                "function x(a: EUDArray) {}",
+                "@EUDTypedFunc([EUDArray])\n"
+                        "def f_x(a):\n"
+                        "    pass\n"
+        );
+    }
 }
+

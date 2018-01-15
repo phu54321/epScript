@@ -30,6 +30,7 @@ Token* binopConcat(Token* a, const std::string& opstr, Token* b);
 void shortCircuitCondListGetter(std::ostream& os, const Token* t, TokenType astType);
 
 void commaListIter(std::string& s, std::function<void(std::string&)> func);
+void writeStringList(std::ostream& os, const std::vector<std::string>& slist);
 void throw_error(int code, const std::string& message, int line = -1);
 int resetParserErrorNum();
 ////

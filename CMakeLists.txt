@@ -13,7 +13,7 @@ if (WIN32)
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
             DEPENDS ./lemon2.exe parser/epparser.lemon
-            COMMAND ./lemon2 -p -c parser\\epparser.lemon
+            COMMAND ./lemon2 -p -c -l parser\\epparser.lemon
             COMMAND copy parser\\epparser.c parser\\epparser.cpp
             COMMAND del parser\\epparser.c
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}

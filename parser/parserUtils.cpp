@@ -57,6 +57,8 @@ void applyNegativeOptimization(std::ostream& os, const Token *lexpr) {
 
 
 void commaListIter(std::string& s, std::function<void(std::string&)> func) {
+    if (s.empty()) return;
+
     bool isFirst = true;
     std::string out;
     const char *p = s.c_str(), *p2 = p;
@@ -68,9 +70,20 @@ void commaListIter(std::string& s, std::function<void(std::string&)> func) {
         else out += ", ";
         out += value;
         if(*p2 == '\0') break;
-        p = p2 = p2 + 2;
+        p2++;
+        while(*p2 == ' ') p2++;
+        p = p2;
     }
     s = out;
+}
+
+void writeStringList(std::ostream& os, const std::vector<std::string>& slist) {
+    if(!slist.empty()) {
+        os << slist[0];
+        for(size_t i = 1 ; i < slist.size() ; i++) {
+            os << ", " << slist[i];
+        }
+    }
 }
 
 void funcNamePreprocess(std::string& s) {
