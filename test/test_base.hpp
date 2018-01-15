@@ -4,9 +4,9 @@
 
 #pragma once
 
-#include "../../parser/parser.h"
-#include "../../utils.h"
-#include "../catch.hpp"
+#include "../parser/parser.h"
+#include "../utils.h"
+#include "catch.hpp"
 #include <stdexcept>
 #include <string.h>
 #include <vector>

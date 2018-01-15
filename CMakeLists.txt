@@ -47,10 +47,11 @@ set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokeni
         parser/reservedWords/constparser.cpp parser/reservedWords/constparser.h)
 
 set(TEST_SOURCE_FILES
-        test/test_tokenizer.cpp test/test_pygen.cpp test/parser/test_base.cpp test/parser/test_parser_arraydecl.cpp
-        test/parser/test_parser_basic.cpp  test/parser/test_parser_complex.cpp test/parser/test_parser_ctrlstru.cpp
-        test/parser/test_parser_globalv.cpp test/parser/test_parser_import.cpp test/parser/test_parser_noepspy.cpp
-        test/parser/test_parser_object.cpp test/parser/test_parser_ternary.cpp test/parser/test_parser_truefalse.cpp)
+        test/test_tokenizer.cpp test/test_pygen.cpp test/test_base.cpp test/parser/test_arraydecl.cpp
+        test/parser/test_complex.cpp test/parser/test_ctrlstru.cpp
+        test/parser/test_globalv.cpp test/parser/test_import.cpp test/parser/test_noepspy.cpp
+        test/parser/test_object.cpp test/parser/test_ternary.cpp test/parser/test_truefalse.cpp
+        test/parser/test_expression.cpp test/test_testtool.cpp)
 
 add_definitions(-DVERSION="${EPSCRIPT_VERSION}")
 

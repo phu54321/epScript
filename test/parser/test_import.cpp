@@ -2,7 +2,7 @@
 // Created by phu54321 on 2017-12-10.
 //
 
-#include "test_base.hpp"
+#include "../test_base.hpp"
 
 TEST_CASE("Import parsing") {
             CHECK(ParseString("test", "import a1;", false) == "from _epspy import a1\n");

@@ -2,7 +2,15 @@
 // Created by phu54321 on 2018-01-08.
 //
 
-#include "test_base.hpp"
+#include "../test_base.hpp"
+
+TEST_CASE("Global variable management") {
+    // Variable declaration is allowed
+    check_string("var a;", "a = EUDVariable()\n");
+    // Cannot assign varable on global scope
+    CHECK((ParseString("test", "var b; b = 2;"), getParseErrorNum() > 0));
+}
+
 
 TEST_CASE("Multiple variable") {
     check_string(
