@@ -56,6 +56,15 @@ void applyNegativeOptimization(std::ostream& os, const Token *lexpr) {
 }
 
 
+Token* subTokenListGetTail(Token* listRoot) {
+    while(1) {
+        if (listRoot->subToken[1]) {
+            listRoot = listRoot->subToken[1];
+        }
+        else return listRoot;
+    }
+}
+
 void subTokenListIter(const Token* listRoot, std::function<void(const Token*)> func) {
     while(listRoot) {
         func(listRoot->subToken[0]);

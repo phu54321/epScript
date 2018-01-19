@@ -201,30 +201,29 @@ fdecl_chunk  ::= FUNCTION NAME(name) LPAREN typedNameList RPAREN SEMICOLON. {
 
 /// Object declaration
 
-object_header(A) ::= OBJECT(X) NAME(name) LBRACKET. {
+object_body(A) ::= OBJECT NAME(name) LBRACKET. {
     ps->gen << "class " << name->data << "(EUDStruct):\n";
     ps->gen.indent();
 
-    funcNamePreprocess(name->data);
-    if(!ps->closure.declareFunction(name->data)) {
+    if(!ps->closure.defConstant(name->data)) {
         throw_error(8228, "Declaring object with non-function name " + name->data, name->line);
     }
     ps->closure.pushScope();
 
-    A = X;
-    A->data = name->data;  // Add object name
-    delete name;
+    A = genEmpty();
+    A->subToken[0] = name;
+    A->subToken[1] = nullptr;
 }
 
-object_body(A) ::= object_header(B). {
+object_body(A) ::= object_body(B) VAR typedNameList_nonEmpty(varList) SEMICOLON. {
     A = B;
-}
 
-object_body(A) ::= object_body(B) VAR nameList_nonEmpty(varList) SEMICOLON. {
-    A = B;
-    A->line = varList->line;
-    A->data += ", " + varList->data;
-    delete varList;
+    // Append to subTokenList
+    Token* t = genEmpty();
+    t->subToken[0] = varList;
+    t->subToken[1] = nullptr;
+    subTokenListGetTail(A)->subToken[1] = t;
+    A->line = currentTokenizingLine;
 }
 
 method_header(H) ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_rettypes(rets). {
@@ -305,25 +304,28 @@ method_chunk(C) ::= method_header(H) stmt . {
     C = H;
 }
 
-object_body(A) ::= object_body(B) method_chunk(C) . {
+object_body(A) ::= object_body(B) method_chunk . {
     A = B;
-    A->line = C->line;
-    delete C;
+    A->line = currentTokenizingLine;
 }
 
 object_chunk  ::= object_body(A) RBRACKET SEMICOLON. {
-    ps->gen << "_fields_ = [";
-    bool isFirst = true;
-    commaListIter(A->data, [&](std::string& varname) {
-        if (isFirst) {
-            isFirst = false;
-            return;
-        }
-        ps->gen << "'" << varname << "', ";
+    ps->gen << "_fields_ = [\n";
+    subTokenListIter(A->subToken[1], [&](const Token* tok) {
+        subTokenListIter(tok, [&](const Token* nameType) {
+            ps->gen.indent();
+            if(nameType->subToken[1]) {
+                ps->gen << "('" << nameType->subToken[0]->data << "', " << nameType->subToken[1]->data << "),\n";
+            }
+            else {
+                ps->gen << "'" << nameType->subToken[0]->data << "',\n";
+            }
+            ps->gen.unindent(false);
+        });
     });
     ps->gen << "]\n";
-    ps->gen.unindent(true);
     ps->closure.popScope();
+    ps->gen.unindent(true);
     delete A;
 }
 

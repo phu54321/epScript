@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.6)
 project(epScript)
 
-set(EPSCRIPT_VERSION 1.2.2)
+set(EPSCRIPT_VERSION 1.3.0)
+set(EPSCRIPT_SOVERSION 1.3)
+
 if (WIN32)
-    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
+    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEAaSE} -s")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
 endif()
 
@@ -52,6 +54,10 @@ add_definitions(-DVERSION="${EPSCRIPT_VERSION}")
 
 add_executable(epScript ${SOURCE_FILES} main.cpp scriptDaemon.cpp)
 add_library(epScriptLib SHARED ${SOURCE_FILES} libmain.cpp)
+set_target_properties(epScriptLib  PROPERTIES
+        VERSION ${EPSCRIPT_VERSION}
+        SOVERSION ${EPSCRIPT_SOVERSION}
+)
 add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
 add_executable(epScriptProfile ${SOURCE_FILES} libmain.cpp test/stresstest.cpp)
 

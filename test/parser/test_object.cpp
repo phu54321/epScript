@@ -8,21 +8,42 @@ TEST_CASE("Object definition") {
     SECTION("Empty object definition & initialization") {
         check_string(
                 "object X {}; const t = X();",
-                "class X(EUDStruct):\n    _fields_ = []\n\nt = _CGFW(lambda: [X()], 1)[0]\n"
+                "class X(EUDStruct):\n    _fields_ = [\n    ]\n\nt = _CGFW(lambda: [X()], 1)[0]\n"
         );
     }
 
     SECTION("Member variable") {
         check_string(
                 "object X { var x, y; };",
-                "class X(EUDStruct):\n    _fields_ = ['x', 'y', ]\n"
+                "class X(EUDStruct):\n"
+                        "    _fields_ = [\n"
+                        "        'x',\n"
+                        "        'y',\n"
+                        "    ]\n"
+        );
+    }
+
+    SECTION("Typed member variable") {
+        check_string(
+                "object X { var x: EUDArray, y; };",
+                "class X(EUDStruct):\n"
+                        "    _fields_ = [\n"
+                        "        ('x', EUDArray),\n"
+                        "        'y',\n"
+                        "    ]\n"
         );
     }
 
     SECTION("Method") {
         check_string(
                 "object X { function x() { return 0; } };",
-                "class X(EUDStruct):\n    @EUDMethod\n    def x(this):\n        EUDReturn(0)\n\n    _fields_ = []\n"
+                "class X(EUDStruct):\n"
+                        "    @EUDMethod\n"
+                        "    def x(this):\n"
+                        "        EUDReturn(0)\n"
+                        "\n"
+                        "    _fields_ = [\n"
+                        "    ]\n"
         );
     }
 
@@ -41,7 +62,10 @@ TEST_CASE("Object definition") {
                     "    def length_sq(this):\n"
                     "        EUDReturn(this.x * this.x + this.y * this.y)\n"
                     "\n"
-                    "    _fields_ = ['x', 'y', ]"
+                    "    _fields_ = [\n"
+                    "        'x',\n"
+                    "        'y',\n"
+                    "    ]"
         );
     }
 }
@@ -54,7 +78,8 @@ TEST_CASE("Typed methods") {
                         "    @EUDTypedMethod([EUDArray])\n"
                         "    def x(this, a):\n"
                         "        EUDReturn(0)\n\n"
-                        "    _fields_ = []\n"
+                        "    _fields_ = [\n"
+                        "    ]\n"
         );
 
         check_string(
@@ -63,7 +88,8 @@ TEST_CASE("Typed methods") {
                         "    @EUDTypedMethod([EUDArray, None])\n"
                         "    def x(this, a, b):\n"
                         "        EUDReturn(0)\n\n"
-                        "    _fields_ = []\n"
+                        "    _fields_ = [\n"
+                        "    ]\n"
         );
     }
 
@@ -74,7 +100,8 @@ TEST_CASE("Typed methods") {
                         "    @EUDTypedMethod([EUDArray], [EUDArray])\n"
                         "    def x(this, a):\n"
                         "        EUDReturn(0)\n\n"
-                        "    _fields_ = []\n"
+                        "    _fields_ = [\n"
+                        "    ]\n"
         );
 
         check_string(
@@ -83,7 +110,8 @@ TEST_CASE("Typed methods") {
                         "    @EUDTypedMethod([], [EUDArray])\n"
                         "    def x(this):\n"
                         "        EUDReturn(0)\n\n"
-                        "    _fields_ = []\n"
+                        "    _fields_ = [\n"
+                        "    ]\n"
         );
     }
 }
@@ -115,6 +143,10 @@ TEST_CASE("Allocating objects") {
     check_string(
             "object V2{}; const X = V2.alloc();",
 
-            "class V2(EUDStruct):\n    _fields_ = []\n\nX = _CGFW(lambda: [V2.alloc()], 1)[0]\n"
+            "class V2(EUDStruct):\n"
+                    "    _fields_ = [\n"
+                    "    ]\n"
+                    "\n"
+                    "X = _CGFW(lambda: [V2.alloc()], 1)[0]\n"
     );
 }
