@@ -13,6 +13,8 @@
 #include "generator/pygen.h"
 #include "generator/closure.h"
 
+#include "utils/subTokenUtils.h"
+
 extern int tmpIndex;
 extern PyGenerator* pGen;
 extern ClosureManager* closure;
