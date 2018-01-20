@@ -3372,6 +3372,10 @@ static void yy_reduce(
     ps->gen.indent();
     tmpIndex = 1;
 
+    if(MAP_DEBUG) {
+         ps->gen << "MDBG_PUSHF(\'" << funcname << "\', \'" << currentModule << "\')" << std::endl;
+    }
+
     delete yymsp[-2].minor.yy0;
 
     yygotominor.yy0 = genEmpty();

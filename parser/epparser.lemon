@@ -509,6 +509,10 @@ lambdaExprStart(A) ::= FUNCTION LPAREN typedNameList(args) RPAREN fdef_rettypes(
     ps->gen.indent();
     tmpIndex = 1;
 
+    if(MAP_DEBUG) {
+         ps->gen << "MDBG_PUSHF(\'" << funcname << "\', \'" << currentModule << "\')" << std::endl;
+    }
+
     delete args;
 
     A = genEmpty();
