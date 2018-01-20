@@ -8,6 +8,7 @@ TEST_CASE("Basic lambda functions") {
     check_string(
             "function x() {\n"
                     "    const a = function(x) { return x + 1; };\n"
+                    "    return a(1);\n"
                     "}",
             "@EUDFunc\n"
                     "def f_x():\n"
@@ -15,6 +16,7 @@ TEST_CASE("Basic lambda functions") {
                     "    def _lambda1(x):\n"
                     "        EUDReturn(x + 1)\n"
                     "\n"
-                    "    a = _lambda1"
+                    "    a = _lambda1\n"
+                    "    EUDReturn(a(1))"
     );
 }

@@ -3409,7 +3409,6 @@ static void yy_reduce(
     functionCalledInMultipleActions = true;
 
     // Preprocess yymsp[-3].minor.yy0
-    funcNamePreprocess(yymsp[-3].minor.yy0->data);
     checkIsFunction(yymsp[-3].minor.yy0->data, yymsp[-3].minor.yy0->line);
     yymsp[-3].minor.yy0->data += "(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-3].minor.yy0);

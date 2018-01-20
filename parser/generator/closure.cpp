@@ -3,6 +3,7 @@
 #include <set>
 #include "closure.h"
 #include "eudplibGlobals.h"
+#include "../parserUtilities.h"
 #include <functional>
 
 using std::string;
@@ -106,14 +107,19 @@ bool ClosureManagerImpl::defModule(std::string &name) {
 }
 
 bool ClosureManagerImpl::getFunction(std::string& name) const {
-    return getTableValue(name, TABLE_FUNC | TABLE_CONST, [](std::string& name) {
-        return isBuiltinConst(name);
+    if (isBuiltinConst(name)) return true;
+    return getTableValue(name, TABLE_FUNC | TABLE_CONST, [&](std::string& name1) {
+        funcNamePreprocess(name1);
+        if (isBuiltinConst(name)) return true;
+        return getTableValue(name1, TABLE_FUNC | TABLE_CONST, [&](std::string& name2) {
+            return false;
+        });
     });
 }
 
 bool ClosureManagerImpl::getConstant(std::string& name) const {
-    return getTableValue(name, TABLE_CONST, [&](std::string& name) {
-        return isBuiltinConst(name);
+    return getTableValue(name, TABLE_CONST, [&](std::string& name1) {
+        return isBuiltinConst(name1);
     });
 }
 
@@ -122,7 +128,7 @@ bool ClosureManagerImpl::getVariable(std::string& name) const {
 }
 
 bool ClosureManagerImpl::isModule(std::string& name) const {
-    return getTableValue(name, TABLE_MODULE, [](std::string& name) { return false; });
+    return getTableValue(name, TABLE_MODULE, [](std::string&) { return false; });
 }
 
 ///////

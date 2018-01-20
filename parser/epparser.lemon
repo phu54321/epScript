@@ -549,7 +549,6 @@ funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     functionCalledInMultipleActions = true;
 
     // Preprocess name
-    funcNamePreprocess(name->data);
     checkIsFunction(name->data, name->line);
     name->data += "(" + exprs->data + ")";
     out = mkTokenTemp(name);
