@@ -16,6 +16,10 @@ void EPS_EXPORT setDebugMode(int set) {
     MAP_DEBUG = set != 0;
 }
 
+int EPS_EXPORT getErrorCount() {
+    return getParseErrorNum();
+}
+
 const char *EPS_EXPORT compileString(
         const char *modname,
         const char *rawcode
