@@ -21,6 +21,7 @@ struct ParserStruct {
 };
 
 int currentTokenizingLine;
+int lambdaIndex;
 std::string currentFunction;
 std::string currentModule;
 bool functionCalledInMultipleActions;
@@ -457,6 +458,72 @@ expr(A)::= expr(B) LSQBRACKET expr(C) RSQBRACKET. [SUBSCRIPT] {
     delete C;
     A = mkTokenTemp(B);
 }
+
+// Lambda calls
+lambdaExprStart(A) ::= FUNCTION LPAREN typedNameList(args) RPAREN fdef_rettypes(rets). {
+    std::string funcname = "_lambda" + std::to_string(++lambdaIndex);
+    ps->closure.pushScope();
+
+    // Register variables.
+    // we store varname in odd loops and define variables on even loops.
+    std::string argname;
+    std::vector<std::string> argnames, types;
+    bool isTypedFunction = false;
+
+    subTokenListIter(args, [&](const Token* typedNameToken) {
+        auto argnameToken = typedNameToken->subToken[0];
+        auto typeToken = typedNameToken->subToken[1];
+        std::string argname = argnameToken->data;
+
+        if(typeToken == nullptr) {
+            if(!ps->closure.defVariable(argname)) {
+                throw_error(196, ("Redeclaration of variable \'" + argname + "\'"), args->line);
+            }
+            argnames.push_back(argname);
+            types.push_back("None");
+        }
+        else {
+            isTypedFunction = true;
+            if(!ps->closure.defConstant(argname)) {
+                throw_error(7714, ("Redeclaration of typed constant \'" + argname + "\'"), args->line);
+            }
+            argnames.push_back(argname);
+            types.push_back(typeToken->data);
+        }
+    });
+
+    // Add decorator header
+    if (!isTypedFunction) ps->gen << "@EUDFunc" << std::endl;
+    else {
+        ps->gen << "@EUDTypedFunc([";
+        writeStringList(ps->gen, types);
+        if(!rets) ps->gen << "])" << std::endl;
+        else ps->gen << "], [" << rets->data << "])" << std::endl;
+    }
+
+    // Write argument names
+    ps->gen << "def " << funcname << "(";
+    writeStringList(ps->gen, argnames);
+    ps->gen << "):" << std::endl;
+
+    ps->gen.indent();
+    tmpIndex = 1;
+
+    delete args;
+
+    A = genEmpty();
+    A->data = funcname;
+}
+
+expr(A) ::= lambdaExprStart(B) stmt. {
+    if(MAP_DEBUG) {
+        ps->gen << "MDBG_POPF()" << std::endl;
+    }
+    ps->gen.unindent(true);
+    ps->closure.popScope();
+    A = mkTokenTemp(B);
+}
+
 
 // Function calls
 fArgs_nonEmpty(A) ::= expr(B). { A = B; }
@@ -1012,6 +1079,7 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
     pGen = &ps.gen;
     closure = &ps.closure;
     functionCalledInMultipleActions = false;
+    lambdaIndex = 0;
 
     if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
     if(MAP_DEBUG) {
