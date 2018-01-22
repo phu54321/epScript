@@ -69,6 +69,10 @@ program ::= chunks.
 chunks ::= .
 chunks ::= chunks chunk.
 
+chunk ::= error. {
+    throw_error(13494, "Chunk-level error");
+}
+
 chunk ::= import_chunk SEMICOLON.
 chunk ::= fdef_chunk.
 chunk ::= fdecl_chunk.
@@ -368,15 +372,10 @@ bodyStmt ::= foreach_stmt.
 bodyStmt ::= continue_stmt SEMICOLON.
 bodyStmt ::= break_stmt SEMICOLON.
 
-// bodyStmtList should not contain empty list. See (1)
-bodyStmtList ::= error. {
-    throw_error(8510, "Incomplete statement");
-}
-
 bodyStmtList ::= bodyStmt.
 bodyStmtList ::= bodyStmtList bodyStmt.
 bodyStmtList ::= bodyStmtList error. {
-    throw_error(8510, "Incomplete statement");
+    throw_error(8510, "Incomplete statement. Check if the previous line have ended properly.");
 }
 
 
@@ -1094,7 +1093,7 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
             currentTokenizingLine = tok.getCurrentLine();
             if(addComment) ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
             if(MAP_DEBUG && !currentFunction.empty()) {
-                ps.gen << "EUDTraceLog(" << currentTokenizingLine << ")" << std::endl;
+                ps.gen << "EUDTraceLog(\'" << currentFile << ":" << currentFunction << ":" << currentTokenizingLine << "\')" << std::endl;
             }
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }
