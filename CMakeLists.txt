@@ -64,5 +64,11 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
     message("release mode - static linked")
     if (WIN32)
         target_link_libraries(epScriptLib -static)
+        add_custom_command(TARGET epScriptLib POST_BUILD
+                COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:epScriptLib>" "C:/gitclones/eudtrglib/eudplib/epscript/libepScriptLib.dll"
+                COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:epScriptLib>" "C:/gitclones/euddraft/libepScriptLib.dll"
+                COMMENT "Copying to other projects - eudtrglib & euddraft")
     endif()
 endif()
+
+
