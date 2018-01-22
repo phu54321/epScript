@@ -30,6 +30,7 @@ int currentTokenizingLine;
 int lambdaIndex;
 std::string currentFunction;
 std::string currentModule;
+std::string currentFile;
 bool functionCalledInMultipleActions;
 bool PARSER_DEBUG = false;
 bool MAP_DEBUG = false;
@@ -3056,7 +3057,7 @@ static void yy_reduce(
 
     ps->gen.indent();
     if(MAP_DEBUG) {
-         ps->gen << "MDBG_PUSHF(\'" << currentFunction << "\', \'" << currentModule << "\')" << std::endl;
+         ps->gen << "EUDTracePush()" << std::endl;
     }
 
     tmpIndex = 1;
@@ -3068,7 +3069,7 @@ static void yy_reduce(
       case 18: /* fdef_chunk ::= fdef_header stmt */
 {
     if(MAP_DEBUG){
-        ps->gen << "MDBG_POPF()" << std::endl;
+        ps->gen << "EUDTracePop()" << std::endl;
     }
     ps->gen.unindent(true);
     ps->closure.popScope();
@@ -3171,7 +3172,7 @@ static void yy_reduce(
     currentFunction = yymsp[-4].minor.yy0->data;
 
     if(MAP_DEBUG) {
-         ps->gen << "MDBG_PUSHF(\'" << currentFunction << "\', \'" << currentModule << "\')" << std::endl;
+         ps->gen << "EUDTracePush()" << std::endl;
     }
 
     tmpIndex = 1;
@@ -3183,7 +3184,7 @@ static void yy_reduce(
       case 23: /* method_chunk ::= method_header stmt */
 {
     if(MAP_DEBUG){
-        ps->gen << "MDBG_POPF()" << std::endl;
+        ps->gen << "EUDTracePop()" << std::endl;
     }
     ps->gen.unindent(true);
     ps->closure.popScope();
@@ -3373,7 +3374,7 @@ static void yy_reduce(
     tmpIndex = 1;
 
     if(MAP_DEBUG) {
-         ps->gen << "MDBG_PUSHF(\'" << funcname << "\', \'" << currentModule << "\')" << std::endl;
+         ps->gen << "EUDTracePush()" << std::endl;
     }
 
     delete yymsp[-2].minor.yy0;
@@ -3385,7 +3386,7 @@ static void yy_reduce(
       case 76: /* expr ::= lambdaExprStart stmt */
 {
     if(MAP_DEBUG) {
-        ps->gen << "MDBG_POPF()" << std::endl;
+        ps->gen << "EUDTracePop()" << std::endl;
     }
     ps->gen.unindent(true);
     ps->closure.popScope();
@@ -3910,7 +3911,7 @@ static void yy_reduce(
       case 177: /* return_stmt ::= RETURN exprList */
 {
     if(MAP_DEBUG){
-        ps->gen << "MDBG_POPF()" << std::endl;
+        ps->gen << "EUDTracePop()" << std::endl;
     }
     ps->gen << "EUDReturn(" << yymsp[0].minor.yy0->data << ")" << std::endl;
     delete yymsp[0].minor.yy0;
@@ -4242,6 +4243,7 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
     auto rpos = fname.find_first_of(".", lpos);
     if(rpos == std::string::npos) rpos = fname.size();
     currentModule = fname.substr(lpos, rpos - lpos);
+    currentFile = fname;
 
 #ifndef NDEBUG
     if(PARSER_DEBUG) ParseTrace(stdout, "--");
@@ -4259,47 +4261,14 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
     lambdaIndex = 0;
 
     if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
-    if(MAP_DEBUG) {
-        ps.gen <<
-            "try:\n"
-            "   MDBG_LOG = GetEUDNamespace()['MDBG_LOG']\n"
-            "   MDBG_PUSHF = GetEUDNamespace()['MDBG_PUSHF']\n"
-            "   MDBG_POPF = GetEUDNamespace()['MDBG_POPF']\n"
-            "except KeyError:\n"
-            "    mdbg_dbepd = EPD(Db(b'0123456789ABCDEFFEDCBA9876543210' + bytes(32 * 2048)))\n"
-            "    mdbg_dbc = EUDVariable()\n"
-            "    \n"
-            "    @EUDRegistered\n"
-            "    def MDBG_LOG(line):\n"
-            "        lIdf = b2i4(u2b('%4d' % line))\n"
-            "        DoActions(SetMemoryEPD(mdbg_dbepd + 3 + mdbg_dbc, SetTo, lIdf))\n"
-            "    \n"
-            "    \n"
-            "    @EUDRegistered\n"
-            "    def MDBG_PUSHF(f_name, m_name):\n"
-            "        global mdbg_dbc\n"
-            "        data = ((u2b(m_name) + bytes(12))[:12] + b'   0' + (u2b(f_name) + bytes(16))[:16])\n"
-            "        mdbg_dbc += 8\n"
-            "        DoActions([SetMemoryEPD(mdbg_dbepd + i + mdbg_dbc, SetTo, b2i4(data, i * 4)) for i in range(8)])\n"
-            "    \n"
-            "    @EUDRegistered\n"
-            "    def MDBG_POPF():\n"
-            "        global mdbg_dbc\n"
-            "        DoActions([SetMemoryEPD(mdbg_dbepd + i + mdbg_dbc, SetTo, 0) for i in range(8)])\n"
-            "        mdbg_dbc -= 8\n"
-            "\n";
-    }
-
     tmpIndex = 1;
     resetParserErrorNum();
     while ((token = tok.getToken()) != nullptr) {
         if (currentTokenizingLine != tok.getCurrentLine()) {
-            if(addComment) {
-                currentTokenizingLine = tok.getCurrentLine();
-                ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
-                if(MAP_DEBUG && !currentFunction.empty()) {
-                    ps.gen << "MDBG_LOG(" << currentTokenizingLine << ")" << std::endl;
-                }
+            currentTokenizingLine = tok.getCurrentLine();
+            if(addComment) ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
+            if(MAP_DEBUG && !currentFunction.empty()) {
+                ps.gen << "EUDTraceLog(" << currentTokenizingLine << ")" << std::endl;
             }
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }

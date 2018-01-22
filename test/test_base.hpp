@@ -12,7 +12,7 @@
 #include <vector>
 
 extern bool NO_EPSPY;
-extern bool PARSER_DEBUG;
+extern bool PARSER_DEBUG, MAP_DEBUG;
 
 std::string get_testdata(std::string dataname);
 void checkBlock(const std::string &input, const std::string &desiredOutput);

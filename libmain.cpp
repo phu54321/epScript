@@ -35,7 +35,7 @@ int EPS_EXPORT getErrorCount() {
 }
 
 const char *EPS_EXPORT compileString(
-        const char *modname,
+        const char *filename,
         const char *rawcode
 ) {
     NO_EPSPY = true;
@@ -51,7 +51,7 @@ const char *EPS_EXPORT compileString(
     std::string code(cleanCode.begin(), cleanCode.end());
 
     try {
-        auto parsed = ParseString(modname, code);
+        auto parsed = ParseString(filename, code);
         parsed = addStubCode(parsed);
         char *s = new char[parsed.size() + 1];
         memcpy(s, parsed.data(), parsed.size());
