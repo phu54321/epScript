@@ -52,7 +52,6 @@ set(TEST_SOURCE_FILES
 
 add_definitions(-DVERSION="${EPSCRIPT_VERSION}")
 
-add_executable(epScript ${SOURCE_FILES} main.cpp scriptDaemon.cpp)
 add_library(epScriptLib SHARED ${SOURCE_FILES} libmain.cpp)
 set_target_properties(epScriptLib  PROPERTIES
         VERSION ${EPSCRIPT_VERSION}
@@ -64,7 +63,6 @@ add_executable(epScriptProfile ${SOURCE_FILES} libmain.cpp test/stresstest.cpp)
 if (CMAKE_BUILD_TYPE MATCHES "Release")
     message("release mode - static linked")
     if (WIN32)
-        target_link_libraries(epScript -static)
         target_link_libraries(epScriptLib -static)
     endif()
 endif()

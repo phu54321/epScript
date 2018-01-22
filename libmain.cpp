@@ -7,6 +7,9 @@
 #include <stdexcept>
 #include <string.h>
 #include <vector>
+#include <unordered_set>
+
+extern std::unordered_set<std::string> builtinConstSet;
 
 extern bool NO_EPSPY;
 extern bool MAP_DEBUG;
@@ -14,6 +17,17 @@ extern bool MAP_DEBUG;
 extern "C" {
 void EPS_EXPORT setDebugMode(int set) {
     MAP_DEBUG = set != 0;
+}
+
+void EPS_EXPORT registerPlibConstants(const char* zeroSeperatedStrings) {
+    const char* p = zeroSeperatedStrings;
+    std::vector<std::string> vector;
+
+    do {
+        std::string globalName(p);
+        builtinConstSet.insert(globalName);
+        p += globalName.size() + 1;
+    } while ( *p);
 }
 
 int EPS_EXPORT getErrorCount() {
