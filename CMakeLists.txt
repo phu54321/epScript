@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.6)
 project(epScript)
 
-set(EPSCRIPT_VERSION 1.3.0)
+set(EPSCRIPT_VERSION 1.3.1)
 set(EPSCRIPT_SOVERSION 1.3)
 
 if (WIN32)
