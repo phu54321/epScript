@@ -3,6 +3,7 @@
 #include <iostream>
 
 std::unordered_set<std::string> builtinConstSet = {
+        "onPluginStart", "beforeTriggerExec", "afterTriggerExec",
         "f_dwread", "SetTo", "EUDArray", "EUDByteReader", "f_dwread_epd"
 };
 
