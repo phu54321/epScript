@@ -14,10 +14,10 @@ TEST_CASE("Debug info") {
                 "@EUDFunc\n"
                         "def f_x(l):\n"
                         "    EUDTracePush()\n"
-                        "    EUDTraceLog('<test>:f_x:2')\n"
+                        "    EUDTraceLog('<test>|f_x|2')\n"
                         "    EUDTracePop()\n"
                         "    EUDReturn(0)\n"
-                        "    EUDTraceLog('<test>:f_x:3')\n"
+                        "    EUDTraceLog('<test>|f_x|3')\n"
                         "    EUDTracePop()\n"
         );
     }

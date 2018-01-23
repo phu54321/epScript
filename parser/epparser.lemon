@@ -363,7 +363,7 @@ bodyStmt ::= vdefAssign_stmt SEMICOLON.
 bodyStmt ::= cdef_stmt SEMICOLON.
 bodyStmt ::= assign_stmt SEMICOLON.
 bodyStmt ::= funcexpr(A) SEMICOLON. { ps->gen << A->data << std::endl; }
-bodyStmt ::= actionStmt.  // Should not have semicolons
+bodyStmt ::= actionStmt SEMICOLON.
 bodyStmt ::= if_stmt.
 bodyStmt ::= while_stmt.
 bodyStmt ::= for_stmt.
@@ -1040,7 +1040,7 @@ expr(A) ::= KILLS(B) LPAREN fArgs(C) RPAREN. {
     A = mkTokenTemp(B);
 }
 
-actionStmt ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN SEMICOLON. {
+actionStmt ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN. {
     ps->gen << "DoActions(" << A->data << "(" << B->data << "))" << std::endl;
     delete A; delete B;
 }
@@ -1087,7 +1087,7 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
             currentTokenizingLine = tok.getCurrentLine();
             if(addComment) ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
             if(MAP_DEBUG && !currentFunction.empty()) {
-                ps.gen << "EUDTraceLog(\'" << currentFile << ":" << currentFunction << ":" << currentTokenizingLine << "\')" << std::endl;
+                ps.gen << "EUDTraceLog(\'" << currentFile << "|" << currentFunction << "|" << currentTokenizingLine << "\')" << std::endl;
             }
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }
