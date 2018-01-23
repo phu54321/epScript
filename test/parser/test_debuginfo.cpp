@@ -21,5 +21,24 @@ TEST_CASE("Debug info") {
                         "    EUDTracePop()\n"
         );
     }
+
+    SECTION("If statement") {
+        check_string(
+                "function x(l) {\n"
+                        "    if(1)\n"
+                        "    {}\n"
+                        "}",
+
+                "@EUDFunc\n"
+                        "def f_x(l):\n"
+                        "    EUDTracePush()\n"
+                        "    EUDTraceLog('<test>|f_x|2')\n"
+                        "    if EUDIf()(1):\n"
+                        "        EUDTraceLog('<test>|f_x|3')\n"
+                        "        EUDTraceLog('<test>|f_x|4')\n"
+                        "    EUDEndIf()\n"
+                        "    EUDTracePop()\n"
+        );
+    }
     MAP_DEBUG = false;
 }

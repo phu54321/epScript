@@ -876,13 +876,13 @@ if_start(A) ::= IF(B). {
     ps->gen << A->data << " = EUDIf()" << std::endl;
 }
 
-if_header ::= if_start(A) LPAREN expr(B) RPAREN. {
+if_header ::= if_start(A) LPAREN expr(B). {
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
 }
 
-if_block ::= if_header stmt.
+if_block ::= if_header RPAREN stmt.
 
 elif_start(A) ::= ELSE IF(B). {
     A = genTemp(B);
@@ -890,13 +890,13 @@ elif_start(A) ::= ELSE IF(B). {
     ps->gen << A->data << " = EUDElseIf()" << std::endl;
 }
 
-elif_header ::= elif_start(A) LPAREN expr(B) RPAREN. {
+elif_header ::= elif_start(A) LPAREN expr(B). {
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
 }
 
-if_block ::= if_block elif_header stmt.
+if_block ::= if_block elif_header RPAREN stmt.
 
 else_header ::= ELSE. {
     ps->gen.unindent(false);
