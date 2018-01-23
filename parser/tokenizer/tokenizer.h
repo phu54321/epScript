@@ -19,6 +19,7 @@ enum TokenType {
     TOKEN_AS,
     TOKEN_VAR,
     TOKEN_CONST,
+    TOKEN_STATIC,
     TOKEN_FUNCTION,
     TOKEN_OBJECT,
     TOKEN_L2V,

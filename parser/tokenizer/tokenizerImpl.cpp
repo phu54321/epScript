@@ -151,6 +151,7 @@ Token* TokenizerImpl::getToken() {
         if(identifier == "as") return TK(TOKEN_AS);
         if(identifier == "var") return TK(TOKEN_VAR);
         if(identifier == "const") return TK(TOKEN_CONST);
+        if(identifier == "static") return TK(TOKEN_STATIC);
         if(identifier == "function") return TK(TOKEN_FUNCTION);
         if(identifier == "object") return TK(TOKEN_OBJECT);
         if(identifier == "l2v") return TK(TOKEN_L2V);

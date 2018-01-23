@@ -344,9 +344,8 @@ stmt ::= return_stmt SEMICOLON.
 lbracket ::= LBRACKET. { ps->closure.pushScope(); }
 rbracket ::= RBRACKET. { ps->closure.popScope(); }
 
-blockStmt ::= lbracket RBRACKET. {
-    ps->closure.popScope();
-}
+blockStmt ::= lbracket rbracket.
+
 blockStmt ::= lbracket return_stmt SEMICOLON rbracket.
 blockStmt ::= lbracket bodyStmtList rbracket.
 blockStmt ::= lbracket bodyStmtList return_stmt SEMICOLON rbracket.
@@ -359,6 +358,7 @@ blockStmt ::= lbracket error RBRACKET(X). {
 bodyStmt ::= blockStmt.
 bodyStmt ::= SEMICOLON.
 bodyStmt ::= vdef_stmt SEMICOLON.
+bodyStmt ::= vdefAssignStatic_stmt SEMICOLON.
 bodyStmt ::= vdefAssign_stmt SEMICOLON.
 bodyStmt ::= cdef_stmt SEMICOLON.
 bodyStmt ::= assign_stmt SEMICOLON.
@@ -759,6 +759,27 @@ vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
     }
     else {
         ps->gen << s << " = _MVAR([" << B->data << "])" << std::endl;
+    }
+
+    delete A; delete B;
+}
+
+vdefAssignStatic_stmt ::= STATIC VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
+    std::string& s = A->data;
+    int varCount = std::count(s.begin(), s.end(), ',') + 1;
+
+    // Register variables.
+    commaListIter(s, [&](std::string& varname) {
+        if(!ps->closure.defVariable(varname)) {
+            throw_error(7998, ("Redeclaration of variable \'" + varname + "\'"), A->line);
+        }
+    });
+
+    if(varCount == 1) {
+        ps->gen << s << " = EUDVariable(" << B->data << ")" << std::endl;
+    }
+    else {
+        ps->gen << s << " = (EUDVariable(x) for x in (" << B->data << "))" << std::endl;
     }
 
     delete A; delete B;

@@ -48,7 +48,7 @@ set(TEST_SOURCE_FILES
         test/parser/test_complex.cpp test/parser/test_ctrlstru.cpp
         test/parser/test_globalv.cpp test/parser/test_import.cpp test/parser/test_noepspy.cpp
         test/parser/test_object.cpp test/parser/test_ternary.cpp test/parser/test_pyliteral.cpp
-        test/parser/test_expression.cpp test/test_testtool.cpp test/parser/test_function.cpp test/parser/test_lambda.cpp test/parser/test_debuginfo.cpp)
+        test/parser/test_expression.cpp test/test_testtool.cpp test/parser/test_function.cpp test/parser/test_lambda.cpp test/parser/test_debuginfo.cpp test/parser/test_staticv.cpp)
 
 add_definitions(-DVERSION="${EPSCRIPT_VERSION}")
 
