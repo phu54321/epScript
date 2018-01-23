@@ -40,5 +40,21 @@ TEST_CASE("Debug info") {
                         "    EUDTracePop()\n"
         );
     }
+
+    SECTION("function call statement") {
+        check_string(
+                "function x(l) {\n"
+                        "    dwread_epd(1);\n"
+                        "}",
+
+                "@EUDFunc\n"
+                        "def f_x(l):\n"
+                        "    EUDTracePush()\n"
+                        "    EUDTraceLog('<test>|f_x|2')\n"
+                        "    f_dwread_epd(1)\n"
+                        "    EUDTraceLog('<test>|f_x|3')\n"
+                        "    EUDTracePop()\n"
+        );
+    }
     MAP_DEBUG = false;
 }
