@@ -70,5 +70,3 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
                 COMMENT "Copying to other projects - eudtrglib & euddraft")
     endif()
 endif()
-
-

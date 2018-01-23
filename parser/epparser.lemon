@@ -25,7 +25,6 @@ int lambdaIndex;
 std::string currentFunction;
 std::string currentModule;
 std::string currentFile;
-bool functionCalledInMultipleActions;
 bool PARSER_DEBUG = false;
 bool MAP_DEBUG = false;
 
@@ -550,8 +549,6 @@ fArgs(A) ::= . { A = genEmpty(); }
 fArgs(A) ::= fArgs_nonEmpty(B). { A = B; }
 
 funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
-    functionCalledInMultipleActions = true;
-
     // Preprocess name
     checkIsFunction(name->data, name->line);
     name->data += "(" + exprs->data + ")";
@@ -559,8 +556,6 @@ funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
 }
 
 funcexpr(out) ::= expr(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
-    functionCalledInMultipleActions = true;
-
     // If calling function imported from another module, add f_ prefix to function name.
     static std::regex prefixedFuncNameRegex("^[a-z][_a-zA-Z0-9]*");
     std::string& nameStr = name->data;
@@ -1082,7 +1077,6 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
     currentTokenizingLine = 0;
     pGen = &ps.gen;
     closure = &ps.closure;
-    functionCalledInMultipleActions = false;
     lambdaIndex = 0;
 
     if(PARSER_DEBUG) std::cout << "Parsing string [[[\n" << code.c_str() << "\n]]]\n";
