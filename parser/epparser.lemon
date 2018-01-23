@@ -68,7 +68,7 @@ program ::= chunks.
 chunks ::= .
 chunks ::= chunks chunk.
 
-chunk ::= error. {
+chunk ::= error SEMICOLON. {
     throw_error(13494, "Chunk-level error");
 }
 
@@ -870,13 +870,24 @@ assign_stmt ::= lvalue(A) IBND expr(B). [ASSIGN] { ps->gen << A->data << ".__ian
 assign_stmt ::= lvalue(A) IBOR expr(B). [ASSIGN] { ps->gen << A->data << ".__ior__("        << B->data << ")" << std::endl; delete A; delete B; }
 assign_stmt ::= lvalue(A) IBXR expr(B). [ASSIGN] { ps->gen << A->data << ".__ixor__("       << B->data << ")" << std::endl; delete A; delete B; }
 
+
+//
+//// CONTROL STRUCTURE BLOCKS
+//
+//  (2) LEMON parser generator reduces the parsing rule only after lookahead token arrives. This means that the
+//     parser may not write the controls structure opening codes until reading the next line. To sync debug trace
+//     information (which contains currentTokenizingLine) with written code, we force LEMON to reduce various
+//     control structure openings by postponing RPAREN reduce. In this case RPAREN acts as a lookahead token for
+//     control structure reduce action.
+//
+
 // If~Else block
 if_start(A) ::= IF(B). {
     A = genTemp(B);
     ps->gen << A->data << " = EUDIf()" << std::endl;
 }
 
-if_header ::= if_start(A) LPAREN expr(B). {
+if_header ::= if_start(A) LPAREN expr(B). {  // RPAREN is at if_block. see (2)
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
@@ -890,7 +901,7 @@ elif_start(A) ::= ELSE IF(B). {
     ps->gen << A->data << " = EUDElseIf()" << std::endl;
 }
 
-elif_header ::= elif_start(A) LPAREN expr(B). {
+elif_header ::= elif_start(A) LPAREN expr(B). {  // RPAREN is at if_block. see (2)
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
@@ -922,13 +933,13 @@ while_start(A) ::= WHILE(B). {
     delete B;
 }
 
-while_header ::= while_start(A) LPAREN expr(B) RPAREN. {
+while_header ::= while_start(A) LPAREN expr(B). {  // RPAREN is at while_stmt. see (2)
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
 }
 
-while_stmt ::= while_header stmt. {
+while_stmt ::= while_header RPAREN stmt. {
     ps->gen.unindent(false);
     ps->gen << "EUDEndWhile()" << std::endl;
 }
@@ -970,12 +981,12 @@ for_header2(X)::= for_header1(A) expr(B) SEMICOLON. {
     ps->gen.indent();
 }
 
-for_header(X) ::= for_header2(A) for_action_stmt RPAREN. {
+for_header(X) ::= for_header2(A) for_action_stmt. {  // RPAREN is at for_stmt. see (2)
     X = A;
     ps->gen.unindent(false);
 }
 
-for_stmt ::= for_header(X) stmt. {
+for_stmt ::= for_header(X) RPAREN stmt. {
     ps->gen << "EUDSetContinuePoint()" << std::endl;
     ps->gen << X->data << "()" << std::endl;
     ps->gen.unindent(false);
@@ -990,7 +1001,7 @@ foreach_opener ::= FOREACH LPAREN. {
     ps->closure.pushScope();
 }
 
-foreach_header ::= foreach_opener nameList_nonEmpty(names) COLON exprList_nonEmpty(exprs) RPAREN. {
+foreach_header ::= foreach_opener nameList_nonEmpty(names) COLON exprList_nonEmpty(exprs). {  // RPAREN is at foreach_stmt. see (2)
     commaListIter(names->data, [&](std::string& s) {
         ps->closure.defVariable(s);
     });
@@ -998,7 +1009,7 @@ foreach_header ::= foreach_opener nameList_nonEmpty(names) COLON exprList_nonEmp
     ps->gen.indent();
 }
 
-foreach_stmt ::= foreach_header stmt. {
+foreach_stmt ::= foreach_header RPAREN stmt. {
     ps->gen.unindent(true);
     ps->closure.popScope();
 }
