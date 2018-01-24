@@ -126,6 +126,7 @@ TEST_CASE("Using objects") {
                         "    A = B.k;\n"
                         "    B.k = 1;\n"
                         "    A, B.k = 3;\n"
+                        "    B.x.y = 2;"
                         "}",
 
                 "@EUDFunc\n"
@@ -135,6 +136,7 @@ TEST_CASE("Using objects") {
                         "    A << (B.k)\n"
                         "    _ATTW(B, 'k') << (1)\n"
                         "    _SV([A, _ATTW(B, 'k')], [3])\n"
+                        "    _ATTW(B.x, 'y') << (2)\n"
         );
     }
 }

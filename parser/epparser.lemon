@@ -848,14 +848,12 @@ lvalue(A) ::= NAME(B). {
 }
 
 lvalue(A) ::= expr(B) LSQBRACKET expr(C) RSQBRACKET. [SUBSCRIPT] {
-    checkIsConstant(B->data, B->line);
     C->data = "_ARRW(" + B->data + ", " + C->data + ")";
     A = mkTokenTemp(C);
     delete B;
 }
 
 lvalue(A) ::= expr(B) PERIOD NAME(C). [MEMBER] {
-    checkIsConstant(B->data, B->line);
     C->data = "_ATTW(" + B->data + ", '" + C->data + "')";
     A = mkTokenTemp(C);
     delete B;
