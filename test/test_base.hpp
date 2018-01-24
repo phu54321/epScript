@@ -11,7 +11,6 @@
 #include <string.h>
 #include <vector>
 
-extern bool NO_EPSPY;
 extern bool PARSER_DEBUG, MAP_DEBUG;
 
 std::string get_testdata(std::string dataname);

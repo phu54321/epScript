@@ -10,7 +10,6 @@
 
 extern int currentTokenizingLine;
 extern std::string currentModule;
-bool NO_EPSPY = false;
 
 int errorn = 0;
 
@@ -110,13 +109,7 @@ void impPathProcess(const std::string& s, std::string& impPath, std::string& imp
         impModname = modname.substr(3);
     }
     else {
-        if(NO_EPSPY) {
-            impPath = path;
-        }
-        else {
-            if (path.empty()) impPath = "_epspy";
-            else impPath = path + "._epspy";
-        }
+        impPath = path;
         impModname = modname;
     }
 }

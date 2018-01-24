@@ -5,8 +5,8 @@
 #include "../test_base.hpp"
 
 TEST_CASE("Import parsing") {
-            CHECK(ParseString("test", "import a1;", false) == "from _epspy import a1\n");
-            CHECK(ParseString("test", "import test.a1;", false) == "from test._epspy import a1\n");
+            CHECK(ParseString("test", "import a1;", false) == "import a1\n");
+            CHECK(ParseString("test", "import test.a1;", false) == "from test import a1\n");
             CHECK(ParseString("test", "import py_a1;", false) == "import a1\n");
             CHECK(ParseString("test", "import test.py_a1;", false) == "from test import a1\n");
 }
