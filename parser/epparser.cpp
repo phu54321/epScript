@@ -4221,17 +4221,6 @@ void Parse(
 PyGenerator* pGen;
 ClosureManager* closure;
 
-std::string escapeString(const char* cursor) {
-    std::vector<char> buffer;  // String to hold escaped content.
-    buffer.reserve(200);
-
-    while(*cursor) {
-        if(*cursor == '\\') buffer.push_back('\\');
-        buffer.push_back(*cursor);
-        cursor++;
-    }
-    return std::string(buffer.begin(), buffer.end());
-}
 
 std::string ParseString(const std::string& fname, const std::string& code, bool addComment)
 {
@@ -4267,7 +4256,7 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
             currentTokenizingLine = tok.getCurrentLine();
             if(addComment) ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
             if(MAP_DEBUG && !currentFunction.empty()) {
-                ps.gen << "EUDTraceLog(\'" << escapeString(currentFile.c_str()) << "|" << currentFunction << "|" << currentTokenizingLine << "\')" << std::endl;
+                ps.gen << "EUDTraceLog()" << std::endl;
             }
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }

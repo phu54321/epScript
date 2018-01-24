@@ -14,10 +14,10 @@ TEST_CASE("Debug info") {
                 "@EUDFunc\n"
                         "def f_x(l):\n"
                         "    EUDTracePush()\n"
-                        "    EUDTraceLog('<test>|f_x|2')\n"
+                        "    EUDTraceLog()\n"
                         "    EUDTracePop()\n"
                         "    EUDReturn(0)\n"
-                        "    EUDTraceLog('<test>|f_x|3')\n"
+                        "    EUDTraceLog()\n"
                         "    EUDTracePop()\n"
         );
     }
@@ -32,10 +32,10 @@ TEST_CASE("Debug info") {
                 "@EUDFunc\n"
                         "def f_x(l):\n"
                         "    EUDTracePush()\n"
-                        "    EUDTraceLog('<test>|f_x|2')\n"
+                        "    EUDTraceLog()\n"  // Line 2
                         "    if EUDIf()(1):\n"
-                        "        EUDTraceLog('<test>|f_x|3')\n"
-                        "        EUDTraceLog('<test>|f_x|4')\n"
+                        "        EUDTraceLog()\n"  // Line 3
+                        "        EUDTraceLog()\n"  // Line 4
                         "    EUDEndIf()\n"
                         "    EUDTracePop()\n"
         );
@@ -50,9 +50,9 @@ TEST_CASE("Debug info") {
                 "@EUDFunc\n"
                         "def f_x(l):\n"
                         "    EUDTracePush()\n"
-                        "    EUDTraceLog('<test>|f_x|2')\n"
+                        "    EUDTraceLog()\n"  // Line 2
                         "    f_dwread_epd(1)\n"
-                        "    EUDTraceLog('<test>|f_x|3')\n"
+                        "    EUDTraceLog()\n"  // Line 3
                         "    EUDTracePop()\n"
         );
     }
