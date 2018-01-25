@@ -93,6 +93,9 @@ enum TokenType {
     TOKEN_COMMA,
     TOKEN_COLON,
     TOKEN_SEMICOLON,
+
+    // Internal tokens
+    TOKEN_EXPR,
 };
 
 const int MAX_SUBTOKEN_NUM = 5;

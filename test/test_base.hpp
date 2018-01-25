@@ -29,5 +29,5 @@ std::string trim(std::string s);  // Declared from parserUtilites.h
                 "def f_testf():\n"; \
         REQUIRE(strncmp(output.c_str(), header, strlen(header)) == 0); \
         output = unindentString(output.substr(strlen(header))); \
-        CHECK(output == desiredOutput); \
+        CHECK(trim(output) == trim(desiredOutput)); \
     }
