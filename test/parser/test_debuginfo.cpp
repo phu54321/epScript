@@ -41,6 +41,11 @@ TEST_CASE("Debug info") {
                     "A = EUDVariable()"  // Pure variable declaration is not traced.
             );
 
+            checkBlock(
+                    "static var A = 1;",
+                    "A = EUDVariable(1)"  // static variable declaration is not traced.
+            );
+
             checkBlock(  // Variable declaration with assignments.
                     "var A = 1;",
                     "EUDTraceLog(1)\n"
@@ -49,6 +54,60 @@ TEST_CASE("Debug info") {
             );
         }
 
+        SECTION("Assignments") {
+            checkBlock(
+                "var x, y;\n"
+                        "x = 1;\n"
+                        "x, y = 1 ,2;\n"
+                        "++x;\n"
+                        "x++;\n"
+                        "--x;\n"
+                        "x--;\n"
+                        "x += 1;\n"
+                        "x -= 2;\n"
+                        "x *= 3;\n"
+                        "x /= 4;\n"
+                        "x %= 5;\n"
+                        "x <<= 6;\n"
+                        "x >>= 7;\n"
+                        "x &= 8;\n"
+                        "x ^= 9;\n"
+                        "x |= 10;\n",
+                "x, y = EUDCreateVariables(2)\n"
+                        "EUDTraceLog(2)\n"
+                        "x << (1)\n"
+                        "EUDTraceLog(3)\n"
+                        "_SV([x, y], [1, 2])\n"
+                        "EUDTraceLog(4)\n"
+                        "x.__iadd__(1)\n"
+                        "EUDTraceLog(5)\n"
+                        "x.__iadd__(1)\n"
+                        "EUDTraceLog(6)\n"
+                        "x.__isub__(1)\n"
+                        "EUDTraceLog(7)\n"
+                        "x.__isub__(1)\n"
+                        "EUDTraceLog(8)\n"
+                        "x.__iadd__(1)\n"
+                        "EUDTraceLog(9)\n"
+                        "x.__isub__(2)\n"
+                        "EUDTraceLog(10)\n"
+                        "x.__imul__(3)\n"
+                        "EUDTraceLog(11)\n"
+                        "x.__ifloordiv__(4)\n"
+                        "EUDTraceLog(12)\n"
+                        "x.__imod__(5)\n"
+                        "EUDTraceLog(13)\n"
+                        "x.__ilshift__(6)\n"
+                        "EUDTraceLog(14)\n"
+                        "x.__irshift__(7)\n"
+                        "EUDTraceLog(15)\n"
+                        "x.__iand__(8)\n"
+                        "EUDTraceLog(16)\n"
+                        "x.__ixor__(9)\n"
+                        "EUDTraceLog(17)\n"
+                        "x.__ior__(10)\n"
+            );
+        }
     }
 
     SECTION("Control blocks") {

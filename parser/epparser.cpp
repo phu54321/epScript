@@ -3719,57 +3719,59 @@ static void yy_reduce(
         break;
       case 131: /* assign_stmt ::= lvalue ASSIGN expr */
 {
+    writeTraceInfo(ps->gen, yymsp[-2].minor.yy0);
     ps->gen << yymsp[-2].minor.yy0->data << " << (" << yymsp[0].minor.yy0->data << ")" << std::endl;
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
         break;
       case 132: /* assign_stmt ::= lvalueList_nonEmpty ASSIGN exprList_nonEmpty */
 {
+    writeTraceInfo(ps->gen, yymsp[-2].minor.yy0);
     ps->gen << "_SV([" << yymsp[-2].minor.yy0->data << "], [" << yymsp[0].minor.yy0->data << "])" << std::endl;
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
 }
         break;
       case 133: /* assign_stmt ::= INC expr */
-{ ps->gen << yymsp[0].minor.yy0->data << ".__iadd__(1)" << std::endl; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[0].minor.yy0); ps->gen << yymsp[0].minor.yy0->data << ".__iadd__(1)" << std::endl; delete yymsp[0].minor.yy0; }
         break;
       case 134: /* assign_stmt ::= expr INC */
-{ ps->gen << yymsp[-1].minor.yy0->data << ".__iadd__(1)" << std::endl; delete yymsp[-1].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-1].minor.yy0); ps->gen << yymsp[-1].minor.yy0->data << ".__iadd__(1)" << std::endl; delete yymsp[-1].minor.yy0; }
         break;
       case 135: /* assign_stmt ::= DEC expr */
-{ ps->gen << yymsp[0].minor.yy0->data << ".__isub__(1)" << std::endl; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[0].minor.yy0); ps->gen << yymsp[0].minor.yy0->data << ".__isub__(1)" << std::endl; delete yymsp[0].minor.yy0; }
         break;
       case 136: /* assign_stmt ::= expr DEC */
-{ ps->gen << yymsp[-1].minor.yy0->data << ".__isub__(1)" << std::endl; delete yymsp[-1].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-1].minor.yy0); ps->gen << yymsp[-1].minor.yy0->data << ".__isub__(1)" << std::endl; delete yymsp[-1].minor.yy0; }
         break;
       case 137: /* assign_stmt ::= lvalue IADD expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__iadd__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__iadd__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 138: /* assign_stmt ::= lvalue ISUB expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__isub__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__isub__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 139: /* assign_stmt ::= lvalue IMUL expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__imul__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__imul__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 140: /* assign_stmt ::= lvalue IDIV expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__ifloordiv__("  << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__ifloordiv__("  << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 141: /* assign_stmt ::= lvalue IMOD expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__imod__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__imod__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 142: /* assign_stmt ::= lvalue ILSH expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__ilshift__("    << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__ilshift__("    << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 143: /* assign_stmt ::= lvalue IRSH expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__irshift__("    << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__irshift__("    << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 144: /* assign_stmt ::= lvalue IBND expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__iand__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__iand__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 145: /* assign_stmt ::= lvalue IBOR expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__ior__("        << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__ior__("        << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 146: /* assign_stmt ::= lvalue IBXR expr */
-{ ps->gen << yymsp[-2].minor.yy0->data << ".__ixor__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
+{ writeTraceInfo(ps->gen, yymsp[-2].minor.yy0); ps->gen << yymsp[-2].minor.yy0->data << ".__ixor__("       << yymsp[0].minor.yy0->data << ")" << std::endl; delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0; }
         break;
       case 147: /* if_start ::= IF */
 {
