@@ -935,6 +935,7 @@ if_start(A) ::= IF(B). {
 }
 
 if_header ::= if_start(A) LPAREN expr(B). {  // RPAREN is at if_block. see (2)
+    writeTraceInfo(ps->gen, B);
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;
@@ -949,6 +950,7 @@ elif_start(A) ::= ELSE IF(B). {
 }
 
 elif_header ::= elif_start(A) LPAREN expr(B). {  // RPAREN is at if_block. see (2)
+    writeTraceInfo(ps->gen, B);
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;

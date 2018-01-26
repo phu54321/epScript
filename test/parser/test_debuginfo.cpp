@@ -152,18 +152,32 @@ TEST_CASE("Debug info") {
             );
         }
 
-        SECTION("While") {
+        SECTION("If") {
             checkBlock(
-                    "while(1) {\n"
-                            "    const x = 1;\n"
+                    "if(1) {\n"
+                            "    DisplayText('a1');\n"
+                            "}\n"
+                            "else if(2) {\n"
+                            "    DisplayText('a2');\n"
+                            "}\n"
+                            "else {\n"
+                            "    DisplayText('a3');\n"
                             "}",
 
-                    "_t1 = EUDWhile()\n"
+                    "_t1 = EUDIf()\n"
                             "EUDTraceLog(1)\n"
                             "if _t1(1):\n"
                             "    EUDTraceLog(2)\n"
-                            "    x = 1\n"
-                            "EUDEndWhile()\n"
+                            "    DoActions(DisplayText('a1'))\n"
+                            "_t2 = EUDElseIf()\n"
+                            "EUDTraceLog(4)\n"
+                            "if _t2(2):\n"
+                            "    EUDTraceLog(5)\n"
+                            "    DoActions(DisplayText('a2'))\n"
+                            "if EUDElse()():\n"
+                            "    EUDTraceLog(8)\n"
+                            "    DoActions(DisplayText('a3'))\n"
+                            "EUDEndIf()\n"
             );
         }
     }

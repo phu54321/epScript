@@ -3778,6 +3778,7 @@ static void yy_reduce(
       case 149: /* if_header ::= if_start LPAREN expr */
       case 152: /* elif_header ::= elif_start LPAREN expr */ yytestcase(yyruleno==152);
 {  // RPAREN is at if_block. see (2)
+    writeTraceInfo(ps->gen, yymsp[0].minor.yy0);
     writeCsOpener(*pGen, yymsp[-2].minor.yy0, yymsp[0].minor.yy0);
     ps->gen.indent();
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;
