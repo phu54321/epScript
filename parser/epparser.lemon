@@ -759,7 +759,10 @@ vdef_stmt ::= VAR nameList_nonEmpty(A). {
     delete A;
 }
 
-vdefAssign_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
+vdefAssign_stmt ::= VAR(X) nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
+    writeTraceInfo(ps->gen, X);
+    delete X;
+
     std::string& s = A->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
 

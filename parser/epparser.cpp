@@ -3590,6 +3590,9 @@ static void yy_reduce(
         break;
       case 121: /* vdefAssign_stmt ::= VAR nameList_nonEmpty ASSIGN exprList_nonEmpty */
 {
+    writeTraceInfo(ps->gen, yymsp[-3].minor.yy0);
+    delete yymsp[-3].minor.yy0;
+
     std::string& s = yymsp[-2].minor.yy0->data;
     int varCount = std::count(s.begin(), s.end(), ',') + 1;
 
