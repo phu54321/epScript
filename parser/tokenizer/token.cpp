@@ -107,14 +107,22 @@ void printToken(Token* tok, int indent) {
 bool checkLeakedTokens() {
     if(allocatedTokenSet.empty()) return true;
 
-    printf("Leaked tokens: %d\n", allocatedTokenSet.size());
+    fprintf(stderr, "Leaked tokens: %d\n", allocatedTokenSet.size());
     for(const auto& tok: allocatedTokenSet) {
+        printf("  ");
         printToken(tok, 1);
         delete tok;
     }
     allocatedTokenSet.clear();
 
     return false;
+}
+
+void clearLeakedTokens() {
+    for(const auto& tok: allocatedTokenSet) {
+        delete tok;
+    }
+    allocatedTokenSet.clear();
 }
 
 

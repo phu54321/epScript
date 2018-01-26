@@ -10,6 +10,7 @@ TEST_CASE("Tokenizing arithmetic operators") {
             REQUIRE(tok.getToken()->type == TOKEN_MULTIPLY);
             REQUIRE(tok.getToken()->type == TOKEN_DIVIDE);
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }
 
 
@@ -23,6 +24,7 @@ TEST_CASE("Tokenizing comparison operators") {
             REQUIRE(tok.getToken()->type == TOKEN_LT);
             REQUIRE(tok.getToken()->type == TOKEN_GT);
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }
 
 TEST_CASE("Tokenizing brackets") {
@@ -33,6 +35,7 @@ TEST_CASE("Tokenizing brackets") {
             REQUIRE(tok.getToken()->type == TOKEN_LSQBRACKET);
             REQUIRE(tok.getToken()->type == TOKEN_RSQBRACKET);
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }
 
 
@@ -64,6 +67,7 @@ TEST_CASE("Tokenizing mixed names/operators") {
             REQUIRE(tok.getToken()->type == TOKEN_PLUS);
             REQUIRE(tok.getToken()->data == "b");
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }
 
 
@@ -88,6 +92,7 @@ TEST_CASE("Tokenizing complex operators") {
             REQUIRE(tok.getToken()->data == "[");
             REQUIRE(tok.getToken()->data == "]");
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }
 
 TEST_CASE("Tokenizing numbers") {
@@ -97,6 +102,7 @@ TEST_CASE("Tokenizing numbers") {
             REQUIRE(tok.getToken()->type == TOKEN_PLUS);
             REQUIRE(tok.getToken()->data == "456");
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }
 
 
@@ -107,6 +113,7 @@ TEST_CASE("Tokenizing strings") {
             REQUIRE(tok.getToken()->data == "\'test\'");
             REQUIRE(tok.getToken()->data == "\'testtest2\'");
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }
 
 auto k =
@@ -125,6 +132,7 @@ TEST_CASE("SCMDraft2 text tokenizing") {
             REQUIRE(tok.getToken()->data == "'<13><03>===========================\\n<13><04><< Game over >>\\n<13><05>Defeat();\\n<13><03>===========================\\n'");
             REQUIRE(tok.getToken()->data == ")");
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }
 
 
@@ -156,4 +164,5 @@ TEST_CASE("Brackets") {
             REQUIRE(tok.getToken()->type == TOKEN_RBRACKET);
             REQUIRE(tok.getToken()->data == "g");
             REQUIRE(tok.getToken() == nullptr);
+    clearLeakedTokens();
 }

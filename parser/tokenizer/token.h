@@ -100,6 +100,7 @@ const int MAX_SUBTOKEN_NUM = 5;
 
 #ifdef MEMORY_DEBUG
 bool checkLeakedTokens();
+void clearLeakedTokens();
 #endif
 
 struct Token {
