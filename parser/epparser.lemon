@@ -359,11 +359,7 @@ bodyStmt ::= vdefAssignStatic_stmt SEMICOLON.
 bodyStmt ::= vdefAssign_stmt SEMICOLON.
 bodyStmt ::= cdef_stmt SEMICOLON.
 bodyStmt ::= assign_stmt SEMICOLON.
-bodyStmt ::= funcexpr(A) SEMICOLON.  {
-    writeTraceInfo(ps->gen, A);
-    ps->gen << A->data << std::endl;
-    delete A;
-}
+bodyStmt ::= funcexprStmt SEMICOLON.
 bodyStmt ::= actionStmt SEMICOLON.
 
 bodyStmt ::= if_stmt.
@@ -546,6 +542,12 @@ fArgs_nonEmpty(A) ::= fArgs_nonEmpty(B) COMMA fArgs_nonEmpty(C). {
 
 fArgs(A) ::= . { A = genEmpty(); }
 fArgs(A) ::= fArgs_nonEmpty(B). { A = B; }
+
+funcexprStmt ::= funcexpr(A). {
+    writeTraceInfo(ps->gen, A);
+    ps->gen << A->data << std::endl;
+    delete A;
+}
 
 funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     // Preprocess name
@@ -1005,13 +1007,7 @@ for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty COMMA for_init_stmt_nonEmpty.
 for_init_stmt ::= for_init_stmt_nonEmpty.
 for_init_stmt ::= .
 
-for_action_stmt_nonEmpty ::= funcexpr(A). {
-    // Unlike assign_stmt, funcexpr don't write its data to ps->gen on its reduce action, so
-    // we have to manually write it here.
-    writeTraceInfo(ps->gen, A);
-    ps->gen << A->data << std::endl;
-    delete A;
-}
+for_action_stmt_nonEmpty ::= funcexprStmt.
 for_action_stmt_nonEmpty ::= assign_stmt.
 for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty COMMA for_action_stmt_nonEmpty.
 for_action_stmt ::= .
