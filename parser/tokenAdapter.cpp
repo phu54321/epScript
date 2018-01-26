@@ -89,12 +89,3 @@ int getConvertedType(int type) {
         default: return -1;
     }
 }
-
-bool tokenTypeConv(Token* token) {
-    int newtype = getConvertedType(token->type);
-    if(newtype == -1) return false;
-    else {
-        token->type = newtype;
-        return true;
-    }
-}

@@ -4,6 +4,6 @@
 #include "tokenizer/tokenizer.h"
 #include "epparser.h"
 
-bool tokenTypeConv(Token* token);
+int getConvertedType(int type);
 
 #endif //EPSCRIPT_TOKENADAPTER_H

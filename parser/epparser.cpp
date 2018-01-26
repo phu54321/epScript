@@ -2130,7 +2130,7 @@ void ParseTrace(FILE *TraceFILE, const char *zTracePrompt){
 #ifndef NDEBUG
 /* For tracing shifts, the names of all terminals and nonterminals
 ** are required.  The following table supplies these names */
-static const char *const yyTokenName[] = { 
+const char *const yyTokenName[] = {
   "$",             "IFX",           "ELSE",          "ASSIGN",      
   "QMARK",         "COMMA",         "LOR",           "LAND",        
   "LNOT",          "EQ",            "LE",            "LT",          
@@ -4272,8 +4272,9 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
             if(addComment) ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }
-        if (tokenTypeConv(token)) {
-            Parse (pParser, token->type, token, &ps);
+        int newTokType = getConvertedType(token->type);
+        if (newTokType != -1) {
+            Parse (pParser, newTokType, token, &ps);
         }
         else {
             throw_error(8104, "Invalid token");
