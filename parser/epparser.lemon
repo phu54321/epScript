@@ -973,6 +973,7 @@ while_start(A) ::= WHILE(B). {
 }
 
 while_header ::= while_start(A) LPAREN expr(B). {  // RPAREN is at while_stmt. see (2)
+    writeTraceInfo(ps->gen, B);
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;

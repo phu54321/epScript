@@ -3812,6 +3812,7 @@ static void yy_reduce(
         break;
       case 157: /* while_header ::= while_start LPAREN expr */
 {  // RPAREN is at while_stmt. see (2)
+    writeTraceInfo(ps->gen, yymsp[0].minor.yy0);
     writeCsOpener(*pGen, yymsp[-2].minor.yy0, yymsp[0].minor.yy0);
     ps->gen.indent();
     delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;

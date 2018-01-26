@@ -48,7 +48,23 @@ TEST_CASE("Debug info") {
                         "        f_dwread_epd(i)\n"
                         "    EUDSetContinuePoint()\n"
                         "    _t2()\n"
-                        "EUDEndWhile()\n"        );
+                        "EUDEndWhile()\n"
+        );
+    }
+
+    SECTION("While") {
+        checkBlock(
+                "while(1) {\n"
+                        "    const x = 1;\n"
+                        "}",
+
+                "_t1 = EUDWhile()\n"
+                        "EUDTraceLog(1)\n"
+                        "if _t1(1):\n"
+                        "    EUDTraceLog(2)\n"
+                        "    x = 1\n"
+                        "EUDEndWhile()\n"
+        );
     }
 
     MAP_DEBUG = false;
