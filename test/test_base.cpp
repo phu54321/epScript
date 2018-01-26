@@ -7,12 +7,6 @@
 #include <vector>
 #include "test_base.hpp"
 
-
-std::string get_testdata(std::string dataname) {
-    dataname = "../test/testdata/" + dataname;
-    return getFile(dataname);
-}
-
 std::string unindentString(const std::string& data) {
     std::vector<char> sbuf;
     bool isNewline = true;

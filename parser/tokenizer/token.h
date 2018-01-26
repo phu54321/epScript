@@ -11,9 +11,9 @@
 
 enum TokenType {
     // Internally used by parser
-    TOKEN_INVALID,
-    TOKEN_TEMP,
-    TOKEN_EXPR,
+    TOKEN_INVALID = -3,
+    TOKEN_TEMP = -2,
+    TOKEN_EXPR = -1,
 
     // Keywords
     TOKEN_IMPORT,
@@ -99,7 +99,7 @@ enum TokenType {
 const int MAX_SUBTOKEN_NUM = 5;
 
 #ifdef MEMORY_DEBUG
-extern int allocatedTokenNum;
+bool checkLeakedTokens();
 #endif
 
 struct Token {
