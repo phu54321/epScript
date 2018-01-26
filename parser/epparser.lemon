@@ -1088,7 +1088,10 @@ break_stmt ::= BREAK(X). {
 
 
 // returns
-return_stmt ::= RETURN exprList(exprs). {
+return_stmt ::= RETURN(X) exprList(exprs). {
+    writeTraceInfo(ps->gen, X);
+    delete X;
+
     ps->gen << "EUDReturn(" << exprs->data << ")" << std::endl;
     delete exprs;
 }

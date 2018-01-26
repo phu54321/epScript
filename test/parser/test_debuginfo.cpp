@@ -19,7 +19,6 @@ TEST_CASE("Debug info") {
     }
 
     SECTION("Statements") {
-
         SECTION("Function call") {
             checkBlock(
                     "dwread_epd(0);",
@@ -116,6 +115,15 @@ TEST_CASE("Debug info") {
                         "DoActions(DisplayText('hello world!'))"
             );
         }
+
+        SECTION("return") {
+            checkBlock(
+                    "return 0;",
+                    "EUDTraceLog(1)\n"
+                            "EUDReturn(0)"
+            );
+        }
+
     }
 
     SECTION("Control blocks") {

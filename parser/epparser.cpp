@@ -3907,6 +3907,9 @@ static void yy_reduce(
         break;
       case 182: /* return_stmt ::= RETURN exprList */
 {
+    writeTraceInfo(ps->gen, yymsp[-1].minor.yy0);
+    delete yymsp[-1].minor.yy0;
+
     ps->gen << "EUDReturn(" << yymsp[0].minor.yy0->data << ")" << std::endl;
     delete yymsp[0].minor.yy0;
 }
