@@ -365,6 +365,7 @@ bodyStmt ::= funcexpr(A) SEMICOLON.  {
     delete A;
 }
 bodyStmt ::= actionStmt SEMICOLON.
+
 bodyStmt ::= if_stmt.
 bodyStmt ::= while_stmt.
 bodyStmt ::= for_stmt.
@@ -1104,6 +1105,7 @@ expr(A) ::= KILLS(B) LPAREN fArgs(C) RPAREN. {
 }
 
 actionStmt ::= ACTIONNAME(A) LPAREN fArgs(B) RPAREN. {
+    writeTraceInfo(ps->gen, A);
     ps->gen << "DoActions(" << A->data << "(" << B->data << "))" << std::endl;
     delete A; delete B;
 }

@@ -3927,6 +3927,7 @@ static void yy_reduce(
         break;
       case 184: /* actionStmt ::= ACTIONNAME LPAREN fArgs RPAREN */
 {
+    writeTraceInfo(ps->gen, yymsp[-3].minor.yy0);
     ps->gen << "DoActions(" << yymsp[-3].minor.yy0->data << "(" << yymsp[-1].minor.yy0->data << "))" << std::endl;
     delete yymsp[-3].minor.yy0; delete yymsp[-1].minor.yy0;
 }

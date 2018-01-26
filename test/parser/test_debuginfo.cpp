@@ -108,6 +108,14 @@ TEST_CASE("Debug info") {
                         "x.__ior__(10)\n"
             );
         }
+
+        SECTION("actions") {
+            checkBlock(
+                "DisplayText('hello world!');",
+                "EUDTraceLog(1)\n"
+                        "DoActions(DisplayText('hello world!'))"
+            );
+        }
     }
 
     SECTION("Control blocks") {
