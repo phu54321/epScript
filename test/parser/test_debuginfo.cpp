@@ -119,39 +119,6 @@ TEST_CASE("Debug info") {
     }
 
     SECTION("Control blocks") {
-        SECTION("For") {
-            checkBlock(
-                    "for(const i = EUDArray() ; i.empty() ; dwread_epd(i)) {}",
-
-                    "EUDTraceLog(1)\n"
-                            "i = EUDArray()\n"
-                            "_t1 = EUDWhile()\n"
-                            "EUDTraceLog(1)\n"
-                            "if _t1(i.empty()):\n"
-                            "    def _t2():\n"
-                            "        EUDTraceLog(1)\n"
-                            "        f_dwread_epd(i)\n"
-                            "    EUDSetContinuePoint()\n"
-                            "    _t2()\n"
-                            "EUDEndWhile()\n"
-            );
-        }
-
-        SECTION("While") {
-            checkBlock(
-                    "while(1) {\n"
-                            "    const x = 1;\n"
-                            "}",
-
-                    "_t1 = EUDWhile()\n"
-                            "EUDTraceLog(1)\n"
-                            "if _t1(1):\n"
-                            "    EUDTraceLog(2)\n"
-                            "    x = 1\n"
-                            "EUDEndWhile()\n"
-            );
-        }
-
         SECTION("If") {
             checkBlock(
                     "if(1) {\n"
@@ -180,6 +147,61 @@ TEST_CASE("Debug info") {
                             "EUDEndIf()\n"
             );
         }
+
+        SECTION("While") {
+            checkBlock(
+                    "while(1) {\n"
+                            "    const x = 1;\n"
+                            "}",
+
+                    "_t1 = EUDWhile()\n"
+                            "EUDTraceLog(1)\n"
+                            "if _t1(1):\n"
+                            "    EUDTraceLog(2)\n"
+                            "    x = 1\n"
+                            "EUDEndWhile()\n"
+            );
+        }
+
+        SECTION("For") {
+            checkBlock(
+                    "for(const i = EUDArray() ; i.empty() ; dwread_epd(i)) {}",
+
+                    "EUDTraceLog(1)\n"
+                            "i = EUDArray()\n"
+                            "_t1 = EUDWhile()\n"
+                            "EUDTraceLog(1)\n"
+                            "if _t1(i.empty()):\n"
+                            "    def _t2():\n"
+                            "        EUDTraceLog(1)\n"
+                            "        f_dwread_epd(i)\n"
+                            "    EUDSetContinuePoint()\n"
+                            "    _t2()\n"
+                            "EUDEndWhile()\n"
+            );
+        }
+
+        SECTION("Break, End") {
+            checkBlock(
+                    "while(1) {\n"
+                            "    continue;\n"
+                            "    break;\n"
+                            "}",
+
+                    "_t1 = EUDWhile()\n"
+                            "EUDTraceLog(1)\n"
+                            "if _t1(1):\n"
+                            "    EUDTraceLog(2)\n"
+                            "    EUDContinue()\n"
+                            "    EUDTraceLog(3)\n"
+                            "    EUDBreak()\n"
+                            "EUDEndWhile()\n"
+            );
+        }
+
+
+        // Foreach cannot be traced by now... so sad...
+
     }
 
     MAP_DEBUG = false;

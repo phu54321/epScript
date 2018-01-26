@@ -1071,11 +1071,17 @@ foreach_stmt ::= foreach_header RPAREN stmt. {
 
 
 // Loop exits
-continue_stmt ::= CONTINUE. {
+continue_stmt ::= CONTINUE(X). {
+    writeTraceInfo(ps->gen, X);
+    delete X;
+
     ps->gen << "EUDContinue()" << std::endl;
 }
 
-break_stmt ::= BREAK. {
+break_stmt ::= BREAK(X). {
+    writeTraceInfo(ps->gen, X);
+    delete X;
+
     ps->gen << "EUDBreak()" << std::endl;
 }
 

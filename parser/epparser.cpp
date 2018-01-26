@@ -3891,11 +3891,17 @@ static void yy_reduce(
         break;
       case 180: /* continue_stmt ::= CONTINUE */
 {
+    writeTraceInfo(ps->gen, yymsp[0].minor.yy0);
+    delete yymsp[0].minor.yy0;
+
     ps->gen << "EUDContinue()" << std::endl;
 }
         break;
       case 181: /* break_stmt ::= BREAK */
 {
+    writeTraceInfo(ps->gen, yymsp[0].minor.yy0);
+    delete yymsp[0].minor.yy0;
+
     ps->gen << "EUDBreak()" << std::endl;
 }
         break;
