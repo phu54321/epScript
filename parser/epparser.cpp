@@ -3235,12 +3235,13 @@ static void yy_reduce(
     });
 
     // Add decorator header
-    if(MAP_DEBUG) {
-         ps->gen << "@EUDTraced" << std::endl;
+    if (!isTypedFunction) {
+        if(MAP_DEBUG) ps->gen << "@EUDTracedFunc" << std::endl;
+        else ps->gen << "@EUDFunc" << std::endl;
     }
-    if (!isTypedFunction) ps->gen << "@EUDFunc" << std::endl;
     else {
-        ps->gen << "@EUDTypedFunc([";
+        if(MAP_DEBUG) ps->gen << "@EUDTracedTypedFunc([";
+        else ps->gen << "@EUDTypedFunc([";
         writeStringList(ps->gen, types);
         if(!yymsp[0].minor.yy0) ps->gen << "])" << std::endl;
         else ps->gen << "], [" << yymsp[0].minor.yy0->data << "])" << std::endl;
@@ -3355,9 +3356,13 @@ static void yy_reduce(
     });
 
     // Add decorator header
-    if (!isTypedFunction) ps->gen << "@EUDMethod" << std::endl;
+    if (!isTypedFunction) {
+        if(MAP_DEBUG) ps->gen << "@EUDTracedMethod\n";
+        else ps->gen << "@EUDMethod\n";
+    }
     else {
-        ps->gen << "@EUDTypedMethod([";
+        if(MAP_DEBUG) ps->gen << "@EUDTracedTypedMethod([";
+        else ps->gen << "@EUDTypedMethod([";
         writeStringList(ps->gen, types);
         if(!yymsp[0].minor.yy0) ps->gen << "])" << std::endl;
         else ps->gen << "], [" << yymsp[0].minor.yy0->data << "])" << std::endl;
@@ -3712,9 +3717,13 @@ static void yy_reduce(
     });
 
     // Add decorator header
-    if (!isTypedFunction) ps->gen << "@EUDFunc" << std::endl;
+    if (!isTypedFunction) {
+        if(MAP_DEBUG) ps->gen << "@EUDTracedFunc" << std::endl;
+        else ps->gen << "@EUDFunc" << std::endl;
+    }
     else {
-        ps->gen << "@EUDTypedFunc([";
+        if(MAP_DEBUG) ps->gen << "@EUDTracedTypedFunc([";
+        else ps->gen << "@EUDTypedFunc([";
         writeStringList(ps->gen, types);
         if(!yymsp[0].minor.yy0) ps->gen << "])" << std::endl;
         else ps->gen << "], [" << yymsp[0].minor.yy0->data << "])" << std::endl;

@@ -11,8 +11,7 @@ TEST_CASE("Debug info") {
         check_string(
                 "function x(l) {\n"
                         "\n}",
-                "@EUDTraced\n"
-                        "@EUDFunc\n"
+                "@EUDTracedFunc\n"
                         "def f_x(l):\n"
                         "    pass"
         );
