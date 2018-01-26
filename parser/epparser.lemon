@@ -38,7 +38,8 @@ bool MAP_DEBUG = false;
 
 %extra_argument { ParserStruct* ps }
 %token_type {Token*}
-%destructor nt { delete $$; }
+%default_destructor { delete $$; }
+%token_destructor { delete $$; }
 
 // Precedence table
 
@@ -524,20 +525,21 @@ expr(A) ::= lambdaExprStart(B) stmt. {
 
 
 // Function calls
-fArgs_nonEmpty(A) ::= expr(B). { A = B; }
-fArgs_nonEmpty(A) ::= STRING(B). { A = B; }
-fArgs_nonEmpty(A) ::= NAME(B) ASSIGN expr(C). {  // Keyword argument
+fArg(A) ::= expr(B). { A = B; }
+fArg(A) ::= STRING(B). { A = B; }
+fArg(A) ::= NAME(B) ASSIGN expr(C). {  // Keyword argument
     C->data = B->data + "=" + C->data;
     C->type = TOKEN_TEMP;
     A = C;
     delete B;
 }
 
-fArgs_nonEmpty(A) ::= fArgs_nonEmpty(B) COMMA fArgs_nonEmpty(C). {
-    C->data = B->data + ", " + C->data;
-    C->type = TOKEN_TEMP;
-    A = C;
-    delete B;
+fArgs_nonEmpty(A) ::= fArg(B). { A = B; }
+fArgs_nonEmpty(A) ::= fArgs_nonEmpty(B) COMMA fArg(C). {
+    B->data = B->data + ", " + C->data;
+    B->type = TOKEN_TEMP;
+    A = B;
+    delete C;
 }
 
 fArgs(A) ::= . { A = genEmpty(); }
