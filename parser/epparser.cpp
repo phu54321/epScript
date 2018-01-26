@@ -3780,6 +3780,7 @@ static void yy_reduce(
     checkIsFunction(yymsp[-3].minor.yy0->data, yymsp[-3].minor.yy0->line);
     yymsp[-3].minor.yy0->data += "(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-3].minor.yy0);
+    delete yymsp[-1].minor.yy0;
   yy_destructor(yypParser,27,&yymsp[-2].minor);
   yy_destructor(yypParser,36,&yymsp[0].minor);
 }
@@ -3802,6 +3803,7 @@ static void yy_reduce(
     // Preprocess yymsp[-3].minor.yy0
     yymsp[-3].minor.yy0->data += "(" + yymsp[-1].minor.yy0->data + ")";
     yygotominor.yy0 = mkTokenTemp(yymsp[-3].minor.yy0);
+    delete yymsp[-1].minor.yy0;
   yy_destructor(yypParser,27,&yymsp[-2].minor);
   yy_destructor(yypParser,36,&yymsp[0].minor);
 }
@@ -4432,6 +4434,7 @@ static void yy_reduce(
     ps->gen.unindent(false);
     ps->gen << "EUDEndWhile()" << std::endl;
     ps->closure.popScope();
+    delete yymsp[-2].minor.yy0;
   yy_destructor(yypParser,36,&yymsp[-1].minor);
   yy_destructor(yypParser,93,&yymsp[0].minor);
 }
@@ -4450,6 +4453,8 @@ static void yy_reduce(
     });
     ps->gen << "for " << yymsp[-2].minor.yy0->data << " in " << yymsp[0].minor.yy0->data << ":" << std::endl;
     ps->gen.indent();
+    delete yymsp[-2].minor.yy0;
+    delete yymsp[0].minor.yy0;
   yy_destructor(yypParser,145,&yymsp[-3].minor);
   yy_destructor(yypParser,34,&yymsp[-1].minor);
 }

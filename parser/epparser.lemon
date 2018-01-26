@@ -556,6 +556,7 @@ funcexpr(out) ::= NAME(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     checkIsFunction(name->data, name->line);
     name->data += "(" + exprs->data + ")";
     out = mkTokenTemp(name);
+    delete exprs;
 }
 
 funcexpr(out) ::= expr(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
@@ -575,6 +576,7 @@ funcexpr(out) ::= expr(name) LPAREN fArgs(exprs) RPAREN.  [FUNCCALL] {
     // Preprocess name
     name->data += "(" + exprs->data + ")";
     out = mkTokenTemp(name);
+    delete exprs;
 }
 
 
@@ -1051,6 +1053,7 @@ for_stmt ::= for_header(X) RPAREN stmt. {
     ps->gen.unindent(false);
     ps->gen << "EUDEndWhile()" << std::endl;
     ps->closure.popScope();
+    delete X;
 }
 
 
@@ -1066,6 +1069,8 @@ foreach_header ::= foreach_opener nameList_nonEmpty(names) COLON exprList_nonEmp
     });
     ps->gen << "for " << names->data << " in " << exprs->data << ":" << std::endl;
     ps->gen.indent();
+    delete names;
+    delete exprs;
 }
 
 foreach_stmt ::= foreach_header RPAREN stmt. {
