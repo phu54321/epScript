@@ -26,5 +26,30 @@ TEST_CASE("Debug info") {
         );
     }
 
+    SECTION("Constant declaration") {
+        checkBlock(
+                "const A = 1;",
+                "EUDTraceLog(1)\n"
+                        "A = 1"
+        );
+    }
+
+    SECTION("For") {
+        checkBlock(
+                "for(const i = EUDArray() ; i.empty() ; dwread_epd(i)) {}",
+
+                "EUDTraceLog(1)\n"
+                        "i = EUDArray()\n"
+                        "_t1 = EUDWhile()\n"
+                        "EUDTraceLog(1)\n"
+                        "if _t1(i.empty()):\n"
+                        "    def _t2():\n"
+                        "        EUDTraceLog(1)\n"
+                        "        f_dwread_epd(i)\n"
+                        "    EUDSetContinuePoint()\n"
+                        "    _t2()\n"
+                        "EUDEndWhile()\n"        );
+    }
+
     MAP_DEBUG = false;
 }

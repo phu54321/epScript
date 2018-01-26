@@ -819,7 +819,10 @@ vdefAssign_global_stmt ::= VAR nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B).
     delete A; delete B;
 }
 
-cdef_stmt ::= CONST nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
+cdef_stmt ::= CONST(X) nameList_nonEmpty(A) ASSIGN exprList_nonEmpty(B). {
+    writeTraceInfo(ps->gen, X);
+    delete X;
+
     std::string& s = A->data;
     int nameCount = std::count(s.begin(), s.end(), ',') + 1;
 
@@ -981,8 +984,9 @@ while_stmt ::= while_header RPAREN stmt. {
 }
 
 /// FOR/FOREACH
-for_opener ::= FOR LPAREN. {
+for_opener ::= FOR(A) LPAREN. {
     ps->closure.pushScope();
+    delete A;
 }
 
 // C-style for block
@@ -994,6 +998,13 @@ for_init_stmt_nonEmpty ::= for_init_stmt_nonEmpty COMMA for_init_stmt_nonEmpty.
 for_init_stmt ::= for_init_stmt_nonEmpty.
 for_init_stmt ::= .
 
+for_action_stmt_nonEmpty ::= funcexpr(A). {
+    // Unlike assign_stmt, funcexpr don't write its data to ps->gen on its reduce action, so
+    // we have to manually write it here.
+    writeTraceInfo(ps->gen, A);
+    ps->gen << A->data << std::endl;
+    delete A;
+}
 for_action_stmt_nonEmpty ::= assign_stmt.
 for_action_stmt_nonEmpty ::= for_action_stmt_nonEmpty COMMA for_action_stmt_nonEmpty.
 for_action_stmt ::= .
@@ -1007,6 +1018,8 @@ for_header1(A) ::= for_opener for_init_stmt SEMICOLON(B). {
 }
 
 for_header2(X)::= for_header1(A) expr(B) SEMICOLON. {
+    writeTraceInfo(ps->gen, B);
+
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A; delete B;

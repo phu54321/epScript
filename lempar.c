@@ -181,14 +181,21 @@ struct yyParser {
 };
 typedef struct yyParser yyParser;
 
+// We always want to have a ParseTrace. ParseTrace is only available on NDEBUG mode, so we explicitly set it.
+#ifdef NDEBUG
+#undef NDEBUG
+#endif
+
+
+
 #ifndef NDEBUG
 #include <stdio.h>
 static FILE *yyTraceFILE = 0;
-static char *yyTracePrompt = 0;
+static const char *yyTracePrompt = 0;
 #endif /* NDEBUG */
 
 #ifndef NDEBUG
-/* 
+/*
 ** Turn parser tracing on by giving a stream to which to write the trace
 ** and a prompt to preface each trace message.  Tracing is turned off
 ** by making either argument NULL 
@@ -205,7 +212,7 @@ static char *yyTracePrompt = 0;
 ** Outputs:
 ** None.
 */
-void ParseTrace(FILE *TraceFILE, char *zTracePrompt){
+void ParseTrace(FILE *TraceFILE, const char *zTracePrompt){
   yyTraceFILE = TraceFILE;
   yyTracePrompt = zTracePrompt;
   if( yyTraceFILE==0 ) yyTracePrompt = 0;
