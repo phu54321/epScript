@@ -4249,6 +4249,7 @@ static void yy_reduce(
 {
     yygotominor.yy0 = genTemp(yymsp[0].minor.yy0);
     ps->gen << yygotominor.yy0->data << " = EUDIf()" << std::endl;
+    delete yymsp[0].minor.yy0;
 }
         break;
       case 150: /* if_header ::= if_start LPAREN expr */
@@ -4273,6 +4274,7 @@ static void yy_reduce(
     yygotominor.yy0 = genTemp(yymsp[0].minor.yy0);
     ps->gen.unindent(false);
     ps->gen << yygotominor.yy0->data << " = EUDElseIf()" << std::endl;
+    delete yymsp[0].minor.yy0;
   yy_destructor(yypParser,2,&yymsp[-1].minor);
 }
         break;
@@ -4412,6 +4414,7 @@ static void yy_reduce(
     yygotominor.yy0 = genTemp(yymsp[-1].minor.yy0);
     ps->gen << "def " << yygotominor.yy0->data <<"():" << std::endl;
     ps->gen.indent();
+    delete yymsp[-1].minor.yy0;
   yy_destructor(yypParser,30,&yymsp[0].minor);
 }
         break;

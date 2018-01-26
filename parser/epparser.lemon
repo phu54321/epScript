@@ -934,6 +934,7 @@ assign_stmt ::= lvalue(A) IBXR expr(B). [ASSIGN] { writeTraceInfo(ps->gen, A); p
 if_start(A) ::= IF(B). {
     A = genTemp(B);
     ps->gen << A->data << " = EUDIf()" << std::endl;
+    delete B;
 }
 
 if_header ::= if_start(A) LPAREN expr(B). {  // RPAREN is at if_block. see (2)
@@ -949,6 +950,7 @@ elif_start(A) ::= ELSE IF(B). {
     A = genTemp(B);
     ps->gen.unindent(false);
     ps->gen << A->data << " = EUDElseIf()" << std::endl;
+    delete B;
 }
 
 elif_header ::= elif_start(A) LPAREN expr(B). {  // RPAREN is at if_block. see (2)
@@ -1035,6 +1037,7 @@ for_header2(X)::= for_header1(A) expr(B) SEMICOLON. {
     X = genTemp(B);
     ps->gen << "def " << X->data <<"():" << std::endl;
     ps->gen.indent();
+    delete B;
 }
 
 for_header(X) ::= for_header2(A) for_action_stmt. {  // RPAREN is at for_stmt. see (2)
