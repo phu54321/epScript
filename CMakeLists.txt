@@ -41,7 +41,7 @@ set(SOURCE_FILES ${CMAKE_SOURCE_DIR}/parser/epparser.cpp parser/tokenizer/tokeni
         parser/generator/pygen.cpp parser/tokenAdapter.cpp
         parser/reservedWords/condact.cpp parser/generator/eudplibGlobals.cpp parser/generator/closure.cpp
         parser/generator/closure.h parser/parser.h parser/parserUtils.cpp parser/parserUtilsTokens.cpp utils.cpp
-        parser/reservedWords/constparser.cpp parser/reservedWords/constparser.h parser/utils/subTokenUtils.cpp parser/utils/subTokenUtils.h parser/utils/traceUtils.cpp)
+        parser/reservedWords/constparser.cpp parser/reservedWords/constparser.h parser/utils/subTokenUtils.cpp parser/utils/subTokenUtils.h parser/utils/traceUtils.cpp parser/tokenizer/token.cpp parser/tokenizer/token.h)
 
 set(TEST_SOURCE_FILES
         test/test_tokenizer.cpp test/test_pygen.cpp test/test_base.cpp test/parser/test_arraydecl.cpp
@@ -57,7 +57,11 @@ set_target_properties(epScriptLib  PROPERTIES
         VERSION ${EPSCRIPT_VERSION}
         SOVERSION ${EPSCRIPT_SOVERSION}
 )
+
 add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
+set_target_properties(epScriptTest PROPERTIES
+        COMPILE_DEFINITIONS MEMORY_DEBUG)
+
 add_executable(epScriptProfile ${SOURCE_FILES} libmain.cpp test/stresstest.cpp)
 
 if (CMAKE_BUILD_TYPE MATCHES "Release")
