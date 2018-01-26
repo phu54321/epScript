@@ -6,16 +6,25 @@
 
 TEST_CASE("Debug info") {
     MAP_DEBUG = true;
-    // Untyped function
-    check_string(
-            "function x(l) {\n"
-                    "    return 0;"
-                    "\n}",
-            "@EUDTraced\n"
-                    "@EUDFunc\n"
-                    "def f_x(l):\n"
-                    "    EUDReturn(0)\n"
-    );
+
+    SECTION("Untyped function") {
+        check_string(
+                "function x(l) {\n"
+                        "\n}",
+                "@EUDTraced\n"
+                        "@EUDFunc\n"
+                        "def f_x(l):\n"
+                        "    pass"
+        );
+    }
+
+    SECTION("Function call") {
+        checkBlock(
+                "dwread_epd(0);",
+                "EUDTraceLog(1)\n"
+                        "f_dwread_epd(0)"
+        );
+    }
 
     MAP_DEBUG = false;
 }

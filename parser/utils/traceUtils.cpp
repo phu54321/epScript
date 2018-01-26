@@ -5,7 +5,11 @@
 #include "traceUtils.h"
 
 extern int currentTokenizingLine;
+extern bool MAP_DEBUG;
+
 void writeTraceInfo(std::ostream& os, Token* tok) {
-    int line = tok ? tok->line : currentTokenizingLine;
-    os << "EUDTraceLog(" << line << ")\n";
+    if (MAP_DEBUG) {
+        int line = tok ? tok->line : currentTokenizingLine;
+        os << "EUDTraceLog(" << line << ")\n";
+    }
 }

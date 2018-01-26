@@ -359,8 +359,11 @@ bodyStmt ::= vdefAssignStatic_stmt SEMICOLON.
 bodyStmt ::= vdefAssign_stmt SEMICOLON.
 bodyStmt ::= cdef_stmt SEMICOLON.
 bodyStmt ::= assign_stmt SEMICOLON.
-funcexpr_bodyStmt ::= funcexpr(A). { ps->gen << A->data << std::endl; }
-bodyStmt ::= funcexpr_bodyStmt SEMICOLON.  // See (2).
+bodyStmt ::= funcexpr(A) SEMICOLON.  {
+    writeTraceInfo(ps->gen, A);
+    ps->gen << A->data << std::endl;
+    delete A;
+}
 bodyStmt ::= actionStmt SEMICOLON.
 bodyStmt ::= if_stmt.
 bodyStmt ::= while_stmt.
