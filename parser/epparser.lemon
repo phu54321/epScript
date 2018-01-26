@@ -433,7 +433,7 @@ expr(A) ::= funcexpr(B) LSQBRACKET LSQBRACKET NUMBER(C) RSQBRACKET RSQBRACKET. [
 
 
 exprList_nonEmpty(A) ::= expr(B). [COMMA] { A = B; }
-exprList_nonEmpty(A) ::= exprList_nonEmpty(B) COMMA expr(C). { A = new Token((B->data) + ", " + (C->data), C); delete B; delete C; }
+exprList_nonEmpty(A) ::= exprList_nonEmpty(B) COMMA expr(C). { A = new Token((B->data) + ", " + (C->data), C->line); delete B; delete C; }
 
 exprList(A) ::= . { A = genEmpty(); }
 exprList(A) ::= exprList_nonEmpty(B). { A = B; }
@@ -1042,13 +1042,13 @@ for_header2(X)::= for_header1(A) expr(B) SEMICOLON. {
 
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
-    delete A; delete B;
+    delete A;
 
     // Opening for assign_statement
     X = genTemp(B);
+    delete B;
     ps->gen << "def " << X->data <<"():" << std::endl;
     ps->gen.indent();
-    delete B;
 }
 
 for_header(X) ::= for_header2(A) for_action_stmt. {  // RPAREN is at for_stmt. see (2)

@@ -104,7 +104,7 @@ void clearLeakedTokens();
 #endif
 
 struct Token {
-    Token(const std::string& data, Token* lineSrc);
+    Token(const std::string& data, int line);
     Token(TokenType type, int line);
     Token(TokenType type, const std::string& data, int line);
     ~Token();
@@ -112,7 +112,7 @@ struct Token {
     int type;
     std::string data;
     int line;
-    Token* subToken[MAX_SUBTOKEN_NUM] = {nullptr,};
+    Token* subToken[MAX_SUBTOKEN_NUM];
 };
 
 #endif //EPSCRIPT_TOKEN_H

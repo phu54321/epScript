@@ -3647,7 +3647,7 @@ static void yy_reduce(
 }
         break;
       case 69: /* exprList_nonEmpty ::= exprList_nonEmpty COMMA expr */
-{ yygotominor.yy0 = new Token((yymsp[-2].minor.yy0->data) + ", " + (yymsp[0].minor.yy0->data), yymsp[0].minor.yy0); delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;   yy_destructor(yypParser,5,&yymsp[-1].minor);
+{ yygotominor.yy0 = new Token((yymsp[-2].minor.yy0->data) + ", " + (yymsp[0].minor.yy0->data), yymsp[0].minor.yy0->line); delete yymsp[-2].minor.yy0; delete yymsp[0].minor.yy0;   yy_destructor(yypParser,5,&yymsp[-1].minor);
 }
         break;
       case 70: /* exprList ::= */
@@ -4419,13 +4419,13 @@ static void yy_reduce(
 
     writeCsOpener(*pGen, yymsp[-2].minor.yy0, yymsp[-1].minor.yy0);
     ps->gen.indent();
-    delete yymsp[-2].minor.yy0; delete yymsp[-1].minor.yy0;
+    delete yymsp[-2].minor.yy0;
 
     // Opening for assign_statement
     yygotominor.yy0 = genTemp(yymsp[-1].minor.yy0);
+    delete yymsp[-1].minor.yy0;
     ps->gen << "def " << yygotominor.yy0->data <<"():" << std::endl;
     ps->gen.indent();
-    delete yymsp[-1].minor.yy0;
   yy_destructor(yypParser,30,&yymsp[0].minor);
 }
         break;

@@ -81,7 +81,7 @@ int tmpIndex = 0;
 Token* genTemp(Token* lineSrc) {
     static char output[20] = "_t";
     sprintf(output, "_t%d", tmpIndex++);
-    return new Token(output, lineSrc);
+    return new Token(output, lineSrc->line);
 }
 
 Token* mkTokenTemp(Token* a) {
