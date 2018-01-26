@@ -14,6 +14,7 @@
 #include "generator/closure.h"
 
 #include "utils/subTokenUtils.h"
+#include "utils/traceUtils.h"
 
 extern int tmpIndex;
 extern PyGenerator* pGen;

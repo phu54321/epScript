@@ -162,6 +162,9 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_retty
     });
 
     // Add decorator header
+    if(MAP_DEBUG) {
+         ps->gen << "@EUDTraced" << std::endl;
+    }
     if (!isTypedFunction) ps->gen << "@EUDFunc" << std::endl;
     else {
         ps->gen << "@EUDTypedFunc([";
@@ -176,9 +179,6 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_retty
     ps->gen << "):" << std::endl;
 
     ps->gen.indent();
-    if(MAP_DEBUG) {
-         ps->gen << "EUDTracePush()" << std::endl;
-    }
 
     tmpIndex = 1;
     delete name;
@@ -187,9 +187,6 @@ fdef_header ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_retty
 }
 
 fdef_chunk ::= fdef_header stmt . {
-    if(MAP_DEBUG){
-        ps->gen << "EUDTracePop()" << std::endl;
-    }
     ps->gen.unindent(true);
     ps->closure.popScope();
     currentFunction = "";
@@ -300,9 +297,6 @@ method_header(H) ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_
 }
 
 method_chunk(C) ::= method_header(H) stmt . {
-    if(MAP_DEBUG){
-        ps->gen << "EUDTracePop()" << std::endl;
-    }
     ps->gen.unindent(true);
     ps->closure.popScope();
     currentFunction = "";
@@ -344,16 +338,19 @@ stmt ::= return_stmt SEMICOLON.
 lbracket ::= LBRACKET. { ps->closure.pushScope(); }
 rbracket ::= RBRACKET. { ps->closure.popScope(); }
 
-blockStmt ::= lbracket rbracket.
-
-blockStmt ::= lbracket return_stmt SEMICOLON rbracket.
-blockStmt ::= lbracket bodyStmtList rbracket.
-blockStmt ::= lbracket bodyStmtList return_stmt SEMICOLON rbracket.
+// We split blockStmtSub and blockStmt. See (2)
+blockStmt ::= blockStmtSub rbracket.
 blockStmt ::= lbracket error RBRACKET(X). {
     throw_error(6298, "Block not terminated properly.", X->line);
     ps->closure.popScope();
     delete X;
 }
+
+blockStmtSub ::= lbracket.
+blockStmtSub ::= lbracket return_stmt SEMICOLON.
+blockStmtSub ::= lbracket bodyStmtList.
+blockStmtSub ::= lbracket bodyStmtList return_stmt SEMICOLON.
+
 
 bodyStmt ::= blockStmt.
 bodyStmt ::= SEMICOLON.
@@ -520,9 +517,6 @@ lambdaExprStart(A) ::= FUNCTION LPAREN typedNameList(args) RPAREN fdef_rettypes(
 }
 
 expr(A) ::= lambdaExprStart(B) stmt. {
-    if(MAP_DEBUG) {
-        ps->gen << "EUDTracePop()" << std::endl;
-    }
     ps->gen.unindent(true);
     ps->closure.popScope();
     A = mkTokenTemp(B);
@@ -1068,9 +1062,6 @@ break_stmt ::= BREAK. {
 
 // returns
 return_stmt ::= RETURN exprList(exprs). {
-    if(MAP_DEBUG){
-        ps->gen << "EUDTracePop()" << std::endl;
-    }
     ps->gen << "EUDReturn(" << exprs->data << ")" << std::endl;
     delete exprs;
 }
@@ -1137,9 +1128,6 @@ std::string ParseString(const std::string& fname, const std::string& code, bool 
         if (currentTokenizingLine != tok.getCurrentLine()) {
             currentTokenizingLine = tok.getCurrentLine();
             if(addComment) ps.gen << "# (Line " << currentTokenizingLine << ") " << trim(tok.getCurrentLineString()) << std::endl;
-            if(MAP_DEBUG && !currentFunction.empty()) {
-                ps.gen << "EUDTraceLog()" << std::endl;
-            }
             if(PARSER_DEBUG) printf("# reading line %s\n", tok.getCurrentLineString().c_str());
         }
         if (tokenTypeConv(token)) {

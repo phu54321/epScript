@@ -14,7 +14,6 @@
 extern bool PARSER_DEBUG, MAP_DEBUG;
 
 std::string get_testdata(std::string dataname);
-void checkBlock(const std::string &input, const std::string &desiredOutput);
 std::string unindentString(const std::string& data);
 std::string trim(std::string s);  // Declared from parserUtilites.h
 
