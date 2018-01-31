@@ -3380,10 +3380,6 @@ static void yy_reduce(
 
     currentFunction = yymsp[-4].minor.yy0->data;
 
-    if(MAP_DEBUG) {
-         ps->gen << "EUDTracePush()" << std::endl;
-    }
-
     tmpIndex = 1;
     delete yymsp[-2].minor.yy0;
     delete yymsp[0].minor.yy0;
@@ -3736,10 +3732,6 @@ static void yy_reduce(
 
     ps->gen.indent();
     tmpIndex = 1;
-
-    if(MAP_DEBUG) {
-         ps->gen << "EUDTracePush()" << std::endl;
-    }
 
     delete yymsp[-2].minor.yy0;
 

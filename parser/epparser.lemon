@@ -292,10 +292,6 @@ method_header(H) ::= FUNCTION NAME(name) LPAREN typedNameList(args) RPAREN fdef_
 
     currentFunction = name->data;
 
-    if(MAP_DEBUG) {
-         ps->gen << "EUDTracePush()" << std::endl;
-    }
-
     tmpIndex = 1;
     delete args;
     delete rets;
@@ -515,10 +511,6 @@ lambdaExprStart(A) ::= FUNCTION LPAREN typedNameList(args) RPAREN fdef_rettypes(
 
     ps->gen.indent();
     tmpIndex = 1;
-
-    if(MAP_DEBUG) {
-         ps->gen << "EUDTracePush()" << std::endl;
-    }
 
     delete args;
 
