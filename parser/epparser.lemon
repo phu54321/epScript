@@ -361,6 +361,7 @@ bodyStmt ::= assign_stmt SEMICOLON.
 bodyStmt ::= funcexprStmt SEMICOLON.
 bodyStmt ::= actionStmt SEMICOLON.
 
+bodyStmt ::= once_stmt.
 bodyStmt ::= if_stmt.
 bodyStmt ::= while_stmt.
 bodyStmt ::= for_stmt.
@@ -931,6 +932,17 @@ assign_stmt ::= lvalue(A) IBXR expr(B). [ASSIGN] { writeTraceInfo(ps->gen, A); p
 //     control structure openings by postponing RPAREN reduce. In this case RPAREN acts as a lookahead token for
 //     control structure reduce action.
 //
+
+// Once block. This block gets exceuted only once.
+once_start ::= ONCE. {
+    ps->gen << "if EUDExecuteOnce()():" << std::endl;
+    ps->gen.indent();
+}
+
+once_stmt ::= once_start stmt. {
+    ps->gen.unindent(false);
+    ps->gen << "EUDEndExecuteOnce()" << std::endl;
+}
 
 // If~Else block
 if_start(A) ::= IF(B). {

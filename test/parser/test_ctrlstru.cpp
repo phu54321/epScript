@@ -5,6 +5,16 @@
 #include "../test_base.hpp"
 
 TEST_CASE("Control block parsing") {
+    SECTION("Once") {
+        checkBlock(
+                "once { const A = 1; }",
+
+                "if EUDExecuteOnce()():\n"
+                        "    A = 1\n"
+                        "EUDEndExecuteOnce()\n"
+        );
+    }
+
     // Logical operator precedence
     SECTION("If") {
         checkBlock(
