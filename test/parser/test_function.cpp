@@ -14,6 +14,22 @@ TEST_CASE("Function parsing") {
         );
     }
 
+    SECTION("Position of return statement") {
+        check_string(
+                "function x(l) { return 1; }",
+                "@EUDFunc\n"
+                        "def f_x(l):\n"
+                        "    EUDReturn(1)\n"
+        );
+        check_string(
+                "function x(l) { return 1; var a;}",
+                "@EUDFunc\n"
+                        "def f_x(l):\n"
+                        "    EUDReturn(1)\n"
+                        "    a = EUDVariable()"
+        );
+    }
+
     SECTION("Typed Function parsing") {
         check_string(
                 "function x(a: EUDArray) {}",
@@ -69,7 +85,6 @@ TEST_CASE("Function parsing") {
                             "    pass\n"
             );
         }
-
     }
 }
 

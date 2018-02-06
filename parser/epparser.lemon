@@ -333,7 +333,6 @@ object_chunk  ::= object_body(A) RBRACKET SEMICOLON. {
 /// Single-line statements
 stmt ::= error SEMICOLON(X). { throw_error(6974, "Error while parsing statement", X->line); delete X; }
 stmt ::= bodyStmt.
-stmt ::= return_stmt SEMICOLON.
 
 /// Block level statements
 // (1) Specialization for empty bodyStmtList
@@ -349,9 +348,7 @@ blockStmt ::= lbracket error RBRACKET(X). {
 }
 
 blockStmtSub ::= lbracket.
-blockStmtSub ::= lbracket return_stmt SEMICOLON.
 blockStmtSub ::= lbracket bodyStmtList.
-blockStmtSub ::= lbracket bodyStmtList return_stmt SEMICOLON.
 
 
 bodyStmt ::= blockStmt.
@@ -370,6 +367,8 @@ bodyStmt ::= for_stmt.
 bodyStmt ::= foreach_stmt.
 bodyStmt ::= continue_stmt SEMICOLON.
 bodyStmt ::= break_stmt SEMICOLON.
+
+bodyStmt ::= return_stmt SEMICOLON.
 
 bodyStmtList ::= bodyStmt.
 bodyStmtList ::= bodyStmtList bodyStmt.
