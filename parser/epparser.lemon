@@ -373,7 +373,7 @@ bodyStmt ::= break_stmt SEMICOLON.
 
 bodyStmtList ::= bodyStmt.
 bodyStmtList ::= bodyStmtList bodyStmt.
-bodyStmtList ::= bodyStmtList error. {
+bodyStmtList ::= bodyStmtList error SEMICOLON. {
     throw_error(8510, "Incomplete statement. Check if the previous line have ended properly.");
 }
 
