@@ -30,6 +30,7 @@ Token* genTemp(Token* lineSrc);
 Token* mkTokenTemp(Token* a);
 Token* commaConcat(Token* a, Token* b);
 Token* binopConcat(Token* a, const std::string& opstr, Token* b);
+Token* negate(Token* B);
 void shortCircuitCondListGetter(std::ostream& os, const Token* t, TokenType astType);
 
 Token* subTokenListGetTail(Token* listRoot);

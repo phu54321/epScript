@@ -111,4 +111,39 @@ void shortCircuitCondListGetter(std::ostream& os, const Token* t, TokenType astT
     }
 }
 
+Token* negate(Token* B) {
+    Token* A;
+    bool isBGrouped = false;
+    if (B->type == TOKEN_EXPR) {
+        isBGrouped = true;
+        do {
+            Token* B1 = B->subToken[0];
+            B->subToken[0] = nullptr;
+            delete B;
+            B = B1;
+        } while(B->type == TOKEN_EXPR);
+    }
+
+    if(B->type == TOKEN_LNOT) {
+        A = B->subToken[0];
+        B->subToken[0] = nullptr;
+        delete B;
+    }
+    else {
+        A = genEmpty();
+        A->line = B->line;
+        A->type = TOKEN_LNOT;
+        A->data = "EUDNot(" + B->data + ")";
+        A->subToken[0] = B;
+    }
+
+    if (isBGrouped) {
+        Token* A1 = genEmpty();
+        A1->type = TOKEN_EXPR;
+        A1->subToken[0] = A;
+        A1->data = "(" + A->data + ")";
+        A = A1;
+    }
+    return A;
+}
 ////
