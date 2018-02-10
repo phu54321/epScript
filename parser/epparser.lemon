@@ -602,7 +602,7 @@ expr(A) ::= LSQBRACKET exprList_nonEmpty(B) commaSkippable RSQBRACKET. {
     A = mkTokenTemp(B);
 }
 
-expr(A) ::= L2V LPAREN expr(B) RPAREN. {
+expr(A) ::= L2V LPAREN condition(B) RPAREN. {
     B->data = "_L2V(" + B->data + ")";
     A = mkTokenTemp(B);
 }
@@ -628,7 +628,7 @@ expr(A) ::= LOCATION LPAREN STRING(B) RPAREN. {
 }
 
 // Ternary operators
-expr(A) ::= expr(L) QMARK expr(B) COLON expr(C). [QMARK] {
+expr(A) ::= condition(L) QMARK expr(B) COLON expr(C). [QMARK] {
     std::stringstream ss;
     ss << "EUDTernary";
     applyNegativeOptimization(ss, L);
@@ -661,17 +661,22 @@ expr(A) ::= MINUS   expr(B). [UNARY] { B->data = "-" + B->data; A = mkTokenTemp(
 expr(A) ::= BITNOT  expr(B). [UNARY] { B->data = "~" + B->data; A = mkTokenTemp(B); }
 
 
+// Logical expressions
+condition(A) ::= LPAREN condition(B) RPAREN.    {
+    A = genEmpty();
+    A->data = "(" + B->data + ")";
+    A->type = TOKEN_EXPR;
+    A->subToken[0] = B;
+}
 
-expr(A) ::= expr(B) EQ expr(C).   { A = binopConcat(B, "==", C); }
-expr(A) ::= expr(B) NE expr(C).   { A = negate(binopConcat(B, "==", C)); }
+condition(A) ::= expr(B) EQ expr(C).   { A = binopConcat(B, "==", C); }
+condition(A) ::= expr(B) NE expr(C).   { A = negate(binopConcat(B, "==", C)); }
+condition(A) ::= expr(B) LE expr(C).   { A = binopConcat(B, "<=", C); }
+condition(A) ::= expr(B) GE expr(C).   { A = binopConcat(B, ">=", C); }
+condition(A) ::= expr(B) LT expr(C).   { A = negate(binopConcat(B, ">=", C)); }
+condition(A) ::= expr(B) GT expr(C).   { A = negate(binopConcat(B, "<=", C)); }
 
-expr(A) ::= expr(B) LE expr(C).   { A = binopConcat(B, "<=", C); }
-expr(A) ::= expr(B) GE expr(C).   { A = binopConcat(B, ">=", C); }
-
-expr(A) ::= expr(B) LT expr(C).   { A = negate(binopConcat(B, ">=", C)); }
-expr(A) ::= expr(B) GT expr(C).   { A = negate(binopConcat(B, "<=", C)); }
-
-expr(A) ::= expr(B) LAND expr(C).  {
+condition(A) ::= condition(B) LAND condition(C).  {
     A = genEmpty();
     A->line = C->line;
 
@@ -688,7 +693,7 @@ expr(A) ::= expr(B) LAND expr(C).  {
 }
 
 // OR operation is very costly, so we make some deliberate choice!
-expr(A) ::= expr(B) LOR expr(C).  {
+condition(A) ::= condition(B) LOR condition(C).  {
     A = genEmpty();
     A->line = C->line;
 
@@ -704,7 +709,7 @@ expr(A) ::= expr(B) LOR expr(C).  {
     A->data = ss.str();
 }
 
-expr(A) ::= LNOT expr(B).  { A = negate(B); }
+condition(A) ::= LNOT expr_or_condition(B).  { A = negate(B); }
 
 
 // Statements
@@ -907,13 +912,21 @@ once_stmt ::= once_start stmt. {
 }
 
 // If~Else block
+expr_or_condition(A) ::= expr(B). {
+    A = B;
+}
+
+expr_or_condition(A) ::= condition(B). {
+    A = B;
+}
+
 if_start(A) ::= IF(B). {
     A = genTemp(B);
     ps->gen << A->data << " = EUDIf()" << std::endl;
     delete B;
 }
 
-if_header ::= if_start(A) LPAREN expr(B). {  // RPAREN is at if_block. see (2)
+if_header ::= if_start(A) LPAREN expr_or_condition(B). {  // RPAREN is at if_block. see (2)
     writeTraceInfo(ps->gen, B);
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
@@ -929,7 +942,7 @@ elif_start(A) ::= ELSE IF(B). {
     delete B;
 }
 
-elif_header ::= elif_start(A) LPAREN expr(B). {  // RPAREN is at if_block. see (2)
+elif_header ::= elif_start(A) LPAREN expr_or_condition(B). {  // RPAREN is at if_block. see (2)
     writeTraceInfo(ps->gen, B);
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
@@ -962,7 +975,7 @@ while_start(A) ::= WHILE(B). {
     delete B;
 }
 
-while_header ::= while_start(A) LPAREN expr(B). {  // RPAREN is at while_stmt. see (2)
+while_header ::= while_start(A) LPAREN expr_or_condition(B). {  // RPAREN is at while_stmt. see (2)
     writeTraceInfo(ps->gen, B);
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
@@ -996,15 +1009,14 @@ for_action_stmt ::= .
 for_action_stmt ::= for_action_stmt_nonEmpty.
 
 for_header1(A) ::= for_opener for_init_stmt SEMICOLON(B). {
-    // opening for expr
+    // opening for condition
     A = genTemp(B);
     ps->gen << A->data << " = EUDWhile()" << std::endl;
     delete B;
 }
 
-for_header2(X)::= for_header1(A) expr(B) SEMICOLON. {
+for_header2(X)::= for_header1(A) expr_or_condition(B) SEMICOLON. {
     writeTraceInfo(ps->gen, B);
-
     writeCsOpener(*pGen, A, B);
     ps->gen.indent();
     delete A;
@@ -1083,13 +1095,13 @@ return_stmt ::= RETURN(X) exprList(exprs). {
 
 // Trigger statements
 
-expr(A) ::= CONDITIONNAME(B) LPAREN fArgs(C) RPAREN. {
+condition(A) ::= CONDITIONNAME(B) LPAREN fArgs(C) RPAREN. {
     B->data = B->data + "(" + C->data + ")";
     delete C;
     A = mkTokenTemp(B);
 }
 
-expr(A) ::= KILLS(B) LPAREN fArgs(C) RPAREN. {
+condition(A) ::= KILLS(B) LPAREN fArgs(C) RPAREN. {
     B->data = B->data + "(" + C->data + ")";
     delete C;
     A = mkTokenTemp(B);
