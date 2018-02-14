@@ -9,6 +9,8 @@
 #include <map>
 #include <iostream>
 
+bool TOKEN_MEMORY_DEBUG = false;
+
 const char* getTokenTypeString(int type) {
     static std::map<int, const char*> tokTypeMap = {
             {TOKEN_INVALID, "TOKEN_INVALID"},
@@ -91,8 +93,19 @@ const char* getTokenTypeString(int type) {
 }
 
 std::set<Token*> allocatedTokenSet;
-#define REGISTERTOK allocatedTokenSet.insert(this)
-#define UNREGISTERTOK if(line == 123456) throw std::runtime_error("Double delete"); allocatedTokenSet.erase(this); line = 123456
+#define REGISTERTOK \
+    { \
+        allocatedTokenSet.insert(this); \
+        if(TOKEN_MEMORY_DEBUG) printf("[[ allocate(%p): %s\n", this, getTokenTypeString(type)); \
+    }
+
+#define UNREGISTERTOK \
+    { \
+        if(line == 123456) throw std::runtime_error("Double delete"); \
+        allocatedTokenSet.erase(this); \
+        if(TOKEN_MEMORY_DEBUG) printf("]] free(%p): %s\n", this, getTokenTypeString(type)); \
+        line = 123456; \
+    }
 
 void printToken(Token* tok, int indent) {
     printf("token type:%s(%d), line:%d, data:%s\n", getTokenTypeString(tok->type), tok->type, tok->line, tok->data.c_str());
@@ -107,11 +120,10 @@ void printToken(Token* tok, int indent) {
 bool checkLeakedTokens() {
     if(allocatedTokenSet.empty()) return true;
 
-    fprintf(stderr, "Leaked tokens: %d\n", allocatedTokenSet.size());
+    fprintf(stderr, "Leaked tokens: %lu\n", allocatedTokenSet.size());
     for(const auto& tok: allocatedTokenSet) {
         printf("  ");
         printToken(tok, 1);
-        delete tok;
     }
     allocatedTokenSet.clear();
 
@@ -119,9 +131,6 @@ bool checkLeakedTokens() {
 }
 
 void clearLeakedTokens() {
-    for(const auto& tok: allocatedTokenSet) {
-        delete tok;
-    }
     allocatedTokenSet.clear();
 }
 
@@ -140,6 +149,6 @@ Token::Token(TokenType type, int line)
 Token::Token(TokenType type, const std::string& data, int line)
         : type(type), data(data), line(line), subToken{nullptr,} { REGISTERTOK; }
 Token::~Token() {
-    for(Token* st : subToken) delete st;
     UNREGISTERTOK;
+    for(Token* st : subToken) delete st;
 }

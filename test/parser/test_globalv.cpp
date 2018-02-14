@@ -4,6 +4,8 @@
 
 #include "../test_base.hpp"
 
+extern bool TOKEN_MEMORY_DEBUG;
+
 TEST_CASE("Global variable management") {
     // Variable declaration is allowed
     check_string("var a;", "a = EUDVariable()\n");

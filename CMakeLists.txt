@@ -3,6 +3,8 @@ project(epScript)
 
 set(EPSCRIPT_VERSION 1.3.1)
 set(EPSCRIPT_SOVERSION 1.3)
+set(EUDPLIB_PATH "../eudtrglib/")
+set(EUDDRAFT_PATH "../euddraft/")
 
 if (WIN32)
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEAaSE} -s")
@@ -26,7 +28,7 @@ else ()
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
             DEPENDS ./lemon2 parser/epparser.lemon
-            COMMAND ./lemon2 parser/epparser.lemon
+            COMMAND ./lemon2 -l -c parser/epparser.lemon
             COMMAND rm -f parser/epparser.cpp
             COMMAND mv parser/epparser.c parser/epparser.cpp
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
@@ -56,7 +58,7 @@ add_library(epScriptLib SHARED ${SOURCE_FILES} libmain.cpp)
 set_target_properties(epScriptLib  PROPERTIES
         VERSION ${EPSCRIPT_VERSION}
         SOVERSION ${EPSCRIPT_SOVERSION}
-)
+        )
 
 add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
 set_target_properties(epScriptTest PROPERTIES
@@ -64,13 +66,19 @@ set_target_properties(epScriptTest PROPERTIES
 
 add_executable(epScriptProfile ${SOURCE_FILES} libmain.cpp test/stresstest.cpp)
 
+
 if (CMAKE_BUILD_TYPE MATCHES "Release")
     message("release mode - static linked")
     if (WIN32)
+        set(EUDPLIB_PATH "C:/gitclones/eudtrglib/")
+        set(EUDDRAFT_PATH "C:/gitclones/euddraft/")
         target_link_libraries(epScriptLib -static)
-        add_custom_command(TARGET epScriptLib POST_BUILD
-                COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:epScriptLib>" "C:/gitclones/eudtrglib/eudplib/epscript/libepScriptLib.dll"
-                COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:epScriptLib>" "C:/gitclones/euddraft/libepScriptLib.dll"
-                COMMENT "Copying to other projects - eudtrglib & euddraft")
-    endif()
+    else ()
+        set(EUDPLIB_PATH "/Users/whyask37/gitclones/eudtrglib/")
+        set(EUDDRAFT_PATH "/Users/whyask37/gitclones/euddraft/")
+    endif ()
+    add_custom_command(TARGET epScriptLib POST_BUILD
+            COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:epScriptLib>" "${EUDPLIB_PATH}eudplib/epscript/$<TARGET_LINKER_FILE_NAME:epScriptLib>"
+            COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:epScriptLib>" "${EUDDRAFT_PATH}$<TARGET_LINKER_FILE_NAME:epScriptLib>"
+            COMMENT "Copying to other projects - eudtrglib & euddraft")
 endif()
