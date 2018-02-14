@@ -6,4 +6,8 @@
 
 TEST_CASE("Ternary operator") {
     checkBlock("return 1 == 1 ? 2 : 3;", "EUDReturn(EUDTernary(1 == 1)(2)(3))\n");
+
+    // Operator precedence
+    // This really seems odd, but ternary
+    checkBlock("return 1 + (1 == 1) ? 2 : 3;", "EUDReturn(EUDTernary(1 + (1 == 1))(2)(3))\n");
 }
