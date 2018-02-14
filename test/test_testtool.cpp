@@ -11,5 +11,5 @@ TEST_CASE("test tool test") {
 
 TEST_CASE("Error handling") {
     // Plain expression cannot appear in program-level
-    CHECK((ParseString("test", "2;"), getParseErrorNum() > 0));
+    checkError("2;");
 }

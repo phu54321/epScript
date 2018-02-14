@@ -10,7 +10,7 @@ TEST_CASE("Global variable management") {
     // Variable declaration is allowed
     check_string("var a;", "a = EUDVariable()\n");
     // Cannot assign varable on global scope
-    CHECK((ParseString("test", "var b; b = 2;"), getParseErrorNum() > 0));
+    checkError("var b; b = 2;");
 }
 
 

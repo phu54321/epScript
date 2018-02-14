@@ -9,7 +9,7 @@
 #include "../parser/tokenizer/token.h"
 #include "catch.hpp"
 #include <stdexcept>
-#include <string.h>
+#include <cstring>
 #include <vector>
 
 extern bool PARSER_DEBUG, MAP_DEBUG;
@@ -21,7 +21,7 @@ std::string trim(std::string s);  // Declared from parserUtilites.h
     CHECK(trim(ParseString("<test>", in, false)) == trim(out)); \
     CHECK(checkLeakedTokens())
 
-
+#define checkError(_input) CHECK((ParseString("<test>", _input), getParseErrorNum() > 0));
 #define checkBlock(_input, _output) \
     { \
         std::string input(_input), desiredOutput(_output); \
