@@ -2,6 +2,7 @@ State 0:
           program ::= * chunks
       (1) chunks ::= *
           chunks ::= * chunks chunk
+          chunks ::= * chunks error
 
                              $ reduce 1
                         IMPORT reduce 1
@@ -2300,7 +2301,7 @@ State 12:
 State 13:
       (0) program ::= chunks *
           chunks ::= chunks * chunk
-          chunk ::= * error SEMICOLON
+          chunks ::= chunks * error
           chunk ::= * import_chunk SEMICOLON
           chunk ::= * fdef_chunk
           chunk ::= * fdecl_chunk
@@ -2334,7 +2335,7 @@ State 13:
                       LBRACKET shift  185
                            VAR shift  96
                          CONST shift  95
-                         error shift  370
+                         error shift  236
                          chunk shift  237
                   import_chunk shift  369
                     fdef_chunk shift  234
@@ -15278,7 +15279,7 @@ State 235:
                          CONST reduce 4
 
 State 236:
-      (3) chunk ::= error SEMICOLON *
+      (3) chunks ::= chunks error *
 
                              $ reduce 3
                         IMPORT reduce 3
@@ -16064,11 +16065,6 @@ State 369:
           chunk ::= import_chunk * SEMICOLON
 
                      SEMICOLON shift  235
-
-State 370:
-          chunk ::= error * SEMICOLON
-
-                     SEMICOLON shift  236
 
 ----------------------------------------------------
 Symbols:

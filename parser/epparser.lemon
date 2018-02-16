@@ -69,8 +69,7 @@ program ::= chunks.
 // Definition for chunks
 chunks ::= .
 chunks ::= chunks chunk.
-
-chunk ::= error SEMICOLON. {
+chunks ::= chunks error. {
     throw_error(13494, "Chunk-level error");
 }
 
