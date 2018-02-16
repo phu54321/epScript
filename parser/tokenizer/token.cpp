@@ -102,7 +102,11 @@ std::set<Token*> allocatedTokenSet;
 #define UNREGISTERTOK \
     { \
         if(line == 123456) throw std::runtime_error("Double delete"); \
-        allocatedTokenSet.erase(this); \
+        auto it = allocatedTokenSet.find(this); \
+        if (it == allocatedTokenSet.end()) { \
+            fprintf(stderr, "Unregistered token[%p] deleted!", this); \
+            throw std::runtime_error("Unknown token pointer"); \
+        } else allocatedTokenSet.erase(it); \
         if(TOKEN_MEMORY_DEBUG) printf("]] free(%p): %s\n", this, getTokenTypeString(type)); \
         line = 123456; \
     }

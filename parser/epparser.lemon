@@ -39,8 +39,7 @@ bool MAP_DEBUG = false;
 %extra_argument { ParserStruct* ps }
 %token_type {Token*}
 %default_destructor { delete $$; }
-%
-destructor error{}   // error non-terminal is not a token.... We shouldn't delete it
+%destructor error{}   // error non-terminal is not a token.... We shouldn't delete it
 %token_destructor { delete $$; }
 
 // Precedence table
