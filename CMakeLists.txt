@@ -80,5 +80,6 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
     add_custom_command(TARGET epScriptLib POST_BUILD
             COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:epScriptLib>" "${EUDPLIB_PATH}eudplib/epscript/$<TARGET_LINKER_FILE_NAME:epScriptLib>"
             COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:epScriptLib>" "${EUDDRAFT_PATH}$<TARGET_LINKER_FILE_NAME:epScriptLib>"
-            COMMENT "Copying to other projects - eudtrglib & euddraft")
+            COMMENT "Copying to other projects - eudtrglib & euddraft"
+            VERBATIM)
 endif()
