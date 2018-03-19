@@ -17,9 +17,9 @@ if (WIN32)
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
             DEPENDS ./lemon2.exe parser/epparser.lemon
-            COMMAND ./lemon2 -p -c -l parser\\epparser.lemon
-            COMMAND copy parser\\epparser.c parser\\epparser.cpp
-            COMMAND del parser\\epparser.c
+            COMMAND ./lemon2 -p -c -l parser/epparser.lemon
+            COMMAND cmake -E copy parser/epparser.c parser/epparser.cpp
+            COMMAND cmake -E remove parser/epparser.c
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
             VERBATIM
     )
@@ -28,9 +28,9 @@ else ()
     add_custom_command(
             OUTPUT ${CMAKE_SOURCE_DIR}/parser/epparser.cpp ${CMAKE_SOURCE_DIR}/parser/epparser.h
             DEPENDS ./lemon2 parser/epparser.lemon
-            COMMAND ./lemon2 -l -c parser/epparser.lemon
-            COMMAND rm -f parser/epparser.cpp
-            COMMAND mv parser/epparser.c parser/epparser.cpp
+            COMMAND ./lemon2 -p -c -l parser/epparser.lemon
+            COMMAND cmake -E rm -f parser/epparser.cpp
+            COMMAND cmake -E mv parser/epparser.c parser/epparser.cpp
             WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
             VERBATIM
     )
@@ -73,6 +73,7 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
         set(EUDPLIB_PATH "C:/gitclones/eudtrglib/")
         set(EUDDRAFT_PATH "C:/gitclones/euddraft/")
         target_link_libraries(epScriptLib -static)
+        target_link_libraries(epScriptTest -static)
     else ()
         set(EUDPLIB_PATH "/Users/whyask37/gitclones/eudtrglib/")
         set(EUDDRAFT_PATH "/Users/whyask37/gitclones/euddraft/")
