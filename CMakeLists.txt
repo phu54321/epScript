@@ -3,7 +3,7 @@ project(epScript)
 
 set(EPSCRIPT_VERSION 1.3.1)
 set(EPSCRIPT_SOVERSION 1.3)
-set(EUDPLIB_PATH "../eudtrglib/")
+set(EUDPLIB_PATH "../eudplib/")
 set(EUDDRAFT_PATH "../euddraft/")
 
 if (WIN32)
