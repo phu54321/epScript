@@ -30,6 +30,9 @@ bool MAP_DEBUG = false;
 
 }
 
+%syntax_error {
+throw_error(-2, "General syntax error");
+};
 %parse_failure {
     throw_error(-1, "Unrecoverable error");
 }
@@ -373,7 +376,8 @@ bodyStmt ::= return_stmt SEMICOLON.
 
 bodyStmtList ::= bodyStmt.
 bodyStmtList ::= bodyStmtList bodyStmt.
-bodyStmtList ::= bodyStmtList error SEMICOLON. {
+bodyStmtList:: = bodyStmtList
+error. {
     throw_error(8510, "Incomplete statement. Check if the previous line have ended properly.");
 }
 

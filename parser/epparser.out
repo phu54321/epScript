@@ -42,7 +42,7 @@ State 1:
           bodyStmt ::= * return_stmt SEMICOLON
           bodyStmtList ::= * bodyStmt
           bodyStmtList ::= * bodyStmtList bodyStmt
-          bodyStmtList ::= * bodyStmtList error SEMICOLON
+          bodyStmtList ::= * bodyStmtList error
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
           expr ::= * NUMBER
           expr ::= * KILLS
@@ -144,7 +144,7 @@ State 1:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                       RBRACKET reduce 33
@@ -169,27 +169,27 @@ State 1:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  352
-                     vdef_stmt shift  351
+                         error shift  351
+                     vdef_stmt shift  350
                      blockStmt shift  133
                       bodyStmt shift  182
                       lbracket shift  1
                   blockStmtSub shift  102
                   bodyStmtList shift  12
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -335,7 +335,7 @@ State 2:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -359,27 +359,27 @@ State 2:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  243
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -525,7 +525,7 @@ State 3:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -549,27 +549,27 @@ State 3:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  226
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -715,7 +715,7 @@ State 4:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -739,27 +739,27 @@ State 4:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  110
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -905,7 +905,7 @@ State 5:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -929,27 +929,27 @@ State 5:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  111
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -1095,7 +1095,7 @@ State 6:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -1119,27 +1119,27 @@ State 6:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  112
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -1285,7 +1285,7 @@ State 7:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -1309,27 +1309,27 @@ State 7:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  113
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -1475,7 +1475,7 @@ State 8:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -1499,27 +1499,27 @@ State 8:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  114
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -1665,7 +1665,7 @@ State 9:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -1689,27 +1689,27 @@ State 9:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  115
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -1855,7 +1855,7 @@ State 10:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -1879,27 +1879,27 @@ State 10:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  116
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -2045,7 +2045,7 @@ State 11:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                         NUMBER shift  171
@@ -2069,27 +2069,27 @@ State 11:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  353
-                     vdef_stmt shift  351
+                         error shift  352
+                     vdef_stmt shift  350
                      blockStmt shift  133
                           stmt shift  143
                       bodyStmt shift  137
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -2133,7 +2133,7 @@ State 12:
           bodyStmt ::= * break_stmt SEMICOLON
           bodyStmt ::= * return_stmt SEMICOLON
           bodyStmtList ::= bodyStmtList * bodyStmt
-          bodyStmtList ::= bodyStmtList * error SEMICOLON
+          bodyStmtList ::= bodyStmtList * error
           expr ::= * funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
           expr ::= * NUMBER
           expr ::= * KILLS
@@ -2235,7 +2235,7 @@ State 12:
                     LSQBRACKET shift  33
                      SEMICOLON shift  132
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                       LBRACKET shift  185
                            VAR shift  100
                       RBRACKET reduce 34
@@ -2260,26 +2260,26 @@ State 12:
                         RETURN shift  23
                  CONDITIONNAME shift  323
                     ACTIONNAME shift  299
-                         error shift  341
-                     vdef_stmt shift  351
+                         error shift  183
+                     vdef_stmt shift  350
                      blockStmt shift  133
                       bodyStmt shift  184
                       lbracket shift  1
                   blockStmtSub shift  102
-         vdefAssignStatic_stmt shift  350
-               vdefAssign_stmt shift  349
-                     cdef_stmt shift  348
-                   assign_stmt shift  347
-                  funcexprStmt shift  346
-                    actionStmt shift  345
+         vdefAssignStatic_stmt shift  349
+               vdefAssign_stmt shift  348
+                     cdef_stmt shift  347
+                   assign_stmt shift  346
+                  funcexprStmt shift  345
+                    actionStmt shift  344
                      once_stmt shift  124
                        if_stmt shift  123
                     while_stmt shift  122
                       for_stmt shift  121
                   foreach_stmt shift  120
-                 continue_stmt shift  344
-                    break_stmt shift  343
-                   return_stmt shift  342
+                 continue_stmt shift  343
+                    break_stmt shift  342
+                   return_stmt shift  341
                           expr shift  209
                       funcexpr shift  192
                lambdaExprStart shift  11
@@ -2330,20 +2330,20 @@ State 13:
 
                              $ reduce 0
                         IMPORT shift  103
-                      FUNCTION shift  362
+                      FUNCTION shift  361
                         OBJECT shift  291
                       LBRACKET shift  185
                            VAR shift  96
                          CONST shift  95
                          error shift  236
                          chunk shift  237
-                  import_chunk shift  369
+                  import_chunk shift  368
                     fdef_chunk shift  234
                    fdecl_chunk shift  233
                   object_chunk shift  232
-                     vdef_stmt shift  368
-        vdefAssign_global_stmt shift  367
-              cdef_global_stmt shift  366
+                     vdef_stmt shift  367
+        vdefAssign_global_stmt shift  366
+              cdef_global_stmt shift  365
                      blockStmt shift  228
                    fdef_header shift  3
                    object_body shift  88
@@ -2435,7 +2435,7 @@ State 14:
                     LSQBRACKET shift  33
                      SEMICOLON reduce 169
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                            VAR shift  100
                         NUMBER shift  171
                          KILLS shift  170
@@ -2542,7 +2542,7 @@ State 15:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                            VAR shift  100
                         NUMBER shift  171
                          KILLS shift  170
@@ -2646,7 +2646,7 @@ State 16:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         RPAREN reduce 173
                         NUMBER shift  171
                          KILLS shift  170
@@ -2746,7 +2746,7 @@ State 17:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -2826,7 +2826,7 @@ State 18:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  207
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         RPAREN reduce 83
                         NUMBER shift  171
                          KILLS shift  170
@@ -2904,7 +2904,7 @@ State 19:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  207
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         RPAREN reduce 83
                         NUMBER shift  171
                          KILLS shift  170
@@ -2982,7 +2982,7 @@ State 20:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  207
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         RPAREN reduce 83
                         NUMBER shift  171
                          KILLS shift  170
@@ -3060,7 +3060,7 @@ State 21:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  207
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         RPAREN reduce 83
                         NUMBER shift  171
                          KILLS shift  170
@@ -3138,7 +3138,7 @@ State 22:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  207
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         RPAREN reduce 83
                         NUMBER shift  171
                          KILLS shift  170
@@ -3215,7 +3215,7 @@ State 23:
                     LSQBRACKET shift  33
                      SEMICOLON reduce 69
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3286,7 +3286,7 @@ State 24:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  207
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                         STRING shift  281
@@ -3357,7 +3357,7 @@ State 25:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3427,7 +3427,7 @@ State 26:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3497,7 +3497,7 @@ State 27:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3567,7 +3567,7 @@ State 28:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3637,7 +3637,7 @@ State 29:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  180
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3707,7 +3707,7 @@ State 30:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3777,7 +3777,7 @@ State 31:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3847,7 +3847,7 @@ State 32:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3917,7 +3917,7 @@ State 33:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -3987,7 +3987,7 @@ State 34:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4127,7 +4127,7 @@ State 36:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                     RSQBRACKET reduce 90
                          KILLS shift  170
@@ -4194,7 +4194,7 @@ State 37:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4260,7 +4260,7 @@ State 38:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4326,7 +4326,7 @@ State 39:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4392,7 +4392,7 @@ State 40:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4458,7 +4458,7 @@ State 41:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4524,7 +4524,7 @@ State 42:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4590,7 +4590,7 @@ State 43:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4656,7 +4656,7 @@ State 44:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4722,7 +4722,7 @@ State 45:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4788,7 +4788,7 @@ State 46:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4854,7 +4854,7 @@ State 47:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4920,7 +4920,7 @@ State 48:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -4986,7 +4986,7 @@ State 49:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5052,7 +5052,7 @@ State 50:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5118,7 +5118,7 @@ State 51:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5184,7 +5184,7 @@ State 52:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5250,7 +5250,7 @@ State 53:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5316,7 +5316,7 @@ State 54:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5382,7 +5382,7 @@ State 55:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5448,7 +5448,7 @@ State 56:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5514,7 +5514,7 @@ State 57:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5580,7 +5580,7 @@ State 58:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5646,7 +5646,7 @@ State 59:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5713,7 +5713,7 @@ State 60:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5779,7 +5779,7 @@ State 61:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5845,7 +5845,7 @@ State 62:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5911,7 +5911,7 @@ State 63:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -5977,7 +5977,7 @@ State 64:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6043,7 +6043,7 @@ State 65:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6109,7 +6109,7 @@ State 66:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6175,7 +6175,7 @@ State 67:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6241,7 +6241,7 @@ State 68:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6307,7 +6307,7 @@ State 69:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6373,7 +6373,7 @@ State 70:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6439,7 +6439,7 @@ State 71:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6505,7 +6505,7 @@ State 72:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6571,7 +6571,7 @@ State 73:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6637,7 +6637,7 @@ State 74:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6703,7 +6703,7 @@ State 75:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6769,7 +6769,7 @@ State 76:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6835,7 +6835,7 @@ State 77:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6901,7 +6901,7 @@ State 78:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -6967,7 +6967,7 @@ State 79:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -7033,7 +7033,7 @@ State 80:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -7099,7 +7099,7 @@ State 81:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -7165,7 +7165,7 @@ State 82:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -7231,7 +7231,7 @@ State 83:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -7297,7 +7297,7 @@ State 84:
                         LPAREN shift  59
                     LSQBRACKET shift  33
                           NAME shift  169
-                      FUNCTION shift  354
+                      FUNCTION shift  353
                         NUMBER shift  171
                          KILLS shift  170
                            L2V shift  336
@@ -7352,7 +7352,7 @@ State 87:
 
                           NAME shift  240
                         RPAREN reduce 61
-                 typedNameList shift  360
+                 typedNameList shift  359
         typedNameList_nonEmpty shift  296
                      typedName shift  246
 
@@ -7668,7 +7668,7 @@ State 104:
                         LPAREN reduce 117 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 117 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 117 -- dropped by precedence
                      SEMICOLON reduce 117
                           NAME reduce 117
@@ -7770,7 +7770,7 @@ State 105:
                         LPAREN reduce 116 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 116 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 116 -- dropped by precedence
                      SEMICOLON reduce 116
                           NAME reduce 116
@@ -7872,7 +7872,7 @@ State 106:
                         LPAREN reduce 115 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 115 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 115 -- dropped by precedence
                      SEMICOLON reduce 115
                           NAME reduce 115
@@ -7974,7 +7974,7 @@ State 107:
                         LPAREN reduce 114 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 114 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 114 -- dropped by precedence
                      SEMICOLON reduce 114
                           NAME reduce 114
@@ -8076,7 +8076,7 @@ State 108:
                         LPAREN reduce 113 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 113 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 113 -- dropped by precedence
                      SEMICOLON reduce 113
                           NAME reduce 113
@@ -8178,7 +8178,7 @@ State 109:
                         LPAREN reduce 112 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 112 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 112 -- dropped by precedence
                      SEMICOLON reduce 112
                           NAME reduce 112
@@ -10513,7 +10513,7 @@ State 146:
                         LPAREN reduce 120 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 120 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 120 -- dropped by precedence
                      SEMICOLON reduce 120
                           NAME reduce 120
@@ -10615,7 +10615,7 @@ State 147:
                         LPAREN reduce 111 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 111 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 111 -- dropped by precedence
                      SEMICOLON reduce 111
                           NAME reduce 111
@@ -10717,7 +10717,7 @@ State 148:
                         LPAREN reduce 110 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 110 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 110 -- dropped by precedence
                      SEMICOLON reduce 110
                           NAME reduce 110
@@ -10819,7 +10819,7 @@ State 149:
                         LPAREN reduce 109 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 109 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 109 -- dropped by precedence
                      SEMICOLON reduce 109
                           NAME reduce 109
@@ -11269,7 +11269,7 @@ State 156:
                         LPAREN reduce 119 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 119 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 119 -- dropped by precedence
                      SEMICOLON reduce 119
                           NAME reduce 119
@@ -11371,7 +11371,7 @@ State 157:
                         LPAREN reduce 118 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 118 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 118 -- dropped by precedence
                      SEMICOLON reduce 118
                           NAME reduce 118
@@ -11473,7 +11473,7 @@ State 158:
                         LPAREN reduce 108 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 108 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 108 -- dropped by precedence
                      SEMICOLON reduce 108
                           NAME reduce 108
@@ -11575,7 +11575,7 @@ State 159:
                         LPAREN reduce 107 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 107 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 107 -- dropped by precedence
                      SEMICOLON reduce 107
                           NAME reduce 107
@@ -11677,7 +11677,7 @@ State 160:
                         LPAREN reduce 106 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 106 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 106 -- dropped by precedence
                      SEMICOLON reduce 106
                           NAME reduce 106
@@ -11779,7 +11779,7 @@ State 161:
                         LPAREN reduce 105 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 105 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 105 -- dropped by precedence
                      SEMICOLON reduce 105
                           NAME reduce 105
@@ -11881,7 +11881,7 @@ State 162:
                         LPAREN reduce 104 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 104 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 104 -- dropped by precedence
                      SEMICOLON reduce 104
                           NAME reduce 104
@@ -11983,7 +11983,7 @@ State 163:
                         LPAREN reduce 103 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 103 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 103 -- dropped by precedence
                      SEMICOLON reduce 103
                           NAME reduce 103
@@ -12085,7 +12085,7 @@ State 164:
                         LPAREN reduce 102 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 102 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 102 -- dropped by precedence
                      SEMICOLON reduce 102
                           NAME reduce 102
@@ -12187,7 +12187,7 @@ State 165:
                         LPAREN reduce 101 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 101 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 101 -- dropped by precedence
                      SEMICOLON reduce 101
                           NAME reduce 101
@@ -12289,7 +12289,7 @@ State 166:
                         LPAREN reduce 100 -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 100 -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 100 -- dropped by precedence
                      SEMICOLON reduce 100
                           NAME reduce 100
@@ -12391,7 +12391,7 @@ State 167:
                         LPAREN reduce 99  -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 99  -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 99  -- dropped by precedence
                      SEMICOLON reduce 99
                           NAME reduce 99
@@ -12493,7 +12493,7 @@ State 168:
                         LPAREN reduce 98  -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 98  -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                         PERIOD reduce 98  -- dropped by precedence
                      SEMICOLON reduce 98
                           NAME reduce 98
@@ -12846,7 +12846,7 @@ State 174:
                            MOD reduce 88
                         BITNOT reduce 88
                         LPAREN reduce 88
-                    LSQBRACKET shift  359
+                    LSQBRACKET shift  358
                     LSQBRACKET reduce 88  -- dropped by precedence
                         PERIOD reduce 88
                      SEMICOLON reduce 88
@@ -12932,7 +12932,7 @@ State 175:
                         LPAREN reduce 67  -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 67  -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 67
                           NAME reduce 67
                       FUNCTION reduce 67
@@ -13075,7 +13075,7 @@ State 177:
                         LPAREN reduce 68  -- dropped by precedence
                     LSQBRACKET shift  83
                     LSQBRACKET reduce 68  -- dropped by precedence
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 68
                           NAME reduce 68
                       FUNCTION reduce 68
@@ -13307,7 +13307,7 @@ State 182:
                     ACTIONNAME reduce 52
 
 State 183:
-     (54) bodyStmtList ::= bodyStmtList error SEMICOLON *
+     (54) bodyStmtList ::= bodyStmtList error *
 
                           LNOT reduce 54
                           PLUS reduce 54
@@ -13663,7 +13663,7 @@ State 192:
                       MULTIPLY reduce 88
                            MOD reduce 88
                         LPAREN reduce 88
-                    LSQBRACKET shift  359
+                    LSQBRACKET shift  358
                     LSQBRACKET reduce 88  -- dropped by precedence
                         PERIOD reduce 88
                      SEMICOLON reduce 85
@@ -13718,7 +13718,7 @@ State 193:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 136
                         RPAREN reduce 136
 
@@ -13769,7 +13769,7 @@ State 194:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 134
                         RPAREN reduce 134
 
@@ -13820,7 +13820,7 @@ State 195:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 147
                         RPAREN reduce 147
 
@@ -13871,7 +13871,7 @@ State 196:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 146
                         RPAREN reduce 146
 
@@ -13922,7 +13922,7 @@ State 197:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 145
                         RPAREN reduce 145
 
@@ -13973,7 +13973,7 @@ State 198:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 144
                         RPAREN reduce 144
 
@@ -14024,7 +14024,7 @@ State 199:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 143
                         RPAREN reduce 143
 
@@ -14075,7 +14075,7 @@ State 200:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 142
                         RPAREN reduce 142
 
@@ -14126,7 +14126,7 @@ State 201:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 141
                         RPAREN reduce 141
 
@@ -14177,7 +14177,7 @@ State 202:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 140
                         RPAREN reduce 140
 
@@ -14228,7 +14228,7 @@ State 203:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 139
                         RPAREN reduce 139
 
@@ -14279,7 +14279,7 @@ State 204:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 138
                         RPAREN reduce 138
 
@@ -14330,7 +14330,7 @@ State 205:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 132
                         RPAREN reduce 132
 
@@ -14381,7 +14381,7 @@ State 206:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON reduce 58
                         RPAREN reduce 58
 
@@ -14464,7 +14464,7 @@ State 208:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                         RPAREN reduce 80
 
 State 209:
@@ -14567,7 +14567,7 @@ State 210:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                         RPAREN reduce 78
 
 State 211:
@@ -14616,7 +14616,7 @@ State 211:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                     RSQBRACKET shift  139
 
 State 212:
@@ -14665,7 +14665,7 @@ State 212:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                      SEMICOLON shift  222
 
 State 213:
@@ -14714,7 +14714,7 @@ State 213:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                         RPAREN reduce 160
 
 State 214:
@@ -14763,7 +14763,7 @@ State 214:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                         RPAREN reduce 154
 
 State 215:
@@ -14812,7 +14812,7 @@ State 215:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                         RPAREN reduce 151
 
 State 216:
@@ -14861,7 +14861,7 @@ State 216:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                         RPAREN shift  154
 
 State 217:
@@ -14910,7 +14910,7 @@ State 217:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                         RPAREN shift  155
 
 State 218:
@@ -14960,7 +14960,7 @@ State 218:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                     RSQBRACKET shift  178
 
 State 219:
@@ -15009,7 +15009,7 @@ State 219:
                            MOD shift  74
                         LPAREN shift  20
                     LSQBRACKET shift  83
-                        PERIOD shift  355
+                        PERIOD shift  354
                          COLON shift  79
 
 State 220:
@@ -15415,9 +15415,9 @@ State 252:
           import_chunk ::= IMPORT dottedName * AS NAME
      (15) import_chunk ::= IMPORT dottedName *
 
-                        PERIOD shift  365
+                        PERIOD shift  364
                      SEMICOLON reduce 15
-                            AS shift  364
+                            AS shift  363
 
 State 253:
      (12) dottedName ::= NAME *
@@ -15633,7 +15633,7 @@ State 284:
           expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER * RSQBRACKET RSQBRACKET
 
                          COMMA reduce 55
-                    RSQBRACKET shift  356
+                    RSQBRACKET shift  355
                     RSQBRACKET reduce 55  -- dropped by precedence
 
 State 285:
@@ -15919,149 +15919,144 @@ State 340:
                           NAME shift  179
 
 State 341:
-          bodyStmtList ::= bodyStmtList error * SEMICOLON
-
-                     SEMICOLON shift  183
-
-State 342:
           bodyStmt ::= return_stmt * SEMICOLON
 
                      SEMICOLON shift  117
 
-State 343:
+State 342:
           bodyStmt ::= break_stmt * SEMICOLON
 
                      SEMICOLON shift  118
 
-State 344:
+State 343:
           bodyStmt ::= continue_stmt * SEMICOLON
 
                      SEMICOLON shift  119
 
-State 345:
+State 344:
           bodyStmt ::= actionStmt * SEMICOLON
 
                      SEMICOLON shift  125
 
-State 346:
+State 345:
           bodyStmt ::= funcexprStmt * SEMICOLON
 
                      SEMICOLON shift  126
 
-State 347:
+State 346:
           bodyStmt ::= assign_stmt * SEMICOLON
 
                      SEMICOLON shift  127
 
-State 348:
+State 347:
           bodyStmt ::= cdef_stmt * SEMICOLON
 
                      SEMICOLON shift  128
 
-State 349:
+State 348:
           bodyStmt ::= vdefAssign_stmt * SEMICOLON
 
                      SEMICOLON shift  129
 
-State 350:
+State 349:
           bodyStmt ::= vdefAssignStatic_stmt * SEMICOLON
 
                      SEMICOLON shift  130
 
-State 351:
+State 350:
           bodyStmt ::= vdef_stmt * SEMICOLON
 
                      SEMICOLON shift  131
 
-State 352:
+State 351:
           blockStmt ::= lbracket error * RBRACKET
 
                       RBRACKET shift  134
 
-State 353:
+State 352:
           stmt ::= error * SEMICOLON
 
                      SEMICOLON shift  138
 
-State 354:
+State 353:
           lambdaExprStart ::= FUNCTION * LPAREN typedNameList RPAREN fdef_rettypes
 
                         LPAREN shift  86
 
-State 355:
+State 354:
           expr ::= expr PERIOD * NAME
 
                           NAME shift  172
 
-State 356:
+State 355:
           expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER RSQBRACKET * RSQBRACKET
 
                     RSQBRACKET shift  173
 
-State 357:
+State 356:
           expr ::= funcexpr LSQBRACKET LSQBRACKET NUMBER * RSQBRACKET RSQBRACKET
 
-                    RSQBRACKET shift  356
+                    RSQBRACKET shift  355
 
-State 358:
+State 357:
           expr ::= funcexpr LSQBRACKET LSQBRACKET * NUMBER RSQBRACKET RSQBRACKET
 
-                        NUMBER shift  357
+                        NUMBER shift  356
 
-State 359:
+State 358:
           expr ::= funcexpr LSQBRACKET * LSQBRACKET NUMBER RSQBRACKET RSQBRACKET
 
-                    LSQBRACKET shift  358
+                    LSQBRACKET shift  357
 
-State 360:
+State 359:
           fdef_header ::= FUNCTION NAME LPAREN typedNameList * RPAREN fdef_rettypes
           fdecl_chunk ::= FUNCTION NAME LPAREN typedNameList * RPAREN SEMICOLON
 
                         RPAREN shift  93
 
-State 361:
+State 360:
           fdef_header ::= FUNCTION NAME * LPAREN typedNameList RPAREN fdef_rettypes
           fdecl_chunk ::= FUNCTION NAME * LPAREN typedNameList RPAREN SEMICOLON
 
                         LPAREN shift  87
 
-State 362:
+State 361:
           fdef_header ::= FUNCTION * NAME LPAREN typedNameList RPAREN fdef_rettypes
           fdecl_chunk ::= FUNCTION * NAME LPAREN typedNameList RPAREN SEMICOLON
 
-                          NAME shift  361
+                          NAME shift  360
 
-State 363:
+State 362:
      (14) import_chunk ::= IMPORT dottedName AS NAME *
 
                      SEMICOLON reduce 14
 
-State 364:
+State 363:
           import_chunk ::= IMPORT dottedName AS * NAME
 
-                          NAME shift  363
+                          NAME shift  362
 
-State 365:
+State 364:
           dottedName ::= dottedName PERIOD * NAME
 
                           NAME shift  251
 
-State 366:
+State 365:
           chunk ::= cdef_global_stmt * SEMICOLON
 
                      SEMICOLON shift  229
 
-State 367:
+State 366:
           chunk ::= vdefAssign_global_stmt * SEMICOLON
 
                      SEMICOLON shift  230
 
-State 368:
+State 367:
           chunk ::= vdef_stmt * SEMICOLON
 
                      SEMICOLON shift  231
 
-State 369:
+State 368:
           chunk ::= import_chunk * SEMICOLON
 
                      SEMICOLON shift  235
