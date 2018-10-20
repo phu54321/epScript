@@ -3,8 +3,8 @@ project(epScript)
 
 set(EPSCRIPT_VERSION 1.3.1)
 set(EPSCRIPT_SOVERSION 1.3)
-set(EUDPLIB_PATH "../eudplib/")
-set(EUDDRAFT_PATH "../euddraft/")
+set(EUDPLIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../eudplib/")
+set(EUDDRAFT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../euddraft/")
 
 if (WIN32)
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEAaSE} -s")
@@ -69,15 +69,6 @@ add_executable(epScriptProfile ${SOURCE_FILES} libmain.cpp test/stresstest.cpp)
 
 if (CMAKE_BUILD_TYPE MATCHES "Release")
     message("release mode - static linked")
-    if (WIN32)
-        set(EUDPLIB_PATH "C:/gitclones/eudtrglib/")
-        set(EUDDRAFT_PATH "C:/gitclones/euddraft/")
-        target_link_libraries(epScriptLib -static)
-        target_link_libraries(epScriptTest -static)
-    else ()
-        set(EUDPLIB_PATH "/Users/whyask37/gitclones/eudtrglib/")
-        set(EUDDRAFT_PATH "/Users/whyask37/gitclones/euddraft/")
-    endif ()
     add_custom_command(TARGET epScriptLib POST_BUILD
             COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:epScriptLib>" "${EUDPLIB_PATH}eudplib/epscript/$<TARGET_LINKER_FILE_NAME:epScriptLib>"
             COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:epScriptLib>" "${EUDDRAFT_PATH}$<TARGET_LINKER_FILE_NAME:epScriptLib>"

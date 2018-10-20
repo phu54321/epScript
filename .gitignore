@@ -53,3 +53,5 @@ install_manifest.txt
 CTestTestfile.cmake
 cmake-*/
 /parser/epparser.cpp
+
+.DS_Store
