@@ -7,8 +7,8 @@ set(EUDPLIB_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../eudplib/")
 set(EUDDRAFT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../euddraft/")
 
 if (WIN32)
-    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
+    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s -static-libgcc -static")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s -static-libgcc -static-libstdc++ -static")
 endif()
 
 set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
@@ -54,12 +54,18 @@ set(TEST_SOURCE_FILES
 
 add_definitions(-DVERSION="${EPSCRIPT_VERSION}")
 
+# Shared library (.dll/.so)
 add_library(epScriptLib SHARED ${SOURCE_FILES} libmain.cpp)
 set_target_properties(epScriptLib  PROPERTIES
         VERSION ${EPSCRIPT_VERSION}
         SOVERSION ${EPSCRIPT_SOVERSION}
         )
 
+# Python binding (.pyd/.so)
+add_subdirectory(pybind11)
+pybind11_add_module(pyepScript ${SOURCE_FILES} pybindmain.cpp)
+
+# Testing
 add_executable(epScriptTest ${SOURCE_FILES} ${TEST_SOURCE_FILES} test/testmain.cpp)
 set_target_properties(epScriptTest PROPERTIES
         COMPILE_DEFINITIONS MEMORY_DEBUG)
