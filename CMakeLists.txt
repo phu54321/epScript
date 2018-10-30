@@ -9,6 +9,10 @@ set(EUDDRAFT_PATH "${CMAKE_CURRENT_SOURCE_DIR}/../euddraft/")
 if (WIN32)
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s -static-libgcc -static")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s -static-libgcc -static-libstdc++ -static")
+
+    SET(CMAKE_AR  "gcc-ar")
+    SET(CMAKE_C_ARCHIVE_CREATE "<CMAKE_AR> qcs <TARGET> <LINK_FLAGS> <OBJECTS>")
+    SET(CMAKE_C_ARCHIVE_FINISH   true)
 endif()
 
 set_source_files_properties(parser/epparser.cpp PROPERTIES GENERATED TRUE)
@@ -79,5 +83,9 @@ if (CMAKE_BUILD_TYPE MATCHES "Release")
             COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:epScriptLib>" "${EUDPLIB_PATH}eudplib/epscript/$<TARGET_LINKER_FILE_NAME:epScriptLib>"
             COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:epScriptLib>" "${EUDDRAFT_PATH}$<TARGET_LINKER_FILE_NAME:epScriptLib>"
             COMMENT "Copying to other projects - eudtrglib & euddraft"
+            VERBATIM)
+    add_custom_command(TARGET pyepScript POST_BUILD
+            COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_LINKER_FILE:pyepScript>" "${CMAKE_CURRENT_SOURCE_DIR}/../eudplib/epscript/$<TARGET_LINKER_FILE_NAME:pyepScript>"
+            COMMENT "Copying python extension to pyepScript"
             VERBATIM)
 endif()
